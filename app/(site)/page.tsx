@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
+import HomeFeed from '@/components/home-feed'
 
 export const revalidate = 60
 
@@ -18,12 +19,22 @@ export default async function HomePage() {
     select: { id: true, slug: true, title: true, views: true }
   })
 
+  const hero = posts[0]
+  const rest = posts.slice(1)
   return (
     <main className="container py-6">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">Trending Today</h1>
         <Link href="/submit" className="text-sm underline">Submit</Link>
       </div>
+      {hero && (
+        <Link href={`/post/${hero.slug}`} className="block mb-8 rounded-lg border p-6 hover:shadow">
+          <div className="text-xs uppercase text-gray-500 mb-2">Featured</div>
+          <h2 className="text-xl font-semibold mb-2">{hero.title}</h2>
+          <p className="text-gray-600 line-clamp-3">{hero.description || ''}</p>
+          <div className="mt-2 text-xs text-gray-500">{formatDistanceToNow(hero.publishedAt || hero.createdAt, { addSuffix: true })}</div>
+        </Link>
+      )}
       {trending.length > 0 && (
         <div className="mb-8">
           <h2 className="text-lg font-medium mb-2">Most Viewed</h2>
@@ -37,22 +48,15 @@ export default async function HomePage() {
           </ul>
         </div>
       )}
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {posts.map((p) => (
-          <li key={p.id} className="rounded-lg border p-4 hover:shadow">
-            <Link href={`/post/${p.slug}`} className="block">
-              <h2 className="font-medium text-lg">{p.title}</h2>
-              <p className="text-sm text-gray-600 line-clamp-2">{p.description}</p>
-              <div className="mt-2 text-xs text-gray-500">{formatDistanceToNow(p.publishedAt || p.createdAt, { addSuffix: true })}</div>
-            </Link>
-            <div className="mt-2 flex gap-2 text-xs">
-              {p.tags.map((t) => (
-                <Link key={t.tagId} href={`/tag/${t.tag.slug}`} className="px-2 py-0.5 rounded bg-gray-100">#{t.tag.name}</Link>
-              ))}
-            </div>
-          </li>
-        ))}
-      </ul>
+      <HomeFeed initial={rest.map((p) => ({
+        id: p.id,
+        slug: p.slug,
+        title: p.title,
+        description: p.description || null,
+        publishedAt: p.publishedAt ? p.publishedAt.toISOString() : null,
+        createdAt: p.createdAt.toISOString(),
+        tags: p.tags.map((x) => ({ tag: { slug: x.tag.slug, name: x.tag.name } }))
+      }))} />
     </main>
   )
 }
