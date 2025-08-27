@@ -55,6 +55,7 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
                 <td className="py-2 pr-4">{p.status}</td>
                 <td className="py-2 pr-4">{p.publishedAt ? new Date(p.publishedAt).toLocaleString() : '—'}</td>
                 <td className="py-2 flex gap-2">
+                  <Link href={`/admin/posts/${p.id}/edit`} className="px-3 py-1 rounded border">Edit</Link>
                   {p.status === 'published' ? (
                     <form action={`/admin/posts/${p.id}/unpublish`} method="post">
                       <button className="px-3 py-1 rounded border">Unpublish</button>
@@ -73,4 +74,3 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
     </main>
   )
 }
-

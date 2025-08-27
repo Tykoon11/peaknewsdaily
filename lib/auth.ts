@@ -26,8 +26,8 @@ export const authConfig: NextAuthConfig = {
     async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id
-        // @ts-expect-error role
-        session.user.role = (user as any).role
+        // Cast to include custom Role on session user shape
+        ;(session.user as any).role = (user as any).role
       }
       return session
     }

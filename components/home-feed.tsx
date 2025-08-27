@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 type Tag = { slug: string; name: string }
@@ -10,23 +10,26 @@ type Post = {
   description: string | null
   publishedAt: string | null
   createdAt: string
+  media?: { kind: 'image' | 'video'; publicId: string }[]
   tags: { tag: Tag }[]
 }
 
-export default function HomeFeed({ initial }: { initial: Post[] }) {
+export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; baseQuery?: { c?: string; s?: 'latest' | 'views' } }) {
   const [items, setItems] = useState<Post[]>(initial)
   const [cursor, setCursor] = useState<string | null>(initial.length ? initial[initial.length - 1].id : null)
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
 
-  const onLoadMore = async () => {
+  const onLoadMore = useCallback(async () => {
     if (loading || done || !cursor) return
     setLoading(true)
     try {
       const url = new URL('/api/posts', window.location.origin)
       url.searchParams.set('cursor', cursor)
       url.searchParams.set('limit', '12')
+      if (baseQuery?.c) url.searchParams.set('c', baseQuery.c)
+      if (baseQuery?.s) url.searchParams.set('s', baseQuery.s)
       const res = await fetch(url.toString())
       const data = await res.json()
       const next: Post[] = data.items || []
@@ -36,24 +39,53 @@ export default function HomeFeed({ initial }: { initial: Post[] }) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [cursor, loading, done])
 
   useEffect(() => {
-    if (!loadMoreRef.current) return
     const el = loadMoreRef.current
+    if (!el) return
     const obs = new IntersectionObserver((entries) => {
       const e = entries[0]
       if (e.isIntersecting) onLoadMore()
     })
     obs.observe(el)
     return () => obs.disconnect()
-  }, [loadMoreRef.current, cursor, loading, done])
+  }, [onLoadMore])
 
   return (
     <>
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {items.map((p) => (
           <li key={p.id} className="rounded-lg border p-4 hover:shadow">
+            {p.media && p.media.length > 0 && (
+              <div className="mb-3 -mx-4 -mt-4">
+                {p.media[0].kind === 'video' ? (
+                  <video
+                    className="w-full h-48 object-cover"
+                    muted
+                    playsInline
+                    preload="metadata"
+                    onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.pause()
+                      try {
+                        e.currentTarget.currentTime = 0
+                      } catch {}
+                    }}
+                    poster={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${p.media[0].publicId}.jpg` : undefined}
+                  >
+                    <source src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${p.media[0].publicId}.mp4`} type="video/mp4" />
+                  </video>
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    alt={p.title}
+                    className="w-full h-48 object-cover"
+                    src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media[0].publicId}.jpg`}
+                  />
+                )}
+              </div>
+            )}
             <Link href={`/post/${p.slug}`} className="block">
               <h2 className="font-medium text-lg">{p.title}</h2>
               <p className="text-sm text-gray-600 line-clamp-2">{p.description || ''}</p>
@@ -72,4 +104,3 @@ export default function HomeFeed({ initial }: { initial: Post[] }) {
     </>
   )
 }
-
