@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  reader
+  contributor
+  editor
+  admin
+}
+
+enum MediaKind {
+  image
+  video
+}
+
+enum SubmissionStatus {
+  pending
+  approved
+  rejected
+}
+
+enum PostType {
+  Music
+  Promotional
+  Funny
+  Other
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(reader)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  accounts      Account[]
+  sessions      Session[]
+  posts         Post[]
+  submissions   Submission[] @relation("SubmitterSubmissions")
+  reactions     Reaction[]
+  auditLogs     AuditLog[]  @relation("UserAuditLogs")
+  comments      Comment[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  posts     PostTag[]
+}
+
+model PostTag {
+  postId String
+  tagId  String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+}
+
+model MediaAsset {
+  id        String    @id @default(cuid())
+  kind      MediaKind
+  provider  String
+  publicId  String
+  width     Int?
+  height    Int?
+  duration  Float?
+  blurhash  String?
+  sourceUrl String?
+  post      Post?     @relation(fields: [postId], references: [id])
+  postId    String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Post {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  title        String
+  description  String?
+  type         PostType
+  author       User?         @relation(fields: [authorId], references: [id])
+  authorId     String?
+  category     Category?     @relation(fields: [categoryId], references: [id])
+  categoryId   String?
+  tags         PostTag[]
+  media        MediaAsset[]
+  submission   Submission?
+  status       String        @default("draft")
+  publishedAt  DateTime?
+  views        Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+  reactions    Reaction[]
+  comments     Comment[]
+  viewEvents   ViewEvent[]
+  embedding    Embedding?
+}
+
+model Submission {
+  id               String           @id @default(cuid())
+  post             Post?            @relation(fields: [postId], references: [id])
+  postId           String?          @unique
+  status           SubmissionStatus @default(pending)
+  licenseAccepted  Boolean
+  ageRestricted    Boolean          @default(false)
+  notes            String?
+  submitter        User             @relation("SubmitterSubmissions", fields: [submitterId], references: [id])
+  submitterId      String
+  externalUrl      String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+}
+
+model Reaction {
+  id        String   @id @default(cuid())
+  type      String
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  createdAt DateTime @default(now())
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id                 String   @id @default(cuid())
+  email              String   @unique
+  verified           Boolean  @default(false)
+  verificationToken  String?
+  subscribedAt       DateTime @default(now())
+  unsubscribedAt     DateTime?
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actor     User?    @relation("UserAuditLogs", fields: [actorId], references: [id])
+  actorId   String?
+  action    String
+  entity    String
+  entityId  String?
+  data      Json?
+  createdAt DateTime @default(now())
+}
+
+model ViewEvent {
+  id        String   @id @default(cuid())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  ipHash    String
+  userAgent String?
+  createdAt DateTime @default(now())
+  @@index([postId, createdAt])
+}
+
+// Vector embedding stub; swap to pgvector later
+model Embedding {
+  id        String   @id @default(cuid())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String   @unique
+  // store as numeric array for now; migrate to pgvector when available
+  values    Decimal[]
+  createdAt DateTime @default(now())
+}
