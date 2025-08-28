@@ -39,7 +39,7 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
     } finally {
       setLoading(false)
     }
-  }, [cursor, loading, done])
+  }, [cursor, loading, done, baseQuery?.c, baseQuery?.s])
 
   useEffect(() => {
     const el = loadMoreRef.current
