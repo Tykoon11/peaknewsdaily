@@ -26,7 +26,7 @@ export default function HeroCard({
   const image = media?.find((m) => m.kind === 'image')
   const video = media?.find((m) => m.kind === 'video')
   return (
-    <Link href={`/post/${slug}`} className="block mb-8 rounded-lg border hover:shadow overflow-hidden">
+    <Link href={`/post/${slug}`} className="block mb-8 rounded-lg border hover:shadow overflow-hidden hero-card">
       {cloudName && (image || video) ? (
         <div className="relative w-full h-56 bg-black">
           {video ? (
@@ -58,7 +58,7 @@ export default function HeroCard({
           ) : null}
         </div>
       ) : null}
-      <div className="p-6">
+      <div className="p-6 hero-card-body">
         <div className="text-xs uppercase text-gray-500 mb-2">Featured</div>
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
         {description ? <p className="text-gray-600 line-clamp-3">{description}</p> : null}
@@ -67,4 +67,3 @@ export default function HeroCard({
     </Link>
   )
 }
-

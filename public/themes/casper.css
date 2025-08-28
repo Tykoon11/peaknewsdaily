@@ -1,26 +1,44 @@
 /* Casper-like theme: lighter text, accent header band, serif headings */
 :root[data-theme="casper"] {
   --pn-bg: #ffffff;
-  --pn-text: #222222;
+  --pn-text: #15171A;
   --pn-muted: #6b7280;
   --pn-accent: #15171A;
   --pn-link: #15171A;
+  --pn-card-bg: #ffffff;
+  --pn-border: #e6e8eb;
+  --pn-chip-bg: #f2f3f5;
+  --pn-btn-bg: #15171A;
+  --pn-btn-text: #ffffff;
 }
 
-html[data-theme="casper"] body {
-  background-color: var(--pn-bg);
-  color: var(--pn-text);
-}
+html[data-theme="casper"] body { background-color: var(--pn-bg); color: var(--pn-text); }
 
-html[data-theme="casper"] header {
+/* Header band inspired by Casper */
+html[data-theme="casper"] .site-header {
   background: linear-gradient(180deg, #15171A 0%, rgba(21,23,26,0.85) 60%, transparent 100%);
+  border-color: transparent;
 }
+html[data-theme="casper"] .site-title { color: #ffffff; }
+html[data-theme="casper"] .site-nav .nav-link { color: #f3f4f6; }
 
-html[data-theme="casper"] h1, 
-html[data-theme="casper"] h2, 
-html[data-theme="casper"] h3 {
-  font-family: Georgia, 'Times New Roman', serif;
-}
+/* Typography tweak */
+html[data-theme="casper"] h1,
+html[data-theme="casper"] h2,
+html[data-theme="casper"] h3 { font-family: Georgia, 'Times New Roman', serif; }
 
+/* Cards */
+html[data-theme="casper"] .hero-card,
+html[data-theme="casper"] .post-card { background: var(--pn-card-bg); border-color: var(--pn-border); }
+html[data-theme="casper"] .post-card .tag-chip { background: var(--pn-chip-bg); }
+html[data-theme="casper"] .hero-card-body h2 { color: var(--pn-accent); }
+
+/* Links */
 html[data-theme="casper"] a { color: var(--pn-link); }
 
+/* Buttons */
+html[data-theme="casper"] button,
+html[data-theme="casper"] .btn { background: var(--pn-btn-bg); color: var(--pn-btn-text); }
+
+/* Footer */
+html[data-theme="casper"] .site-footer { border-color: var(--pn-border); }

@@ -1,0 +1,28 @@
+/* Starter theme approximation */
+:root[data-theme="starter"] {
+  --pn-bg: #ffffff;
+  --pn-text: #111827;
+  --pn-muted: #6b7280;
+  --pn-accent: #0f172a;
+  --pn-link: #0f172a;
+  --pn-card-bg: #ffffff;
+  --pn-border: #e5e7eb;
+  --pn-chip-bg: #eef2f7;
+  --pn-btn-bg: #0f172a;
+  --pn-btn-text: #ffffff;
+}
+
+html[data-theme="starter"] body { background-color: var(--pn-bg); color: var(--pn-text); }
+html[data-theme="starter"] .site-header { border-color: var(--pn-border); background: #fff; }
+html[data-theme="starter"] .site-title { color: var(--pn-accent); }
+html[data-theme="starter"] .site-nav .nav-link { color: var(--pn-text); }
+
+html[data-theme="starter"] .hero-card,
+html[data-theme="starter"] .post-card { background: var(--pn-card-bg); border-color: var(--pn-border); }
+html[data-theme="starter"] .post-card .tag-chip { background: var(--pn-chip-bg); }
+
+html[data-theme="starter"] a { color: var(--pn-link); }
+html[data-theme="starter"] button,
+html[data-theme="starter"] .btn { background: var(--pn-btn-bg); color: var(--pn-btn-text); }
+html[data-theme="starter"] .site-footer { border-color: var(--pn-border); }
+

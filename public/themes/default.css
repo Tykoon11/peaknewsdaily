@@ -5,6 +5,11 @@
   --pn-muted: #6b7280;
   --pn-accent: #111827;
   --pn-link: #1d4ed8;
+  --pn-card-bg: #ffffff;
+  --pn-border: #e5e7eb;
+  --pn-chip-bg: #f3f4f6;
+  --pn-btn-bg: #111827;
+  --pn-btn-text: #ffffff;
 }
 
 html[data-theme="default"] body {
@@ -15,3 +20,19 @@ html[data-theme="default"] body {
 html[data-theme="default"] a { color: var(--pn-link); }
 html[data-theme="default"] header { background: transparent; }
 
+/* Header/Nav */
+html[data-theme="default"] .site-header { border-color: var(--pn-border); }
+html[data-theme="default"] .site-title { color: var(--pn-text); }
+html[data-theme="default"] .site-nav .nav-link { color: var(--pn-text); }
+
+/* Cards */
+html[data-theme="default"] .hero-card,
+html[data-theme="default"] .post-card { background: var(--pn-card-bg); border-color: var(--pn-border); }
+html[data-theme="default"] .post-card .tag-chip { background: var(--pn-chip-bg); }
+
+/* Buttons */
+html[data-theme="default"] button,
+html[data-theme="default"] .btn { background: var(--pn-btn-bg); color: var(--pn-btn-text); }
+
+/* Footer */
+html[data-theme="default"] .site-footer { border-color: var(--pn-border); }

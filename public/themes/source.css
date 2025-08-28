@@ -1,0 +1,29 @@
+/* Source theme approximation */
+:root[data-theme="source"] {
+  --pn-bg: #0b0e14;
+  --pn-text: #e6edf3;
+  --pn-muted: #9aa4b2;
+  --pn-accent: #58a6ff;
+  --pn-link: #58a6ff;
+  --pn-card-bg: #111522;
+  --pn-border: #1f2430;
+  --pn-chip-bg: #1b2332;
+  --pn-btn-bg: #238636;
+  --pn-btn-text: #ffffff;
+}
+
+html[data-theme="source"] body { background-color: var(--pn-bg); color: var(--pn-text); }
+html[data-theme="source"] .site-header { background: #0d1117; border-color: #0d1117; }
+html[data-theme="source"] .site-title { color: var(--pn-text); }
+html[data-theme="source"] .site-nav .nav-link { color: var(--pn-muted); }
+
+html[data-theme="source"] .hero-card,
+html[data-theme="source"] .post-card { background: var(--pn-card-bg); border-color: var(--pn-border); }
+html[data-theme="source"] .post-card .tag-chip { background: var(--pn-chip-bg); color: var(--pn-muted); }
+html[data-theme="source"] .hero-card-body h2 { color: var(--pn-text); }
+
+html[data-theme="source"] a { color: var(--pn-link); }
+html[data-theme="source"] button,
+html[data-theme="source"] .btn { background: var(--pn-btn-bg); color: var(--pn-btn-text); }
+html[data-theme="source"] .site-footer { border-color: var(--pn-border); }
+

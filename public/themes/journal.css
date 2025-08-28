@@ -1,0 +1,32 @@
+/* Journal theme approximation */
+:root[data-theme="journal"] {
+  --pn-bg: #faf7f2;
+  --pn-text: #2a2a2a;
+  --pn-muted: #6f6b63;
+  --pn-accent: #1f2937;
+  --pn-link: #1f2937;
+  --pn-card-bg: #ffffff;
+  --pn-border: #e7e2db;
+  --pn-chip-bg: #efeae2;
+  --pn-btn-bg: #1f2937;
+  --pn-btn-text: #ffffff;
+}
+
+html[data-theme="journal"] body { background-color: var(--pn-bg); color: var(--pn-text); }
+html[data-theme="journal"] .site-header { background: #fff; border-color: var(--pn-border); }
+html[data-theme="journal"] .site-title { font-family: Georgia, 'Times New Roman', serif; color: var(--pn-accent); }
+html[data-theme="journal"] .site-nav .nav-link { color: var(--pn-accent); }
+
+html[data-theme="journal"] h1,
+html[data-theme="journal"] h2,
+html[data-theme="journal"] h3 { font-family: Georgia, 'Times New Roman', serif; }
+
+html[data-theme="journal"] .hero-card,
+html[data-theme="journal"] .post-card { background: var(--pn-card-bg); border-color: var(--pn-border); }
+html[data-theme="journal"] .post-card .tag-chip { background: var(--pn-chip-bg); }
+
+html[data-theme="journal"] a { color: var(--pn-link); }
+html[data-theme="journal"] button,
+html[data-theme="journal"] .btn { background: var(--pn-btn-bg); color: var(--pn-btn-text); }
+html[data-theme="journal"] .site-footer { border-color: var(--pn-border); }
+

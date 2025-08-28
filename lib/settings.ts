@@ -21,6 +21,8 @@ export async function setActiveTheme(theme: string) {
 
 export const THEME_OPTIONS = [
   { id: 'default', name: 'Default' },
-  { id: 'casper', name: 'Casper-like' }
+  { id: 'casper', name: 'Casper' },
+  { id: 'starter', name: 'Starter' },
+  { id: 'source', name: 'Source' },
+  { id: 'journal', name: 'Journal' }
 ]
-
