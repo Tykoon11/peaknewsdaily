@@ -9,8 +9,10 @@ cloudinary.config({
 
 export function signUpload(params: Record<string, string | number>) {
   const timestamp = Math.floor(Date.now() / 1000)
-  const toSign = Object.entries({ ...params, timestamp })
-    .filter(([, v]): v is string | number => v !== undefined && v !== null && (typeof v !== 'string' || v !== ''))
+  const entries = Object.entries({ ...params, timestamp }).filter(([, v]) =>
+    v !== undefined && v !== null && !(typeof v === 'string' && v === '')
+  ) as [string, string | number][]
+  const toSign = entries
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([k, v]) => `${k}=${v}`)
     .join('&')
