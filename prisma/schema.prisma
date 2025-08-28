@@ -126,6 +126,7 @@ model Post {
   title        String
   description  String?
   type         PostType
+  country      String?
   author       User?         @relation(fields: [authorId], references: [id])
   authorId     String?
   category     Category?     @relation(fields: [categoryId], references: [id])
@@ -224,4 +225,12 @@ model Embedding {
 model Setting {
   key   String @id
   value String
+}
+
+model Theme {
+  id         String   @id
+  name       String
+  cssFile    String   // path under /public/themes, e.g. "casper.css"
+  fontsHref  String?  // optional Google Fonts href
+  createdAt  DateTime @default(now())
 }

@@ -28,11 +28,11 @@ export default function HeroCard({
   return (
     <Link href={`/post/${slug}`} className="block mb-8 rounded-lg border hover:shadow overflow-hidden hero-card">
       {cloudName && (image || video) ? (
-        <div className="relative w-full h-56 bg-black">
+        <div className="relative w-full bg-black hero-media-wrap">
           {video ? (
             <video
               ref={videoRef}
-              className="w-full h-56 object-cover"
+              className="w-full h-56 object-cover hero-media"
               muted
               playsInline
               preload="metadata"
@@ -52,7 +52,7 @@ export default function HeroCard({
             // eslint-disable-next-line @next/next/no-img-element
             <img
               alt={title}
-              className="w-full h-56 object-cover"
+              className="w-full h-56 object-cover hero-media"
               src={`https://res.cloudinary.com/${cloudName}/image/upload/${image.publicId}.jpg`}
             />
           ) : null}

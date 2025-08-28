@@ -10,7 +10,7 @@ type Post = {
   description: string | null
   publishedAt: string | null
   createdAt: string
-  media?: { kind: 'image' | 'video'; publicId: string }[]
+  media?: { kind: 'image' | 'video'; publicId?: string; sourceUrl?: string }[]
   tags: { tag: Tag }[]
 }
 
@@ -72,16 +72,18 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
                         e.currentTarget.currentTime = 0
                       } catch {}
                     }}
-                    poster={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${p.media[0].publicId}.jpg` : undefined}
+                    poster={p.media[0].sourceUrl || (process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && p.media[0].publicId ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${p.media[0].publicId}.jpg` : undefined)}
                   >
-                    <source src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${p.media[0].publicId}.mp4`} type="video/mp4" />
+                    {p.media[0].publicId && process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? (
+                      <source src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/${p.media[0].publicId}.mp4`} type="video/mp4" />
+                    ) : null}
                   </video>
                 ) : (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     alt={p.title}
                     className="w-full h-48 object-cover"
-                    src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media[0].publicId}.jpg`}
+                    src={p.media[0].sourceUrl || (process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && p.media[0].publicId ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media[0].publicId}.jpg` : '')}
                   />
                 )}
               </div>

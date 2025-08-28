@@ -125,7 +125,8 @@ export default function SubmitWizard() {
   const onSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setMessage(null)
-    const form = new FormData(e.currentTarget)
+    const formEl = e.currentTarget as HTMLFormElement
+    const form = new FormData(formEl)
     const payload = {
       title: String(form.get('title') || ''),
       type: String(form.get('type') || 'Other') as any,
@@ -156,7 +157,7 @@ export default function SubmitWizard() {
       setMode(null)
       setLink('')
       setAssets([])
-      e.currentTarget.reset()
+      formEl.reset()
     } else {
       setMessage(json.error || 'Failed to submit')
     }
@@ -170,11 +171,11 @@ export default function SubmitWizard() {
         <div className="space-y-4">
           <div className="text-sm text-gray-600">Choose how you want to submit:</div>
           <div className="flex gap-4">
-            <button type="button" className={`px-4 py-2 rounded border ${mode === 'link' ? 'bg-black text-white' : ''}`} onClick={() => setMode('link')}>External Link</button>
-            <button type="button" className={`px-4 py-2 rounded border ${mode === 'upload' ? 'bg-black text-white' : ''}`} onClick={() => setMode('upload')}>Direct Upload</button>
+            <button type="button" className={`btn btn-outline ${mode === 'link' ? 'bg-black text-white' : ''}`} onClick={() => setMode('link')}>External Link</button>
+            <button type="button" className={`btn btn-outline ${mode === 'upload' ? 'bg-black text-white' : ''}`} onClick={() => setMode('upload')}>Direct Upload</button>
           </div>
           <div className="pt-4">
-            <button disabled={!canContinue} className="px-4 py-2 rounded bg-black text-white disabled:opacity-50" onClick={() => setStep(2)}>Continue</button>
+            <button disabled={!canContinue} className="btn disabled:opacity-50" onClick={() => setStep(2)}>Continue</button>
           </div>
         </div>
       )}
@@ -182,10 +183,10 @@ export default function SubmitWizard() {
       {step === 2 && mode === 'link' && (
         <div className="space-y-4">
           <label className="block text-sm font-medium">External URL</label>
-          <input value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://..." className="w-full rounded border px-3 py-2" />
+          <input value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://..." className="w-full rounded border px-3 py-2 input" />
           <div className="flex gap-2">
-            <button className="px-4 py-2 rounded border" onClick={() => setStep(1)}>Back</button>
-            <button disabled={!canContinue} className="px-4 py-2 rounded bg-black text-white disabled:opacity-50" onClick={() => setStep(3)}>Continue</button>
+            <button className="btn btn-outline" onClick={() => setStep(1)}>Back</button>
+            <button disabled={!canContinue} className="btn disabled:opacity-50" onClick={() => setStep(3)}>Continue</button>
           </div>
         </div>
       )}
@@ -193,7 +194,7 @@ export default function SubmitWizard() {
       {step === 2 && mode === 'upload' && (
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <input ref={fileInput} type="file" accept="image/*,video/*" multiple onChange={(e) => onSelectFiles(e.target.files)} />
+            <input ref={fileInput} type="file" accept="image/*,video/*" multiple onChange={(e) => onSelectFiles(e.target.files)} className="input" />
             {uploading && <span className="text-sm">Uploading... {progress ?? 0}%</span>}
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -207,8 +208,8 @@ export default function SubmitWizard() {
             ))}
           </div>
           <div className="flex gap-2">
-            <button className="px-4 py-2 rounded border" onClick={() => setStep(1)}>Back</button>
-            <button disabled={!canContinue} className="px-4 py-2 rounded bg-black text-white disabled:opacity-50" onClick={() => setStep(3)}>Continue</button>
+            <button className="btn btn-outline" onClick={() => setStep(1)}>Back</button>
+            <button disabled={!canContinue} className="btn disabled:opacity-50" onClick={() => setStep(3)}>Continue</button>
           </div>
         </div>
       )}
@@ -217,11 +218,11 @@ export default function SubmitWizard() {
         <form onSubmit={onSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium">Title</label>
-            <input name="title" className="mt-1 w-full rounded border px-3 py-2" required />
+            <input name="title" className="mt-1 w-full rounded border px-3 py-2 input" required />
           </div>
           <div>
             <label className="block text-sm font-medium">Type</label>
-            <select name="type" className="mt-1 w-full rounded border px-3 py-2">
+            <select name="type" className="mt-1 w-full rounded border px-3 py-2 input">
               <option>Music</option>
               <option>Promotional</option>
               <option>Funny</option>
@@ -230,11 +231,11 @@ export default function SubmitWizard() {
           </div>
           <div>
             <label className="block text-sm font-medium">Description</label>
-            <textarea name="description" className="mt-1 w-full rounded border px-3 py-2" rows={4} />
+            <textarea name="description" className="mt-1 w-full rounded border px-3 py-2 input" rows={4} />
           </div>
           <div>
             <label className="block text-sm font-medium">Tags (comma separated)</label>
-            <input name="tags" className="mt-1 w-full rounded border px-3 py-2" />
+            <input name="tags" className="mt-1 w-full rounded border px-3 py-2 input" />
           </div>
           <div className="flex items-center gap-2">
             <input type="checkbox" name="licenseAccepted" required />
@@ -245,8 +246,8 @@ export default function SubmitWizard() {
             <span className="text-sm">Age restricted</span>
           </div>
           <div className="flex gap-2">
-            <button className="px-4 py-2 rounded border" type="button" onClick={() => setStep(2)}>Back</button>
-            <button className="px-4 py-2 rounded bg-black text-white" type="submit">Submit</button>
+            <button className="btn btn-outline" type="button" onClick={() => setStep(2)}>Back</button>
+            <button className="btn" type="submit">Submit</button>
           </div>
         </form>
       )}
@@ -302,4 +303,3 @@ function Circle({ n, active }: { n: number; active: boolean }) {
     <span className={`w-6 h-6 inline-flex items-center justify-center rounded-full border ${active ? 'bg-black text-white' : ''}`}>{n}</span>
   )
 }
-

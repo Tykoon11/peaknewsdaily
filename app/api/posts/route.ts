@@ -27,7 +27,7 @@ export async function GET(req: Request) {
       publishedAt: true,
       createdAt: true,
       media: {
-        select: { kind: true, publicId: true },
+        select: { kind: true, publicId: true, sourceUrl: true },
         take: 1
       },
       tags: { select: { tag: { select: { slug: true, name: true } } } }

@@ -1,6 +1,5 @@
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
-import { getGhostClient } from '@/lib/ghost'
 import Giscus from '@/components/giscus'
 import ShareButtons from '@/components/share-buttons'
 import AgeGate from '@/components/age-gate'
@@ -28,27 +27,7 @@ export default async function PostPage({ params }: Props) {
     where: { slug: params.slug },
     include: { media: true, tags: { include: { tag: true } }, submission: true }
   })
-  if (!post || post.status !== 'published') {
-    const ghost = getGhostClient()
-    if (ghost) {
-      try {
-        const gp = await ghost.posts.read({ slug: params.slug })
-        return (
-          <main className="container py-6">
-            <article className="prose dark:prose-invert max-w-none">
-              <h1>{gp.title}</h1>
-              {gp.feature_image && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img className="w-full rounded" alt={gp.title || ''} src={gp.feature_image} />
-              )}
-              {gp.html && <div dangerouslySetInnerHTML={{ __html: gp.html }} />}
-            </article>
-          </main>
-        )
-      } catch {}
-    }
-    notFound()
-  }
+  if (!post || post.status !== 'published') notFound()
 
   const primary = post.media[0]
 
@@ -67,7 +46,7 @@ export default async function PostPage({ params }: Props) {
             </video>
           ) : primary?.kind === 'image' ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img className="w-full rounded" alt={post.title} src={`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/${primary?.publicId}.jpg`} />
+            <img className="w-full rounded" alt={post.title} src={primary?.sourceUrl || (primary?.publicId ? `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/${primary?.publicId}.jpg` : '')} />
           ) : null}
         </div>
         {post.description && <p>{post.description}</p>}

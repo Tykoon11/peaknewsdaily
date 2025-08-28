@@ -13,32 +13,59 @@
 }
 
 html[data-theme="casper"] body { background-color: var(--pn-bg); color: var(--pn-text); }
-
-/* Header band inspired by Casper */
-html[data-theme="casper"] .site-header {
-  background: linear-gradient(180deg, #15171A 0%, rgba(21,23,26,0.85) 60%, transparent 100%);
-  border-color: transparent;
+html[data-theme="casper"] .site .container { max-width: 1000px; }
+html[data-theme="casper"] .site { transition: background-color .3s ease, color .3s ease; }
+html[data-theme="casper"] .hero-card { position: relative; }
+html[data-theme="casper"] .hero-media-wrap { position: relative; }
+html[data-theme="casper"] .hero-media-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.55) 100%);
 }
-html[data-theme="casper"] .site-title { color: #ffffff; }
-html[data-theme="casper"] .site-nav .nav-link { color: #f3f4f6; }
+
+/* Light header */
+html[data-theme="casper"] .site-header { background: #ffffff; border-bottom: 1px solid var(--pn-border); }
+html[data-theme="casper"] .site-title { color: var(--pn-accent) !important; font-size: 1.25rem; letter-spacing: 0; }
+html[data-theme="casper"] .site-nav .nav-link { color: var(--pn-accent) !important; margin-left: .75rem; margin-right: .75rem; }
+html[data-theme="casper"] .site-header .container { padding-top: 1rem; padding-bottom: 1rem; }
 
 /* Typography tweak */
 html[data-theme="casper"] h1,
 html[data-theme="casper"] h2,
 html[data-theme="casper"] h3 { font-family: Georgia, 'Times New Roman', serif; }
+html[data-theme="casper"] h1 { font-size: 2rem !important; letter-spacing: -0.01em; }
+html[data-theme="casper"] h2 { font-size: 1.5rem !important; }
+html[data-theme="casper"] h3 { font-size: 1.25rem !important; }
+html[data-theme="casper"] p, html[data-theme="casper"] li { color: var(--pn-text) !important; }
 
 /* Cards */
 html[data-theme="casper"] .hero-card,
 html[data-theme="casper"] .post-card { background: var(--pn-card-bg); border-color: var(--pn-border); }
+html[data-theme="casper"] .hero-card .hero-media { height: 26rem !important; }
+html[data-theme="casper"] .post-card { padding: 1.25rem !important; border-radius: 12px !important; }
 html[data-theme="casper"] .post-card .tag-chip { background: var(--pn-chip-bg); }
 html[data-theme="casper"] .hero-card-body h2 { color: var(--pn-accent); }
+html[data-theme="casper"] .hero-card-body {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  color: #fff;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+html[data-theme="casper"] .hero-card-body h2 { color: #fff; }
+html[data-theme="casper"] .post-grid { gap: 1.5rem !important; }
+html[data-theme="casper"] .post-card:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.1); }
 
 /* Links */
-html[data-theme="casper"] a { color: var(--pn-link); }
+html[data-theme="casper"] a { color: var(--pn-link) !important; }
+html[data-theme="casper"] a:hover { text-decoration: underline; }
 
 /* Buttons */
-html[data-theme="casper"] button,
-html[data-theme="casper"] .btn { background: var(--pn-btn-bg); color: var(--pn-btn-text); }
+html[data-theme="casper"] .site button,
+html[data-theme="casper"] .site .btn { background: var(--pn-btn-bg) !important; color: var(--pn-btn-text) !important; border: 1px solid transparent !important; border-radius: 9999px; padding: 0.6rem 1.1rem; }
+html[data-theme="casper"] .site .btn-outline { background: transparent !important; color: var(--pn-accent) !important; border-color: var(--pn-border) !important; }
 
 /* Footer */
 html[data-theme="casper"] .site-footer { border-color: var(--pn-border); }
+html[data-theme="casper"] .footer-link { color: var(--pn-accent) !important; }
+html[data-theme="casper"] .input { background: #fff; border-color: var(--pn-border); }

@@ -1,22 +1,31 @@
 import { prisma } from '@/lib/prisma'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import HomeFeed from '@/components/home-feed'
 
 export const revalidate = 60
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
   const category = await prisma.category.findUnique({ where: { slug: params.slug } })
   if (!category) notFound()
-  const posts = await prisma.post.findMany({ where: { categoryId: category.id, status: 'published' }, orderBy: { publishedAt: 'desc' } })
+  const posts = await prisma.post.findMany({
+    where: { categoryId: category.id, status: 'published' },
+    orderBy: { publishedAt: 'desc' },
+    take: 20,
+    include: { media: true, tags: { include: { tag: true } } }
+  })
   return (
     <main className="container py-6">
       <h1 className="text-2xl font-semibold mb-4">{category.name}</h1>
-      <ul className="space-y-2">
-        {posts.map((p) => (
-          <li key={p.id}><Link className="underline" href={`/post/${p.slug}`}>{p.title}</Link></li>
-        ))}
-      </ul>
+      <HomeFeed initial={posts.map((p) => ({
+        id: p.id,
+        slug: p.slug,
+        title: p.title,
+        description: p.description || null,
+        publishedAt: p.publishedAt ? p.publishedAt.toISOString() : null,
+        createdAt: p.createdAt.toISOString(),
+        media: p.media?.length ? p.media.map((m) => ({ kind: m.kind as any, publicId: m.publicId, sourceUrl: m.sourceUrl as any })) : [],
+        tags: p.tags.map((x) => ({ tag: { slug: x.tag.slug, name: x.tag.name } }))
+      }))} baseQuery={{ c: category.slug, s: 'latest' }} />
     </main>
   )
 }
-

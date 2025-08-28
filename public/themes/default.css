@@ -36,3 +36,16 @@ html[data-theme="default"] .btn { background: var(--pn-btn-bg); color: var(--pn-
 
 /* Footer */
 html[data-theme="default"] .site-footer { border-color: var(--pn-border); }
+html[data-theme="default"] .input { background: #fff; border-color: var(--pn-border); }
+/* Buttons */
+html[data-theme="default"] .site .btn, html[data-theme="default"] .site button {
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+}
+html[data-theme="default"] .site .btn-outline {
+  background: transparent !important;
+  color: var(--pn-accent) !important;
+  border: 1px solid var(--pn-border) !important;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+}

@@ -6,7 +6,7 @@ import { Providers } from '@/components/providers'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
 import Plausible from '@/components/plausible'
-import { getActiveTheme } from '@/lib/settings'
+import { getActiveTheme, getThemeById, ensureDefaultThemes } from '@/lib/settings'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +21,9 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  await ensureDefaultThemes()
   const activeTheme = await getActiveTheme()
+  const theme = await getThemeById(activeTheme)
   return (
     <html lang="en" suppressHydrationWarning data-theme={activeTheme}>
       <body className={inter.className}>
@@ -31,10 +33,19 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
               <Plausible />
             </Suspense>
             {/* theme stylesheet */}
-            <link rel="stylesheet" href={`/themes/${activeTheme}.css`} />
-            <Nav />
-            {children}
-            <Footer />
+            {theme?.fontsHref && (
+              <>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link rel="stylesheet" href={theme.fontsHref} />
+              </>
+            )}
+            <link rel="stylesheet" href={`/themes/${theme?.cssFile || `${activeTheme}.css`}`} />
+            <div className="site">
+              <Nav />
+              {children}
+              <Footer />
+            </div>
           </Providers>
         </ThemeProvider>
       </body>
