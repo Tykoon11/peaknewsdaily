@@ -6,6 +6,7 @@ import { Providers } from '@/components/providers'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
 import Plausible from '@/components/plausible'
+import { getActiveTheme } from '@/lib/settings'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,15 +20,18 @@ export const metadata = {
   manifest: '/manifest.webmanifest'
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const activeTheme = await getActiveTheme()
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-theme={activeTheme}>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Providers>
             <Suspense>
               <Plausible />
             </Suspense>
+            {/* theme stylesheet */}
+            <link rel="stylesheet" href={`/themes/${activeTheme}.css`} />
             <Nav />
             {children}
             <Footer />

@@ -220,3 +220,8 @@ model Embedding {
   values    Decimal[]
   createdAt DateTime @default(now())
 }
+
+model Setting {
+  key   String @id
+  value String
+}

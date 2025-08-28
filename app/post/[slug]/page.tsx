@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
+import { getGhostClient } from '@/lib/ghost'
 import Giscus from '@/components/giscus'
 import ShareButtons from '@/components/share-buttons'
 import AgeGate from '@/components/age-gate'
@@ -23,11 +24,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PostPage({ params }: Props) {
-  const post = await prisma.post.findUnique({
+  let post = await prisma.post.findUnique({
     where: { slug: params.slug },
     include: { media: true, tags: { include: { tag: true } }, submission: true }
   })
-  if (!post || post.status !== 'published') notFound()
+  if (!post || post.status !== 'published') {
+    const ghost = getGhostClient()
+    if (ghost) {
+      try {
+        const gp = await ghost.posts.read({ slug: params.slug })
+        return (
+          <main className="container py-6">
+            <article className="prose dark:prose-invert max-w-none">
+              <h1>{gp.title}</h1>
+              {gp.feature_image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className="w-full rounded" alt={gp.title || ''} src={gp.feature_image} />
+              )}
+              {gp.html && <div dangerouslySetInnerHTML={{ __html: gp.html }} />}
+            </article>
+          </main>
+        )
+      } catch {}
+    }
+    notFound()
+  }
 
   const primary = post.media[0]
 
@@ -59,4 +80,3 @@ export default async function PostPage({ params }: Props) {
     </main>
   )
 }
-

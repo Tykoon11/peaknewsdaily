@@ -17,7 +17,10 @@ export default async function Admin() {
     <main className="container py-6">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-semibold">Review Queue</h1>
-        <div className="text-sm"><Link className="underline" href="/admin/posts">Manage Posts</Link></div>
+        <div className="text-sm flex gap-4">
+          <Link className="underline" href="/admin/posts">Manage Posts</Link>
+          <Link className="underline" href="/admin/settings/theme">Theme</Link>
+        </div>
       </div>
       <ul className="space-y-3">
         {subs.map((s) => (

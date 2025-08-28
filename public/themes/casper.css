@@ -1,0 +1,26 @@
+/* Casper-like theme: lighter text, accent header band, serif headings */
+:root[data-theme="casper"] {
+  --pn-bg: #ffffff;
+  --pn-text: #222222;
+  --pn-muted: #6b7280;
+  --pn-accent: #15171A;
+  --pn-link: #15171A;
+}
+
+html[data-theme="casper"] body {
+  background-color: var(--pn-bg);
+  color: var(--pn-text);
+}
+
+html[data-theme="casper"] header {
+  background: linear-gradient(180deg, #15171A 0%, rgba(21,23,26,0.85) 60%, transparent 100%);
+}
+
+html[data-theme="casper"] h1, 
+html[data-theme="casper"] h2, 
+html[data-theme="casper"] h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+html[data-theme="casper"] a { color: var(--pn-link); }
+

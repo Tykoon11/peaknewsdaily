@@ -1,0 +1,17 @@
+/* Default theme overrides */
+:root[data-theme="default"] {
+  --pn-bg: #ffffff;
+  --pn-text: #0a0a0a;
+  --pn-muted: #6b7280;
+  --pn-accent: #111827;
+  --pn-link: #1d4ed8;
+}
+
+html[data-theme="default"] body {
+  background-color: var(--pn-bg);
+  color: var(--pn-text);
+}
+
+html[data-theme="default"] a { color: var(--pn-link); }
+html[data-theme="default"] header { background: transparent; }
+
