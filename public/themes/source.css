@@ -17,6 +17,11 @@ html[data-theme="source"] .site .container { max-width: 1160px; }
 html[data-theme="source"] .site { transition: background-color .3s ease, color .3s ease; }
 html[data-theme="source"] .site-header { background: #1F1F1F; border-bottom: 1px solid #1F1F1F; }
 html[data-theme="source"] .site-title { color: #ffffff !important; font-weight: 700; letter-spacing: -0.2px; }
+/* Ensure nav logo scales predictably */
+/* Keep header height steady but visually scale logo */
+/* Header + logo sizing: prominent without growing header excessively */
+/* Reset header to compact height */
+/* No explicit min-height; rely on default padding below */
 html[data-theme="source"] .site-header .container { padding-top: 0.6rem; padding-bottom: 0.6rem; }
 html[data-theme="source"] .site-nav .nav-link { color: #ffffff !important; font-weight: 600; margin: 0 0.75rem; }
 html[data-theme="source"] .site-nav .nav-link:hover { color: var(--pn-link) !important; }
