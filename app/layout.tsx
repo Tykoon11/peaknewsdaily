@@ -35,15 +35,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" />
             <link rel="stylesheet" href="/themes/source.css" />
-            {/* Google AdSense (Auto Ads). Set NEXT_PUBLIC_ADSENSE_CLIENT to enable */}
-            {process.env.NEXT_PUBLIC_ADSENSE_CLIENT ? (
-              <Script
-                id="adsense-loader"
-                strategy="beforeInteractive"
-                src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`}
-                crossOrigin="anonymous"
-              />
-            ) : null}
+            {/* AdSense script is hardcoded in app/head.tsx */}
             <div className="site">
               <Nav />
               {children}

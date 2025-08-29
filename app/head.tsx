@@ -1,9 +1,12 @@
 export default function Head() {
-  const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
   return (
     <>
-      {client ? <meta name="google-adsense-account" content={client} /> : null}
+      <meta name="google-adsense-account" content="ca-pub-3299978316677420" />
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3299978316677420"
+        crossOrigin="anonymous"
+      />
     </>
   )
 }
-
