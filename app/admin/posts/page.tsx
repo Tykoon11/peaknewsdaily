@@ -54,7 +54,7 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
                 </td>
                 <td className="py-2 pr-4">{p.status}</td>
                 <td className="py-2 pr-4">{p.publishedAt ? new Date(p.publishedAt).toLocaleString() : '—'}</td>
-                <td className="py-2 flex gap-2">
+                <td className="py-2 flex gap-2 items-center">
                   <Link href={`/admin/posts/${p.id}/edit`} className="px-3 py-1 rounded border">Edit</Link>
                   {p.status === 'published' ? (
                     <form action={`/admin/posts/${p.id}/unpublish`} method="post">
@@ -64,6 +64,14 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
                     <form action={`/admin/posts/${p.id}/publish`} method="post">
                       <button className="px-3 py-1 rounded bg-black text-white">Publish</button>
                     </form>
+                  )}
+                  {/* Delete only when unpublished */}
+                  {p.status !== 'published' ? (
+                    <form action={`/admin/posts/${p.id}/delete`} method="post">
+                      <button className="px-3 py-1 rounded border text-red-600">🗑 Delete</button>
+                    </form>
+                  ) : (
+                    <button className="px-3 py-1 rounded border opacity-50 cursor-not-allowed" disabled title="Unpublish before deleting">🗑 Delete</button>
                   )}
                 </td>
               </tr>

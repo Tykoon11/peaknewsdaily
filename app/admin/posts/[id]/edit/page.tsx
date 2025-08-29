@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
+import AdminMediaThumb from '@/components/admin-media-thumb'
 
 export const metadata = { title: 'Edit Post' }
 
@@ -114,8 +115,7 @@ export default async function EditPostPage({ params }: { params: { id: string } 
               {post.media.map((m) => (
                 <div key={m.id} className="border rounded p-2 text-xs">
                   <div className="mb-1">{m.kind.toUpperCase()}</div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img alt="media" className="w-full rounded" src={`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/${m.kind === 'image' ? 'image' : 'video'}/upload/${m.publicId}${m.kind === 'image' ? '' : '.jpg'}`} onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+                  <AdminMediaThumb kind={m.kind as any} publicId={m.publicId || ''} />
                   <div className="mt-1 break-all">{m.publicId}</div>
                 </div>
               ))}
@@ -129,4 +129,3 @@ export default async function EditPostPage({ params }: { params: { id: string } 
     </main>
   )
 }
-

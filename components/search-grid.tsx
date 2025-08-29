@@ -27,13 +27,13 @@ export default function SearchGrid({ category }: { category?: string }) {
 
   return (
     <div className="mb-6">
-      <form onSubmit={onSubmit} className="flex gap-2">
-        <input className="input flex-1 rounded border px-3 py-2" placeholder={`Search ${category ? category : 'everything'}...`} value={q} onChange={(e) => setQ(e.target.value)} />
-        <button className="btn" type="submit">Search</button>
+      <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-2">
+        <input className="input w-full sm:flex-1 rounded border px-3 py-2" placeholder={`Search ${category ? category : 'everything'}...`} value={q} onChange={(e) => setQ(e.target.value)} />
+        <button className="btn w-full sm:w-auto" type="submit">Search</button>
       </form>
       {loading && <div className="text-sm text-gray-500 mt-2">Searching...</div>}
       {results && (
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {results.map((p) => (
             <a key={p.id} href={`/post/${p.slug}`} className="group-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -47,4 +47,3 @@ export default function SearchGrid({ category }: { category?: string }) {
     </div>
   )
 }
-

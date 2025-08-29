@@ -3,8 +3,8 @@
   --pn-bg: #F1F0F0;
   --pn-text: #111827;
   --pn-muted: #6b7280;
-  --pn-accent: #0b5cff;
-  --pn-link: #0b5cff;
+  --pn-accent: #1a73e8;
+  --pn-link: #1a73e8;
   --pn-card-bg: #ffffff;
   --pn-border: #e5e7eb;
   --pn-chip-bg: #f3f4f6;
@@ -18,8 +18,20 @@ html[data-theme="source"] .site { transition: background-color .3s ease, color .
 html[data-theme="source"] .site-header { background: #1F1F1F; border-bottom: 1px solid #1F1F1F; }
 html[data-theme="source"] .site-title { color: #ffffff !important; font-weight: 700; letter-spacing: -0.2px; }
 html[data-theme="source"] .site-header .container { padding-top: 0.6rem; padding-bottom: 0.6rem; }
-html[data-theme="source"] .site-nav .nav-link { color: #ffffff !important; font-weight: 600; margin: 0 0.5rem; }
+html[data-theme="source"] .site-nav .nav-link { color: #ffffff !important; font-weight: 600; margin: 0 0.75rem; }
 html[data-theme="source"] .site-nav .nav-link:hover { color: var(--pn-link) !important; }
+/* Mobile panel */
+/* Mobile menu: dropdown below header on small screens */
+html[data-theme="source"] .mobile-panel { position: absolute; left: 0; right: 0; top: 100%; background: #1F1F1F; border-top: 1px solid #2a2a2a; box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
+html[data-theme="source"] .mobile-panel-inner { padding: 0.75rem 1rem; max-height: calc(100vh - 56px); overflow-y: auto; }
+html[data-theme="source"] .mobile-panel .mobile-link { color: #f3f4f6; display: block; padding: 0.5rem 0; border-bottom: 1px solid #2a2a2a; }
+html[data-theme="source"] .mobile-panel .mobile-link:last-child { border-bottom: none; }
+/* Desktop More dropdown */
+html[data-theme="source"] .site-nav details > summary::-webkit-details-marker { display: none; }
+html[data-theme="source"] .site-nav details[open] > summary { color: var(--pn-link) !important; }
+html[data-theme="source"] .more-menu { position: absolute; right: 0; top: calc(100% + 8px); background: #1F1F1F; border: 1px solid #2a2a2a; border-radius: 8px; min-width: 180px; box-shadow: 0 12px 24px rgba(0,0,0,0.25); padding: 0.25rem 0; }
+html[data-theme="source"] .more-menu .more-item { display: block; padding: 0.5rem 0.75rem; color: #f3f4f6 !important; }
+html[data-theme="source"] .more-menu .more-item:hover { background: #2a2a2a; }
 /* Top layout */
 html[data-theme="source"] .source-top { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
 @media (min-width: 1024px){
@@ -39,9 +51,11 @@ html[data-theme="source"] .hero-card,
 html[data-theme="source"] .post-card { background: var(--pn-card-bg); border: 1px solid var(--pn-border); }
 html[data-theme="source"] .post-card { border-radius: 12px !important; }
 /* Hero heights responsive */
-html[data-theme="source"] .hero-card .hero-media { height: 28rem !important; }
-@media (min-width: 1024px){ html[data-theme="source"] .hero-card .hero-media { height: 32rem !important; } }
-@media (min-width: 1280px){ html[data-theme="source"] .hero-card .hero-media { height: 35rem !important; } }
+/* Hero heights responsive, less tall on small screens */
+html[data-theme="source"] .hero-card .hero-media { height: min(60vh, 22rem) !important; }
+@media (min-width: 768px){ html[data-theme="source"] .hero-card .hero-media { height: min(60vh, 28rem) !important; } }
+@media (min-width: 1024px){ html[data-theme="source"] .hero-card .hero-media { height: 34rem !important; } }
+@media (min-width: 1280px){ html[data-theme="source"] .hero-card .hero-media { height: 36rem !important; } }
 /* Hero overlay for readability */
 html[data-theme="source"] .hero-media-wrap { position: relative; }
 html[data-theme="source"] .hero-media-wrap::after {
@@ -73,6 +87,8 @@ html[data-theme="source"] .group-grid { display: grid; grid-template-columns: re
 }
 html[data-theme="source"] .group-card { border: 1px solid var(--pn-border); border-radius: 12px; background: var(--pn-card-bg); overflow: hidden; }
 html[data-theme="source"] .group-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
+@media (min-width: 640px){ html[data-theme="source"] .group-card img { height: 160px; } }
+@media (min-width: 1024px){ html[data-theme="source"] .group-card img { height: 180px; } }
 html[data-theme="source"] .group-card h3 { font-size: 0.95rem; line-height: 1.3; padding: 0.5rem 0.75rem 0.75rem; }
 html[data-theme="source"] .country-chip { display: inline-block; font-size: 0.7rem; padding: 0.15rem 0.4rem; background: var(--pn-chip-bg); border: 1px solid var(--pn-border); border-radius: 999px; margin-left: 0.5rem; }
 
