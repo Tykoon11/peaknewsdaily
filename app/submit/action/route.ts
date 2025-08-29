@@ -20,7 +20,8 @@ const schema = z.object({
   externalUrl: z.string().url().optional(),
   licenseAccepted: z.boolean(),
   ageRestricted: z.boolean().optional(),
-  mediaAssets: mediaSchema.optional()
+  mediaAssets: mediaSchema.optional(),
+  categoryId: z.string().min(1).optional().or(z.literal(''))
 })
 
 export async function POST(req: NextRequest) {
@@ -29,7 +30,7 @@ export async function POST(req: NextRequest) {
   const json = await req.json()
   const parsed = schema.safeParse(json)
   if (!parsed.success) return Response.json({ error: 'Invalid payload' }, { status: 400 })
-  const { title, type, description, tags, externalUrl, licenseAccepted, ageRestricted, mediaAssets } = parsed.data
+  const { title, type, description, tags, externalUrl, licenseAccepted, ageRestricted, mediaAssets, categoryId } = parsed.data
   try {
     const slugBase = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
     const slug = `${slugBase}-${Math.random().toString(36).slice(2, 6)}`
@@ -41,6 +42,7 @@ export async function POST(req: NextRequest) {
         description,
         status: 'draft',
         authorId: userId || undefined,
+        categoryId: categoryId ? categoryId : null,
         media: mediaAssets && mediaAssets.length > 0 ? {
           create: mediaAssets.map((m) => ({ kind: m.kind, provider: m.provider, publicId: m.publicId, width: m.width, height: m.height, duration: m.duration }))
         } : undefined,

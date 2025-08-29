@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import AdminDeleteButton from '@/components/admin-delete-button'
 
 export const metadata = { title: 'Posts' }
 
@@ -66,13 +67,7 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
                     </form>
                   )}
                   {/* Delete only when unpublished */}
-                  {p.status !== 'published' ? (
-                    <form action={`/admin/posts/${p.id}/delete`} method="post">
-                      <button className="px-3 py-1 rounded border text-red-600">🗑 Delete</button>
-                    </form>
-                  ) : (
-                    <button className="px-3 py-1 rounded border opacity-50 cursor-not-allowed" disabled title="Unpublish before deleting">🗑 Delete</button>
-                  )}
+                  <AdminDeleteButton action={`/admin/posts/${p.id}/delete`} disabled={p.status === 'published'} />
                 </td>
               </tr>
             ))}

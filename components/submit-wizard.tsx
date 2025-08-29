@@ -27,6 +27,16 @@ export default function SubmitWizard() {
   const [mode, setMode] = useState<'link' | 'upload' | null>(null)
   const [link, setLink] = useState('')
   const [assets, setAssets] = useState<MediaAssetInput[]>([])
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>([])
+  const [categoryId, setCategoryId] = useState<string>('')
+  
+  // Load categories on mount
+  useEffect(() => {
+    fetch('/api/categories')
+      .then((r) => r.json())
+      .then((j) => setCategories(j.items || []))
+      .catch(() => setCategories([]))
+  }, [])
   const [uploading, setUploading] = useState(false)
   const [progress, setProgress] = useState<number | null>(null)
   const [message, setMessage] = useState<string | null>(null)
@@ -134,6 +144,7 @@ export default function SubmitWizard() {
       tags: String(form.get('tags') || ''),
       licenseAccepted: form.get('licenseAccepted') === 'on',
       ageRestricted: form.get('ageRestricted') === 'on',
+      categoryId: String(form.get('categoryId') || '') || undefined,
       externalUrl: mode === 'link' ? link : undefined,
       mediaAssets: mode === 'upload' ? assets : undefined,
     }
@@ -165,6 +176,7 @@ export default function SubmitWizard() {
 
   return (
     <div className="space-y-6 max-w-2xl">
+      
       <StepIndicator step={step} />
 
       {step === 1 && (
@@ -219,6 +231,15 @@ export default function SubmitWizard() {
           <div>
             <label className="block text-sm font-medium">Title</label>
             <input name="title" className="mt-1 w-full rounded border px-3 py-2 input" required />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Category</label>
+            <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="mt-1 w-full rounded border px-3 py-2 input">
+              <option value="">— Select a category —</option>
+              {categories.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-sm font-medium">Type</label>

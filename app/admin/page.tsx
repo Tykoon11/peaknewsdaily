@@ -19,6 +19,7 @@ export default async function Admin() {
         <h1 className="text-2xl font-semibold">Review Queue</h1>
         <div className="text-sm flex gap-4">
           <Link className="underline" href="/admin/posts">Manage Posts</Link>
+          <Link className="underline" href="/admin/categories">Manage Categories</Link>
         </div>
       </div>
       <ul className="space-y-3">
