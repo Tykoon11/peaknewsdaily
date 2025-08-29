@@ -4,7 +4,8 @@ import { useRef } from 'react'
 
 type Media = {
   kind: 'image' | 'video'
-  publicId: string
+  publicId?: string
+  sourceUrl?: string
 }
 
 export default function HeroCard({
@@ -44,16 +45,20 @@ export default function HeroCard({
                   videoRef.current.currentTime = 0
                 } catch {}
               }}
-              poster={image ? `https://res.cloudinary.com/${cloudName}/image/upload/${image.publicId}.jpg` : undefined}
+              poster={image?.sourceUrl || (cloudName && image?.publicId ? `https://res.cloudinary.com/${cloudName}/image/upload/${image.publicId}.jpg` : undefined)}
             >
-              <source src={`https://res.cloudinary.com/${cloudName}/video/upload/${video.publicId}.mp4`} type="video/mp4" />
+              {video.sourceUrl ? (
+                <source src={video.sourceUrl} type="video/mp4" />
+              ) : video.publicId && cloudName ? (
+                <source src={`https://res.cloudinary.com/${cloudName}/video/upload/${video.publicId}.mp4`} type="video/mp4" />
+              ) : null}
             </video>
           ) : image ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               alt={title}
               className="w-full h-56 object-cover hero-media"
-              src={`https://res.cloudinary.com/${cloudName}/image/upload/${image.publicId}.jpg`}
+              src={image.sourceUrl || (cloudName && image.publicId ? `https://res.cloudinary.com/${cloudName}/image/upload/${image.publicId}.jpg` : '')}
             />
           ) : null}
         </div>

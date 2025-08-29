@@ -6,7 +6,7 @@ import { Providers } from '@/components/providers'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
 import Plausible from '@/components/plausible'
-import { getActiveTheme, getThemeById, ensureDefaultThemes } from '@/lib/settings'
+// Theme switching removed; Source is the default style
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,11 +21,8 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  await ensureDefaultThemes()
-  const activeTheme = await getActiveTheme()
-  const theme = await getThemeById(activeTheme)
   return (
-    <html lang="en" suppressHydrationWarning data-theme={activeTheme}>
+    <html lang="en" suppressHydrationWarning data-theme="source">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Providers>
@@ -33,14 +30,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
               <Plausible />
             </Suspense>
             {/* theme stylesheet */}
-            {theme?.fontsHref && (
-              <>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link rel="stylesheet" href={theme.fontsHref} />
-              </>
-            )}
-            <link rel="stylesheet" href={`/themes/${theme?.cssFile || `${activeTheme}.css`}`} />
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" />
+            <link rel="stylesheet" href="/themes/source.css" />
             <div className="site">
               <Nav />
               {children}

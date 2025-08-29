@@ -3,12 +3,12 @@ import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
 import HomeFeed from '@/components/home-feed'
 import HeroCard from '@/components/hero-card'
-import { getActiveTheme } from '@/lib/settings'
+import SearchGrid from '@/components/search-grid'
+// Source is the default layout
 
 export const revalidate = 60
 
 export default async function HomePage({ searchParams }: { searchParams?: { c?: string; s?: string } }) {
-  const activeTheme = await getActiveTheme()
   const c = searchParams?.c || undefined
   const s = searchParams?.s === 'views' ? 'views' : 'latest'
   const where: any = { status: 'published', deletedAt: null }
@@ -31,8 +31,7 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
     prisma.category.findMany({ orderBy: { name: 'asc' }, select: { id: true, name: true, slug: true } })
   ])
 
-  // Special Source layout with sidebar Latest and grouped rows
-  if (activeTheme === 'source') {
+  // Source layout with sidebar Latest and grouped rows
     const featured = posts[0]
     const latestRail = posts.slice(1, 7)
     const mostViewed = await prisma.post.findMany({
@@ -59,16 +58,17 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
                 title={featured.title}
                 description={featured.description}
                 timestamp={formatDistanceToNow(featured.publishedAt || featured.createdAt, { addSuffix: true })}
-                media={featured.media.map((m) => ({ kind: m.kind as any, publicId: m.publicId }))}
+                media={featured.media.map((m) => ({ kind: m.kind as any, publicId: m.publicId, sourceUrl: (m as any).sourceUrl }))}
                 cloudName={process.env.CLOUDINARY_CLOUD_NAME}
               />
             )}
+            {/* Global search on home page */}
+            <SearchGrid />
           </div>
           <aside className="latest-rail">
-            <div className="flex items-center justify-between px-2 py-1 mb-1">
-              <h2 className="text-sm font-semibold">Latest News</h2>
-              <Link className="text-xs underline" href={{ pathname: '/', query: { s: 'latest' } }}>See more</Link>
-            </div>
+          <div className="flex items-center justify-between px-2 py-1 mb-1">
+            <h2 className="text-sm font-semibold">Latest News</h2>
+          </div>
             <div className="divide-y divide-gray-200">
               {latestRail.map((p) => (
                 <Link key={p.id} className="latest-item" href={`/post/${p.slug}`}>
@@ -111,61 +111,6 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
         </section>
       </main>
     )
-  }
-
-  const hero = posts[0]
-  const rest = posts.slice(1)
-  return (
-    <main className="container py-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-semibold">Trending Today</h1>
-        <Link href="/submit" className="text-sm underline">Submit</Link>
-      </div>
-      <div className="flex flex-wrap items-center gap-3 mb-6 text-sm">
-        <span className="text-gray-600">Filter:</span>
-        <Link className={`px-3 py-1 rounded border ${!c ? 'bg-black text-white' : ''}`} href={{ pathname: '/', query: { ...(s ? { s } : {}) } }}>All</Link>
-        {categories.map((cat) => (
-          <Link key={cat.id} className={`px-3 py-1 rounded border ${c === cat.slug ? 'bg-black text-white' : ''}`} href={{ pathname: '/', query: { c: cat.slug, ...(s ? { s } : {}) } }}>{cat.name}</Link>
-        ))}
-        <span className="ml-auto text-gray-600">Sort:</span>
-        <Link className={`px-3 py-1 rounded border ${s === 'latest' ? 'bg-black text-white' : ''}`} href={{ pathname: '/', query: { ...(c ? { c } : {}), s: 'latest' } }}>Latest</Link>
-        <Link className={`px-3 py-1 rounded border ${s === 'views' ? 'bg-black text-white' : ''}`} href={{ pathname: '/', query: { ...(c ? { c } : {}), s: 'views' } }}>Most Viewed</Link>
-      </div>
-      {hero && (
-        <HeroCard
-          slug={hero.slug}
-          title={hero.title}
-          description={hero.description}
-          timestamp={formatDistanceToNow(hero.publishedAt || hero.createdAt, { addSuffix: true })}
-          media={hero.media.map((m) => ({ kind: m.kind as any, publicId: m.publicId }))}
-          cloudName={process.env.CLOUDINARY_CLOUD_NAME}
-        />
-      )}
-      {trending.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-lg font-medium mb-2">Most Viewed</h2>
-          <ul className="list-disc pl-5 text-sm">
-            {trending.map((t) => (
-              <li key={t.id}>
-                <Link className="underline" href={`/post/${t.slug}`}>{t.title}</Link>
-                <span className="text-gray-500 ml-2">({t.views.toLocaleString()} views)</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <HomeFeed initial={rest.map((p) => ({
-        id: p.id,
-        slug: p.slug,
-        title: p.title,
-        description: p.description || null,
-        publishedAt: p.publishedAt ? p.publishedAt.toISOString() : null,
-        createdAt: p.createdAt.toISOString(),
-        media: p.media?.length ? p.media.map((m) => ({ kind: m.kind as any, publicId: m.publicId })) : [],
-        tags: p.tags.map((x) => ({ tag: { slug: x.tag.slug, name: x.tag.name } }))
-      }))} baseQuery={{ c: c || undefined, s: s as any }} />
-    </main>
-  )
 }
 
 function CountryChip({ country }: { country?: string | null }) {

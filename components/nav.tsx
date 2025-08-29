@@ -21,7 +21,6 @@ export default async function Nav() {
           {categories.map((c) => (
             <Link key={c.id} href={`/category/${c.slug}`} className="hover:underline nav-link">{c.name}</Link>
           ))}
-          <Link href="/search" className="hover:underline nav-link">Search</Link>
           <Link href="/submit" className="hover:underline nav-link">Submit</Link>
           {isStaff && <Link href="/admin" className="hover:underline nav-link">Admin</Link>}
           {!session?.user ? (

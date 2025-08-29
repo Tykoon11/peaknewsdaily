@@ -54,7 +54,7 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
 
   return (
     <>
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 post-grid">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 post-grid">
         {items.map((p) => (
           <li key={p.id} className="rounded-lg border p-4 hover:shadow post-card">
             {p.media && p.media.length > 0 && (

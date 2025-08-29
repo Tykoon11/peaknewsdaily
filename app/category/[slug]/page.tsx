@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import HomeFeed from '@/components/home-feed'
+import SearchGrid from '@/components/search-grid'
 
 export const revalidate = 60
 
@@ -16,6 +17,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   return (
     <main className="container py-6">
       <h1 className="text-2xl font-semibold mb-4">{category.name}</h1>
+      <SearchGrid category={category.slug} />
       <HomeFeed initial={posts.map((p) => ({
         id: p.id,
         slug: p.slug,
