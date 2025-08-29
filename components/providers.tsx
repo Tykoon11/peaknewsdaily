@@ -11,5 +11,16 @@ export function Providers({ children }: { children: ReactNode }) {
       navigator.serviceWorker.getRegistrations?.().then((regs) => regs.forEach((r) => r.unregister())).catch(() => {})
     }
   }, [])
+  useEffect(() => {
+    const apply = () => {
+      try {
+        const ok = typeof window !== 'undefined' && localStorage.getItem('pnd-age-ok') === '1'
+        document.documentElement.classList.toggle('age-ok', !!ok)
+      } catch {}
+    }
+    apply()
+    window.addEventListener('storage', apply)
+    return () => window.removeEventListener('storage', apply)
+  }, [])
   return <>{children}</>
 }

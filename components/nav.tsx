@@ -3,6 +3,7 @@ import ThemeToggle from '@/components/theme-toggle'
 import { auth, signOut } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import MobileNav from '@/components/mobile-nav'
+import DesktopNavLinks from '@/components/desktop-nav-links'
 
 export default async function Nav() {
   const session = await auth()
@@ -23,30 +24,7 @@ export default async function Nav() {
           <span className="sr-only">{process.env.NEXT_PUBLIC_SITE_NAME || 'PeakNewsDaily'}</span>
         </Link>
         <nav className="hidden md:flex items-center gap-2 text-sm site-nav">
-          <Link href="/" className="hover:underline nav-link">Home</Link>
-          {(() => {
-            const primary = categories.slice(0, 6)
-            const extra = categories.slice(6)
-            return (
-              <>
-                {primary.map((c) => (
-                  <Link key={c.id} href={`/category/${c.slug}`} className="hover:underline nav-link">{c.name}</Link>
-                ))}
-                {extra.length > 0 && (
-                  <details className="relative group">
-                    <summary className="nav-link cursor-pointer list-none">More ▾</summary>
-                    <div className="more-menu">
-                      {extra.map((c) => (
-                        <Link key={c.id} href={`/category/${c.slug}`} className="more-item">{c.name}</Link>
-                      ))}
-                    </div>
-                  </details>
-                )}
-              </>
-            )
-          })()}
-          <Link href="/submit" className="hover:underline nav-link">Submit</Link>
-          {isStaff && <Link href="/admin" className="hover:underline nav-link">Admin</Link>}
+          <DesktopNavLinks categories={categories} isStaff={isStaff} signedIn={!!session?.user} />
           {!session?.user ? (
             <Link href="/api/auth/signin" className="hover:underline nav-link">Sign in</Link>
           ) : (

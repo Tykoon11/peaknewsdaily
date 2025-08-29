@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 type Category = { id: string; name: string; slug: string }
 
@@ -14,6 +15,7 @@ export default function MobileNav({
   signedIn: boolean
 }) {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
   // Close on Escape key
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function MobileNav({
                 Home
               </Link>
               {categories.map((c) => (
-                <Link key={c.id} href={`/category/${c.slug}`} className="mobile-link" onClick={() => setOpen(false)}>
+                <Link key={c.id} href={`/category/${c.slug}`} className="mobile-link" data-active={pathname.startsWith(`/category/${c.slug}`) || undefined} onClick={() => setOpen(false)}>
                   {c.name}
                 </Link>
               ))}

@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
 import HomeFeed from '@/components/home-feed'
 import HeroCard from '@/components/hero-card'
+import HeroCarousel from '@/components/hero-carousel'
 import SearchGrid from '@/components/search-grid'
 // Source is the default layout
 
@@ -20,7 +21,7 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
       where,
       orderBy,
       take: 20,
-      include: { author: true, media: true, tags: { include: { tag: true } } }
+      include: { author: true, media: true, tags: { include: { tag: true } }, submission: true }
     }),
     prisma.post.findMany({
       where: { status: 'published', deletedAt: null },
@@ -38,10 +39,10 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
       where: { status: 'published', deletedAt: null },
       orderBy: { views: 'desc' },
       take: 5,
-      include: { media: true }
+      include: { media: true, submission: true }
     })
     const group = async (slug: string) =>
-      prisma.post.findMany({ where: { status: 'published', deletedAt: null, category: { is: { slug } } }, orderBy: { publishedAt: 'desc' }, take: 5, include: { media: true } })
+      prisma.post.findMany({ where: { status: 'published', deletedAt: null, category: { is: { slug } } }, orderBy: { publishedAt: 'desc' }, take: 5, include: { media: true, submission: true } })
     const [culture, funny, news, sports] = await Promise.all([
       group('culture'),
       group('funny'),
@@ -52,16 +53,13 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
       <main className="container py-6">
         <div className="source-top mb-6">
           <div>
-            {featured && (
-              <HeroCard
-                slug={featured.slug}
-                title={featured.title}
-                description={featured.description}
-                timestamp={formatDistanceToNow(featured.publishedAt || featured.createdAt, { addSuffix: true })}
-                media={featured.media.map((m) => ({ kind: m.kind as any, publicId: m.publicId, sourceUrl: (m as any).sourceUrl }))}
-                cloudName={process.env.CLOUDINARY_CLOUD_NAME}
+            {/* Hero carousel of latest posts */}
+            {featured ? (
+              <HeroCarousel
+                slides={[featured, ...latestRail].map((p) => ({ slug: p.slug, title: p.title, media: p.media as any, age: (p as any).submission?.ageRestricted }))}
+                intervalMs={4000}
               />
-            )}
+            ) : null}
             {/* Global search on home page */}
             <SearchGrid />
           </div>
@@ -98,7 +96,7 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
           </div>
           {/* render infinite scroll feed for Interesting */}
           {(() => null)()}
-          <HomeFeed initial={(await prisma.post.findMany({ where: { status: 'published', deletedAt: null, category: { is: { slug: 'interesting' } } }, orderBy: { publishedAt: 'desc' }, take: 20, include: { media: true, tags: { include: { tag: true } } } })).map((p) => ({
+          <HomeFeed initial={(await prisma.post.findMany({ where: { status: 'published', deletedAt: null, category: { is: { slug: 'interesting' } } }, orderBy: { publishedAt: 'desc' }, take: 20, include: { media: true, submission: true, tags: { include: { tag: true } } } })).map((p) => ({
             id: p.id,
             slug: p.slug,
             title: p.title,
@@ -106,6 +104,7 @@ export default async function HomePage({ searchParams }: { searchParams?: { c?: 
             publishedAt: p.publishedAt ? p.publishedAt.toISOString() : null,
             createdAt: p.createdAt.toISOString(),
             media: p.media?.length ? p.media.map((m) => ({ kind: m.kind as any, publicId: m.publicId, sourceUrl: m.sourceUrl as any })) : [],
+            ageRestricted: (p as any).submission?.ageRestricted || false,
             tags: p.tags.map((x) => ({ tag: { slug: x.tag.slug, name: x.tag.name } }))
           }))} baseQuery={{ c: 'interesting', s: 'latest' }} />
         </section>
@@ -118,7 +117,7 @@ function CountryChip({ country }: { country?: string | null }) {
   return <span className="country-chip">{country}</span>
 }
 
-function GroupRow({ title, seeMoreHref, posts }: { title: string; seeMoreHref: any; posts: { id: string; slug: string; title: string; media: { publicId: string | null; sourceUrl: string | null }[]; country?: string | null }[] }) {
+function GroupRow({ title, seeMoreHref, posts }: { title: string; seeMoreHref: any; posts: { id: string; slug: string; title: string; media: { publicId: string | null; sourceUrl: string | null }[]; country?: string | null; submission?: any }[] }) {
   return (
     <section className="group-row">
       <div className="group-header">
@@ -127,7 +126,7 @@ function GroupRow({ title, seeMoreHref, posts }: { title: string; seeMoreHref: a
       </div>
       <div className="group-grid">
         {posts.map((p) => (
-          <Link key={p.id} href={`/post/${p.slug}`} className="group-card">
+          <Link key={p.id} href={`/post/${p.slug}`} className="group-card" data-age={(p as any).submission?.ageRestricted ? '1' : undefined}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt={p.title} src={p.media[0]?.sourceUrl || (p.media[0]?.publicId ? `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/${p.media[0]?.publicId}.jpg` : 'https://picsum.photos/seed/placeholder/400/280')} />
             <h3 className="px-3 py-2 text-sm font-medium leading-tight">{p.title} <CountryChip country={(p as any).country} /></h3>

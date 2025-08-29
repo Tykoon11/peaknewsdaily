@@ -10,6 +10,7 @@ type Post = {
   description: string | null
   publishedAt: string | null
   createdAt: string
+  ageRestricted?: boolean
   media?: { kind: 'image' | 'video'; publicId?: string; sourceUrl?: string }[]
   tags: { tag: Tag }[]
 }
@@ -56,7 +57,7 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
     <>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 post-grid">
         {items.map((p) => (
-          <li key={p.id} className="rounded-lg border p-4 hover:shadow post-card">
+          <li key={p.id} className="rounded-lg border p-4 hover:shadow post-card" data-age={p.ageRestricted ? '1' : undefined}>
             {p.media && p.media.length > 0 && (
               <div className="mb-3 -mx-4 -mt-4">
                 {p.media[0].kind === 'video' ? (

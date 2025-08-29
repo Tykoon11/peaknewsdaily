@@ -26,6 +26,7 @@ export async function GET(req: Request) {
       description: true,
       publishedAt: true,
       createdAt: true,
+      submission: { select: { ageRestricted: true } },
       media: {
         select: { kind: true, publicId: true, sourceUrl: true },
         take: 1

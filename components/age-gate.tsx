@@ -9,16 +9,15 @@ export default function AgeGate() {
   }, [])
   if (ok) return null
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 text-white flex items-center justify-center p-6">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md text-white flex items-center justify-center p-6">
       <div className="max-w-md text-center space-y-4">
         <h2 className="text-xl font-semibold">Age Restricted</h2>
         <p>This content may be sensitive. Please confirm you are 18+.</p>
         <div className="flex gap-3 justify-center">
           <button className="px-4 py-2 rounded bg-white text-black" onClick={() => { localStorage.setItem('pnd-age-ok', '1'); setOk(true) }}>I am 18+</button>
-          <a href="/" className="px-4 py-2 rounded border">Go Back</a>
+          <button className="px-4 py-2 rounded border" onClick={() => { if (typeof window !== 'undefined') { if (window.history.length > 1) window.history.back(); else window.location.href = '/' } }}>Go Back</button>
         </div>
       </div>
     </div>
   )
 }
-
