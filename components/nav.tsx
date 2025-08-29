@@ -19,6 +19,7 @@ export default async function Nav() {
       <div className="container relative flex items-center justify-between py-3">
         <Link href="/" className="font-semibold site-title">{process.env.NEXT_PUBLIC_SITE_NAME || 'PeakNewsDaily'}</Link>
         <nav className="hidden md:flex items-center gap-2 text-sm site-nav">
+          <Link href="/" className="hover:underline nav-link">Home</Link>
           {(() => {
             const primary = categories.slice(0, 6)
             const extra = categories.slice(6)

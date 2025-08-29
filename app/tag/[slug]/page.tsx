@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import TagList from '@/components/tag-list'
 
 export const revalidate = 60
 
@@ -12,12 +13,7 @@ export default async function TagPage({ params }: { params: { slug: string } }) 
   return (
     <main className="container py-6">
       <h1 className="text-2xl font-semibold mb-4">#{tag.name}</h1>
-      <ul className="space-y-2">
-        {posts.map((p) => p && (
-          <li key={p.id}><Link className="underline" href={`/post/${p.slug}`}>{p.title}</Link></li>
-        ))}
-      </ul>
+      <TagList items={posts.map((p) => ({ id: p!.id, slug: p!.slug, title: p!.title }))} />
     </main>
   )
 }
-

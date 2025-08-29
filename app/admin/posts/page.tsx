@@ -2,14 +2,17 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import AdminPostsFilters from '@/components/admin-posts-filters'
 import AdminDeleteButton from '@/components/admin-delete-button'
 
 export const metadata = { title: 'Posts' }
 
-export default async function AdminPostsPage({ searchParams }: { searchParams?: { q?: string } }) {
+export default async function AdminPostsPage({ searchParams }: { searchParams?: { q?: string; c?: string } }) {
   const session = await auth()
   if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) redirect('/')
   const q = (searchParams?.q || '').trim()
+  const c = (searchParams?.c || '').trim()
+  const categories = await prisma.category.findMany({ orderBy: { name: 'asc' }, select: { slug: true, name: true } })
   const posts = await prisma.post.findMany({
     where: {
       deletedAt: null,
@@ -20,7 +23,8 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
               { description: { contains: q, mode: 'insensitive' } }
             ]
           }
-        : {})
+        : {}),
+      ...(c ? { category: { is: { slug: c } } } : {})
     },
     orderBy: [{ updatedAt: 'desc' }],
     take: 50,
@@ -34,9 +38,9 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
           <Link className="underline" href="/admin">Review Queue</Link>
         </div>
       </div>
-      <form className="mb-4">
-        <input className="rounded border px-3 py-2 w-full" name="q" placeholder="Search posts..." defaultValue={q} />
-      </form>
+      <div className="mb-4">
+        <AdminPostsFilters categories={categories} defaultQuery={q} defaultCategory={c} />
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>

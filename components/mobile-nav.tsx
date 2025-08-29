@@ -44,13 +44,16 @@ export default function MobileNav({
         <>
           <div className="fixed inset-0 bg-black/40 z-30" onClick={() => setOpen(false)} />
           <div className="mobile-panel z-40">
-            <div className="mobile-panel-inner">
-              <nav className="flex flex-col gap-3 text-sm" aria-label="Mobile">
-                {categories.map((c) => (
-                  <Link key={c.id} href={`/category/${c.slug}`} className="mobile-link" onClick={() => setOpen(false)}>
-                    {c.name}
-                  </Link>
-                ))}
+          <div className="mobile-panel-inner">
+            <nav className="flex flex-col gap-3 text-sm" aria-label="Mobile">
+              <Link href="/" className="mobile-link" onClick={() => setOpen(false)}>
+                Home
+              </Link>
+              {categories.map((c) => (
+                <Link key={c.id} href={`/category/${c.slug}`} className="mobile-link" onClick={() => setOpen(false)}>
+                  {c.name}
+                </Link>
+              ))}
                 <Link href="/submit" className="mobile-link" onClick={() => setOpen(false)}>
                   Submit
                 </Link>

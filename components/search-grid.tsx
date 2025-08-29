@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Item = { id: string; slug: string; title: string; description?: string | null; media?: { publicId?: string | null; sourceUrl?: string | null }[] }
 
@@ -7,6 +7,7 @@ export default function SearchGrid({ category }: { category?: string }) {
   const [q, setQ] = useState('')
   const [results, setResults] = useState<Item[] | null>(null)
   const [loading, setLoading] = useState(false)
+  const ctrl = useRef<AbortController | null>(null)
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -17,13 +18,42 @@ export default function SearchGrid({ category }: { category?: string }) {
       const url = new URL('/api/search', window.location.origin)
       url.searchParams.set('q', query)
       if (category) url.searchParams.set('c', category)
-      const res = await fetch(url.toString())
+      ctrl.current?.abort()
+      ctrl.current = new AbortController()
+      const res = await fetch(url.toString(), { signal: ctrl.current.signal })
       const json = await res.json()
       setResults(json.results || [])
     } finally {
       setLoading(false)
     }
   }
+
+  // Live search with debounce
+  const debouncedQ = useDebounce(q, 300)
+  useEffect(() => {
+    const query = debouncedQ.trim()
+    if (query === '') { setResults(null); setLoading(false); return }
+    let cancelled = false
+    ;(async () => {
+      setLoading(true)
+      try {
+        const url = new URL('/api/search', window.location.origin)
+        url.searchParams.set('q', query)
+        if (category) url.searchParams.set('c', category)
+        ctrl.current?.abort()
+        ctrl.current = new AbortController()
+        const res = await fetch(url.toString(), { signal: ctrl.current.signal })
+        if (cancelled) return
+        const json = await res.json()
+        setResults(json.results || [])
+      } catch (e) {
+        // ignore aborted
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [debouncedQ, category])
 
   return (
     <div className="mb-6">
@@ -46,4 +76,14 @@ export default function SearchGrid({ category }: { category?: string }) {
       )}
     </div>
   )
+}
+
+// Small debounce hook
+function useDebounce<T>(value: T, delay = 300) {
+  const [v, setV] = useState(value)
+  useEffect(() => {
+    const t = setTimeout(() => setV(value), delay)
+    return () => clearTimeout(t)
+  }, [value, delay])
+  return v
 }

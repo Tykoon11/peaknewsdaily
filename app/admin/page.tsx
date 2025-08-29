@@ -2,14 +2,26 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import AdminSubmissionsSearch from '@/components/admin-submissions-search'
 
 export const metadata = { title: 'Admin' }
 
-export default async function Admin() {
+export default async function Admin({ searchParams }: { searchParams?: { q?: string } }) {
   const session = await auth()
   if (!session?.user || !['editor', 'admin'].includes(session.user.role as any)) redirect('/')
+  const q = (searchParams?.q || '').trim()
   const subs = await prisma.submission.findMany({
-    where: { status: 'pending' },
+    where: {
+      status: 'pending',
+      ...(q
+        ? {
+            OR: [
+              { post: { is: { title: { contains: q, mode: 'insensitive' } } } },
+              { submitter: { is: { email: { contains: q, mode: 'insensitive' } } } }
+            ]
+          }
+        : {})
+    },
     include: { post: true, submitter: true },
     orderBy: { createdAt: 'asc' }
   })
@@ -22,6 +34,7 @@ export default async function Admin() {
           <Link className="underline" href="/admin/categories">Manage Categories</Link>
         </div>
       </div>
+      <AdminSubmissionsSearch defaultQuery={q} />
       <ul className="space-y-3">
         {subs.map((s) => (
           <li key={s.id} className="border rounded p-3">

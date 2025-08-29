@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import AdminMediaThumb from '@/components/admin-media-thumb'
+import AdminMediaManager from '@/components/admin-media-manager'
 
 export const metadata = { title: 'Edit Post' }
 
@@ -14,6 +15,9 @@ async function updatePostAction(formData: FormData) {
   const categoryId = String(formData.get('categoryId') || '') || null
   const tagsRaw = String(formData.get('tags') || '')
   const status = String(formData.get('status') || 'draft')
+  const mediaJson = String(formData.get('media') || '[]')
+  let mediaItems: { kind: 'image' | 'video'; provider?: string; publicId: string; width?: number; height?: number; duration?: number }[] = []
+  try { mediaItems = JSON.parse(mediaJson) } catch {}
 
   const session = await auth()
   if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) redirect('/')
@@ -32,6 +36,10 @@ async function updatePostAction(formData: FormData) {
       categoryId: categoryId || null,
       status,
       publishedAt: status === 'published' ? new Date() : null,
+      media: {
+        deleteMany: {},
+        create: mediaItems.map((m) => ({ kind: m.kind as any, provider: 'cloudinary', publicId: m.publicId, width: m.width, height: m.height, duration: m.duration }))
+      },
       tags: {
         deleteMany: {},
         create: tagNames.map((name) => ({
@@ -108,20 +116,10 @@ export default async function EditPostPage({ params }: { params: { id: string } 
           <label className="block text-sm font-medium">Tags (comma separated)</label>
           <input name="tags" defaultValue={tagString} className="mt-1 w-full rounded border px-3 py-2" />
         </div>
-        {post.media.length > 0 && (
-          <div>
-            <div className="text-sm font-medium mb-2">Media</div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {post.media.map((m) => (
-                <div key={m.id} className="border rounded p-2 text-xs">
-                  <div className="mb-1">{m.kind.toUpperCase()}</div>
-                  <AdminMediaThumb kind={m.kind as any} publicId={m.publicId || ''} />
-                  <div className="mt-1 break-all">{m.publicId}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        <div>
+          <div className="text-sm font-medium mb-2">Media</div>
+          <AdminMediaManager initial={post.media.map((m) => ({ kind: m.kind as any, provider: 'cloudinary', publicId: m.publicId || '', width: m.width || undefined, height: m.height || undefined, duration: m.duration || undefined }))} />
+        </div>
         <div className="pt-2">
           <button className="px-4 py-2 rounded bg-black text-white">Save Changes</button>
         </div>
