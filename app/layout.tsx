@@ -30,11 +30,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Suspense>
               <Plausible />
             </Suspense>
-            {/* theme stylesheet */}
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" />
-            <link rel="stylesheet" href="/themes/source.css" />
             {/* AdSense script is hardcoded in app/head.tsx */}
             <div className="site">
               <Nav />

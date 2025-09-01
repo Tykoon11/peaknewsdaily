@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import ThemeToggle from '@/components/theme-toggle'
 
 type Category = { id: string; name: string; slug: string }
 
@@ -34,52 +35,102 @@ export default function MobileNav({
   return (
     <div className="md:hidden">
       <button
-        aria-label="Open menu"
+        aria-label={open ? 'Close menu' : 'Open menu'}
         aria-expanded={open}
-        className="nav-link"
+        className="inline-flex items-center justify-center rounded-md p-2 transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-offset-2"
         onClick={() => setOpen((v) => !v)}
       >
-        {/* simple hamburger */}
-        <span aria-hidden>☰</span>
+        <svg
+          className={`h-6 w-6 transition-all duration-300 ${open ? 'rotate-90' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          {open ? (
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          )}
+        </svg>
       </button>
-      {open && (
-        <>
-          <div className="fixed inset-0 bg-black/40 z-30" onClick={() => setOpen(false)} />
-          <div className="mobile-panel z-40">
-          <div className="mobile-panel-inner">
-            <nav className="flex flex-col gap-3 text-sm" aria-label="Mobile">
-              <Link href="/" className="mobile-link" onClick={() => setOpen(false)}>
+      {/* Mobile panel with animations */}
+      <div 
+        className={`fixed inset-0 z-30 transition-opacity duration-300 ${
+          open ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setOpen(false)}
+      >
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      </div>
+      <div className={`fixed right-0 top-0 z-40 w-80 h-screen bg-background border-l transition-transform duration-300 ${
+        open ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        <div className="flex flex-col h-full">
+          <div className="flex-1 overflow-y-auto p-6 pt-20">
+            <nav className="flex flex-col space-y-3" aria-label="Mobile navigation">
+              <Link
+                href="/"
+                className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                onClick={() => setOpen(false)}
+              >
                 Home
               </Link>
-              {categories.map((c) => (
-                <Link key={c.id} href={`/category/${c.slug}`} className="mobile-link" data-active={pathname.startsWith(`/category/${c.slug}`) || undefined} onClick={() => setOpen(false)}>
-                  {c.name}
+              {categories.map((category) => (
+                <Link
+                  key={category.id}
+                  href={`/category/${category.slug}`}
+                  className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                  onClick={() => setOpen(false)}
+                >
+                  {category.name}
                 </Link>
               ))}
-                <Link href="/submit" className="mobile-link" onClick={() => setOpen(false)}>
-                  Submit
+              <Link
+                href="/submit"
+                className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                onClick={() => setOpen(false)}
+              >
+                Submit
+              </Link>
+              {isStaff && (
+                <Link
+                  href="/admin"
+                  className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                  onClick={() => setOpen(false)}
+                >
+                  Admin
                 </Link>
-                {isStaff && (
-                  <Link href="/admin" className="mobile-link" onClick={() => setOpen(false)}>
-                    Admin
-                  </Link>
-                )}
-                {!signedIn ? (
-                  <Link href="/api/auth/signin" className="mobile-link" onClick={() => setOpen(false)}>
-                    Sign in
-                  </Link>
-                ) : (
-                  <form action="/api/auth/signout" method="post">
-                    <button className="mobile-link" type="submit" onClick={() => setOpen(false)}>
-                      Sign out
-                    </button>
-                  </form>
-                )}
-              </nav>
-            </div>
+              )}
+            </nav>
           </div>
-        </>
-      )}
+          <div className="border-t p-6 space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Theme</span>
+              <ThemeToggle />
+            </div>
+            {!signedIn ? (
+              <Link
+                href="/api/auth/signin"
+                className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                onClick={() => setOpen(false)}
+              >
+                Sign in
+              </Link>
+            ) : (
+              <form action="/api/auth/signout" method="post">
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                  onClick={() => setOpen(false)}
+                >
+                  Sign out
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

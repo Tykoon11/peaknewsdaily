@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const filePath = path.join(process.cwd(), 'public', 'codex images', 'Black and White Modern Initial Typography Logo.svg')
     const data = await readFile(filePath)
-    return new NextResponse(data, {
+    return new NextResponse(data.toString(), {
       headers: {
         'Content-Type': 'image/svg+xml',
         'Cache-Control': 'public, max-age=31536000, immutable'
