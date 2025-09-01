@@ -1,36 +1,49 @@
 /* Source custom theme (modern enhanced) */
 :root[data-theme="source"] {
-  --pn-bg: #fafafa;
-  --pn-text: #111827;
-  --pn-muted: #6b7280;
-  --pn-accent: #2563eb;
-  --pn-link: #2563eb;
+  /* Everything-Finance inspired light mode colors */
+  --pn-bg: #ffffff;
+  --pn-text: #262626;
+  --pn-muted: #8e8e93;
+  --pn-accent: #262626;
+  --pn-link: #262626;
   --pn-card-bg: #ffffff;
-  --pn-border: #e2e8f0;
-  --pn-chip-bg: #f8fafc;
-  --pn-btn-bg: #1e293b;
+  --pn-border: #ebebeb;
+  --pn-chip-bg: #f7f7f7;
+  --pn-btn-bg: #262626;
   --pn-btn-text: #ffffff;
-  --pn-header-bg: rgba(30, 41, 59, 0.95);
-  --pn-hover: rgba(37, 99, 235, 0.1);
-  --pn-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --pn-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --pn-header-bg: rgba(255, 255, 255, 0.95);
+  --pn-hover: rgba(38, 38, 38, 0.1);
+  --pn-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --pn-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   
-  /* Design system colors */
-  --background: #fafafa;
-  --foreground: #111827;
-  --accent: rgba(37, 99, 235, 0.1);
-  --accent-foreground: #2563eb;
-  --primary: #2563eb;
+  /* Design system colors - Everything-Finance inspired light mode */
+  --background: #ffffff;
+  --foreground: #262626;
+  --card: #ffffff;
+  --card-foreground: #262626;
+  --popover: #ffffff;
+  --popover-foreground: #262626;
+  --primary: #262626;
   --primary-foreground: #ffffff;
+  --secondary: #f7f7f7;
+  --secondary-foreground: #262626;
+  --muted: #f7f7f7;
+  --muted-foreground: #8e8e93;
+  --accent: #f7f7f7;
+  --accent-foreground: #262626;
+  --destructive: #dc2626;
+  --border: #ebebeb;
+  --input: #ebebeb;
+  --ring: #b4b4b4;
 }
 
 html[data-theme="source"] body { background-color: var(--pn-bg); color: var(--pn-text); }
 html[data-theme="source"] .site .container { max-width: 1160px; }
 html[data-theme="source"] .site { transition: background-color .3s ease, color .3s ease; }
 html[data-theme="source"] .site-header { 
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--pn-header-bg);
   border-bottom: 1px solid var(--pn-border);
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  box-shadow: var(--pn-shadow);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -261,52 +274,79 @@ html[data-theme="source"] .site .btn:hover { filter: brightness(1.05); }
 html[data-theme="source"] .site .btn-outline:hover { border-color: var(--pn-link) !important; color: var(--pn-link) !important; }
 /* Code blocks (light) */
 html[data-theme="source"] pre, html[data-theme="source"] code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; }
-html[data-theme="source"] pre { background: #f7f8fa; border: 1px solid #e5e7eb; padding: 1rem; border-radius: 8px; overflow: auto; color: #111827; }
+html[data-theme="source"] pre { background: var(--muted); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; overflow: auto; color: var(--foreground); }
 html[data-theme="source"] .site-footer { border-color: var(--pn-border); }
-html[data-theme="source"] .input { background: #ffffff; border-color: var(--pn-border); color: #111827; }
+html[data-theme="source"] .input { background: var(--input); border-color: var(--border); color: var(--foreground); }
 
-/* Dark mode overrides (next-themes adds .dark on html) */
+/* Dark mode overrides (next-themes adds .dark on html) - Everything-Finance style with fallbacks */
 html.dark[data-theme="source"] {
-  --pn-bg: #0a0a0b;
-  --pn-text: #f8fafc;
-  --pn-muted: #94a3b8;
-  --pn-accent: #3b82f6;
-  --pn-link: #60a5fa;
-  --pn-card-bg: #111827;
-  --pn-border: #1e293b;
-  --pn-chip-bg: #1e293b;
-  --pn-btn-bg: #3b82f6;
-  --pn-btn-text: #ffffff;
-  --pn-header-bg: rgba(15, 23, 42, 0.95);
-  --pn-hover: rgba(59, 130, 246, 0.1);
-  --pn-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
-  --pn-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --pn-bg: #252525;
+  --pn-text: #fafafa;
+  --pn-muted: #b4b4b4;
+  --pn-accent: #6366f1;
+  --pn-link: #6366f1;
+  --pn-card-bg: #343434;
+  --pn-border: rgba(255, 255, 255, 0.1);
+  --pn-chip-bg: #454545;
+  --pn-btn-bg: #6366f1;
+  --pn-btn-text: #fafafa;
+  --pn-header-bg: rgba(37, 37, 37, 0.95);
+  --pn-hover: rgba(99, 102, 241, 0.1);
+  --pn-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.5);
+  --pn-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
   
-  /* Design system colors - dark mode */
-  --background: #0a0a0b;
-  --foreground: #f8fafc;
-  --accent: rgba(59, 130, 246, 0.1);
-  --accent-foreground: #60a5fa;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
+  /* Design system colors - dark mode - Everything-Finance style */
+  --background: #252525;
+  --foreground: #fafafa;
+  --card: #343434;
+  --card-foreground: #fafafa;
+  --popover: #343434;
+  --popover-foreground: #fafafa;
+  --primary: #e5e5e5;
+  --primary-foreground: #252525;
+  --secondary: #454545;
+  --secondary-foreground: #fafafa;
+  --muted: #454545;
+  --muted-foreground: #b4b4b4;
+  --accent: #454545;
+  --accent-foreground: #fafafa;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #9ca3af;
 }
 html.dark[data-theme="source"] body { background-color: var(--pn-bg); color: var(--pn-text); }
 html.dark[data-theme="source"] .site-header { 
-  background: rgba(15, 23, 42, 0.8);
+  background: var(--pn-header-bg);
   border-bottom: 1px solid var(--pn-border);
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  box-shadow: var(--pn-shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 html.dark[data-theme="source"] .latest-rail, html.dark[data-theme="source"] .group-row, html.dark[data-theme="source"] .hero-card, html.dark[data-theme="source"] .post-card { background: var(--pn-card-bg); border-color: var(--pn-border); }
 html.dark[data-theme="source"] .group-header::after { background: var(--pn-border); }
-html.dark[data-theme="source"] .latest-item:hover { background: rgba(59, 130, 246, 0.05); }
+html.dark[data-theme="source"] .latest-item:hover { background: var(--pn-hover); }
 html.dark[data-theme="source"] .site .btn-outline { color: var(--pn-text) !important; border-color: var(--pn-border) !important; }
-html.dark[data-theme="source"] .input { background: #0f172a; border-color: var(--pn-border); color: var(--pn-text); }
+html.dark[data-theme="source"] .input { background: var(--input); border-color: var(--border); color: var(--foreground); }
 html.dark[data-theme="source"] .post-card h2 { color: var(--pn-text) !important; }
 html.dark[data-theme="source"] .mobile-panel { background: var(--pn-header-bg); border-top: 1px solid var(--pn-border); }
 html.dark[data-theme="source"] .mobile-panel .mobile-link { color: var(--pn-text); border-bottom: 1px solid var(--pn-border); }
 html.dark[data-theme="source"] .more-menu { background: var(--pn-header-bg); border: 1px solid var(--pn-border); }
 html.dark[data-theme="source"] .more-menu .more-item { color: var(--pn-text) !important; }
-html.dark[data-theme="source"] .more-menu .more-item:hover { background: rgba(59, 130, 246, 0.1); }
+html.dark[data-theme="source"] .more-menu .more-item:hover { background: var(--pn-hover); }
+
+/* Code blocks (dark mode) - Match Everything-Finance */
+html.dark[data-theme="source"] pre { 
+  background: var(--muted); 
+  border: 1px solid var(--border); 
+  color: var(--foreground); 
+}
+html.dark[data-theme="source"] code { 
+  background: var(--muted); 
+  color: var(--foreground); 
+  padding: 0.125rem 0.25rem; 
+  border-radius: 0.25rem; 
+}
 
 /* Dark mode enhancements for home page */
 html.dark[data-theme="source"] .trending-card { background: var(--pn-card-bg); border-color: var(--pn-border); }

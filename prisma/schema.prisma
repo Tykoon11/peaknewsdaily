@@ -33,22 +33,23 @@ enum PostType {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?        @unique
   emailVerified DateTime?
   image         String?
-  role          Role      @default(reader)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  role          Role           @default(reader)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   deletedAt     DateTime?
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
-  submissions   Submission[] @relation("SubmitterSubmissions")
+  submissions   Submission[]   @relation("SubmitterSubmissions")
   reactions     Reaction[]
-  auditLogs     AuditLog[]  @relation("UserAuditLogs")
+  auditLogs     AuditLog[]     @relation("UserAuditLogs")
   comments      Comment[]
+  authorProfile AuthorProfile?
 }
 
 model Account {
@@ -233,4 +234,64 @@ model Theme {
   cssFile    String   // path under /public/themes, e.g. "casper.css"
   fontsHref  String?  // optional Google Fonts href
   createdAt  DateTime @default(now())
+}
+
+model Topic {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  title       String
+  description String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  NewsItem    NewsItem[]
+}
+
+model NewsItem {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String?
+  contentHtml String
+  topicSlug   String
+  sourceName  String
+  sourceUrl   String   @unique
+  publishedAt DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  topic       Topic    @relation(fields: [topicSlug], references: [slug])
+
+  @@index([topicSlug, publishedAt])
+}
+
+model IngestItem {
+  id                   String   @id @default(cuid())
+  sourceName           String
+  sourceUrl            String   @unique
+  publishedAt          DateTime
+  title                String
+  excerpt              String?
+  contentHtmlSummary   String
+  topic                String
+  tagsJson             Json?
+  citationsJson        Json?
+  createdAt            DateTime @default(now())
+}
+
+model AuthorProfile {
+  userId       String  @id
+  bio          String?
+  credentials  Json?
+  socialLinks  Json?
+  headshotUrl  String?
+  user         User    @relation(fields: [userId], references: [id])
+}
+
+model Glossary {
+  id           String   @id @default(cuid())
+  term         String   @unique
+  slug         String   @unique
+  definition   String
+  examplesJson Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

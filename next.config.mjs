@@ -20,6 +20,20 @@ const nextConfig = {
         { key: 'X-Content-Type-Options', value: 'nosniff' }
       ]
     }
+  ],
+  redirects: async () => [
+    // Legacy category redirects to new trading/investing focus
+    { source: '/category/culture', destination: '/category/investing', permanent: true },
+    { source: '/category/funny', destination: '/category/news', permanent: true },
+    { source: '/category/interesting', destination: '/category/investing', permanent: true },
+    { source: '/category/music', destination: '/category/news', permanent: true },
+    { source: '/category/sports', destination: '/category/trading', permanent: true },
+    // Also redirect old paths without /category prefix
+    { source: '/culture', destination: '/category/investing', permanent: true },
+    { source: '/funny', destination: '/category/news', permanent: true },
+    { source: '/interesting', destination: '/category/investing', permanent: true },
+    { source: '/music', destination: '/category/news', permanent: true },
+    { source: '/sports', destination: '/category/trading', permanent: true }
   ]
 }
 

@@ -22,27 +22,40 @@ async function main() {
     create: { email: adminEmail, name: 'Admin', role: Role.admin }
   })
 
-  const categories = ['News', 'Music', 'Funny', 'Sports', 'Culture']
-  for (const name of categories) {
+  // Trading & Investing focused categories
+  const categories = [
+    { name: 'Investing', slug: 'investing' },
+    { name: 'Trading', slug: 'trading' },
+    { name: 'Crypto', slug: 'crypto' },
+    { name: 'Brokers', slug: 'brokers' },
+    { name: 'How-To', slug: 'how-to' },
+    { name: 'Tools', slug: 'tools' },
+    { name: 'News', slug: 'news' }
+  ]
+  
+  for (const category of categories) {
     await prisma.category.upsert({
-      where: { slug: name.toLowerCase() },
-      update: {},
-      create: { name, slug: name.toLowerCase() }
+      where: { slug: category.slug },
+      update: { name: category.name },
+      create: { name: category.name, slug: category.slug }
     })
   }
 
-  const funny = await prisma.category.findUnique({ where: { slug: 'funny' } })
+  const investing = await prisma.category.findUnique({ where: { slug: 'investing' } })
+  const trading = await prisma.category.findUnique({ where: { slug: 'trading' } })
+  const crypto = await prisma.category.findUnique({ where: { slug: 'crypto' } })
 
-  const post = await prisma.post.upsert({
-    where: { slug: 'welcome-to-peaknewsdaily' },
+  // Welcome post updated for trading focus
+  const welcomePost = await prisma.post.upsert({
+    where: { slug: 'welcome-to-peaknewsdaily-trading' },
     update: {},
     create: {
-      slug: 'welcome-to-peaknewsdaily',
-      title: 'Welcome to PeakNewsDaily',
-      description: 'A modern, moderated media hub focused on safe content.',
+      slug: 'welcome-to-peaknewsdaily-trading',
+      title: 'Welcome to PeakNewsDaily: Your Trading & Investing Hub',
+      description: 'Discover professional trading strategies, investment insights, and crypto education.',
       type: PostType.Other,
       authorId: admin.id,
-      categoryId: funny?.id,
+      categoryId: investing?.id,
       status: 'published',
       publishedAt: new Date(),
       tags: {
@@ -58,21 +71,121 @@ async function main() {
     }
   })
 
+  // Sample trading content
+  const positionSizingPost = await prisma.post.upsert({
+    where: { slug: 'position-sizing-guide-2025' },
+    update: {},
+    create: {
+      slug: 'position-sizing-guide-2025',
+      title: 'Position Sizing 101: How Much to Risk Per Trade',
+      description: 'Learn the essential position sizing formulas and risk management techniques used by professional traders.',
+      type: PostType.Other,
+      authorId: admin.id,
+      categoryId: trading?.id,
+      status: 'published',
+      publishedAt: new Date(),
+      tags: {
+        create: [
+          {
+            tag: {
+              connectOrCreate: {
+                where: { slug: 'risk-management' },
+                create: { slug: 'risk-management', name: 'Risk Management' }
+              }
+            }
+          },
+          {
+            tag: {
+              connectOrCreate: {
+                where: { slug: 'trading-basics' },
+                create: { slug: 'trading-basics', name: 'Trading Basics' }
+              }
+            }
+          }
+        ]
+      }
+    }
+  })
+
+  const cryptoWalletPost = await prisma.post.upsert({
+    where: { slug: 'crypto-wallet-security-guide' },
+    update: {},
+    create: {
+      slug: 'crypto-wallet-security-guide',
+      title: 'Crypto Wallets: Custodial vs Non-Custodial vs Hardware',
+      description: 'Complete guide to choosing the right crypto wallet for your security needs and trading style.',
+      type: PostType.Other,
+      authorId: admin.id,
+      categoryId: crypto?.id,
+      status: 'published',
+      publishedAt: new Date(),
+      tags: {
+        create: [
+          {
+            tag: {
+              connectOrCreate: {
+                where: { slug: 'wallet-security' },
+                create: { slug: 'wallet-security', name: 'Wallet Security' }
+              }
+            }
+          },
+          {
+            tag: {
+              connectOrCreate: {
+                where: { slug: 'crypto-basics' },
+                create: { slug: 'crypto-basics', name: 'Crypto Basics' }
+              }
+            }
+          }
+        ]
+      }
+    }
+  })
+
+  // Create submissions for new posts
   await prisma.submission.create({
     data: {
-      postId: post.id,
+      postId: welcomePost.id,
       submitterId: admin.id,
       status: SubmissionStatus.approved,
       licenseAccepted: true,
       ageRestricted: false,
-      notes: 'Seed submission'
+      notes: 'Welcome post for trading rebrand'
     }
   })
 
-  // Basic view event for demonstration
+  await prisma.submission.create({
+    data: {
+      postId: positionSizingPost.id,
+      submitterId: admin.id,
+      status: SubmissionStatus.approved,
+      licenseAccepted: true,
+      ageRestricted: false,
+      notes: 'Position sizing educational content'
+    }
+  })
+
+  await prisma.submission.create({
+    data: {
+      postId: cryptoWalletPost.id,
+      submitterId: admin.id,
+      status: SubmissionStatus.approved,
+      licenseAccepted: true,
+      ageRestricted: false,
+      notes: 'Crypto security educational content'
+    }
+  })
+
+  // View events for demonstration
   const ipHash = createHash('sha256').update('127.0.0.1').digest('hex')
   await prisma.viewEvent.create({
-    data: { postId: post.id, ipHash, userAgent: 'seed' }
+    data: { postId: welcomePost.id, ipHash, userAgent: 'seed' }
+  })
+  await prisma.viewEvent.create({
+    data: { postId: positionSizingPost.id, ipHash, userAgent: 'seed' }
+  })
+  await prisma.viewEvent.create({
+    data: { postId: cryptoWalletPost.id, ipHash, userAgent: 'seed' }
   })
 }
 

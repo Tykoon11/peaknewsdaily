@@ -82,6 +82,12 @@ export default async function Nav() {
               </div>
             )}
             <Link 
+              href="/news" 
+              className="transition-colors hover:text-foreground/80 text-foreground/60 whitespace-nowrap"
+            >
+              News
+            </Link>
+            <Link 
               href="/submit" 
               className="transition-colors hover:text-foreground/80 text-foreground/60 whitespace-nowrap"
             >
