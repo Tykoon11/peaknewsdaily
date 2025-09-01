@@ -11,14 +11,6 @@ export default function Head() {
       <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-192.png" />
       <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192.png" />
       
-      {/* Fonts */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" />
-      
-      {/* Theme stylesheet */}
-      <link rel="stylesheet" href="/themes/source.css" />
-      
       <meta name="google-adsense-account" content="ca-pub-3299978316677420" />
       <script
         async

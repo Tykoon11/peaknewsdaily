@@ -1,7 +1,8 @@
 import './globals.css'
+import '../public/themes/source.css'
 import { ReactNode, Suspense } from 'react'
 import Script from 'next/script'
-import { Inter } from 'next/font/google'
+import { Inter, Oswald } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Providers } from '@/components/providers'
 import Nav from '@/components/nav'
@@ -10,6 +11,11 @@ import Plausible from '@/components/plausible'
 // Theme switching removed; Source is the default style
 
 const inter = Inter({ subsets: ['latin'] })
+const oswald = Oswald({ 
+  subsets: ['latin'], 
+  weight: ['500', '700'],
+  variable: '--font-oswald'
+})
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
@@ -24,7 +30,7 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning data-theme="source">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${oswald.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Providers>
             <Suspense>
