@@ -3,7 +3,14 @@ import Parser from 'rss-parser';
 import { htmlToText } from 'html-to-text';
 import type { FeedDef } from './sources';
 
-const parser = new Parser();
+const parser = new Parser({
+  headers: {
+    'User-Agent': 'Mozilla/5.0 (compatible; PeakNewsDaily/1.0; +https://peaknewsdaily.com)',
+    'Accept': 'application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml',
+  },
+  timeout: 10000,
+  maxRedirects: 5,
+});
 
 export type IngestedItem = {
   sourceName: string;

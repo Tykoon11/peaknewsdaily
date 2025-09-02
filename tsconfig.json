@@ -24,6 +24,9 @@
       "@/components/*": [
         "components/*"
       ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
       "@/lib/*": [
         "lib/*"
       ],
@@ -32,6 +35,9 @@
       ],
       "@/ingest/*": [
         "ingest/*"
+      ],
+      "@/workers/*": [
+        "workers/*"
       ]
     },
     "types": [

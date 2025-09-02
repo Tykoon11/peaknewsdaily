@@ -1,0 +1,21 @@
+// middleware.ts
+import { NextRequest } from 'next/server'
+
+export function middleware(request: NextRequest) {
+  // Allow all routes to be accessed without authentication
+  // Remove this middleware if you want to enforce authentication later
+  return undefined
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+}

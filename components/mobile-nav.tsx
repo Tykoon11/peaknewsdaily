@@ -86,6 +86,37 @@ export default function MobileNav({
                   {category.name}
                 </Link>
               ))}
+              <div className="space-y-1">
+                <div className="px-3 py-2 text-base font-semibold text-foreground">Markets</div>
+                <Link
+                  href="/markets/stocks"
+                  className="block px-6 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                  onClick={() => setOpen(false)}
+                >
+                  📈 Stocks
+                </Link>
+                <Link
+                  href="/markets/crypto"
+                  className="block px-6 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                  onClick={() => setOpen(false)}
+                >
+                  ₿ Cryptocurrency
+                </Link>
+                <Link
+                  href="/markets/calendar"
+                  className="block px-6 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                  onClick={() => setOpen(false)}
+                >
+                  📅 Economic Calendar
+                </Link>
+              </div>
+              <Link
+                href="/news"
+                className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                onClick={() => setOpen(false)}
+              >
+                News
+              </Link>
               <Link
                 href="/submit"
                 className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"

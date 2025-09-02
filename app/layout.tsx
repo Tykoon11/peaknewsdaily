@@ -18,7 +18,10 @@ export const metadata = {
     default: process.env.NEXT_PUBLIC_SITE_NAME || 'PeakNewsDaily'
   },
   description: 'Professional trading, investing, and cryptocurrency news platform with live market updates and expert analysis',
-  manifest: '/manifest.webmanifest'
+  manifest: '/manifest.webmanifest',
+  other: {
+    'google-adsense-account': 'ca-pub-3299978316677420'
+  }
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
@@ -30,7 +33,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Suspense>
               <Plausible />
             </Suspense>
-            {/* AdSense script is hardcoded in app/head.tsx */}
+            <Script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3299978316677420"
+              crossOrigin="anonymous"
+              strategy="afterInteractive"
+            />
             <div className="site">
               <Nav />
               {children}

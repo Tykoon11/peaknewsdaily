@@ -81,6 +81,46 @@ export default async function Nav() {
                 </div>
               </div>
             )}
+            <div className="relative group">
+              <button className="flex items-center space-x-1 transition-colors hover:text-foreground/80 text-foreground/60 whitespace-nowrap">
+                <span>Markets</span>
+                <svg
+                  className="w-4 h-4 transition-transform group-hover:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-48 rounded-md border bg-background shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 dark:border-gray-700 z-50">
+                <div className="py-1">
+                  <Link
+                    href="/markets/stocks"
+                    className="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground whitespace-nowrap"
+                  >
+                    📈 Stocks
+                  </Link>
+                  <Link
+                    href="/markets/crypto"
+                    className="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground whitespace-nowrap"
+                  >
+                    ₿ Cryptocurrency
+                  </Link>
+                  <Link
+                    href="/markets/calendar"
+                    className="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground whitespace-nowrap"
+                  >
+                    📅 Economic Calendar
+                  </Link>
+                </div>
+              </div>
+            </div>
             <Link 
               href="/news" 
               className="transition-colors hover:text-foreground/80 text-foreground/60 whitespace-nowrap"

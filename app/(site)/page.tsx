@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
+import MarketOverview from '@/components/market-overview'
+import EconomicCalendarPreview from '@/components/economic-calendar-preview'
+import DataDisclaimer from '@/components/data-disclaimer'
 
 export const revalidate = 300
 
@@ -43,6 +46,12 @@ export default async function HomePage() {
         </div>
       </div>
 
+      {/* Market Overview - Investing.com style */}
+      <MarketOverview />
+
+      {/* Economic Calendar Preview */}
+      <EconomicCalendarPreview />
+
       {/* Featured Trading Content */}
       {featuredPosts.length > 0 && (
         <section className="mb-12">
@@ -58,7 +67,7 @@ export default async function HomePage() {
             {featuredPosts.map((post) => (
               <Link
                 key={post.id}
-                href={`/p/${post.slug}`}
+                href={`/post/${post.slug}`}
                 className="group bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-200"
               >
                 <h3 className="text-lg font-semibold mb-3 group-hover:text-blue-600 transition-colors">
@@ -154,6 +163,11 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Market Data Disclaimer */}
+      <div className="mt-16 pt-8 border-t border-gray-200">
+        <DataDisclaimer />
+      </div>
     </main>
   )
 }
