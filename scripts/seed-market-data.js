@@ -83,7 +83,7 @@ async function seedStockData() {
         
         await redis.setex(
           `px:${symbol}`,
-          7200, // 2 hours
+          21600, // 6 hours for stocks
           JSON.stringify(priceSnapshot)
         )
         
@@ -131,7 +131,7 @@ async function seedCryptoData() {
         
         await redis.setex(
           `px:${symbol}`,
-          7200, // 2 hours
+          86400, // 24 hours for crypto (24/7 markets)
           JSON.stringify(priceSnapshot)
         )
         

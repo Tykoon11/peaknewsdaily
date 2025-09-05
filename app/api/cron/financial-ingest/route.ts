@@ -84,20 +84,8 @@ async function fetchRealCryptoPrice(symbol: string): Promise<any> {
     }
   } catch (error) {
     console.error(`Failed to fetch real crypto price for ${symbol}:`, error)
-    // Fallback to indicate data unavailable
-    return {
-      price: 0,
-      previousClose: 0,
-      change: 0,
-      changePercent: 0,
-      volume: 0,
-      marketCap: 0,
-      dayHigh: 0,
-      dayLow: 0,
-      high52Week: 0,
-      low52Week: 0,
-      error: 'Data unavailable'
-    }
+    // Don't return 0 values - throw error so we skip this update and keep last known prices
+    throw new Error(`Unable to fetch crypto data for ${symbol}: ${error.message}`)
   }
 }
 
@@ -325,28 +313,25 @@ export async function POST(request: NextRequest) {
         // Fetch REAL crypto price data from CoinGecko
         const priceData = await fetchRealCryptoPrice(cryptoInfo.symbol)
         
-        // Only create quote if we got valid data
-        if (priceData.price > 0) {
-          await prisma.quote.create({
-            data: {
-              assetId: asset.id,
-              price: priceData.price,
-              previousClose: priceData.previousClose,
-              change: priceData.change,
-              changePercent: priceData.changePercent,
-              volume: priceData.volume ? BigInt(priceData.volume) : null,
-              marketCap: priceData.marketCap ? BigInt(priceData.marketCap) : null,
-              dayHigh: priceData.dayHigh,
-              dayLow: priceData.dayLow,
-              high52Week: priceData.high52Week,
-              low52Week: priceData.low52Week,
-              timestamp: new Date()
-            }
-          })
-          cryptosProcessed++
-        } else {
-          console.warn(`⚠️ No valid price data for crypto ${cryptoInfo.symbol}`)
-        }
+        // Create quote with real data
+        await prisma.quote.create({
+          data: {
+            assetId: asset.id,
+            price: priceData.price,
+            previousClose: priceData.previousClose,
+            change: priceData.change,
+            changePercent: priceData.changePercent,
+            volume: priceData.volume ? BigInt(priceData.volume) : null,
+            marketCap: priceData.marketCap ? BigInt(priceData.marketCap) : null,
+            dayHigh: priceData.dayHigh,
+            dayLow: priceData.dayLow,
+            high52Week: priceData.high52Week,
+            low52Week: priceData.low52Week,
+            timestamp: new Date()
+          }
+        })
+        console.log(`✅ Real crypto data for ${cryptoInfo.symbol}: $${priceData.price}`)
+        cryptosProcessed++
       } catch (error) {
         console.error(`❌ Error processing crypto ${cryptoInfo.symbol}:`, error)
       }
