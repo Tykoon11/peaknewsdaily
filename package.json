@@ -17,6 +17,7 @@
     "prune:broken": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/prune.broken.ts",
     "fix:media": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/fix.media.ts",
     "update:financial": "node scripts/update-financial-data.js",
+    "seed:market": "node scripts/seed-market-data.js",
     "typecheck": "tsc --noEmit",
     "postinstall": "prisma generate"
   },

@@ -94,16 +94,17 @@ export default function HowToPage() {
       icon: "🚗",
       color: "bg-gray-600",
       guides: [
-        "How to calculate car affordability (rules of thumb)",
-        "How to get the best auto loan rate",
-        "How to lease vs finance a car (which is cheaper?)",
-        "How to refinance your car loan to lower payments",
-        "How to negotiate a car price (dealer scripts)",
-        "How to buy a used car without getting ripped off",
-        "How to trade in a car with negative equity",
-        "How to insure a new car for less",
-        "How to sell your car privately for top dollar",
-        "How to get out of a bad car loan"
+        "Car Affordability Calculator Rules",
+        "Get Best Auto Loan Rate",
+        "Lease vs Finance Cheaper",
+        "Refinance Car Loan Lower Payment",
+        "Negotiate Car Price Scripts",
+        "Buy Used Car Checklist",
+        "Trade In Negative Equity",
+        "Insure New Car for Less",
+        "Sell Car Privately Top Dollar",
+        "Get Out of Bad Car Loan",
+        "Avoid Bank Scams Phishing Car Buying"
       ]
     },
     {
@@ -128,16 +129,16 @@ export default function HowToPage() {
       icon: "📊",
       color: "bg-blue-600",
       guides: [
-        "How to place your first stock trade (market vs limit)",
-        "How to use stop-loss and take-profit orders",
-        "How to read candlestick charts (for beginners)",
-        "How to scan for high-probability stock setups",
-        "How to trade earnings season safely",
-        "How to manage risk per trade (position sizing)",
-        "How to avoid pattern day trader (PDT) violations",
-        "How to trade ETFs vs individual stocks",
-        "How to backtest a trading strategy properly",
-        "How to build a trading journal that improves results"
+        "Place Your First Stock Trade",
+        "Use Stop Loss and Take Profit",
+        "Read Candlestick Charts",
+        "Scan for High Probability Setups",
+        "Trade Earnings Season Safely",
+        "Manage Risk Per Trade",
+        "Avoid PDT Violations",
+        "Trade ETFs vs Stocks",
+        "Backtest Trading Strategy",
+        "Build a Trading Journal"
       ]
     },
     {
@@ -162,16 +163,17 @@ export default function HowToPage() {
       icon: "💱",
       color: "bg-indigo-500",
       guides: [
-        "How to start trading forex (complete beginner guide)",
-        "How to read currency pairs and pips",
-        "How to size a forex position properly",
-        "How to set realistic profit targets in forex",
-        "How to choose a regulated forex broker",
-        "How to avoid over-leveraging in FX",
-        "How to trade news events without getting whipsawed",
-        "How to build a simple forex strategy (rules + examples)",
-        "How to use MT4/MT5 indicators responsibly",
-        "How to manage overnight swap/financing costs"
+        "Start Trading Forex Complete Beginner Guide",
+        "Read Currency Pairs and Pips",
+        "Size a Forex Position Properly",
+        "Set Realistic Profit Targets in Forex",
+        "Choose a Regulated Forex Broker",
+        "Avoid Over Leveraging in FX",
+        "Trade News Events Without Getting Whipsawed",
+        "Build a Simple Forex Strategy",
+        "Use MT4 MT5 Indicators Responsibly",
+        "Manage Overnight Swap Financing Costs",
+        "Avoid Bank Scams and Phishing Forex"
       ]
     },
     {
@@ -179,16 +181,17 @@ export default function HowToPage() {
       icon: "₿",
       color: "bg-orange-600",
       guides: [
-        "How to buy Bitcoin safely (step by step)",
-        "How to choose a crypto exchange (security checklist)",
-        "How to set up a hardware wallet (cold storage)",
-        "How to avoid crypto rug pulls and scams",
-        "How to stake crypto and understand APY risk",
-        "How to use DeFi safely (wallet hygiene)",
-        "How to bridge tokens across chains without losing funds",
-        "How to report crypto taxes (cost basis methods)",
-        "How to recover from a lost seed phrase (what's possible)",
-        "How to mint an NFT responsibly (fees & rights)"
+        "Buy Bitcoin Safely Step by Step",
+        "Choose Crypto Exchange Security Checklist",
+        "Setup Hardware Wallet Cold Storage",
+        "Avoid Crypto Rug Pulls Scams",
+        "Stake Crypto APY Risk",
+        "Use DeFi Safely Wallet Hygiene",
+        "Bridge Tokens Safely Cross Chain",
+        "Report Crypto Taxes Cost Basis",
+        "Recover Lost Seed Phrase What Possible",
+        "Mint NFT Responsibly Fees Rights",
+        "Avoid Bank Scams and Phishing"
       ]
     },
     {
@@ -262,18 +265,69 @@ export default function HowToPage() {
     {
       title: "Student Loans & Education",
       icon: "🎓",
-      color: "bg-violet-600",
+      color: "bg-gradient-to-br from-violet-500 to-purple-600",
+      description: "Master your education financing with comprehensive guides on loans, aid, and smart borrowing strategies",
       guides: [
-        "How to apply for student loans without overborrowing",
-        "How to choose federal vs private student loans",
-        "How to consolidate or refinance student debt",
-        "How to qualify for loan forgiveness programs",
-        "How to make payments while in school (and why)",
-        "How to pick a repayment plan that fits your budget",
-        "How to avoid default and get back in good standing",
-        "How to appeal a financial aid decision",
-        "How to use scholarships and grants strategically",
-        "How to build credit while in college"
+        {
+          title: "How to apply for student loans without overborrowing",
+          description: "Smart borrowing strategies to minimize debt while covering education costs",
+          difficulty: "Beginner",
+          readTime: "8 min"
+        },
+        {
+          title: "How to choose federal vs private student loans",
+          description: "Compare interest rates, repayment options, and benefits to make the right choice",
+          difficulty: "Beginner",
+          readTime: "10 min"
+        },
+        {
+          title: "How to consolidate or refinance student debt",
+          description: "Lower payments and interest rates through consolidation and refinancing",
+          difficulty: "Intermediate",
+          readTime: "12 min"
+        },
+        {
+          title: "How to qualify for loan forgiveness programs",
+          description: "Navigate PSLF, teacher forgiveness, and other debt relief programs",
+          difficulty: "Advanced",
+          readTime: "15 min"
+        },
+        {
+          title: "How to make payments while in school (and why)",
+          description: "Reduce future interest burden with strategic in-school payments",
+          difficulty: "Beginner",
+          readTime: "6 min"
+        },
+        {
+          title: "How to pick a repayment plan that fits your budget",
+          description: "Choose between standard, income-driven, and graduated repayment plans",
+          difficulty: "Intermediate",
+          readTime: "10 min"
+        },
+        {
+          title: "How to avoid default and get back in good standing",
+          description: "Prevent default consequences and rehabilitate defaulted loans",
+          difficulty: "Advanced",
+          readTime: "14 min"
+        },
+        {
+          title: "How to appeal a financial aid decision",
+          description: "Successfully appeal aid decisions and maximize your financial assistance",
+          difficulty: "Intermediate",
+          readTime: "8 min"
+        },
+        {
+          title: "How to use scholarships and grants strategically",
+          description: "Find, apply for, and manage free money for education expenses",
+          difficulty: "Beginner",
+          readTime: "12 min"
+        },
+        {
+          title: "How to build credit while in college",
+          description: "Establish and improve credit history as a student for future financial success",
+          difficulty: "Beginner",
+          readTime: "9 min"
+        }
       ]
     },
     {
@@ -432,42 +486,183 @@ export default function HowToPage() {
 
       {/* Sections */}
       {sections.map((section, sectionIndex) => (
-        <section key={sectionIndex} id={createSlug(section.title)} className="mb-16">
-          <div className="flex items-center gap-4 mb-8">
-            <div className={`w-12 h-12 ${section.color} rounded-xl flex items-center justify-center text-white text-xl`}>
+        <section key={sectionIndex} id={createSlug(section.title)} className="mb-20">
+          {/* Section Header */}
+          <div className="flex items-start gap-6 mb-10">
+            <div className={`w-16 h-16 ${section.color} rounded-2xl flex items-center justify-center text-white text-2xl shadow-lg`}>
               {section.icon}
             </div>
-            <div>
-              <h2 className="text-3xl font-bold">{section.title}</h2>
-              <p className="text-gray-600">{section.guides.length} comprehensive guides</p>
+            <div className="flex-1">
+              <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                {section.title}
+              </h2>
+              {section.description ? (
+                <p className="text-lg text-gray-600 mb-2">{section.description}</p>
+              ) : null}
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  {typeof section.guides[0] === 'object' ? section.guides.length : section.guides.length} comprehensive guides
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            {section.guides.map((guide, guideIndex) => (
-              <Link
-                key={guideIndex}
-                href={`/how-to/${createSlug(guide)}`}
-                className="group p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200 hover:border-blue-300"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-100 transition-colors">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors leading-snug">
-                      {guide}
-                    </h3>
-                  </div>
-                  <div className="text-gray-400 group-hover:text-blue-500 transition-colors">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          {/* Enhanced Student Loans Section */}
+          {section.title === "Student Loans & Education" ? (
+            <div className="space-y-6">
+              {/* Featured Guide */}
+              <div className="bg-gradient-to-r from-violet-50 via-purple-50 to-indigo-50 rounded-2xl p-8 border border-violet-200">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Most Popular Guide</h3>
+                    <h4 className="text-lg font-semibold text-violet-700 mb-3">How to choose federal vs private student loans</h4>
+                    <p className="text-gray-600 mb-4">Compare interest rates, repayment options, and benefits to make the right choice for your education financing.</p>
+                    <Link href="/how-to/how-to-choose-federal-vs-private-student-loans" 
+                          className="inline-flex items-center gap-2 bg-violet-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-violet-700 transition-colors">
+                      Start Reading
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+
+              {/* Guide Categories */}
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Beginner Guides */}
+                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                      <span className="text-green-600 text-sm font-semibold">★</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">Beginner Guides</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {section.guides.filter((guide) => typeof guide === 'object' && guide.difficulty === 'Beginner').map((guide, guideIndex) => (
+                      <Link
+                        key={guideIndex}
+                        href={`/how-to/${createSlug(guide.title)}`}
+                        className="group block p-4 bg-gray-50 rounded-xl hover:bg-green-50 transition-colors border border-transparent hover:border-green-200"
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900 group-hover:text-green-700 transition-colors mb-2 leading-snug">
+                              {guide.title}
+                            </h4>
+                            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                              {guide.description}
+                            </p>
+                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                              <span className="flex items-center gap-1">
+                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                                </svg>
+                                {guide.readTime}
+                              </span>
+                              <span className="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
+                                {guide.difficulty}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="text-gray-400 group-hover:text-green-500 transition-colors">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Advanced Guides */}
+                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                      <span className="text-red-600 text-sm font-semibold">◆</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">Intermediate & Advanced</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {section.guides.filter((guide) => typeof guide === 'object' && (guide.difficulty === 'Intermediate' || guide.difficulty === 'Advanced')).map((guide, guideIndex) => (
+                      <Link
+                        key={guideIndex}
+                        href={`/how-to/${createSlug(guide.title)}`}
+                        className="group block p-4 bg-gray-50 rounded-xl hover:bg-orange-50 transition-colors border border-transparent hover:border-orange-200"
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900 group-hover:text-orange-700 transition-colors mb-2 leading-snug">
+                              {guide.title}
+                            </h4>
+                            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                              {guide.description}
+                            </p>
+                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                              <span className="flex items-center gap-1">
+                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                                </svg>
+                                {guide.readTime}
+                              </span>
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                guide.difficulty === 'Advanced' 
+                                  ? 'bg-red-100 text-red-700' 
+                                  : 'bg-yellow-100 text-yellow-700'
+                              }`}>
+                                {guide.difficulty}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="text-gray-400 group-hover:text-orange-500 transition-colors">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Standard Grid Layout for Other Sections */
+            <div className="grid md:grid-cols-2 gap-4">
+              {section.guides.map((guide, guideIndex) => (
+                <Link
+                  key={guideIndex}
+                  href={`/how-to/${createSlug(typeof guide === 'string' ? guide : guide.title)}`}
+                  className="group p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200 hover:border-blue-300"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-100 transition-colors">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full group-hover:bg-blue-500 transition-colors"></div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors leading-snug">
+                        {typeof guide === 'string' ? guide : guide.title}
+                      </h3>
+                    </div>
+                    <div className="text-gray-400 group-hover:text-blue-500 transition-colors">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
       ))}
 
