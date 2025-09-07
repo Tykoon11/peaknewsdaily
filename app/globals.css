@@ -42,11 +42,72 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 }
 
 /* Utility classes for line clamping */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Highlight.js theme for code blocks */
+.hljs {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-lg;
+}
+
+.hljs-comment,
+.hljs-quote {
+  @apply text-gray-400;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  @apply text-blue-400;
+}
+
+.hljs-string,
+.hljs-template-string {
+  @apply text-green-400;
+}
+
+.hljs-number {
+  @apply text-yellow-400;
+}
+
+.hljs-function,
+.hljs-title {
+  @apply text-purple-400;
+}
+
+.hljs-variable {
+  @apply text-red-400;
+}
+
+/* Custom prose styles for education articles */
+.prose-education {
+  @apply prose prose-lg max-w-none;
+  @apply prose-headings:text-gray-900;
+  @apply prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg;
+  @apply prose-p:text-gray-700 prose-li:text-gray-700;
+  @apply prose-strong:text-gray-900 prose-strong:font-semibold;
+  @apply prose-code:text-pink-600 prose-code:bg-pink-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded;
+  @apply prose-pre:bg-gray-900 prose-pre:text-gray-100;
+  @apply prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50;
+  @apply prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline;
 }
 
 /* Focus styles */

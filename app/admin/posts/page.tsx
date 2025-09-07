@@ -36,6 +36,7 @@ export default async function AdminPostsPage({ searchParams }: { searchParams?: 
         <h1 className="text-2xl font-semibold">Manage Posts</h1>
         <div className="text-sm flex gap-3">
           <Link className="underline" href="/admin">Review Queue</Link>
+          <Link className="underline text-blue-600" href="/admin/education">Trading Education</Link>
         </div>
       </div>
       <div className="mb-4">

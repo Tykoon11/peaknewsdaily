@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns'
 import MarketOverview from '@/components/market-overview'
 import EconomicCalendarPreview from '@/components/economic-calendar-preview'
 import DataDisclaimer from '@/components/data-disclaimer'
+import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 
 export const revalidate = 300
 
@@ -52,10 +53,10 @@ export default async function HomePage() {
       {/* Economic Calendar Preview */}
       <EconomicCalendarPreview />
 
-      {/* Featured Trading Content */}
-      {featuredPosts.length > 0 && (
-        <section className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
+      {/* Trading Education */}
+      <section className="mb-12">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -63,30 +64,59 @@ export default async function HomePage() {
             </div>
             <h2 className="text-2xl font-bold">Trading Education</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {featuredPosts.map((post) => (
-              <Link
-                key={post.id}
-                href={`/post/${post.slug}`}
-                className="group bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-200"
-              >
-                <h3 className="text-lg font-semibold mb-3 group-hover:text-blue-600 transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                  {post.description}
-                </p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {formatDistanceToNow(post.createdAt)} ago
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+          <Link 
+            href="/education" 
+            className="text-blue-600 hover:text-blue-800 transition-colors font-medium"
+          >
+            See more →
+          </Link>
+        </div>
+        
+        {/* Featured Education Pillars */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {PILLARS.slice(0, 4).map((pillar) => (
+            <Link
+              key={pillar.id}
+              href={pillar.slug}
+              className="group bg-white rounded-xl border border-gray-200 p-4 hover:shadow-lg transition-all duration-200"
+            >
+              <h3 className="text-sm font-semibold mb-2 group-hover:text-blue-600 transition-colors">
+                {pillar.title}
+              </h3>
+              <p className="text-xs text-gray-600 mb-3 line-clamp-2">
+                {pillar.intro}
+              </p>
+              <div className="text-xs text-gray-500">
+                {ARTICLES.filter(a => a.pillar === pillar.id).length} guides
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Featured Articles */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {ARTICLES
+            .filter(a => a.status === 'published' || a.pillar === 'risk-management')
+            .slice(0, 3)
+            .map((article) => (
+            <Link
+              key={article.slug}
+              href={article.slug}
+              className="group bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-200"
+            >
+              <h3 className="text-lg font-semibold mb-3 group-hover:text-blue-600 transition-colors">
+                {article.title}
+              </h3>
+              <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                {PILLARS.find(p => p.id === article.pillar)?.intro || 'Learn essential trading concepts and strategies.'}
+              </p>
+              <div className="text-xs text-gray-500 uppercase tracking-wide">
+                {PILLARS.find(p => p.id === article.pillar)?.title}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* Live Market News */}
       <section className="mb-12">

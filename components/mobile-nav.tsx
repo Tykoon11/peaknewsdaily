@@ -79,11 +79,11 @@ export default function MobileNav({
               {categories.map((category) => (
                 <Link
                   key={category.id}
-                  href={`/category/${category.slug}`}
+                  href={category.slug === 'crypto' ? '/markets/crypto' : category.slug === 'trading' ? '/education' : `/category/${category.slug}`}
                   className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
                   onClick={() => setOpen(false)}
                 >
-                  {category.name}
+                  {category.slug === 'crypto' ? '₿ Crypto' : category.slug === 'trading' ? '📚 Trading' : category.name}
                 </Link>
               ))}
               <div className="space-y-1">

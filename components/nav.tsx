@@ -42,10 +42,10 @@ export default async function Nav() {
             {categories.slice(0, 3).map((category) => (
               <Link
                 key={category.id}
-                href={`/category/${category.slug}`}
+                href={category.slug === 'crypto' ? '/markets/crypto' : category.slug === 'trading' ? '/education' : `/category/${category.slug}`}
                 className="transition-colors hover:text-foreground/80 text-foreground/60 whitespace-nowrap"
               >
-                {category.name}
+                {category.slug === 'crypto' ? '₿ Crypto' : category.slug === 'trading' ? '📚 Trading' : category.name}
               </Link>
             ))}
             {categories.length > 3 && (
@@ -71,10 +71,10 @@ export default async function Nav() {
                     {categories.slice(3).map((category) => (
                       <Link
                         key={category.id}
-                        href={`/category/${category.slug}`}
+                        href={category.slug === 'crypto' ? '/markets/crypto' : category.slug === 'trading' ? '/education' : `/category/${category.slug}`}
                         className="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground whitespace-nowrap"
                       >
-                        {category.name}
+                        {category.slug === 'crypto' ? '₿ Crypto' : category.slug === 'trading' ? '📚 Trading' : category.name}
                       </Link>
                     ))}
                   </div>
