@@ -112,11 +112,20 @@ export default async function TopicPage({ params }: { params: { slug: string } }
 }
 
 export async function generateStaticParams() {
-  const topics = await prisma.topic.findMany({
-    select: { slug: true },
-  })
+  if (!process.env.DATABASE_URL) {
+    return []
+  }
+  
+  try {
+    const topics = await prisma.topic.findMany({
+      select: { slug: true },
+    })
 
-  return topics.map((topic) => ({
-    slug: topic.slug,
-  }))
+    return topics.map((topic) => ({
+      slug: topic.slug,
+    }))
+  } catch (error) {
+    console.warn('Failed to fetch topics for static generation:', error)
+    return []
+  }
 }

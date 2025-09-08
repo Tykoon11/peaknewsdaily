@@ -99,12 +99,21 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
 }
 
 export async function generateStaticParams() {
-  const newsItems = await prisma.newsItem.findMany({
-    select: { slug: true },
-    take: 100,
-  })
+  if (!process.env.DATABASE_URL) {
+    return []
+  }
+  
+  try {
+    const newsItems = await prisma.newsItem.findMany({
+      select: { slug: true },
+      take: 100,
+    })
 
-  return newsItems.map((item) => ({
-    slug: item.slug,
-  }))
+    return newsItems.map((item) => ({
+      slug: item.slug,
+    }))
+  } catch (error) {
+    console.warn('Failed to fetch news items for static generation:', error)
+    return []
+  }
 }
