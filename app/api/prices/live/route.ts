@@ -6,7 +6,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { runLivePriceUpdater, startLivePriceUpdater } from '@/workers/livePriceUpdater'
 import { healthCheck } from '@/lib/redis'
-import { getActiveConnectionCount } from '@/app/api/stream/route'
+import { getActiveConnectionCount } from '@/lib/stream-broadcast'
 
 const CRON_SECRET = process.env.CRON_SECRET || 'secure-cron-key-2024-rss-automation'
 

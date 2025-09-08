@@ -6,7 +6,7 @@
 
 import { PriceSnapshot, setPriceSnapshot, setSymbolMeta, setEquityMarketState, setVolatilityScore } from '@/lib/redis'
 import { getEquityMarketState, MarketState, isMarketOpen, getCurrentET } from '@/lib/marketState'
-import { broadcastPriceTick, broadcastMarketStateChange } from '@/app/api/stream/route'
+import { broadcastPriceTick, broadcastMarketStateChange } from '@/lib/stream-broadcast'
 import { prisma } from '@/lib/prisma'
 
 // Yahoo Finance integration (reusing existing logic)

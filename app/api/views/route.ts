@@ -1,8 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { isBot } from '@/lib/utils'
 
-export const runtime = 'edge'
-
 async function sha256Hex(input: string) {
   const enc = new TextEncoder()
   const data = enc.encode(input)
