@@ -61,30 +61,39 @@ interface EconomicEvent {
 }
 
 export default async function EconomicCalendarPage() {
-  // Fetch upcoming events for the next 30 days
-  const upcomingEvents = await prisma.economicEvent.findMany({
-    where: {
-      eventTime: {
-        gte: new Date(),
-        lte: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-      }
-    },
-    orderBy: { eventTime: 'asc' },
-    take: 100
-  })
+  let upcomingEvents: Array<any> = []
+  let recentEvents: Array<any> = []
 
-  // Fetch recent events with actual data (last 7 days)
-  const recentEvents = await prisma.economicEvent.findMany({
-    where: {
-      eventTime: {
-        gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-        lt: new Date()
-      },
-      actual: { not: null }
-    },
-    orderBy: { eventTime: 'desc' },
-    take: 20
-  })
+  if (process.env.DATABASE_URL) {
+    try {
+      // Fetch upcoming events for the next 30 days
+      upcomingEvents = await prisma.economicEvent.findMany({
+        where: {
+          eventTime: {
+            gte: new Date(),
+            lte: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+          }
+        },
+        orderBy: { eventTime: 'asc' },
+        take: 100
+      })
+
+      // Fetch recent events with actual data (last 7 days)
+      recentEvents = await prisma.economicEvent.findMany({
+        where: {
+          eventTime: {
+            gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+            lt: new Date()
+          },
+          actual: { not: null }
+        },
+        orderBy: { eventTime: 'desc' },
+        take: 20
+      })
+    } catch (error) {
+      console.warn('Failed to fetch economic events:', error)
+    }
+  }
 
   // Get today's events
   const todayStart = new Date()
@@ -425,7 +434,7 @@ export default async function EconomicCalendarPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">📅 Complete Economic Calendar</h2>
           
           {Object.entries(eventsByDate).length > 0 ? (
-            Object.entries(eventsByDate).map(([dateKey, dayEvents]) => {
+            (Object.entries(eventsByDate) as [string, any[]][]).map(([dateKey, dayEvents]) => {
               const date = new Date(dateKey)
               const isToday = date.toDateString() === new Date().toDateString()
               const isTomorrow = date.toDateString() === new Date(Date.now() + 24 * 60 * 60 * 1000).toDateString()

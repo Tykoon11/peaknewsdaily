@@ -22,23 +22,32 @@ export async function generateMetadata() {
 }
 
 export default async function NewsPage() {
-  const topics = await prisma.topic.findMany({
-    orderBy: { title: 'asc' },
-    include: {
-      NewsItem: {
-        orderBy: { publishedAt: 'desc' },
-        take: 5,
-      },
-    },
-  })
+  let topics: Array<any> = []
+  let latestNews: Array<any> = []
 
-  const latestNews = await prisma.newsItem.findMany({
-    orderBy: { publishedAt: 'desc' },
-    take: 20,
-    include: {
-      topic: true,
-    },
-  })
+  if (process.env.DATABASE_URL) {
+    try {
+      topics = await prisma.topic.findMany({
+        orderBy: { title: 'asc' },
+        include: {
+          NewsItem: {
+            orderBy: { publishedAt: 'desc' },
+            take: 5,
+          },
+        },
+      })
+
+      latestNews = await prisma.newsItem.findMany({
+        orderBy: { publishedAt: 'desc' },
+        take: 20,
+        include: {
+          topic: true,
+        },
+      })
+    } catch (error) {
+      console.warn('Failed to fetch news data:', error)
+    }
+  }
 
   return (
     <main className="container py-6">

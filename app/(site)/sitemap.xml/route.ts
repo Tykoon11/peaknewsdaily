@@ -3,30 +3,41 @@ import { prisma } from '@/lib/prisma'
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://peaknewsdaily.com'
 
-  // Get all published posts
-  const posts = await prisma.post.findMany({
-    where: { status: 'published' },
-    select: { slug: true, updatedAt: true },
-    orderBy: { updatedAt: 'desc' },
-    take: 50000,
-  })
+  let posts: Array<{ slug: string; updatedAt: Date }> = []
+  let newsItems: Array<{ slug: string; updatedAt: Date }> = []
+  let topics: Array<{ slug: string; updatedAt: Date }> = []
+  let categories: Array<{ slug: string; updatedAt: Date }> = []
 
-  // Get all news items
-  const newsItems = await prisma.newsItem.findMany({
-    select: { slug: true, updatedAt: true },
-    orderBy: { updatedAt: 'desc' },
-    take: 50000,
-  })
+  if (process.env.DATABASE_URL) {
+    try {
+      // Get all published posts
+      posts = await prisma.post.findMany({
+        where: { status: 'published' },
+        select: { slug: true, updatedAt: true },
+        orderBy: { updatedAt: 'desc' },
+        take: 50000,
+      })
 
-  // Get all topics
-  const topics = await prisma.topic.findMany({
-    select: { slug: true, updatedAt: true },
-  })
+      // Get all news items
+      newsItems = await prisma.newsItem.findMany({
+        select: { slug: true, updatedAt: true },
+        orderBy: { updatedAt: 'desc' },
+        take: 50000,
+      })
 
-  // Get all categories
-  const categories = await prisma.category.findMany({
-    select: { slug: true, updatedAt: true },
-  })
+      // Get all topics
+      topics = await prisma.topic.findMany({
+        select: { slug: true, updatedAt: true },
+      })
+
+      // Get all categories
+      categories = await prisma.category.findMany({
+        select: { slug: true, updatedAt: true },
+      })
+    } catch (error) {
+      console.warn('Failed to fetch sitemap data:', error)
+    }
+  }
 
   const staticUrls = `
   <url>

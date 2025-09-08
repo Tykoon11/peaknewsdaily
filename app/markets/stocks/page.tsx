@@ -69,25 +69,33 @@ interface Asset {
 }
 
 export default async function StocksPage() {
-  const stocks = await prisma.asset.findMany({
-    where: { 
-      type: 'stock',
-      isActive: true 
-    },
-    include: {
-      market: {
-        select: { name: true, currency: true }
-      },
-      quotes: {
-        orderBy: { timestamp: 'desc' },
-        take: 1
-      }
-    },
-    orderBy: [
-      { quotes: { _count: 'desc' } },
-      { symbol: 'asc' }
-    ]
-  })
+  let stocks: Array<any> = []
+
+  if (process.env.DATABASE_URL) {
+    try {
+      stocks = await prisma.asset.findMany({
+        where: { 
+          type: 'stock',
+          isActive: true 
+        },
+        include: {
+          market: {
+            select: { name: true, currency: true }
+          },
+          quotes: {
+            orderBy: { timestamp: 'desc' },
+            take: 1
+          }
+        },
+        orderBy: [
+          { quotes: { _count: 'desc' } },
+          { symbol: 'asc' }
+        ]
+      })
+    } catch (error) {
+      console.warn('Failed to fetch stock data:', error)
+    }
+  }
 
   // Group stocks by categories for better presentation
   const magnificentSeven = ['NVDA', 'MSFT', 'AAPL', 'AMZN', 'GOOGL', 'META', 'TSLA'];

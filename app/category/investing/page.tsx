@@ -48,17 +48,28 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function InvestingPage() {
-  // Get investing category and posts
-  const category = await prisma.category.findUnique({ 
-    where: { slug: 'investing' } 
-  });
-  
-  const posts = await prisma.post.findMany({
-    where: { categoryId: category?.id, status: 'published' },
-    orderBy: { publishedAt: 'desc' },
-    take: 12,
-    include: { media: true, tags: { include: { tag: true } } }
-  });
+  let category: any = null
+  let posts: Array<any> = []
+
+  if (process.env.DATABASE_URL) {
+    try {
+      // Get investing category and posts
+      category = await prisma.category.findUnique({ 
+        where: { slug: 'investing' } 
+      });
+      
+      if (category) {
+        posts = await prisma.post.findMany({
+          where: { categoryId: category.id, status: 'published' },
+          orderBy: { publishedAt: 'desc' },
+          take: 12,
+          include: { media: true, tags: { include: { tag: true } } }
+        });
+      }
+    } catch (error) {
+      console.warn('Failed to fetch investing page data:', error)
+    }
+  }
 
   // JSON-LD structured data
   const jsonLd = {
@@ -407,12 +418,12 @@ export default async function InvestingPage() {
                 description: p.description || null,
                 publishedAt: p.publishedAt ? p.publishedAt.toISOString() : null,
                 createdAt: p.createdAt.toISOString(),
-                media: p.media?.length ? p.media.map((m) => ({ 
+                media: p.media?.length ? p.media.map((m: any) => ({ 
                   kind: m.kind as any, 
                   publicId: m.publicId, 
                   sourceUrl: m.sourceUrl as any 
                 })) : [],
-                tags: p.tags.map((x) => ({ tag: { slug: x.tag.slug, name: x.tag.name } }))
+                tags: p.tags.map((x: any) => ({ tag: { slug: x.tag.slug, name: x.tag.name } }))
               }))} 
               baseQuery={{ c: 'investing', s: 'latest' }} 
             />

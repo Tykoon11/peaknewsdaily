@@ -9,29 +9,43 @@ import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 export const revalidate = 300
 
 export default async function HomePage() {
-  // Get live trading/investing content
-  const [latestNews, trendingTopics, featuredPosts] = await Promise.all([
-    // Latest RSS news items
-    prisma.newsItem.findMany({
-      orderBy: { publishedAt: 'desc' },
-      take: 8,
-      include: { topic: true }
-    }),
-    // Topics with news count
-    prisma.topic.findMany({
-      include: {
-        _count: { select: { NewsItem: true } }
-      },
-      orderBy: { NewsItem: { _count: 'desc' } }
-    }),
-    // Our 3 featured trading posts
-    prisma.post.findMany({
-      where: { status: 'published' },
-      orderBy: { createdAt: 'desc' },
-      take: 3,
-      select: { id: true, slug: true, title: true, description: true, createdAt: true }
-    })
-  ])
+  let latestNews: Array<any> = []
+  let trendingTopics: Array<any> = []
+  let featuredPosts: Array<any> = []
+
+  if (process.env.DATABASE_URL) {
+    try {
+      // Get live trading/investing content
+      const results = await Promise.all([
+        // Latest RSS news items
+        prisma.newsItem.findMany({
+          orderBy: { publishedAt: 'desc' },
+          take: 8,
+          include: { topic: true }
+        }),
+        // Topics with news count
+        prisma.topic.findMany({
+          include: {
+            _count: { select: { NewsItem: true } }
+          },
+          orderBy: { NewsItem: { _count: 'desc' } }
+        }),
+        // Our 3 featured trading posts
+        prisma.post.findMany({
+          where: { status: 'published' },
+          orderBy: { createdAt: 'desc' },
+          take: 3,
+          select: { id: true, slug: true, title: true, description: true, createdAt: true }
+        })
+      ])
+      
+      latestNews = results[0]
+      trendingTopics = results[1]
+      featuredPosts = results[2]
+    } catch (error) {
+      console.warn('Failed to fetch homepage data:', error)
+    }
+  }
   
   return (
     <main className="container py-6">

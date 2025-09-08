@@ -183,22 +183,30 @@ const tradingStrategies = [
 ];
 
 export default async function CryptoPage(): Promise<React.ReactElement> {
-  const cryptos = await prisma.asset.findMany({
-    where: { 
-      type: 'crypto',
-      isActive: true 
-    },
-    include: {
-      market: {
-        select: { name: true, currency: true }
-      },
-      quotes: {
-        orderBy: { timestamp: 'desc' },
-        take: 1
-      }
-    },
-    orderBy: { symbol: 'asc' }
-  });
+  let cryptos: Array<any> = []
+
+  if (process.env.DATABASE_URL) {
+    try {
+      cryptos = await prisma.asset.findMany({
+        where: { 
+          type: 'crypto',
+          isActive: true 
+        },
+        include: {
+          market: {
+            select: { name: true, currency: true }
+          },
+          quotes: {
+            orderBy: { timestamp: 'desc' },
+            take: 1
+          }
+        },
+        orderBy: { symbol: 'asc' }
+      })
+    } catch (error) {
+      console.warn('Failed to fetch crypto data:', error)
+    }
+  }
 
   const formatPrice = (price: number, currency: string = 'USD'): string => {
     if (price < 1) {
