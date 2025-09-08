@@ -308,6 +308,7 @@ export function useLivePrices(options: UseLivePricesOptions) {
   
   // Fallback polling when SSE is not available
   const fallbackPollingRef = useRef<NodeJS.Timeout | null>(null)
+  const prevMarketStateRef = useRef(state.marketState)
   
   useEffect(() => {
     if (!fallbackPolling || state.connected) return
@@ -353,10 +354,9 @@ export function useLivePrices(options: UseLivePricesOptions) {
         startPolling()
         
         // Update polling interval when market state changes
-        const prevMarketState = useRef(state.marketState)
-        if (prevMarketState.current !== state.marketState) {
+        if (prevMarketStateRef.current !== state.marketState) {
           startPolling()
-          prevMarketState.current = state.marketState
+          prevMarketStateRef.current = state.marketState
         }
       }
     }, 10000)
