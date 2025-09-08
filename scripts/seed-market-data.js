@@ -18,6 +18,7 @@ const redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379')
 
 // Mock market data for popular stocks
 const STOCK_MARKET_DATA = {
+  // Magnificent Seven
   'AAPL': { name: 'Apple Inc.', sector: 'Technology', previousClose: 247.50 },
   'MSFT': { name: 'Microsoft Corporation', sector: 'Technology', previousClose: 442.30 },
   'GOOGL': { name: 'Alphabet Inc.', sector: 'Technology', previousClose: 182.20 },
@@ -25,7 +26,133 @@ const STOCK_MARKET_DATA = {
   'TSLA': { name: 'Tesla Inc.', sector: 'Consumer Discretionary', previousClose: 331.50 },
   'META': { name: 'Meta Platforms Inc.', sector: 'Technology', previousClose: 735.80 },
   'NVDA': { name: 'NVIDIA Corporation', sector: 'Technology', previousClose: 172.90 },
-  'NFLX': { name: 'Netflix Inc.', sector: 'Communication Services', previousClose: 1205.40 }
+
+  // Additional Major Tech Stocks
+  'NFLX': { name: 'Netflix Inc.', sector: 'Communication Services', previousClose: 1205.40 },
+  'CRM': { name: 'Salesforce Inc.', sector: 'Technology', previousClose: 295.80 },
+  'ORCL': { name: 'Oracle Corporation', sector: 'Technology', previousClose: 142.30 },
+  'ADBE': { name: 'Adobe Inc.', sector: 'Technology', previousClose: 485.60 },
+  'INTC': { name: 'Intel Corporation', sector: 'Technology', previousClose: 24.85 },
+  'AMD': { name: 'Advanced Micro Devices Inc.', sector: 'Technology', previousClose: 142.50 },
+  'CSCO': { name: 'Cisco Systems Inc.', sector: 'Technology', previousClose: 58.75 },
+  'IBM': { name: 'International Business Machines Corp.', sector: 'Technology', previousClose: 228.40 },
+  'TSM': { name: 'Taiwan Semiconductor Manufacturing Co.', sector: 'Technology', previousClose: 180.25 },
+  'QCOM': { name: 'Qualcomm Inc.', sector: 'Technology', previousClose: 154.80 },
+  'AVGO': { name: 'Broadcom Inc.', sector: 'Technology', previousClose: 1825.70 },
+  'TXN': { name: 'Texas Instruments Inc.', sector: 'Technology', previousClose: 205.30 },
+  'MU': { name: 'Micron Technology Inc.', sector: 'Technology', previousClose: 98.60 },
+  'LRCX': { name: 'Lam Research Corp.', sector: 'Technology', previousClose: 785.40 },
+  'AMAT': { name: 'Applied Materials Inc.', sector: 'Technology', previousClose: 192.80 },
+  'PYPL': { name: 'PayPal Holdings Inc.', sector: 'Technology', previousClose: 85.20 },
+  'UBER': { name: 'Uber Technologies Inc.', sector: 'Technology', previousClose: 72.40 },
+  'SNAP': { name: 'Snap Inc.', sector: 'Technology', previousClose: 12.85 },
+  'TWTR': { name: 'Twitter Inc.', sector: 'Technology', previousClose: 54.20 },
+  'PINS': { name: 'Pinterest Inc.', sector: 'Technology', previousClose: 28.70 },
+  'ZM': { name: 'Zoom Video Communications Inc.', sector: 'Technology', previousClose: 68.90 },
+  'DOCU': { name: 'DocuSign Inc.', sector: 'Technology', previousClose: 62.15 },
+  'NOW': { name: 'ServiceNow Inc.', sector: 'Technology', previousClose: 875.20 },
+  'WDAY': { name: 'Workday Inc.', sector: 'Technology', previousClose: 285.60 },
+  'SNOW': { name: 'Snowflake Inc.', sector: 'Technology', previousClose: 142.80 },
+  'PLTR': { name: 'Palantir Technologies Inc.', sector: 'Technology', previousClose: 68.50 },
+  'SQ': { name: 'Block Inc.', sector: 'Technology', previousClose: 85.40 },
+
+  // Financial Sector - Major Banks
+  'JPM': { name: 'JPMorgan Chase & Co.', sector: 'Financial', previousClose: 248.90 },
+  'BAC': { name: 'Bank of America Corp.', sector: 'Financial', previousClose: 45.80 },
+  'WFC': { name: 'Wells Fargo & Co.', sector: 'Financial', previousClose: 71.25 },
+  'GS': { name: 'Goldman Sachs Group Inc.', sector: 'Financial', previousClose: 542.70 },
+  'MS': { name: 'Morgan Stanley', sector: 'Financial', previousClose: 125.40 },
+  'C': { name: 'Citigroup Inc.', sector: 'Financial', previousClose: 68.90 },
+  'USB': { name: 'U.S. Bancorp', sector: 'Financial', previousClose: 48.75 },
+  'PNC': { name: 'PNC Financial Services Group Inc.', sector: 'Financial', previousClose: 185.60 },
+  'TFC': { name: 'Truist Financial Corp.', sector: 'Financial', previousClose: 42.85 },
+  'COF': { name: 'Capital One Financial Corp.', sector: 'Financial', previousClose: 175.90 },
+  'AXP': { name: 'American Express Co.', sector: 'Financial', previousClose: 285.40 },
+  'BK': { name: 'Bank of New York Mellon Corp.', sector: 'Financial', previousClose: 78.20 },
+  'STT': { name: 'State Street Corp.', sector: 'Financial', previousClose: 95.60 },
+
+  // Insurance & Financial Services
+  'BRK.B': { name: 'Berkshire Hathaway Inc.', sector: 'Financial', previousClose: 485.70 },
+  'V': { name: 'Visa Inc.', sector: 'Financial', previousClose: 315.80 },
+  'MA': { name: 'Mastercard Inc.', sector: 'Financial', previousClose: 524.90 },
+  'AIG': { name: 'American International Group Inc.', sector: 'Financial', previousClose: 78.40 },
+  'PRU': { name: 'Prudential Financial Inc.', sector: 'Financial', previousClose: 125.80 },
+  'MET': { name: 'MetLife Inc.', sector: 'Financial', previousClose: 82.50 },
+  'ALL': { name: 'Allstate Corp.', sector: 'Financial', previousClose: 195.60 },
+  'PGR': { name: 'Progressive Corp.', sector: 'Financial', previousClose: 268.90 },
+
+  // Healthcare & Pharmaceuticals
+  'JNJ': { name: 'Johnson & Johnson', sector: 'Healthcare', previousClose: 154.80 },
+  'PFE': { name: 'Pfizer Inc.', sector: 'Healthcare', previousClose: 25.70 },
+  'UNH': { name: 'UnitedHealth Group Inc.', sector: 'Healthcare', previousClose: 628.40 },
+  'ABBV': { name: 'AbbVie Inc.', sector: 'Healthcare', previousClose: 175.90 },
+  'MRK': { name: 'Merck & Co. Inc.', sector: 'Healthcare', previousClose: 98.50 },
+  'LLY': { name: 'Eli Lilly and Co.', sector: 'Healthcare', previousClose: 785.60 },
+  'BMY': { name: 'Bristol Myers Squibb Co.', sector: 'Healthcare', previousClose: 52.80 },
+  'AMGN': { name: 'Amgen Inc.', sector: 'Healthcare', previousClose: 268.40 },
+  'GILD': { name: 'Gilead Sciences Inc.', sector: 'Healthcare', previousClose: 92.70 },
+  'BIIB': { name: 'Biogen Inc.', sector: 'Healthcare', previousClose: 185.30 },
+  'CVS': { name: 'CVS Health Corp.', sector: 'Healthcare', previousClose: 56.90 },
+  'WBA': { name: 'Walgreens Boots Alliance Inc.', sector: 'Healthcare', previousClose: 8.75 },
+  'CI': { name: 'Cigna Corp.', sector: 'Healthcare', previousClose: 385.20 },
+  'HUM': { name: 'Humana Inc.', sector: 'Healthcare', previousClose: 285.60 },
+  'ANTM': { name: 'Anthem Inc.', sector: 'Healthcare', previousClose: 485.90 },
+
+  // Consumer & Retail
+  'WMT': { name: 'Walmart Inc.', sector: 'Consumer Staples', previousClose: 95.80 },
+  'HD': { name: 'Home Depot Inc.', sector: 'Consumer Discretionary', previousClose: 425.70 },
+  'PG': { name: 'Procter & Gamble Co.', sector: 'Consumer Staples', previousClose: 165.40 },
+  'KO': { name: 'Coca-Cola Co.', sector: 'Consumer Staples', previousClose: 62.50 },
+  'PEP': { name: 'PepsiCo Inc.', sector: 'Consumer Staples', previousClose: 158.90 },
+  'MCD': { name: 'McDonald\'s Corp.', sector: 'Consumer Discretionary', previousClose: 285.60 },
+  'SBUX': { name: 'Starbucks Corp.', sector: 'Consumer Discretionary', previousClose: 95.40 },
+  'NKE': { name: 'Nike Inc.', sector: 'Consumer Discretionary', previousClose: 85.70 },
+  'LOW': { name: 'Lowe\'s Companies Inc.', sector: 'Consumer Discretionary', previousClose: 285.90 },
+  'TGT': { name: 'Target Corp.', sector: 'Consumer Discretionary', previousClose: 148.60 },
+  'COST': { name: 'Costco Wholesale Corp.', sector: 'Consumer Staples', previousClose: 985.40 },
+  'DIS': { name: 'Walt Disney Co.', sector: 'Communication Services', previousClose: 115.80 },
+
+  // Energy & Utilities
+  'XOM': { name: 'Exxon Mobil Corp.', sector: 'Energy', previousClose: 118.50 },
+  'CVX': { name: 'Chevron Corp.', sector: 'Energy', previousClose: 168.90 },
+  'COP': { name: 'ConocoPhillips', sector: 'Energy', previousClose: 108.70 },
+  'EOG': { name: 'EOG Resources Inc.', sector: 'Energy', previousClose: 138.60 },
+  'SLB': { name: 'Schlumberger Ltd.', sector: 'Energy', previousClose: 42.80 },
+  'PSX': { name: 'Phillips 66', sector: 'Energy', previousClose: 142.50 },
+  'VLO': { name: 'Valero Energy Corp.', sector: 'Energy', previousClose: 148.90 },
+  'NEE': { name: 'NextEra Energy Inc.', sector: 'Utilities', previousClose: 78.40 },
+  'D': { name: 'Dominion Energy Inc.', sector: 'Utilities', previousClose: 58.70 },
+  'SO': { name: 'Southern Co.', sector: 'Utilities', previousClose: 85.60 },
+
+  // Industrial & Materials
+  'BA': { name: 'Boeing Co.', sector: 'Industrial', previousClose: 185.40 },
+  'HON': { name: 'Honeywell International Inc.', sector: 'Industrial', previousClose: 225.80 },
+  'UPS': { name: 'United Parcel Service Inc.', sector: 'Industrial', previousClose: 128.90 },
+  'FDX': { name: 'FedEx Corp.', sector: 'Industrial', previousClose: 285.60 },
+  'CAT': { name: 'Caterpillar Inc.', sector: 'Industrial', previousClose: 425.70 },
+  'DE': { name: 'Deere & Co.', sector: 'Industrial', previousClose: 485.90 },
+  'GE': { name: 'General Electric Co.', sector: 'Industrial', previousClose: 195.60 },
+  '3M': { name: '3M Co.', sector: 'Industrial', previousClose: 125.40 },
+
+  // Real Estate & REITs
+  'AMT': { name: 'American Tower Corp.', sector: 'Real Estate', previousClose: 225.80 },
+  'PLD': { name: 'Prologis Inc.', sector: 'Real Estate', previousClose: 118.50 },
+  'CCI': { name: 'Crown Castle Inc.', sector: 'Real Estate', previousClose: 95.60 },
+  'EQIX': { name: 'Equinix Inc.', sector: 'Real Estate', previousClose: 885.40 },
+  'SPG': { name: 'Simon Property Group Inc.', sector: 'Real Estate', previousClose: 165.80 },
+  'AVB': { name: 'AvalonBay Communities Inc.', sector: 'Real Estate', previousClose: 225.60 },
+
+  // Telecom
+  'VZ': { name: 'Verizon Communications Inc.', sector: 'Communication Services', previousClose: 42.50 },
+  'T': { name: 'AT&T Inc.', sector: 'Communication Services', previousClose: 22.80 },
+  'TMUS': { name: 'T-Mobile US Inc.', sector: 'Communication Services', previousClose: 225.70 },
+  'CHTR': { name: 'Charter Communications Inc.', sector: 'Communication Services', previousClose: 385.60 },
+  'CMCSA': { name: 'Comcast Corp.', sector: 'Communication Services', previousClose: 42.90 },
+
+  // ETFs
+  'SPY': { name: 'SPDR S&P 500 ETF', sector: 'Financial', previousClose: 595.80 },
+  'QQQ': { name: 'Invesco QQQ Trust', sector: 'Financial', previousClose: 525.40 },
+  'DIA': { name: 'SPDR Dow Jones Industrial Average ETF', sector: 'Financial', previousClose: 445.60 }
 }
 
 const CRYPTO_MARKET_DATA = {

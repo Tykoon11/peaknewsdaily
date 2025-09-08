@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-const CRON_SECRET = process.env.CRON_SECRET || 'secure-cron-key-2024-rss-automation'
+const CRON_SECRET = process.env.CRON_SECRET
 
 // Major stocks to track
 const MAJOR_STOCKS = [
@@ -175,6 +175,10 @@ async function fetchRealStockPrice(symbol: string): Promise<any> {
     // If all APIs fail, throw error instead of returning fake data
     throw new Error(`Unable to fetch real data for ${symbol} from any API source`)
   }
+}
+
+export async function GET(request: NextRequest) {
+  return POST(request)
 }
 
 export async function POST(request: NextRequest) {

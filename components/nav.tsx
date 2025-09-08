@@ -68,7 +68,7 @@ export default async function Nav() {
                 </button>
                 <div className="absolute top-full left-0 mt-2 w-48 rounded-md border bg-background shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 dark:border-gray-700 z-50">
                   <div className="py-1">
-                    {categories.slice(3).map((category) => (
+                    {categories.slice(3).filter(category => category.slug !== 'news').map((category) => (
                       <Link
                         key={category.id}
                         href={category.slug === 'crypto' ? '/markets/crypto' : category.slug === 'trading' ? '/education' : `/category/${category.slug}`}
@@ -127,12 +127,14 @@ export default async function Nav() {
             >
               News
             </Link>
-            <Link 
-              href="/submit" 
-              className="transition-colors hover:text-foreground/80 text-foreground/60 whitespace-nowrap"
-            >
-              Submit
-            </Link>
+            {isStaff && (
+              <Link 
+                href="/submit" 
+                className="transition-colors hover:text-foreground/80 text-foreground/60 whitespace-nowrap"
+              >
+                Submit
+              </Link>
+            )}
             {isStaff && (
               <Link 
                 href="/admin" 

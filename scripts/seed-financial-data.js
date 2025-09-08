@@ -61,7 +61,7 @@ async function seedFinancialData() {
 
     // Create Assets with real tickers
     const assets = [
-      // Major US Stocks
+      // Magnificent Seven
       { symbol: 'AAPL', name: 'Apple Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Consumer Electronics' },
       { symbol: 'MSFT', name: 'Microsoft Corporation', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Software' },
       { symbol: 'GOOGL', name: 'Alphabet Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Internet' },
@@ -69,7 +69,128 @@ async function seedFinancialData() {
       { symbol: 'TSLA', name: 'Tesla Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Consumer Discretionary', industry: 'Electric Vehicles' },
       { symbol: 'NVDA', name: 'NVIDIA Corporation', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductors' },
       { symbol: 'META', name: 'Meta Platforms Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Social Media' },
+
+      // Additional Major Tech Stocks
       { symbol: 'NFLX', name: 'Netflix Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Communication Services', industry: 'Streaming' },
+      { symbol: 'CRM', name: 'Salesforce Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Software' },
+      { symbol: 'ORCL', name: 'Oracle Corporation', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Database Software' },
+      { symbol: 'ADBE', name: 'Adobe Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Software' },
+      { symbol: 'INTC', name: 'Intel Corporation', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductors' },
+      { symbol: 'AMD', name: 'Advanced Micro Devices Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductors' },
+      { symbol: 'CSCO', name: 'Cisco Systems Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Networking' },
+      { symbol: 'IBM', name: 'International Business Machines Corp.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Software' },
+      { symbol: 'TSM', name: 'Taiwan Semiconductor Manufacturing Co.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Semiconductors' },
+      { symbol: 'QCOM', name: 'Qualcomm Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductors' },
+      { symbol: 'AVGO', name: 'Broadcom Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductors' },
+      { symbol: 'TXN', name: 'Texas Instruments Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductors' },
+      { symbol: 'MU', name: 'Micron Technology Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Memory Chips' },
+      { symbol: 'LRCX', name: 'Lam Research Corp.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductor Equipment' },
+      { symbol: 'AMAT', name: 'Applied Materials Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Semiconductor Equipment' },
+      { symbol: 'PYPL', name: 'PayPal Holdings Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Financial Technology' },
+      { symbol: 'UBER', name: 'Uber Technologies Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Ridesharing' },
+      { symbol: 'SNAP', name: 'Snap Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Social Media' },
+      { symbol: 'TWTR', name: 'Twitter Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Social Media' },
+      { symbol: 'PINS', name: 'Pinterest Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Social Media' },
+      { symbol: 'ZM', name: 'Zoom Video Communications Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Video Conferencing' },
+      { symbol: 'DOCU', name: 'DocuSign Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Software' },
+      { symbol: 'NOW', name: 'ServiceNow Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Software' },
+      { symbol: 'WDAY', name: 'Workday Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Technology', industry: 'Software' },
+      { symbol: 'SNOW', name: 'Snowflake Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Data Analytics' },
+      { symbol: 'PLTR', name: 'Palantir Technologies Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Big Data' },
+      { symbol: 'SQ', name: 'Block Inc.', type: 'stock', marketId: nyse.id, sector: 'Technology', industry: 'Financial Technology' },
+
+      // Financial Sector - Major Banks
+      { symbol: 'JPM', name: 'JPMorgan Chase & Co.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Investment Banking' },
+      { symbol: 'BAC', name: 'Bank of America Corp.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Commercial Banking' },
+      { symbol: 'WFC', name: 'Wells Fargo & Co.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Commercial Banking' },
+      { symbol: 'GS', name: 'Goldman Sachs Group Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Investment Banking' },
+      { symbol: 'MS', name: 'Morgan Stanley', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Investment Banking' },
+      { symbol: 'C', name: 'Citigroup Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Commercial Banking' },
+      { symbol: 'USB', name: 'U.S. Bancorp', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Commercial Banking' },
+      { symbol: 'PNC', name: 'PNC Financial Services Group Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Commercial Banking' },
+      { symbol: 'TFC', name: 'Truist Financial Corp.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Commercial Banking' },
+      { symbol: 'COF', name: 'Capital One Financial Corp.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Credit Cards' },
+      { symbol: 'AXP', name: 'American Express Co.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Credit Cards' },
+      { symbol: 'BK', name: 'Bank of New York Mellon Corp.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Asset Management' },
+      { symbol: 'STT', name: 'State Street Corp.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Asset Management' },
+
+      // Insurance & Financial Services
+      { symbol: 'BRK.B', name: 'Berkshire Hathaway Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Insurance' },
+      { symbol: 'V', name: 'Visa Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Payment Processing' },
+      { symbol: 'MA', name: 'Mastercard Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Payment Processing' },
+      { symbol: 'AIG', name: 'American International Group Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Insurance' },
+      { symbol: 'PRU', name: 'Prudential Financial Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Insurance' },
+      { symbol: 'MET', name: 'MetLife Inc.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Insurance' },
+      { symbol: 'ALL', name: 'Allstate Corp.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Insurance' },
+      { symbol: 'PGR', name: 'Progressive Corp.', type: 'stock', marketId: nyse.id, sector: 'Financial', industry: 'Insurance' },
+
+      // Healthcare & Pharmaceuticals
+      { symbol: 'JNJ', name: 'Johnson & Johnson', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Pharmaceuticals' },
+      { symbol: 'PFE', name: 'Pfizer Inc.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Pharmaceuticals' },
+      { symbol: 'UNH', name: 'UnitedHealth Group Inc.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Health Insurance' },
+      { symbol: 'ABBV', name: 'AbbVie Inc.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Pharmaceuticals' },
+      { symbol: 'MRK', name: 'Merck & Co. Inc.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Pharmaceuticals' },
+      { symbol: 'LLY', name: 'Eli Lilly and Co.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Pharmaceuticals' },
+      { symbol: 'BMY', name: 'Bristol Myers Squibb Co.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Pharmaceuticals' },
+      { symbol: 'AMGN', name: 'Amgen Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Healthcare', industry: 'Biotechnology' },
+      { symbol: 'GILD', name: 'Gilead Sciences Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Healthcare', industry: 'Biotechnology' },
+      { symbol: 'BIIB', name: 'Biogen Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Healthcare', industry: 'Biotechnology' },
+      { symbol: 'CVS', name: 'CVS Health Corp.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Healthcare Services' },
+      { symbol: 'WBA', name: 'Walgreens Boots Alliance Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Healthcare', industry: 'Pharmacy' },
+      { symbol: 'CI', name: 'Cigna Corp.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Health Insurance' },
+      { symbol: 'HUM', name: 'Humana Inc.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Health Insurance' },
+      { symbol: 'ANTM', name: 'Anthem Inc.', type: 'stock', marketId: nyse.id, sector: 'Healthcare', industry: 'Health Insurance' },
+
+      // Consumer & Retail
+      { symbol: 'WMT', name: 'Walmart Inc.', type: 'stock', marketId: nyse.id, sector: 'Consumer Staples', industry: 'Discount Stores' },
+      { symbol: 'HD', name: 'Home Depot Inc.', type: 'stock', marketId: nyse.id, sector: 'Consumer Discretionary', industry: 'Home Improvement' },
+      { symbol: 'PG', name: 'Procter & Gamble Co.', type: 'stock', marketId: nyse.id, sector: 'Consumer Staples', industry: 'Household Products' },
+      { symbol: 'KO', name: 'Coca-Cola Co.', type: 'stock', marketId: nyse.id, sector: 'Consumer Staples', industry: 'Beverages' },
+      { symbol: 'PEP', name: 'PepsiCo Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Consumer Staples', industry: 'Beverages' },
+      { symbol: 'MCD', name: 'McDonald\'s Corp.', type: 'stock', marketId: nyse.id, sector: 'Consumer Discretionary', industry: 'Restaurants' },
+      { symbol: 'SBUX', name: 'Starbucks Corp.', type: 'stock', marketId: nasdaq.id, sector: 'Consumer Discretionary', industry: 'Restaurants' },
+      { symbol: 'NKE', name: 'Nike Inc.', type: 'stock', marketId: nyse.id, sector: 'Consumer Discretionary', industry: 'Footwear' },
+      { symbol: 'LOW', name: 'Lowe\'s Companies Inc.', type: 'stock', marketId: nyse.id, sector: 'Consumer Discretionary', industry: 'Home Improvement' },
+      { symbol: 'TGT', name: 'Target Corp.', type: 'stock', marketId: nyse.id, sector: 'Consumer Discretionary', industry: 'Discount Stores' },
+      { symbol: 'COST', name: 'Costco Wholesale Corp.', type: 'stock', marketId: nasdaq.id, sector: 'Consumer Staples', industry: 'Warehouse Clubs' },
+      { symbol: 'DIS', name: 'Walt Disney Co.', type: 'stock', marketId: nyse.id, sector: 'Communication Services', industry: 'Entertainment' },
+
+      // Energy & Utilities
+      { symbol: 'XOM', name: 'Exxon Mobil Corp.', type: 'stock', marketId: nyse.id, sector: 'Energy', industry: 'Oil & Gas' },
+      { symbol: 'CVX', name: 'Chevron Corp.', type: 'stock', marketId: nyse.id, sector: 'Energy', industry: 'Oil & Gas' },
+      { symbol: 'COP', name: 'ConocoPhillips', type: 'stock', marketId: nyse.id, sector: 'Energy', industry: 'Oil & Gas' },
+      { symbol: 'EOG', name: 'EOG Resources Inc.', type: 'stock', marketId: nyse.id, sector: 'Energy', industry: 'Oil & Gas' },
+      { symbol: 'SLB', name: 'Schlumberger Ltd.', type: 'stock', marketId: nyse.id, sector: 'Energy', industry: 'Oil Services' },
+      { symbol: 'PSX', name: 'Phillips 66', type: 'stock', marketId: nyse.id, sector: 'Energy', industry: 'Oil Refining' },
+      { symbol: 'VLO', name: 'Valero Energy Corp.', type: 'stock', marketId: nyse.id, sector: 'Energy', industry: 'Oil Refining' },
+      { symbol: 'NEE', name: 'NextEra Energy Inc.', type: 'stock', marketId: nyse.id, sector: 'Utilities', industry: 'Electric Utilities' },
+      { symbol: 'D', name: 'Dominion Energy Inc.', type: 'stock', marketId: nyse.id, sector: 'Utilities', industry: 'Electric Utilities' },
+      { symbol: 'SO', name: 'Southern Co.', type: 'stock', marketId: nyse.id, sector: 'Utilities', industry: 'Electric Utilities' },
+
+      // Industrial & Materials
+      { symbol: 'BA', name: 'Boeing Co.', type: 'stock', marketId: nyse.id, sector: 'Industrial', industry: 'Aerospace' },
+      { symbol: 'HON', name: 'Honeywell International Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Industrial', industry: 'Conglomerates' },
+      { symbol: 'UPS', name: 'United Parcel Service Inc.', type: 'stock', marketId: nyse.id, sector: 'Industrial', industry: 'Package Delivery' },
+      { symbol: 'FDX', name: 'FedEx Corp.', type: 'stock', marketId: nyse.id, sector: 'Industrial', industry: 'Package Delivery' },
+      { symbol: 'CAT', name: 'Caterpillar Inc.', type: 'stock', marketId: nyse.id, sector: 'Industrial', industry: 'Construction Equipment' },
+      { symbol: 'DE', name: 'Deere & Co.', type: 'stock', marketId: nyse.id, sector: 'Industrial', industry: 'Agricultural Equipment' },
+      { symbol: 'GE', name: 'General Electric Co.', type: 'stock', marketId: nyse.id, sector: 'Industrial', industry: 'Conglomerates' },
+      { symbol: '3M', name: '3M Co.', type: 'stock', marketId: nyse.id, sector: 'Industrial', industry: 'Diversified Industrials' },
+
+      // Real Estate & REITs
+      { symbol: 'AMT', name: 'American Tower Corp.', type: 'stock', marketId: nyse.id, sector: 'Real Estate', industry: 'Cell Tower REITs' },
+      { symbol: 'PLD', name: 'Prologis Inc.', type: 'stock', marketId: nyse.id, sector: 'Real Estate', industry: 'Industrial REITs' },
+      { symbol: 'CCI', name: 'Crown Castle Inc.', type: 'stock', marketId: nyse.id, sector: 'Real Estate', industry: 'Cell Tower REITs' },
+      { symbol: 'EQIX', name: 'Equinix Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Real Estate', industry: 'Data Center REITs' },
+      { symbol: 'SPG', name: 'Simon Property Group Inc.', type: 'stock', marketId: nyse.id, sector: 'Real Estate', industry: 'Retail REITs' },
+      { symbol: 'AVB', name: 'AvalonBay Communities Inc.', type: 'stock', marketId: nyse.id, sector: 'Real Estate', industry: 'Residential REITs' },
+
+      // Telecom
+      { symbol: 'VZ', name: 'Verizon Communications Inc.', type: 'stock', marketId: nyse.id, sector: 'Communication Services', industry: 'Wireless Telecom' },
+      { symbol: 'T', name: 'AT&T Inc.', type: 'stock', marketId: nyse.id, sector: 'Communication Services', industry: 'Wireless Telecom' },
+      { symbol: 'TMUS', name: 'T-Mobile US Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Communication Services', industry: 'Wireless Telecom' },
+      { symbol: 'CHTR', name: 'Charter Communications Inc.', type: 'stock', marketId: nasdaq.id, sector: 'Communication Services', industry: 'Cable & Satellite' },
+      { symbol: 'CMCSA', name: 'Comcast Corp.', type: 'stock', marketId: nasdaq.id, sector: 'Communication Services', industry: 'Cable & Satellite' },
       
       // Major Indices
       { symbol: 'SPY', name: 'SPDR S&P 500 ETF', type: 'etf', marketId: nyse.id, sector: 'Financial', industry: 'Index Fund' },
@@ -303,23 +424,51 @@ async function seedFinancialData() {
       }
     }
 
-    // Create sample economic events
+    // Create comprehensive economic events for the next 30 days
+    const now = new Date()
     const economicEvents = [
+      // This Week - High Impact Events
       {
         country: 'US',
         currency: 'USD',
-        title: 'Non-Farm Payrolls',
-        description: 'Monthly employment report',
+        title: 'Non-Farm Payrolls (NFP)',
+        description: 'Monthly employment change - the premier gauge of job growth',
         impact: 'high',
         category: 'Employment',
         forecast: '180K',
         previous: '175K',
-        unit: 'thousands',
-        eventTime: new Date('2025-01-03T13:30:00Z')
+        actual: '195K',
+        unit: '',
+        eventTime: new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // Tomorrow 8:30 AM EST
       },
       {
         country: 'US',
-        currency: 'USD', 
+        currency: 'USD',
+        title: 'Unemployment Rate',
+        description: 'Percentage of unemployed workers in the labor force',
+        impact: 'high',
+        category: 'Employment',
+        forecast: '4.1%',
+        previous: '4.2%',
+        actual: '4.0%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // Same time as NFP
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Consumer Price Index (CPI)',
+        description: 'Primary gauge of consumer inflation',
+        impact: 'high',
+        category: 'Inflation',
+        forecast: '2.4%',
+        previous: '2.6%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // In 3 days
+      },
+      {
+        country: 'US',
+        currency: 'USD',
         title: 'Federal Reserve Interest Rate Decision',
         description: 'FOMC meeting decision on federal funds rate',
         impact: 'high',
@@ -327,8 +476,186 @@ async function seedFinancialData() {
         forecast: '5.50%',
         previous: '5.50%',
         unit: '%',
-        eventTime: new Date('2025-01-15T19:00:00Z')
+        eventTime: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000 + 14 * 60 * 60 * 1000) // In 5 days at 2:00 PM EST
       },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'FOMC Press Conference',
+        description: 'Fed Chair Powell speaks after interest rate decision',
+        impact: 'high',
+        category: 'Central Bank',
+        forecast: '',
+        previous: '',
+        unit: '',
+        eventTime: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000 + 14.5 * 60 * 60 * 1000) // 30 min after rate decision
+      },
+
+      // European Events
+      {
+        country: 'EU',
+        currency: 'EUR',
+        title: 'European Central Bank Interest Rate Decision',
+        description: 'ECB monetary policy decision',
+        impact: 'high',
+        category: 'Monetary Policy',
+        forecast: '4.25%',
+        previous: '4.25%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000 + 12.45 * 60 * 60 * 1000) // Next week Thursday
+      },
+      {
+        country: 'DE',
+        currency: 'EUR',
+        title: 'German GDP (Preliminary)',
+        description: 'Quarterly economic growth rate',
+        impact: 'high',
+        category: 'GDP',
+        forecast: '0.2%',
+        previous: '0.1%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000 + 7 * 60 * 60 * 1000) // Next Friday
+      },
+      {
+        country: 'GB',
+        currency: 'GBP',
+        title: 'Bank of England Interest Rate Decision',
+        description: 'BoE monetary policy committee decision',
+        impact: 'high',
+        category: 'Monetary Policy',
+        forecast: '4.75%',
+        previous: '4.75%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 9 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000) // Next week
+      },
+
+      // Asian Markets
+      {
+        country: 'JP',
+        currency: 'JPY',
+        title: 'Bank of Japan Interest Rate Decision',
+        description: 'BoJ monetary policy statement',
+        impact: 'high',
+        category: 'Monetary Policy',
+        forecast: '0.25%',
+        previous: '0.25%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 12 * 24 * 60 * 60 * 1000 + 3 * 60 * 60 * 1000) // In 12 days
+      },
+      {
+        country: 'CN',
+        currency: 'CNY',
+        title: 'Chinese GDP (Quarterly)',
+        description: 'Quarterly gross domestic product growth',
+        impact: 'high',
+        category: 'GDP',
+        forecast: '4.8%',
+        previous: '4.6%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000) // In 2 weeks
+      },
+
+      // Medium Impact Events
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Producer Price Index (PPI)',
+        description: 'Inflation measure from perspective of sellers',
+        impact: 'medium',
+        category: 'Inflation',
+        forecast: '2.2%',
+        previous: '2.4%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // Day after tomorrow
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Initial Jobless Claims',
+        description: 'Weekly unemployment insurance claims',
+        impact: 'medium',
+        category: 'Employment',
+        forecast: '230K',
+        previous: '225K',
+        unit: '',
+        eventTime: new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // In 4 days
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Retail Sales',
+        description: 'Monthly change in retail sales',
+        impact: 'medium',
+        category: 'Consumer',
+        forecast: '0.3%',
+        previous: '0.4%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 6 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // In 6 days
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Industrial Production',
+        description: 'Monthly change in industrial output',
+        impact: 'medium',
+        category: 'Manufacturing',
+        forecast: '0.2%',
+        previous: '0.1%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 10 * 24 * 60 * 60 * 1000 + 9.15 * 60 * 60 * 1000) // In 10 days
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Housing Starts',
+        description: 'Number of new residential construction projects',
+        impact: 'medium',
+        category: 'Housing',
+        forecast: '1.35M',
+        previous: '1.33M',
+        unit: '',
+        eventTime: new Date(now.getTime() + 11 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // In 11 days
+      },
+
+      // European Medium Impact
+      {
+        country: 'EU',
+        currency: 'EUR',
+        title: 'Eurozone CPI (Final)',
+        description: 'Final consumer price index reading',
+        impact: 'medium',
+        category: 'Inflation',
+        forecast: '1.8%',
+        previous: '1.8%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 13 * 24 * 60 * 60 * 1000 + 10 * 60 * 60 * 1000) // In 13 days
+      },
+      {
+        country: 'GB',
+        currency: 'GBP',
+        title: 'UK CPI',
+        description: 'Consumer price index inflation rate',
+        impact: 'medium',
+        category: 'Inflation',
+        forecast: '2.1%',
+        previous: '2.3%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000 + 7 * 60 * 60 * 1000) // In 15 days
+      },
+      {
+        country: 'DE',
+        currency: 'EUR',
+        title: 'German IFO Business Climate',
+        description: 'Business confidence survey',
+        impact: 'medium',
+        category: 'Business',
+        forecast: '87.5',
+        previous: '86.9',
+        unit: '',
+        eventTime: new Date(now.getTime() + 16 * 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000) // In 16 days
+      },
+
+      // Canadian Events
       {
         country: 'CA',
         currency: 'CAD',
@@ -339,7 +666,133 @@ async function seedFinancialData() {
         forecast: '4.25%',
         previous: '4.25%',
         unit: '%',
-        eventTime: new Date('2025-01-22T15:00:00Z')
+        eventTime: new Date(now.getTime() + 18 * 24 * 60 * 60 * 1000 + 14 * 60 * 60 * 1000) // In 18 days
+      },
+      {
+        country: 'CA',
+        currency: 'CAD',
+        title: 'Canadian CPI',
+        description: 'Consumer price index inflation rate',
+        impact: 'medium',
+        category: 'Inflation',
+        forecast: '2.0%',
+        previous: '2.2%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 20 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // In 20 days
+      },
+
+      // Australian Events
+      {
+        country: 'AU',
+        currency: 'AUD',
+        title: 'Reserve Bank of Australia Rate Decision',
+        description: 'RBA monetary policy decision',
+        impact: 'high',
+        category: 'Monetary Policy',
+        forecast: '4.35%',
+        previous: '4.35%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 21 * 24 * 60 * 60 * 1000 + 4.5 * 60 * 60 * 1000) // In 21 days
+      },
+      {
+        country: 'AU',
+        currency: 'AUD',
+        title: 'Australian Employment Change',
+        description: 'Monthly change in employment',
+        impact: 'medium',
+        category: 'Employment',
+        forecast: '25K',
+        previous: '28K',
+        unit: '',
+        eventTime: new Date(now.getTime() + 22 * 24 * 60 * 60 * 1000 + 0.5 * 60 * 60 * 1000) // In 22 days
+      },
+
+      // Low Impact Events
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Building Permits',
+        description: 'Number of building permits issued',
+        impact: 'low',
+        category: 'Housing',
+        forecast: '1.42M',
+        previous: '1.40M',
+        unit: '',
+        eventTime: new Date(now.getTime() + 17 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // In 17 days
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Consumer Confidence',
+        description: 'Conference Board consumer confidence index',
+        impact: 'low',
+        category: 'Consumer',
+        forecast: '105.5',
+        previous: '104.7',
+        unit: '',
+        eventTime: new Date(now.getTime() + 19 * 24 * 60 * 60 * 1000 + 10 * 60 * 60 * 1000) // In 19 days
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Durable Goods Orders',
+        description: 'Monthly change in durable goods orders',
+        impact: 'low',
+        category: 'Manufacturing',
+        forecast: '0.5%',
+        previous: '0.8%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 23 * 24 * 60 * 60 * 1000 + 8.5 * 60 * 60 * 1000) // In 23 days
+      },
+      {
+        country: 'US',
+        currency: 'USD',
+        title: 'Pending Home Sales',
+        description: 'Monthly change in pending home sales',
+        impact: 'low',
+        category: 'Housing',
+        forecast: '1.2%',
+        previous: '0.8%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 25 * 24 * 60 * 60 * 1000 + 10 * 60 * 60 * 1000) // In 25 days
+      },
+
+      // Additional Global Events
+      {
+        country: 'CH',
+        currency: 'CHF',
+        title: 'Swiss National Bank Rate Decision',
+        description: 'SNB monetary policy assessment',
+        impact: 'medium',
+        category: 'Monetary Policy',
+        forecast: '1.25%',
+        previous: '1.25%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 26 * 24 * 60 * 60 * 1000 + 9.5 * 60 * 60 * 1000) // In 26 days
+      },
+      {
+        country: 'NZ',
+        currency: 'NZD',
+        title: 'Reserve Bank of New Zealand Rate Decision',
+        description: 'RBNZ official cash rate decision',
+        impact: 'medium',
+        category: 'Monetary Policy',
+        forecast: '5.50%',
+        previous: '5.50%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 28 * 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000) // In 28 days
+      },
+      {
+        country: 'BR',
+        currency: 'BRL',
+        title: 'Brazilian Central Bank Rate Decision',
+        description: 'Banco Central do Brasil SELIC rate decision',
+        impact: 'medium',
+        category: 'Monetary Policy',
+        forecast: '12.25%',
+        previous: '12.25%',
+        unit: '%',
+        eventTime: new Date(now.getTime() + 29 * 24 * 60 * 60 * 1000 + 18 * 60 * 60 * 1000) // In 29 days
       }
     ]
 

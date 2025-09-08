@@ -17,6 +17,7 @@
     "prune:broken": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/prune.broken.ts",
     "fix:media": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/fix.media.ts",
     "update:financial": "node scripts/update-financial-data.js",
+    "update:prices": "node scripts/update-prices.js",
     "seed:market": "node scripts/seed-market-data.js",
     "typecheck": "tsc --noEmit",
     "postinstall": "prisma generate"
@@ -37,6 +38,7 @@
     "gray-matter": "^4.0.3",
     "html-to-text": "^9.0.5",
     "ioredis": "^5.7.0",
+    "lucide-react": "^0.542.0",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",
     "next-themes": "^0.3.0",

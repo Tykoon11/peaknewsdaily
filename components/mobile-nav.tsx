@@ -76,7 +76,7 @@ export default function MobileNav({
               >
                 Home
               </Link>
-              {categories.map((category) => (
+              {categories.filter(category => category.slug !== 'news').map((category) => (
                 <Link
                   key={category.id}
                   href={category.slug === 'crypto' ? '/markets/crypto' : category.slug === 'trading' ? '/education' : `/category/${category.slug}`}
@@ -117,13 +117,15 @@ export default function MobileNav({
               >
                 News
               </Link>
-              <Link
-                href="/submit"
-                className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
-                onClick={() => setOpen(false)}
-              >
-                Submit
-              </Link>
+              {isStaff && (
+                <Link
+                  href="/submit"
+                  className="block px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground rounded-md"
+                  onClick={() => setOpen(false)}
+                >
+                  Submit
+                </Link>
+              )}
               {isStaff && (
                 <Link
                   href="/admin"

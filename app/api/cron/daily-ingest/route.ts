@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { runIngest } from '@/ingest/run'
 
+export async function POST(request: NextRequest) {
+  return GET(request)
+}
+
 export async function GET(request: NextRequest) {
   try {
     // Verify the request is from Vercel Cron

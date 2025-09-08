@@ -1,0 +1,404 @@
+🚀 Starting price update scheduler...
+📊 Updates will run every 5 minutes
+⏹️  Press Ctrl+C to stop
+
+
+🔄 Starting price update at 2025-09-08T04:12:26.057Z
+🔄 Starting real-time price update...
+✅ Updated SHOP.TO: $203.34 (1.28%)
+✅ Updated RY.TO: $200.22 (-0.74%)
+✅ Updated IWM: $237.77 (0.50%)
+✅ Updated AAPL: $239.69 (-0.04%)
+✅ Updated MSFT: $495.00 (-2.55%)
+✅ Updated GOOGL: $235.05 (1.18%)
+✅ Updated AMZN: $232.33 (-1.42%)
+✅ Updated TSLA: $350.84 (3.64%)
+✅ Updated META: $752.45 (0.51%)
+✅ Updated NVDA: $167.02 (-2.70%)
+⚠️  No real-time data available for SPY, using cached data
+⚠️  No real-time data available for NFLX, using cached data
+⚠️  No real-time data available for QQQ, using cached data
+⚠️  No real-time data available for CSCO, using cached data
+⚠️  No real-time data available for AMD, using cached data
+⚠️  No real-time data available for DIA, using cached data
+⚠️  No real-time data available for ORCL, using cached data
+⚠️  No real-time data available for INTC, using cached data
+⚠️  No real-time data available for CRM, using cached data
+⚠️  No real-time data available for ADBE, using cached data
+⚠️  No real-time data available for QCOM, using cached data
+⚠️  No real-time data available for AVGO, using cached data
+⚠️  No real-time data available for IBM, using cached data
+⚠️  No real-time data available for UBER, using cached data
+⚠️  No real-time data available for MU, using cached data
+⚠️  No real-time data available for TSM, using cached data
+⚠️  No real-time data available for AMAT, using cached data
+⚠️  No real-time data available for TXN, using cached data
+⚠️  No real-time data available for LRCX, using cached data
+⚠️  No real-time data available for PYPL, using cached data
+⚠️  No real-time data available for DOCU, using cached data
+⚠️  No real-time data available for NOW, using cached data
+⚠️  No real-time data available for SQ, using cached data
+⚠️  No real-time data available for ZM, using cached data
+⚠️  No real-time data available for PINS, using cached data
+⚠️  No real-time data available for WDAY, using cached data
+⚠️  No real-time data available for PLTR, using cached data
+⚠️  No real-time data available for SNAP, using cached data
+⚠️  No real-time data available for SNOW, using cached data
+⚠️  No real-time data available for TWTR, using cached data
+⚠️  No real-time data available for GS, using cached data
+⚠️  No real-time data available for WFC, using cached data
+⚠️  No real-time data available for JPM, using cached data
+⚠️  No real-time data available for PNC, using cached data
+⚠️  No real-time data available for COF, using cached data
+⚠️  No real-time data available for BAC, using cached data
+⚠️  No real-time data available for USB, using cached data
+⚠️  No real-time data available for C, using cached data
+⚠️  No real-time data available for MS, using cached data
+⚠️  No real-time data available for TFC, using cached data
+⚠️  No real-time data available for STT, using cached data
+⚠️  No real-time data available for BRK.B, using cached data
+⚠️  No real-time data available for AXP, using cached data
+⚠️  No real-time data available for BK, using cached data
+⚠️  No real-time data available for MET, using cached data
+⚠️  No real-time data available for V, using cached data
+⚠️  No real-time data available for PRU, using cached data
+⚠️  No real-time data available for MA, using cached data
+⚠️  No real-time data available for AIG, using cached data
+⚠️  No real-time data available for ALL, using cached data
+⚠️  No real-time data available for PGR, using cached data
+⚠️  No real-time data available for JNJ, using cached data
+⚠️  No real-time data available for PFE, using cached data
+⚠️  No real-time data available for UNH, using cached data
+⚠️  No real-time data available for ABBV, using cached data
+⚠️  No real-time data available for MRK, using cached data
+⚠️  No real-time data available for LLY, using cached data
+⚠️  No real-time data available for BMY, using cached data
+⚠️  No real-time data available for AMGN, using cached data
+⚠️  No real-time data available for GILD, using cached data
+⚠️  No real-time data available for BIIB, using cached data
+⚠️  No real-time data available for CVS, using cached data
+⚠️  No real-time data available for WBA, using cached data
+⚠️  No real-time data available for CI, using cached data
+⚠️  No real-time data available for HUM, using cached data
+⚠️  No real-time data available for ANTM, using cached data
+⚠️  No real-time data available for WMT, using cached data
+⚠️  No real-time data available for HD, using cached data
+⚠️  No real-time data available for PG, using cached data
+⚠️  No real-time data available for KO, using cached data
+⚠️  No real-time data available for PEP, using cached data
+⚠️  No real-time data available for MCD, using cached data
+⚠️  No real-time data available for SBUX, using cached data
+⚠️  No real-time data available for NKE, using cached data
+⚠️  No real-time data available for LOW, using cached data
+⚠️  No real-time data available for TGT, using cached data
+⚠️  No real-time data available for COST, using cached data
+⚠️  No real-time data available for DIS, using cached data
+⚠️  No real-time data available for XOM, using cached data
+⚠️  No real-time data available for CVX, using cached data
+⚠️  No real-time data available for COP, using cached data
+⚠️  No real-time data available for EOG, using cached data
+⚠️  No real-time data available for SLB, using cached data
+⚠️  No real-time data available for PSX, using cached data
+⚠️  No real-time data available for VLO, using cached data
+⚠️  No real-time data available for NEE, using cached data
+⚠️  No real-time data available for D, using cached data
+⚠️  No real-time data available for SO, using cached data
+⚠️  No real-time data available for BA, using cached data
+⚠️  No real-time data available for HON, using cached data
+⚠️  No real-time data available for UPS, using cached data
+⚠️  No real-time data available for FDX, using cached data
+⚠️  No real-time data available for CAT, using cached data
+⚠️  No real-time data available for DE, using cached data
+⚠️  No real-time data available for GE, using cached data
+⚠️  No real-time data available for 3M, using cached data
+⚠️  No real-time data available for AMT, using cached data
+⚠️  No real-time data available for PLD, using cached data
+⚠️  No real-time data available for CCI, using cached data
+⚠️  No real-time data available for EQIX, using cached data
+⚠️  No real-time data available for SPG, using cached data
+⚠️  No real-time data available for AVB, using cached data
+⚠️  No real-time data available for VZ, using cached data
+⚠️  No real-time data available for T, using cached data
+⚠️  No real-time data available for TMUS, using cached data
+⚠️  No real-time data available for CHTR, using cached data
+⚠️  No real-time data available for CMCSA, using cached data
+✅ Updated XRP-USD: $2.88 (2.21%)
+✅ Updated BTC-USD: $110977.00 (0.33%)
+✅ Updated ETH-USD: $4301.03 (0.07%)
+✅ Updated BNB-USD: $878.68 (1.47%)
+✅ Updated ADA-USD: $0.84 (1.22%)
+✅ Updated SOL-USD: $207.27 (2.31%)
+✅ Updated AVAX-USD: $24.83 (0.94%)
+✅ Updated PEPE-USD: $0.00 (2.31%)
+✅ Updated BONK-USD: $0.00 (5.44%)
+✅ Price update completed
+✅ Update completed in 18062ms
+⏰ Next update at 2025-09-08T04:17:44.119Z
+
+🔄 Starting price update at 2025-09-08T04:17:44.123Z
+🔄 Starting real-time price update...
+✅ Updated SHOP.TO: $203.34 (1.28%)
+✅ Updated RY.TO: $200.22 (-0.74%)
+✅ Updated IWM: $237.77 (0.50%)
+✅ Updated AAPL: $239.69 (-0.04%)
+✅ Updated MSFT: $495.00 (-2.55%)
+✅ Updated GOOGL: $235.05 (1.18%)
+✅ Updated AMZN: $232.33 (-1.42%)
+✅ Updated TSLA: $350.84 (3.64%)
+✅ Updated META: $752.45 (0.51%)
+✅ Updated NVDA: $167.02 (-2.70%)
+⚠️  No real-time data available for CRM, using cached data
+⚠️  No real-time data available for QQQ, using cached data
+⚠️  No real-time data available for NFLX, using cached data
+⚠️  No real-time data available for SPY, using cached data
+⚠️  No real-time data available for DIA, using cached data
+⚠️  No real-time data available for INTC, using cached data
+⚠️  No real-time data available for ORCL, using cached data
+⚠️  No real-time data available for ADBE, using cached data
+⚠️  No real-time data available for AMD, using cached data
+⚠️  No real-time data available for CSCO, using cached data
+⚠️  No real-time data available for QCOM, using cached data
+⚠️  No real-time data available for LRCX, using cached data
+⚠️  No real-time data available for IBM, using cached data
+⚠️  No real-time data available for UBER, using cached data
+⚠️  No real-time data available for TSM, using cached data
+⚠️  No real-time data available for MU, using cached data
+⚠️  No real-time data available for AVGO, using cached data
+⚠️  No real-time data available for PYPL, using cached data
+⚠️  No real-time data available for AMAT, using cached data
+⚠️  No real-time data available for TXN, using cached data
+⚠️  No real-time data available for SQ, using cached data
+⚠️  No real-time data available for PINS, using cached data
+⚠️  No real-time data available for ZM, using cached data
+⚠️  No real-time data available for DOCU, using cached data
+⚠️  No real-time data available for WDAY, using cached data
+⚠️  No real-time data available for TWTR, using cached data
+⚠️  No real-time data available for PLTR, using cached data
+⚠️  No real-time data available for NOW, using cached data
+⚠️  No real-time data available for SNOW, using cached data
+⚠️  No real-time data available for SNAP, using cached data
+⚠️  No real-time data available for BAC, using cached data
+⚠️  No real-time data available for JPM, using cached data
+⚠️  No real-time data available for COF, using cached data
+⚠️  No real-time data available for MS, using cached data
+⚠️  No real-time data available for C, using cached data
+⚠️  No real-time data available for GS, using cached data
+⚠️  No real-time data available for PNC, using cached data
+⚠️  No real-time data available for USB, using cached data
+⚠️  No real-time data available for TFC, using cached data
+⚠️  No real-time data available for WFC, using cached data
+⚠️  No real-time data available for V, using cached data
+⚠️  No real-time data available for AXP, using cached data
+⚠️  No real-time data available for STT, using cached data
+⚠️  No real-time data available for BRK.B, using cached data
+⚠️  No real-time data available for BK, using cached data
+⚠️  No real-time data available for AIG, using cached data
+⚠️  No real-time data available for MA, using cached data
+⚠️  No real-time data available for PRU, using cached data
+⚠️  No real-time data available for MET, using cached data
+⚠️  No real-time data available for ALL, using cached data
+⚠️  No real-time data available for PGR, using cached data
+⚠️  No real-time data available for JNJ, using cached data
+⚠️  No real-time data available for PFE, using cached data
+⚠️  No real-time data available for UNH, using cached data
+⚠️  No real-time data available for ABBV, using cached data
+⚠️  No real-time data available for MRK, using cached data
+⚠️  No real-time data available for LLY, using cached data
+⚠️  No real-time data available for BMY, using cached data
+⚠️  No real-time data available for AMGN, using cached data
+⚠️  No real-time data available for GILD, using cached data
+⚠️  No real-time data available for BIIB, using cached data
+⚠️  No real-time data available for CVS, using cached data
+⚠️  No real-time data available for WBA, using cached data
+⚠️  No real-time data available for CI, using cached data
+⚠️  No real-time data available for HUM, using cached data
+⚠️  No real-time data available for ANTM, using cached data
+⚠️  No real-time data available for WMT, using cached data
+⚠️  No real-time data available for HD, using cached data
+⚠️  No real-time data available for PG, using cached data
+⚠️  No real-time data available for KO, using cached data
+⚠️  No real-time data available for PEP, using cached data
+⚠️  No real-time data available for MCD, using cached data
+⚠️  No real-time data available for SBUX, using cached data
+⚠️  No real-time data available for NKE, using cached data
+⚠️  No real-time data available for LOW, using cached data
+⚠️  No real-time data available for TGT, using cached data
+⚠️  No real-time data available for COST, using cached data
+⚠️  No real-time data available for DIS, using cached data
+⚠️  No real-time data available for XOM, using cached data
+⚠️  No real-time data available for CVX, using cached data
+⚠️  No real-time data available for COP, using cached data
+⚠️  No real-time data available for EOG, using cached data
+⚠️  No real-time data available for SLB, using cached data
+⚠️  No real-time data available for PSX, using cached data
+⚠️  No real-time data available for VLO, using cached data
+⚠️  No real-time data available for NEE, using cached data
+⚠️  No real-time data available for D, using cached data
+⚠️  No real-time data available for SO, using cached data
+⚠️  No real-time data available for BA, using cached data
+⚠️  No real-time data available for HON, using cached data
+⚠️  No real-time data available for UPS, using cached data
+⚠️  No real-time data available for FDX, using cached data
+⚠️  No real-time data available for CAT, using cached data
+⚠️  No real-time data available for DE, using cached data
+⚠️  No real-time data available for GE, using cached data
+⚠️  No real-time data available for 3M, using cached data
+⚠️  No real-time data available for AMT, using cached data
+⚠️  No real-time data available for PLD, using cached data
+⚠️  No real-time data available for CCI, using cached data
+⚠️  No real-time data available for EQIX, using cached data
+⚠️  No real-time data available for SPG, using cached data
+⚠️  No real-time data available for AVB, using cached data
+⚠️  No real-time data available for VZ, using cached data
+⚠️  No real-time data available for T, using cached data
+⚠️  No real-time data available for TMUS, using cached data
+⚠️  No real-time data available for CHTR, using cached data
+⚠️  No real-time data available for CMCSA, using cached data
+✅ Updated XRP-USD: $2.88 (2.27%)
+✅ Updated BTC-USD: $111055.00 (0.43%)
+✅ Updated BNB-USD: $878.72 (1.54%)
+✅ Updated SOL-USD: $207.41 (2.43%)
+✅ Updated DOT-USD: $4.04 (5.11%)
+✅ Updated AVAX-USD: $24.80 (0.84%)
+✅ Updated DOGE-USD: $0.23 (7.21%)
+✅ Updated SHIB-USD: $0.00 (1.23%)
+✅ Updated PEPE-USD: $0.00 (2.43%)
+✅ Price update completed
+✅ Update completed in 18357ms
+⏰ Next update at 2025-09-08T04:23:02.480Z
+
+🔄 Starting price update at 2025-09-08T04:22:44.100Z
+🔄 Starting real-time price update...
+✅ Updated SHOP.TO: $203.34 (1.28%)
+✅ Updated RY.TO: $200.22 (-0.74%)
+✅ Updated IWM: $237.77 (0.50%)
+✅ Updated AAPL: $239.69 (-0.04%)
+✅ Updated MSFT: $495.00 (-2.55%)
+✅ Updated GOOGL: $235.05 (1.18%)
+✅ Updated AMZN: $232.33 (-1.42%)
+✅ Updated TSLA: $350.84 (3.64%)
+✅ Updated META: $752.45 (0.51%)
+✅ Updated NVDA: $167.02 (-2.70%)
+⚠️  No real-time data available for QQQ, using cached data
+⚠️  No real-time data available for NFLX, using cached data
+⚠️  No real-time data available for CSCO, using cached data
+⚠️  No real-time data available for AMD, using cached data
+⚠️  No real-time data available for CRM, using cached data
+⚠️  No real-time data available for DIA, using cached data
+⚠️  No real-time data available for ADBE, using cached data
+⚠️  No real-time data available for ORCL, using cached data
+⚠️  No real-time data available for SPY, using cached data
+⚠️  No real-time data available for INTC, using cached data
+⚠️  No real-time data available for UBER, using cached data
+⚠️  No real-time data available for LRCX, using cached data
+⚠️  No real-time data available for TSM, using cached data
+⚠️  No real-time data available for QCOM, using cached data
+⚠️  No real-time data available for AVGO, using cached data
+⚠️  No real-time data available for AMAT, using cached data
+⚠️  No real-time data available for TXN, using cached data
+⚠️  No real-time data available for MU, using cached data
+⚠️  No real-time data available for PYPL, using cached data
+⚠️  No real-time data available for IBM, using cached data
+⚠️  No real-time data available for ZM, using cached data
+⚠️  No real-time data available for PINS, using cached data
+⚠️  No real-time data available for SNAP, using cached data
+⚠️  No real-time data available for SQ, using cached data
+⚠️  No real-time data available for WDAY, using cached data
+⚠️  No real-time data available for DOCU, using cached data
+⚠️  No real-time data available for SNOW, using cached data
+⚠️  No real-time data available for PLTR, using cached data
+⚠️  No real-time data available for TWTR, using cached data
+⚠️  No real-time data available for NOW, using cached data
+⚠️  No real-time data available for TFC, using cached data
+⚠️  No real-time data available for WFC, using cached data
+⚠️  No real-time data available for PNC, using cached data
+⚠️  No real-time data available for GS, using cached data
+⚠️  No real-time data available for COF, using cached data
+⚠️  No real-time data available for USB, using cached data
+⚠️  No real-time data available for JPM, using cached data
+⚠️  No real-time data available for C, using cached data
+⚠️  No real-time data available for BAC, using cached data
+⚠️  No real-time data available for MS, using cached data
+⚠️  No real-time data available for PRU, using cached data
+⚠️  No real-time data available for BK, using cached data
+⚠️  No real-time data available for STT, using cached data
+⚠️  No real-time data available for V, using cached data
+⚠️  No real-time data available for AXP, using cached data
+⚠️  No real-time data available for BRK.B, using cached data
+⚠️  No real-time data available for ALL, using cached data
+⚠️  No real-time data available for MET, using cached data
+⚠️  No real-time data available for MA, using cached data
+⚠️  No real-time data available for AIG, using cached data
+⚠️  No real-time data available for PGR, using cached data
+⚠️  No real-time data available for JNJ, using cached data
+⚠️  No real-time data available for PFE, using cached data
+⚠️  No real-time data available for UNH, using cached data
+⚠️  No real-time data available for ABBV, using cached data
+⚠️  No real-time data available for MRK, using cached data
+⚠️  No real-time data available for LLY, using cached data
+⚠️  No real-time data available for BMY, using cached data
+⚠️  No real-time data available for AMGN, using cached data
+⚠️  No real-time data available for GILD, using cached data
+⚠️  No real-time data available for BIIB, using cached data
+⚠️  No real-time data available for CVS, using cached data
+⚠️  No real-time data available for WBA, using cached data
+⚠️  No real-time data available for CI, using cached data
+⚠️  No real-time data available for HUM, using cached data
+⚠️  No real-time data available for ANTM, using cached data
+⚠️  No real-time data available for WMT, using cached data
+⚠️  No real-time data available for HD, using cached data
+⚠️  No real-time data available for PG, using cached data
+⚠️  No real-time data available for KO, using cached data
+⚠️  No real-time data available for PEP, using cached data
+⚠️  No real-time data available for MCD, using cached data
+⚠️  No real-time data available for SBUX, using cached data
+⚠️  No real-time data available for NKE, using cached data
+⚠️  No real-time data available for LOW, using cached data
+⚠️  No real-time data available for TGT, using cached data
+⚠️  No real-time data available for COST, using cached data
+⚠️  No real-time data available for DIS, using cached data
+⚠️  No real-time data available for XOM, using cached data
+⚠️  No real-time data available for CVX, using cached data
+⚠️  No real-time data available for COP, using cached data
+⚠️  No real-time data available for EOG, using cached data
+⚠️  No real-time data available for SLB, using cached data
+⚠️  No real-time data available for PSX, using cached data
+⚠️  No real-time data available for VLO, using cached data
+⚠️  No real-time data available for NEE, using cached data
+⚠️  No real-time data available for D, using cached data
+⚠️  No real-time data available for SO, using cached data
+⚠️  No real-time data available for BA, using cached data
+⚠️  No real-time data available for HON, using cached data
+⚠️  No real-time data available for UPS, using cached data
+⚠️  No real-time data available for FDX, using cached data
+⚠️  No real-time data available for CAT, using cached data
+⚠️  No real-time data available for DE, using cached data
+⚠️  No real-time data available for GE, using cached data
+⚠️  No real-time data available for 3M, using cached data
+⚠️  No real-time data available for AMT, using cached data
+⚠️  No real-time data available for PLD, using cached data
+⚠️  No real-time data available for CCI, using cached data
+⚠️  No real-time data available for EQIX, using cached data
+⚠️  No real-time data available for SPG, using cached data
+⚠️  No real-time data available for AVB, using cached data
+⚠️  No real-time data available for VZ, using cached data
+⚠️  No real-time data available for T, using cached data
+⚠️  No real-time data available for TMUS, using cached data
+⚠️  No real-time data available for CHTR, using cached data
+⚠️  No real-time data available for CMCSA, using cached data
+✅ Updated XRP-USD: $2.89 (2.43%)
+✅ Updated BTC-USD: $111090.00 (0.46%)
+✅ Updated ETH-USD: $4305.31 (0.21%)
+✅ Updated BNB-USD: $879.38 (1.67%)
+✅ Updated ADA-USD: $0.84 (1.48%)
+✅ Updated SOL-USD: $207.87 (2.67%)
+✅ Updated DOT-USD: $4.04 (5.24%)
+✅ Updated AVAX-USD: $24.82 (0.94%)
+✅ Updated OP-USD: $0.73 (0.93%)
+✅ Updated LRC-USD: $0.10 (-0.87%)
+✅ Price update completed
+✅ Update completed in 19072ms
+⏰ Next update at 2025-09-08T04:28:03.172Z
+
+🛑 Stopping price update scheduler...
+✅ Scheduler stopped

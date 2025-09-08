@@ -1,12 +1,20 @@
 {
   "crons": [
     {
-      "path": "/api/cron/daily-ingest",
+      "path": "/api/cron/update-prices",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/update-economic-calendar",
       "schedule": "0 */6 * * *"
     },
     {
+      "path": "/api/cron/daily-ingest",
+      "schedule": "0 */3 * * *"
+    },
+    {
       "path": "/api/cron/financial-ingest",
-      "schedule": "0 */6 * * *"
+      "schedule": "*/15 * * * *"
     }
   ]
 }
