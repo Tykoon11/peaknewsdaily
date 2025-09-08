@@ -6,7 +6,7 @@ import EconomicCalendarPreview from '@/components/economic-calendar-preview'
 import DataDisclaimer from '@/components/data-disclaimer'
 import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 
-export const revalidate = 300
+export const revalidate = 300 // Cache for 5 minutes
 
 export default async function HomePage() {
   let latestNews: Array<any> = []
