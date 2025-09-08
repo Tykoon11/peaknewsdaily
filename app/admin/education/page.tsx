@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { ARTICLES, PILLARS } from '@/app/education/_data/articles'
-import { updateArticleStatus } from './actions'
+import { updateArticleStatusAction } from './actions'
 
 export const metadata = { title: 'Trading Education Management' }
 
@@ -195,7 +195,9 @@ export default async function AdminEducationPage({ searchParams }: { searchParam
                         >
                           Edit Content
                         </Link>
-                        <form action={updateArticleStatus.bind(null, article.slug, isPublished ? 'draft' : 'published')} className="inline">
+                        <form action={updateArticleStatusAction} className="inline">
+                          <input type="hidden" name="slug" value={article.slug} />
+                          <input type="hidden" name="status" value={isPublished ? 'draft' : 'published'} />
                           <button type="submit" className={`px-3 py-1 text-xs rounded ${
                             isPublished 
                               ? 'border border-yellow-500 text-yellow-600 hover:bg-yellow-50' 

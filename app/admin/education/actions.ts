@@ -6,8 +6,8 @@ import { auth } from '@/lib/auth'
 import fs from 'fs'
 import path from 'path'
 
-// Update article status in the articles.ts file
-export async function updateArticleStatus(slug: string, status: 'published' | 'draft') {
+// Update article status in the articles.ts file (direct call)
+export async function updateArticleStatus(slug: string, status: 'published' | 'draft'): Promise<{success: boolean, error?: string}> {
   const session = await auth()
   if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) {
     throw new Error('Unauthorized')
@@ -40,6 +40,13 @@ export async function updateArticleStatus(slug: string, status: 'published' | 'd
     console.error('Failed to update article status:', error)
     return { success: false, error: 'Failed to update article status' }
   }
+}
+
+// Form action wrapper for updateArticleStatus
+export async function updateArticleStatusAction(formData: FormData): Promise<void> {
+  const slug = formData.get('slug') as string
+  const status = formData.get('status') as 'published' | 'draft'
+  await updateArticleStatus(slug, status)
 }
 
 // Redirect to article editing (we'll create this next)

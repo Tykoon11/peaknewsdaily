@@ -64,8 +64,10 @@ export async function GET(request: NextRequest) {
   }
 
   // Create readable stream for SSE
+  let streamController: ReadableStreamDefaultController<any>
   const stream = new ReadableStream({
     async start(controller) {
+      streamController = controller
       activeConnections.add(controller)
       
       try {
@@ -85,11 +87,9 @@ export async function GET(request: NextRequest) {
     
     cancel(reason) {
       // Remove this controller from active connections when stream is cancelled
-      activeConnections.forEach(conn => {
-        if (conn === this.controller) {
-          activeConnections.delete(conn)
-        }
-      })
+      if (streamController) {
+        activeConnections.delete(streamController)
+      }
     }
   })
 
