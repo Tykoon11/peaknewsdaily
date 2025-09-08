@@ -152,7 +152,7 @@ export default function SideHustleTaxesPage() {
           <h3 className="font-semibold text-red-900 mb-3">Estimated Payment Safe Harbor</h3>
           <ul className="text-red-700 text-sm space-y-2">
             <li>• Pay 90% of current year tax owed, OR</li>
-            <li>• Pay 100% of last year's tax (110% if AGI > $150K)</li>
+            <li>• Pay 100% of last year's tax (110% if AGI &gt; $150K)</li>
             <li>• Underpayment penalty applies if you miss these targets</li>
             <li>• Exception: If you owe less than $1,000 at filing</li>
           </ul>
@@ -202,11 +202,11 @@ export default function SideHustleTaxesPage() {
             <div className="space-y-3">
               <div>
                 <p className="font-medium text-green-800">Class 2 & 4 NICs</p>
-                <p className="text-green-700 text-sm">Class 2: £3.45/week if profits > £6,725. Class 4: 9% on £12,570-£50,270</p>
+                <p className="text-green-700 text-sm">Class 2: £3.45/week if profits &gt; £6,725. Class 4: 9% on £12,570-£50,270</p>
               </div>
               <div>
                 <p className="font-medium text-green-800">Self Assessment</p>
-                <p className="text-green-700 text-sm">Must register and file if self-employment income > £1,000</p>
+                <p className="text-green-700 text-sm">Must register and file if self-employment income &gt; £1,000</p>
               </div>
             </div>
           </div>

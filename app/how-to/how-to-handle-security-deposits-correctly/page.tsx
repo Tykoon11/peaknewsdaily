@@ -106,13 +106,13 @@ export default function SecurityDepositsPage() {
                       <td className="px-4 py-2 font-medium">New York</td>
                       <td className="px-4 py-2">1 month</td>
                       <td className="px-4 py-2">14 days</td>
-                      <td className="px-4 py-2">Yes (if held >1 year)</td>
+                      <td className="px-4 py-2">Yes (if held &gt;1 year)</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-4 py-2 font-medium">Florida</td>
                       <td className="px-4 py-2">No statutory limit</td>
                       <td className="px-4 py-2">15-60 days</td>
-                      <td className="px-4 py-2">Yes (if held >1 year)</td>
+                      <td className="px-4 py-2">Yes (if held &gt;1 year)</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-2 font-medium">Texas</td>

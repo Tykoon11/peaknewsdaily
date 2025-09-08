@@ -156,7 +156,7 @@ export default function SaveTaxesFreelancer() {
           <div className="bg-gray-50 p-4 rounded-lg my-6">
             <h5 className="font-semibold mb-2">Method 1: Safe Harbor Rule</h5>
             <p className="text-sm mb-4">
-              Pay 100% of last year's tax liability (110% if AGI > $150,000) divided by 4 quarters. 
+              Pay 100% of last year's tax liability (110% if AGI &gt; $150,000) divided by 4 quarters. 
               No penalties even if you owe more.
             </p>
             

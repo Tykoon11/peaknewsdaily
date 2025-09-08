@@ -358,7 +358,7 @@ export default function AvoidSideHustleBurnoutFinancially() {
 
           <h4>Emergency Protocols:</h4>
           <ul>
-            <li><strong>If working >30 hours/week:</strong> Immediate rate increase or client reduction</li>
+            <li><strong>If working &gt;30 hours/week:</strong> Immediate rate increase or client reduction</li>
             <li><strong>If constantly stressed:</strong> 1-week complete break, no exceptions</li>
             <li><strong>If relationships suffering:</strong> Cut side hustle hours by 50%</li>
             <li><strong>If health declining:</strong> Pause new client acquisition immediately</li>

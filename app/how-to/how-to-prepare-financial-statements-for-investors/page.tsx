@@ -264,7 +264,7 @@ export default function HowToPrepareFinancialStatementsForInvestors() {
               <li>• Revenue growth rate (50% YoY)</li>
               <li>• Customer acquisition cost (CAC)</li>
               <li>• Customer lifetime value (LTV)</li>
-              <li>• LTV/CAC ratio (>3x)</li>
+              <li>• LTV/CAC ratio (&gt;3x)</li>
               <li>• Revenue per employee</li>
             </ul>
           </div>

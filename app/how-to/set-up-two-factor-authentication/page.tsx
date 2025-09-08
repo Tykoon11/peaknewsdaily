@@ -18,7 +18,7 @@ export default function SetUpTwoFactorAuthenticationPage() {
               Set Up Two-Factor Authentication the Right Way
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Use phishing-resistant MFA where possible. Authenticator apps/hardware keys > SMS. Backup codes and recovery.
+              Use phishing-resistant MFA where possible. Authenticator apps/hardware keys &gt; SMS. Backup codes and recovery.
             </p>
           </div>
 
@@ -67,42 +67,42 @@ export default function SetUpTwoFactorAuthenticationPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Setup Steps</h2>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">1</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;1</span>
                   <div>
                     <p className="text-gray-700 font-medium">Enable 2FA in your broker account settings</p>
                     <p className="text-gray-600 text-sm">Look for "Security," "Two-Factor Authentication," or "Multi-Factor Authentication."</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">2</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;2</span>
                   <div>
                     <p className="text-gray-700 font-medium">Choose your method (prioritize strongest available)</p>
                     <p className="text-gray-600 text-sm">Hardware key > authenticator app > SMS (as last resort).</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">3</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;3</span>
                   <div>
                     <p className="text-gray-700 font-medium">Scan QR code or register hardware key</p>
                     <p className="text-gray-600 text-sm">For apps: scan with Google Authenticator or similar. For hardware: follow pairing instructions.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">4</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;4</span>
                   <div>
                     <p className="text-gray-700 font-medium">Save backup/recovery codes</p>
                     <p className="text-gray-600 text-sm">Print and store securely—these let you regain access if your device is lost.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">5</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;5</span>
                   <div>
                     <p className="text-gray-700 font-medium">Test the setup</p>
                     <p className="text-gray-600 text-sm">Log out and log back in to verify everything works properly.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">6</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;6</span>
                   <div>
                     <p className="text-gray-700 font-medium">Add second method if supported</p>
                     <p className="text-gray-600 text-sm">Hardware key + authenticator app provides redundancy.</p>
@@ -120,18 +120,18 @@ export default function SetUpTwoFactorAuthenticationPage() {
                     <li>• <strong>Google Authenticator:</strong> Simple, widely supported</li>
                     <li>• <strong>Microsoft Authenticator:</strong> Push notifications, cloud backup</li>
                     <li>• <strong>Authy:</strong> Multi-device sync, encrypted backups</li>
-                    <li>• <strong>1Password:</strong> Integrated with password manager</li>
+                    <li>• <strong&gt;1Password:</strong> Integrated with password manager</li>
                   </ul>
                 </div>
                 
                 <div className="bg-green-50 p-6 rounded-lg">
                   <h3 className="font-semibold text-green-900 mb-3">Setup Process</h3>
                   <ol className="text-green-700 text-sm space-y-1">
-                    <li>1. Install authenticator app on phone</li>
-                    <li>2. In broker settings, choose "Authenticator App"</li>
-                    <li>3. Scan QR code with app camera</li>
-                    <li>4. Enter the 6-digit code to verify</li>
-                    <li>5. Save backup codes provided</li>
+                    <li&gt;1. Install authenticator app on phone</li>
+                    <li&gt;2. In broker settings, choose "Authenticator App"</li>
+                    <li&gt;3. Scan QR code with app camera</li>
+                    <li&gt;4. Enter the 6-digit code to verify</li>
+                    <li&gt;5. Save backup codes provided</li>
                   </ol>
                 </div>
               </div>
@@ -178,11 +178,11 @@ export default function SetUpTwoFactorAuthenticationPage() {
                 <div className="bg-orange-50 p-6 rounded-lg">
                   <h3 className="font-semibold text-orange-900 mb-3">If You Lose Access</h3>
                   <ol className="text-orange-700 space-y-2">
-                    <li>1. Try backup codes first</li>
-                    <li>2. Use secondary authentication method</li>
-                    <li>3. Contact broker customer support</li>
-                    <li>4. Be prepared for identity verification process</li>
-                    <li>5. May require account freeze until resolved</li>
+                    <li&gt;1. Try backup codes first</li>
+                    <li&gt;2. Use secondary authentication method</li>
+                    <li&gt;3. Contact broker customer support</li>
+                    <li&gt;4. Be prepared for identity verification process</li>
+                    <li&gt;5. May require account freeze until resolved</li>
                   </ol>
                 </div>
               </div>
@@ -222,28 +222,28 @@ export default function SetUpTwoFactorAuthenticationPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Best Practices</h2>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">1</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;1</span>
                   <div>
                     <p className="text-gray-700 font-medium">Use unique authentication for financial accounts</p>
                     <p className="text-gray-600 text-sm">Don't reuse the same 2FA method across all important accounts.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">2</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;2</span>
                   <div>
                     <p className="text-gray-700 font-medium">Keep backup codes offline and secure</p>
                     <p className="text-gray-600 text-sm">Don't store them in cloud drives or email—print and secure physically.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">3</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;3</span>
                   <div>
                     <p className="text-gray-700 font-medium">Update contact info when you change phones</p>
                     <p className="text-gray-600 text-sm">Notify your broker before switching phone numbers.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">4</span>
+                  <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;4</span>
                   <div>
                     <p className="text-gray-700 font-medium">Test recovery process annually</p>
                     <p className="text-gray-600 text-sm">Make sure you can still access backup codes and recovery methods.</p>

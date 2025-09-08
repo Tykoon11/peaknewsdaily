@@ -146,7 +146,7 @@ export default function HowToPrepareForBankLoanInterview() {
               <tr>
                 <td className="px-4 py-3 font-medium">"How will you repay this loan?"</td>
                 <td className="px-4 py-3">Cash flow adequacy</td>
-                <td className="px-4 py-3">Show debt service coverage >1.25x</td>
+                <td className="px-4 py-3">Show debt service coverage &gt;1.25x</td>
               </tr>
               <tr>
                 <td className="px-4 py-3 font-medium">"What if sales decline?"</td>

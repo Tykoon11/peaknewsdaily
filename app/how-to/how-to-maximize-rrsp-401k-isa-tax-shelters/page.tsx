@@ -364,7 +364,7 @@ export default function MaximizeTaxSheltersPage() {
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I pay off debt or contribute to retirement accounts?</h3>
               <p className="text-gray-700">
-                Get employer match first (it's guaranteed return), pay off high-interest debt (>6-7%), 
+                Get employer match first (it's guaranteed return), pay off high-interest debt (&gt;6-7%), 
                 then balance debt payoff with retirement contributions based on interest rates vs expected investment returns.
               </p>
             </div>

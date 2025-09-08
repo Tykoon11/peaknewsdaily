@@ -167,21 +167,21 @@ export default function RefinanceCarLoanPage() {
               <tbody>
                 <tr>
                   <td className="border border-gray-300 px-3 py-2 font-medium">Keep current term (36 mo)</td>
-                  <td className="border border-gray-300 px-3 py-2 text-green-600">$551</td>
-                  <td className="border border-gray-300 px-3 py-2 text-green-600">$1,836</td>
-                  <td className="border border-gray-300 px-3 py-2 text-green-600">$19,836</td>
+                  <td className="border border-gray-300 px-3 py-2 text-green-600"&gt;$551</td>
+                  <td className="border border-gray-300 px-3 py-2 text-green-600"&gt;$1,836</td>
+                  <td className="border border-gray-300 px-3 py-2 text-green-600"&gt;$19,836</td>
                 </tr>
                 <tr className="bg-gray-50">
                   <td className="border border-gray-300 px-3 py-2 font-medium">Extend to 48 months</td>
-                  <td className="border border-gray-300 px-3 py-2 text-yellow-600">$429</td>
-                  <td className="border border-gray-300 px-3 py-2 text-red-600">$2,592</td>
-                  <td className="border border-gray-300 px-3 py-2 text-red-600">$20,592</td>
+                  <td className="border border-gray-300 px-3 py-2 text-yellow-600"&gt;$429</td>
+                  <td className="border border-gray-300 px-3 py-2 text-red-600"&gt;$2,592</td>
+                  <td className="border border-gray-300 px-3 py-2 text-red-600"&gt;$20,592</td>
                 </tr>
                 <tr>
                   <td className="border border-gray-300 px-3 py-2 font-medium">Extend to 60 months</td>
-                  <td className="border border-gray-300 px-3 py-2 text-yellow-600">$352</td>
-                  <td className="border border-gray-300 px-3 py-2 text-red-600">$3,120</td>
-                  <td className="border border-gray-300 px-3 py-2 text-red-600">$21,120</td>
+                  <td className="border border-gray-300 px-3 py-2 text-yellow-600"&gt;$352</td>
+                  <td className="border border-gray-300 px-3 py-2 text-red-600"&gt;$3,120</td>
+                  <td className="border border-gray-300 px-3 py-2 text-red-600"&gt;$21,120</td>
                 </tr>
               </tbody>
             </table>

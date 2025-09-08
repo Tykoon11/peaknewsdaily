@@ -38,7 +38,7 @@ export default function ScaleSideHustleBusiness() {
 
           <h2>The Side Hustle to Business Transformation Framework</h2>
           
-          <h3>1. Recognizing When You're Ready to Scale</h3>
+          <h3&gt;1. Recognizing When You're Ready to Scale</h3>
           <p>
             <strong>Scaling too early kills businesses, but waiting too long costs opportunities.</strong> 
             Look for these specific indicators that signal it's time to invest in growth rather 
@@ -52,9 +52,9 @@ export default function ScaleSideHustleBusiness() {
               <div>
                 <strong>Financial Signals:</strong>
                 <ul className="mt-2 space-y-1">
-                  <li>$3,000+ monthly revenue for 6+ months</li>
-                  <li>40%+ profit margins consistently</li>
-                  <li>3-6 months operating expenses saved</li>
+                  <li&gt;$3,000+ monthly revenue for 6+ months</li>
+                  <li&gt;40%+ profit margins consistently</li>
+                  <li&gt;3-6 months operating expenses saved</li>
                   <li>Demand exceeding your capacity</li>
                   <li>Repeat customers/recurring revenue</li>
                 </ul>
@@ -73,7 +73,7 @@ export default function ScaleSideHustleBusiness() {
             </div>
           </div>
 
-          <h3>2. The Four Pillars of Scalable Business Systems</h3>
+          <h3&gt;2. The Four Pillars of Scalable Business Systems</h3>
 
           <h4>Pillar 1: Process Documentation</h4>
           <p>
@@ -141,7 +141,7 @@ export default function ScaleSideHustleBusiness() {
             profitability, and growth metrics. You can't manage what you can't measure.
           </p>
 
-          <h3>3. The Strategic Hiring Roadmap</h3>
+          <h3&gt;3. The Strategic Hiring Roadmap</h3>
 
           <p>
             <strong>Hire in the right order to maximize impact.</strong> Your first hires should 
@@ -182,7 +182,7 @@ export default function ScaleSideHustleBusiness() {
             <li><strong>Set up management systems:</strong> Communication tools and performance tracking</li>
           </ul>
 
-          <h3>4. Revenue Diversification Strategies</h3>
+          <h3&gt;4. Revenue Diversification Strategies</h3>
 
           <p>
             <strong>Single income streams are risky.</strong> Scale by adding complementary revenue 
@@ -218,13 +218,13 @@ export default function ScaleSideHustleBusiness() {
           <h4>The 70/20/10 Revenue Rule:</h4>
           <div className="bg-gray-50 p-4 rounded-lg my-6">
             <ul className="space-y-2">
-              <li><strong>70%:</strong> Core services that currently generate most revenue</li>
-              <li><strong>20%:</strong> Proven expansions (new services, markets, or delivery methods)</li>
-              <li><strong>10%:</strong> Experimental new revenue streams with high potential</li>
+              <li><strong&gt;70%:</strong> Core services that currently generate most revenue</li>
+              <li><strong&gt;20%:</strong> Proven expansions (new services, markets, or delivery methods)</li>
+              <li><strong&gt;10%:</strong> Experimental new revenue streams with high potential</li>
             </ul>
           </div>
 
-          <h3>5. Customer Acquisition System Scaling</h3>
+          <h3&gt;5. Customer Acquisition System Scaling</h3>
 
           <p>
             Move beyond personal referrals to scalable marketing systems that generate 
@@ -255,7 +255,7 @@ export default function ScaleSideHustleBusiness() {
             </div>
           </div>
 
-          <h3>6. Business Structure and Legal Considerations</h3>
+          <h3&gt;6. Business Structure and Legal Considerations</h3>
 
           <p>
             <strong>Your business structure affects taxes, liability, and growth options.</strong> 
@@ -296,7 +296,7 @@ export default function ScaleSideHustleBusiness() {
             <li><strong>Intellectual Property Protection:</strong> Trademarks, copyrights, non-disclosure agreements</li>
           </ul>
 
-          <h3>7. Financial Management for Growing Business</h3>
+          <h3&gt;7. Financial Management for Growing Business</h3>
 
           <p>
             <strong>Cash flow management becomes critical when you have employees and overhead.</strong> 
@@ -310,7 +310,7 @@ export default function ScaleSideHustleBusiness() {
               <div>
                 <strong className="text-blue-800">Cash Flow Management:</strong>
                 <ul className="text-blue-700 mt-2 space-y-1">
-                  <li>13-week rolling cash flow forecast</li>
+                  <li&gt;13-week rolling cash flow forecast</li>
                   <li>Line of credit for growth financing</li>
                   <li>Separate accounts for taxes, operations, growth</li>
                   <li>Automated savings for equipment replacement</li>
@@ -345,7 +345,7 @@ export default function ScaleSideHustleBusiness() {
             </div>
           </div>
 
-          <h3>8. Leadership and Management Transition</h3>
+          <h3&gt;8. Leadership and Management Transition</h3>
 
           <p>
             <strong>You must evolve from doer to leader.</strong> This mindset shift is often 
@@ -377,7 +377,7 @@ export default function ScaleSideHustleBusiness() {
             <li><strong>Conflict Resolution:</strong> Addressing issues before they escalate</li>
           </ul>
 
-          <h3>9. Common Scaling Pitfalls and How to Avoid Them</h3>
+          <h3&gt;9. Common Scaling Pitfalls and How to Avoid Them</h3>
 
           <div className="bg-red-50 border border-red-200 p-6 rounded-lg my-6">
             <h4 className="font-semibold text-red-800 mb-3">Expensive Scaling Mistakes:</h4>
@@ -391,7 +391,7 @@ export default function ScaleSideHustleBusiness() {
             </ul>
           </div>
 
-          <h3>10. Exit Strategy Planning</h3>
+          <h3&gt;10. Exit Strategy Planning</h3>
 
           <p>
             <strong>Build your business to run without you, even if you never plan to sell.</strong> 
@@ -401,7 +401,7 @@ export default function ScaleSideHustleBusiness() {
           <h4>Building Business Value for Future Exit:</h4>
           <ul>
             <li><strong>Systematic operations:</strong> Business runs smoothly without founder involvement</li>
-            <li><strong>Diversified customer base:</strong> No single customer represents >10% of revenue</li>
+            <li><strong>Diversified customer base:</strong> No single customer represents &gt;10% of revenue</li>
             <li><strong>Strong management team:</strong> Key decisions don't require founder input</li>
             <li><strong>Recurring revenue model:</strong> Predictable income streams with high retention</li>
             <li><strong>Clear financial records:</strong> Auditable books with strong margins</li>

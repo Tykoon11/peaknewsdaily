@@ -520,7 +520,7 @@ export default function FinanceInvestmentPropertiesPage() {
                     <li>• 1 point costs $3,000 on $300k loan</li>
                     <li>• Reduces payment by $75/month</li>
                     <li>• Break-even: $3,000 ÷ $75 = 40 months</li>
-                    <li>• <strong>Worth it if holding >40 months</strong></li>
+                    <li>• <strong>Worth it if holding &gt;40 months</strong></li>
                   </ul>
                 </div>
               </div>

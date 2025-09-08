@@ -78,7 +78,7 @@ export default function EstimateQuarterlyTaxesPage() {
                 <p className="text-blue-700 text-sm">Pay 100% of last year's total tax liability</p>
               </div>
               <div>
-                <p className="font-medium text-blue-800">110% if AGI > $150,000</p>
+                <p className="font-medium text-blue-800">110% if AGI &gt; $150,000</p>
                 <p className="text-blue-700 text-sm">High earners must pay 110% of prior year</p>
               </div>
               <div>
