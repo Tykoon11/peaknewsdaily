@@ -7,6 +7,7 @@ import { Providers } from '@/components/providers'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
 import Plausible from '@/components/plausible'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 // Theme switching removed; Source is the default style
 
 const inter = Inter({ subsets: ['latin'] })
@@ -44,6 +45,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
               {children}
               <Footer />
             </div>
+            <SpeedInsights />
           </Providers>
         </ThemeProvider>
       </body>
