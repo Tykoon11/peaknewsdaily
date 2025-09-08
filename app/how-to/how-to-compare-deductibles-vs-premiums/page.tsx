@@ -335,7 +335,7 @@ export default function CompareDeductiblesVsPremiums() {
               <li><strong>Actuarial data:</strong> Professional risk assessment tools</li>
               <li><strong>Economic modeling:</strong> Factor in inflation and investment returns</li>
             </ul>
-            <div class="bg-red-50 border-l-4 border-red-500 p-6 my-8">
+            <div className="bg-red-50 border-l-4 border-red-500 p-6 my-8">
               <h3 className="font-semibold mb-2">⚠️ Critical Rule</h3>
               <p><strong>Never pick a deductible you can't pay today from your emergency fund.</strong> This is the most important factor—more important than break-even calculations, premium savings, or optimization strategies. Your financial security depends on being able to handle the worst-case scenario.</p>
             </div>

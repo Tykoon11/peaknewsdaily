@@ -56,13 +56,11 @@ export function getRedis(): Redis {
       // Upstash or other token-based Redis
       redis = new Redis(redisUrl, {
         password: redisToken,
-        retryDelayOnFailover: 100,
         maxRetriesPerRequest: 3,
       })
     } else {
       // Local Redis
       redis = new Redis(redisUrl, {
-        retryDelayOnFailover: 100,
         maxRetriesPerRequest: 3,
       })
     }

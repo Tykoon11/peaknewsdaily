@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     })
     
     // Group by asset and return only the latest quote per asset
-    const latestQuotes = quotes.reduce((acc, quote) => {
+    const latestQuotes = quotes.reduce((acc: Record<string, any>, quote) => {
       if (!acc[quote.assetId] || quote.timestamp > acc[quote.assetId].timestamp) {
         acc[quote.assetId] = quote
       }

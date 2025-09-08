@@ -160,7 +160,7 @@ export default function HowToFileInsuranceClaim() {
 
             <h2>Step 4: Document Everything</h2>
 
-            <div class="bg-green-50 border-l-4 border-green-500 p-6 my-8">
+            <div className="bg-green-50 border-l-4 border-green-500 p-6 my-8">
               <h3 className="text-lg font-semibold mb-3">Documentation Checklist</h3>
               
               <div className="grid md:grid-cols-2 gap-6">

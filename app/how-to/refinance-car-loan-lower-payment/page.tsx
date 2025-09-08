@@ -223,7 +223,7 @@ export default function RefinanceCarLoanPage() {
 
           <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
             <h3 className="text-lg font-semibold text-purple-800 mb-4">Final Verification Steps</h3>
-            <div class="text-purple-700 space-y-2">
+            <div className="text-purple-700 space-y-2">
               <p><strong>Payoff confirmation:</strong> Verify old loan shows $0 balance</p>
               <p><strong>First payment date:</strong> Note when new payment starts (usually 30-45 days)</p>
               <p><strong>Auto-pay setup:</strong> Set up automatic payments to avoid late fees</p>
@@ -233,32 +233,32 @@ export default function RefinanceCarLoanPage() {
         </div>
 
         <h2>Common refinancing mistakes</h2>
-        <div class="space-y-4 my-8">
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibold text-red-800">Focusing only on monthly payment</h3>
-            <p class="text-red-700 text-sm">Lower payment via extended term can cost thousands more in total interest. Calculate total cost, not just monthly savings.</p>
+        <div className="space-y-4 my-8">
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibold text-red-800">Focusing only on monthly payment</h3>
+            <p className="text-red-700 text-sm">Lower payment via extended term can cost thousands more in total interest. Calculate total cost, not just monthly savings.</p>
           </div>
           
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibold text-red-800">Not shopping around</h3>
-            <p class="text-red-700 text-sm">First offer isn't always best. Credit unions, online lenders, and banks can have dramatically different rates for the same borrower.</p>
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibold text-red-800">Not shopping around</h3>
+            <p className="text-red-700 text-sm">First offer isn't always best. Credit unions, online lenders, and banks can have dramatically different rates for the same borrower.</p>
           </div>
           
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibold text-red-800">Ignoring fees and costs</h3>
-            <p class="text-red-700 text-sm">Factor in title fees, documentation fees, and any prepayment penalties on your current loan. Sometimes fees offset the savings.</p>
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibold text-red-800">Ignoring fees and costs</h3>
+            <p className="text-red-700 text-sm">Factor in title fees, documentation fees, and any prepayment penalties on your current loan. Sometimes fees offset the savings.</p>
           </div>
           
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibold text-red-800">Refinancing too early or too late</h3>
-            <p class="text-red-700 text-sm">Very new loans may have prepayment penalties. Very old loans may not have enough balance/term left to make refinancing worthwhile.</p>
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibold text-red-800">Refinancing too early or too late</h3>
+            <p className="text-red-700 text-sm">Very new loans may have prepayment penalties. Very old loans may not have enough balance/term left to make refinancing worthwhile.</p>
           </div>
         </div>
 
         <h2>When refinancing doesn't make sense</h2>
-        <div class="bg-red-100 p-6 rounded-lg my-8">
-          <h3 class="text-lg font-semibold text-red-800 mb-4">Skip Refinancing If...</h3>
-          <ul class="text-red-700 space-y-2">
+        <div className="bg-red-100 p-6 rounded-lg my-8">
+          <h3 className="text-lg font-semibold text-red-800 mb-4">Skip Refinancing If...</h3>
+          <ul className="text-red-700 space-y-2">
             <li>• You're planning to pay off the loan within 12 months</li>
             <li>• Your vehicle is worth significantly less than loan balance</li>
             <li>• Current loan has less than $5,000 balance</li>
@@ -268,52 +268,52 @@ export default function RefinanceCarLoanPage() {
           </ul>
         </div>
 
-        <div class="bg-gray-50 rounded-lg p-8 mt-12">
-          <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div className="bg-gray-50 rounded-lg p-8 mt-12">
+          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
           
-          <div class="space-y-6">
+          <div className="space-y-6">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">How much will a 1% APR drop save me?</h3>
-              <p class="text-gray-700">On a $20,000 loan over 60 months, dropping from 8% to 7% saves about $57/month or $3,420 total. Use an online calculator with your specific numbers.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">How much will a 1% APR drop save me?</h3>
+              <p className="text-gray-700">On a $20,000 loan over 60 months, dropping from 8% to 7% saves about $57/month or $3,420 total. Use an online calculator with your specific numbers.</p>
             </div>
             
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Can I refinance with bad credit?</h3>
-              <p class="text-gray-700">Yes, but rates may not improve much. Focus on credit unions and online lenders that specialize in less-than-perfect credit. Wait if your score is actively improving.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I refinance with bad credit?</h3>
+              <p className="text-gray-700">Yes, but rates may not improve much. Focus on credit unions and online lenders that specialize in less-than-perfect credit. Wait if your score is actively improving.</p>
             </div>
             
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Does auto refi reset my warranty or GAP?</h3>
-              <p class="text-gray-700">Warranty continues unchanged. GAP coverage may need to be cancelled and re-purchased. Check with both your old and new lenders about GAP transfer policies.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Does auto refi reset my warranty or GAP?</h3>
+              <p className="text-gray-700">Warranty continues unchanged. GAP coverage may need to be cancelled and re-purchased. Check with both your old and new lenders about GAP transfer policies.</p>
             </div>
 
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Is there a prepayment penalty?</h3>
-              <p class="text-gray-700">Most modern auto loans don't have prepayment penalties, but check your current loan agreement. Some older loans or subprime lenders may charge fees for early payoff.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Is there a prepayment penalty?</h3>
+              <p className="text-gray-700">Most modern auto loans don't have prepayment penalties, but check your current loan agreement. Some older loans or subprime lenders may charge fees for early payoff.</p>
             </div>
           </div>
         </div>
       </article>
 
-      <nav class="mt-16 pt-8 border-t border-gray-200">
-        <div class="grid md:grid-cols-2 gap-8">
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
           <div>
             <Link 
               href="/how-to/lease-vs-finance-cheaper" 
-              class="block p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+              className="block p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
             >
-              <h3 class="font-semibold text-indigo-900">← Lease vs Finance</h3>
-              <p class="text-sm text-indigo-700 mt-1">Which option is cheaper?</p>
+              <h3 className="font-semibold text-indigo-900">← Lease vs Finance</h3>
+              <p className="text-sm text-indigo-700 mt-1">Which option is cheaper?</p>
             </Link>
           </div>
           
           <div>
             <Link 
               href="/how-to/negotiate-car-price-scripts" 
-              class="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
             >
-              <h3 class="font-semibold text-green-900">Car Negotiation Scripts →</h3>
-              <p class="text-sm text-green-700 mt-1">Get the lowest price possible</p>
+              <h3 className="font-semibold text-green-900">Car Negotiation Scripts →</h3>
+              <p className="text-sm text-green-700 mt-1">Get the lowest price possible</p>
             </Link>
           </div>
         </div>

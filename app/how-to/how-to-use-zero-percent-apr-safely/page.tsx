@@ -320,7 +320,6 @@ export default function HowToUseZeroPercentAPRSafely() {
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "@type": "Question",
                   "name": "Will applying for a 0% APR card hurt my credit score?",
                   "acceptedAnswer": {
                     "@type": "Answer",

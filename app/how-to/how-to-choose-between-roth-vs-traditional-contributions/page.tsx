@@ -200,7 +200,7 @@ export default function RothVsTraditionalPage() {
         <div className="space-y-6 my-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-6">
             <h4 className="font-semibold text-red-800 mb-3">Required Minimum Distributions (RMDs)</h4>
-            <div class="space-y-2">
+            <div className="space-y-2">
               <p className="text-red-700 text-sm"><strong>US:</strong> Traditional 401(k)/IRA require RMDs at 73; Roth IRA does not</p>
               <p className="text-red-700 text-sm"><strong>Canada:</strong> RRSP converts to RRIF with mandatory withdrawals; TFSA never requires withdrawals</p>
               <p className="text-red-700 text-sm">RMDs can push retirees into higher tax brackets and affect Medicare premiums</p>

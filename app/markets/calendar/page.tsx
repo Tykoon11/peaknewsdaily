@@ -50,13 +50,13 @@ interface EconomicEvent {
   country: string
   currency: string
   title: string
-  description?: string
+  description?: string | null
   impact: string
   category: string
-  actual?: string
-  forecast?: string
-  previous?: string
-  unit?: string
+  actual?: string | null
+  forecast?: string | null
+  previous?: string | null
+  unit?: string | null
   eventTime: Date
 }
 
@@ -458,7 +458,7 @@ export default async function EconomicCalendarPage() {
                       const timing = formatEventTime(event.eventTime)
                       const impactStyle = getImpactColor(event.impact)
                       const categoryIcon = getCategoryIcon(event.category)
-                      const severity = getImpactSeverity(event.actual, event.forecast, event.previous)
+                      const severity = getImpactSeverity(event.actual ?? null, event.forecast ?? null, event.previous ?? null)
                       
                       return (
                         <div key={event.id} className="p-6 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200">

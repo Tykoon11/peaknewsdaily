@@ -226,9 +226,9 @@ export default function BuyUsedCarChecklistPage() {
           </div>
         </div>
 
-        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 my-8">
-          <h3 class="text-lg font-semibold text-yellow-800 mb-4">Negotiation Starting Points</h3>
-          <div class="text-yellow-700 space-y-2">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 my-8">
+          <h3 className="text-lg font-semibold text-yellow-800 mb-4">Negotiation Starting Points</h3>
+          <div className="text-yellow-700 space-y-2">
             <p><strong>Private party:</strong> Start 10-15% below asking price</p>
             <p><strong>Dealer:</strong> Research trade-in value, expect 15-25% markup</p>
             <p><strong>High-mileage vehicles:</strong> Bigger discount justified</p>
@@ -237,13 +237,13 @@ export default function BuyUsedCarChecklistPage() {
         </div>
 
         <h2>Step 6: Paperwork essentials</h2>
-        <div class="space-y-6 my-8">
-          <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-red-800 mb-4">Private Party Documents</h3>
-            <div class="grid md:grid-cols-2 gap-4">
+        <div className="space-y-6 my-8">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-red-800 mb-4">Private Party Documents</h3>
+            <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 class="font-semibold text-red-800 mb-2">Required from Seller</h4>
-                <ul class="text-red-700 text-sm space-y-1">
+                <h4 className="font-semibold text-red-800 mb-2">Required from Seller</h4>
+                <ul className="text-red-700 text-sm space-y-1">
                   <li>□ Clear title (name matches ID)</li>
                   <li>□ Lien release (if applicable)</li>
                   <li>□ Maintenance records</li>
@@ -253,8 +253,8 @@ export default function BuyUsedCarChecklistPage() {
               </div>
               
               <div>
-                <h4 class="font-semibold text-red-800 mb-2">Documents You Provide</h4>
-                <ul class="text-red-700 text-sm space-y-1">
+                <h4 className="font-semibold text-red-800 mb-2">Documents You Provide</h4>
+                <ul className="text-red-700 text-sm space-y-1">
                   <li>□ Bill of sale (both copies)</li>
                   <li>□ Payment (cashier's check)</li>
                   <li>□ Insurance proof</li>
@@ -265,9 +265,9 @@ export default function BuyUsedCarChecklistPage() {
             </div>
           </div>
 
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-            <h3 class="text-lg font-semibond text-blue-800 mb-4">Dealer Purchase Verification</h3>
-            <div class="text-blue-700 space-y-2">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h3 className="text-lg font-semibond text-blue-800 mb-4">Dealer Purchase Verification</h3>
+            <div className="text-blue-700 space-y-2">
               <p><strong>Price confirmation:</strong> Final price matches negotiated amount</p>
               <p><strong>Fee transparency:</strong> All fees disclosed (doc, prep, advertising)</p>
               <p><strong>Add-on removal:</strong> Unwanted warranties/products removed</p>
@@ -277,118 +277,118 @@ export default function BuyUsedCarChecklistPage() {
         </div>
 
         <h2>Common used car red flags</h2>
-        <div class="space-y-4 my-8">
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibold text-red-800">Seller won't allow PPI or test drive</h3>
-            <p class="text-red-700 text-sm">Any seller who refuses inspection or limits test drive is hiding problems. Walk away immediately.</p>
+        <div className="space-y-4 my-8">
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibold text-red-800">Seller won't allow PPI or test drive</h3>
+            <p className="text-red-700 text-sm">Any seller who refuses inspection or limits test drive is hiding problems. Walk away immediately.</p>
           </div>
           
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibold text-red-800">No maintenance records available</h3>
-            <p class="text-red-700 text-sm">Cars without service history are risky bets. Assume major services are due and factor costs into your offer.</p>
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibold text-red-800">No maintenance records available</h3>
+            <p className="text-red-700 text-sm">Cars without service history are risky bets. Assume major services are due and factor costs into your offer.</p>
           </div>
           
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibond text-red-800">Price significantly below market</h3>
-            <p class="text-red-700 text-sm">If it seems too good to be true, it probably is. Hidden damage, liens, or scams are common with underpriced cars.</p>
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibond text-red-800">Price significantly below market</h3>
+            <p className="text-red-700 text-sm">If it seems too good to be true, it probably is. Hidden damage, liens, or scams are common with underpriced cars.</p>
           </div>
           
-          <div class="border-l-4 border-red-400 pl-4">
-            <h3 class="font-semibold text-red-800">Pressure to buy immediately</h3>
-            <p class="text-red-700 text-sm">"Another buyer is coming" or "price expires today" are classic pressure tactics. Take your time to make the right decision.</p>
+          <div className="border-l-4 border-red-400 pl-4">
+            <h3 className="font-semibold text-red-800">Pressure to buy immediately</h3>
+            <p className="text-red-700 text-sm">"Another buyer is coming" or "price expires today" are classic pressure tactics. Take your time to make the right decision.</p>
           </div>
         </div>
 
         <h2>Mileage and age guidelines</h2>
-        <div class="bg-gray-100 p-6 rounded-lg my-8">
-          <h3 class="text-lg font-semibold text-gray-800 mb-4">What's High Mileage in 2024?</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-sm border border-gray-300">
-              <thead class="bg-gray-50">
+        <div className="bg-gray-100 p-6 rounded-lg my-8">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">What's High Mileage in 2024?</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border border-gray-300">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th class="border border-gray-300 px-3 py-2 text-left">Vehicle Age</th>
-                  <th class="border border-gray-300 px-3 py-2 text-left">Average Miles</th>
-                  <th class="border border-gray-300 px-3 py-2 text-left">High Mileage</th>
-                  <th class="border border-gray-300 px-3 py-2 text-left">Considerations</th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">Vehicle Age</th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">Average Miles</th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">High Mileage</th>
+                  <th className="border border-gray-300 px-3 py-2 text-left">Considerations</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="border border-gray-300 px-3 py-2">1-2 years</td>
-                  <td class="border border-gray-300 px-3 py-2">12,000-24,000</td>
-                  <td class="border border-gray-300 px-3 py-2">30,000+</td>
-                  <td class="border border-gray-300 px-3 py-2">Still under warranty</td>
+                  <td className="border border-gray-300 px-3 py-2">1-2 years</td>
+                  <td className="border border-gray-300 px-3 py-2">12,000-24,000</td>
+                  <td className="border border-gray-300 px-3 py-2">30,000+</td>
+                  <td className="border border-gray-300 px-3 py-2">Still under warranty</td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 px-3 py-2">3-5 years</td>
-                  <td class="border border-gray-300 px-3 py-2">36,000-60,000</td>
-                  <td class="border border-gray-300 px-3 py-2">75,000+</td>
-                  <td class="border border-gray-300 px-3 py-2">Major services due</td>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-3 py-2">3-5 years</td>
+                  <td className="border border-gray-300 px-3 py-2">36,000-60,000</td>
+                  <td className="border border-gray-300 px-3 py-2">75,000+</td>
+                  <td className="border border-gray-300 px-3 py-2">Major services due</td>
                 </tr>
                 <tr>
-                  <td class="border border-gray-300 px-3 py-2">6-8 years</td>
-                  <td class="border border-gray-300 px-3 py-2">72,000-96,000</td>
-                  <td class="border border-gray-300 px-3 py-2">120,000+</td>
-                  <td class="border border-gray-300 px-3 py-2">Transmission, timing belt</td>
+                  <td className="border border-gray-300 px-3 py-2">6-8 years</td>
+                  <td className="border border-gray-300 px-3 py-2">72,000-96,000</td>
+                  <td className="border border-gray-300 px-3 py-2">120,000+</td>
+                  <td className="border border-gray-300 px-3 py-2">Transmission, timing belt</td>
                 </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 px-3 py-2">9+ years</td>
-                  <td class="border border-gray-300 px-3 py-2">108,000+</td>
-                  <td class="border border-gray-300 px-3 py-2">150,000+</td>
-                  <td class="border border-gray-300 px-3 py-2">Buy based on condition</td>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-3 py-2">9+ years</td>
+                  <td className="border border-gray-300 px-3 py-2">108,000+</td>
+                  <td className="border border-gray-300 px-3 py-2">150,000+</td>
+                  <td className="border border-gray-300 px-3 py-2">Buy based on condition</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="text-gray-600 text-sm mt-3">Modern cars can run 200,000+ miles with proper maintenance. Focus on service history over odometer reading.</p>
+          <p className="text-gray-600 text-sm mt-3">Modern cars can run 200,000+ miles with proper maintenance. Focus on service history over odometer reading.</p>
         </div>
 
-        <div class="bg-gray-50 rounded-lg p-8 mt-12">
-          <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div className="bg-gray-50 rounded-lg p-8 mt-12">
+          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
           
-          <div class="space-y-6">
+          <div className="space-y-6">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Is a PPI worth it for cars under $10,000?</h3>
-              <p class="text-gray-700">Yes, especially for older cars. A $200 inspection can reveal $3,000+ in hidden problems. The cheaper the car, the more important the inspection becomes.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Is a PPI worth it for cars under $10,000?</h3>
+              <p className="text-gray-700">Yes, especially for older cars. A $200 inspection can reveal $3,000+ in hidden problems. The cheaper the car, the more important the inspection becomes.</p>
             </div>
             
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">What mileage is "too high" for modern cars?</h3>
-              <p class="text-gray-700">There's no magic number. A well-maintained 150,000-mile car can be better than a neglected 80,000-mile car. Focus on service records and overall condition.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">What mileage is "too high" for modern cars?</h3>
+              <p className="text-gray-700">There's no magic number. A well-maintained 150,000-mile car can be better than a neglected 80,000-mile car. Focus on service records and overall condition.</p>
             </div>
             
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">How do I spot a flood car?</h3>
-              <p class="text-gray-700">Musty odors, water stains, rust in unusual places, and electrical issues are common signs. Always check the VIN for flood/water damage history.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I spot a flood car?</h3>
+              <p className="text-gray-700">Musty odors, water stains, rust in unusual places, and electrical issues are common signs. Always check the VIN for flood/water damage history.</p>
             </div>
 
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Can I return a used car after purchase?</h3>
-              <p class="text-gray-700">Usually no. Most used car sales are "as-is" with no return policy. This is why thorough inspection before purchase is critical—you can't undo the deal later.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I return a used car after purchase?</h3>
+              <p className="text-gray-700">Usually no. Most used car sales are "as-is" with no return policy. This is why thorough inspection before purchase is critical—you can't undo the deal later.</p>
             </div>
           </div>
         </div>
       </article>
 
-      <nav class="mt-16 pt-8 border-t border-gray-200">
-        <div class="grid md:grid-cols-2 gap-8">
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
           <div>
             <Link 
               href="/how-to/negotiate-car-price-scripts" 
-              class="block p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+              className="block p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
             >
-              <h3 class="font-semibold text-indigo-900">← Car Negotiation Scripts</h3>
-              <p class="text-sm text-indigo-700 mt-1">Get the best price possible</p>
+              <h3 className="font-semibold text-indigo-900">← Car Negotiation Scripts</h3>
+              <p className="text-sm text-indigo-700 mt-1">Get the best price possible</p>
             </Link>
           </div>
           
           <div>
             <Link 
               href="/how-to/trade-in-negative-equity" 
-              class="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
             >
-              <h3 class="font-semibold text-green-900">Negative Equity Solutions →</h3>
-              <p class="text-sm text-green-700 mt-1">When you owe more than it's worth</p>
+              <h3 className="font-semibold text-green-900">Negative Equity Solutions →</h3>
+              <p className="text-sm text-green-700 mt-1">When you owe more than it's worth</p>
             </Link>
           </div>
         </div>

@@ -207,14 +207,14 @@ export default function LeaseVsFinancePage() {
             
             <div className="bg-gray-100 p-4 rounded">
               <h4 className="font-semibold text-gray-800 mb-2">Net Cost Comparison</h4>
-              <div class="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <p className="text-gray-700 text-sm"><strong>Leasing net cost:</strong> $29,128 (no asset)</p>
                   <p className="text-gray-700 text-sm"><strong>Financing net cost:</strong> $38,860 - $15,000 = $23,860</p>
                 </div>
                 <div>
-                  <p class="text-green-600 text-sm font-medium"><strong>Winner: Financing saves $5,268</strong></p>
-                  <p class="text-gray-600 text-xs">Plus you own an asset worth $15,000</p>
+                  <p className="text-green-600 text-sm font-medium"><strong>Winner: Financing saves $5,268</strong></p>
+                  <p className="text-gray-600 text-xs">Plus you own an asset worth $15,000</p>
                 </div>
               </div>
             </div>
@@ -222,9 +222,9 @@ export default function LeaseVsFinancePage() {
         </div>
 
         <h2>Decision checklist</h2>
-        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-6 my-8">
-          <h3 class="text-lg font-semibold text-indigo-800 mb-4">Choose Leasing If...</h3>
-          <ul class="text-indigo-700 space-y-2">
+        <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6 my-8">
+          <h3 className="text-lg font-semibold text-indigo-800 mb-4">Choose Leasing If...</h3>
+          <ul className="text-indigo-700 space-y-2">
             <li>□ You want a new car every 2-3 years</li>
             <li>□ You drive less than 12,000 miles per year</li>
             <li>□ You take good care of vehicles</li>
@@ -234,9 +234,9 @@ export default function LeaseVsFinancePage() {
           </ul>
         </div>
 
-        <div class="bg-green-50 border border-green-200 rounded-lg p-6 my-8">
-          <h3 class="text-lg font-semibold text-green-800 mb-4">Choose Financing If...</h3>
-          <ul class="text-green-700 space-y-2">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6 my-8">
+          <h3 className="text-lg font-semibold text-green-800 mb-4">Choose Financing If...</h3>
+          <ul className="text-green-700 space-y-2">
             <li>□ You plan to keep the car 5+ years</li>
             <li>□ You drive more than 15,000 miles per year</li>
             <li>□ You want to modify or customize the vehicle</li>
@@ -247,78 +247,78 @@ export default function LeaseVsFinancePage() {
         </div>
 
         <h2>Advanced lease strategies</h2>
-        <div class="space-y-6 my-8">
-          <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
-            <h4 class="font-semibold text-purple-800 mb-3">Multiple Security Deposit (MSD)</h4>
-            <p class="text-purple-700 text-sm mb-2">Put down extra security deposits to reduce money factor</p>
-            <div class="bg-white rounded p-3">
-              <p class="text-xs text-gray-700">Example: 9 MSDs ($4,500) might reduce money factor from 0.00200 to 0.00050, saving $50+/month</p>
+        <div className="space-y-6 my-8">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
+            <h4 className="font-semibold text-purple-800 mb-3">Multiple Security Deposit (MSD)</h4>
+            <p className="text-purple-700 text-sm mb-2">Put down extra security deposits to reduce money factor</p>
+            <div className="bg-white rounded p-3">
+              <p className="text-xs text-gray-700">Example: 9 MSDs ($4,500) might reduce money factor from 0.00200 to 0.00050, saving $50+/month</p>
             </div>
           </div>
 
-          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-            <h4 class="font-semibold text-yellow-800 mb-3">Lease Transfer/Assumption</h4>
-            <p class="text-yellow-700 text-sm mb-2">Take over someone else's lease to avoid down payment</p>
-            <div class="bg-white rounded p-3">
-              <p class="text-xs text-gray-700">Websites: SwapALease, LeaseTrader — inspect vehicle carefully before assuming</p>
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <h4 className="font-semibold text-yellow-800 mb-3">Lease Transfer/Assumption</h4>
+            <p className="text-yellow-700 text-sm mb-2">Take over someone else's lease to avoid down payment</p>
+            <div className="bg-white rounded p-3">
+              <p className="text-xs text-gray-700">Websites: SwapALease, LeaseTrader — inspect vehicle carefully before assuming</p>
             </div>
           </div>
 
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-            <h4 class="font-semibold text-blue-800 mb-3">Lease-End Buy Option</h4>
-            <p class="text-blue-700 text-sm mb-2">Purchase at residual value if market value is higher</p>
-            <div class="bg-white rounded p-3">
-              <p class="text-xs text-gray-700">If residual is $18K but car is worth $22K, buy and immediately sell for $4K profit</p>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 className="font-semibold text-blue-800 mb-3">Lease-End Buy Option</h4>
+            <p className="text-blue-700 text-sm mb-2">Purchase at residual value if market value is higher</p>
+            <div className="bg-white rounded p-3">
+              <p className="text-xs text-gray-700">If residual is $18K but car is worth $22K, buy and immediately sell for $4K profit</p>
             </div>
           </div>
         </div>
 
-        <div class="bg-gray-50 rounded-lg p-8 mt-12">
-          <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div className="bg-gray-50 rounded-lg p-8 mt-12">
+          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
           
-          <div class="space-y-6">
+          <div className="space-y-6">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">What is a money factor and how do I convert it to APR?</h3>
-              <p class="text-gray-700">Money factor is the lease interest rate in decimal form. Multiply by 2,400 to get the equivalent APR. Example: 0.00125 money factor = 3.0% APR.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">What is a money factor and how do I convert it to APR?</h3>
+              <p className="text-gray-700">Money factor is the lease interest rate in decimal form. Multiply by 2,400 to get the equivalent APR. Example: 0.00125 money factor = 3.0% APR.</p>
             </div>
             
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Can I negotiate a lease like a purchase?</h3>
-              <p class="text-gray-700">Yes! You can negotiate the cap cost (sale price), but residual value and money factor are usually set by the manufacturer. Focus on getting the lowest cap cost.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I negotiate a lease like a purchase?</h3>
+              <p className="text-gray-700">Yes! You can negotiate the cap cost (sale price), but residual value and money factor are usually set by the manufacturer. Focus on getting the lowest cap cost.</p>
             </div>
             
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">What happens if I exceed mileage?</h3>
-              <p class="text-gray-700">You pay excess mileage charges, typically $0.20-0.30 per mile. Going over by 5,000 miles could cost $1,000-1,500. Buy extra miles upfront if you're close to the limit.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">What happens if I exceed mileage?</h3>
+              <p className="text-gray-700">You pay excess mileage charges, typically $0.20-0.30 per mile. Going over by 5,000 miles could cost $1,000-1,500. Buy extra miles upfront if you're close to the limit.</p>
             </div>
 
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Is leasing good for business owners?</h3>
-              <p class="text-gray-700">Often yes, due to tax benefits. You can deduct the business percentage of lease payments, and luxury vehicle deduction limits are less restrictive than purchase depreciation limits.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Is leasing good for business owners?</h3>
+              <p className="text-gray-700">Often yes, due to tax benefits. You can deduct the business percentage of lease payments, and luxury vehicle deduction limits are less restrictive than purchase depreciation limits.</p>
             </div>
           </div>
         </div>
       </article>
 
-      <nav class="mt-16 pt-8 border-t border-gray-200">
-        <div class="grid md:grid-cols-2 gap-8">
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
           <div>
             <Link 
               href="/how-to/get-best-auto-loan-rate" 
-              class="block p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+              className="block p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
             >
-              <h3 class="font-semibold text-indigo-900">← Best Auto Loan Rate</h3>
-              <p class="text-sm text-indigo-700 mt-1">Lock in the lowest APR</p>
+              <h3 className="font-semibold text-indigo-900">← Best Auto Loan Rate</h3>
+              <p className="text-sm text-indigo-700 mt-1">Lock in the lowest APR</p>
             </Link>
           </div>
           
           <div>
             <Link 
               href="/how-to/refinance-car-loan-lower-payment" 
-              class="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
             >
-              <h3 class="font-semibold text-green-900">Refinance Car Loan →</h3>
-              <p class="text-sm text-green-700 mt-1">Lower your monthly payment</p>
+              <h3 className="font-semibold text-green-900">Refinance Car Loan →</h3>
+              <p className="text-sm text-green-700 mt-1">Lower your monthly payment</p>
             </Link>
           </div>
         </div>

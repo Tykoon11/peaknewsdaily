@@ -69,7 +69,7 @@ export default function ChooseDisabilityInsurance() {
 
             <h2>Key Concepts: Understanding Disability Insurance</h2>
 
-            <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 my-8">
+            <div className="bg-cyan-50 border-l-4 border-cyan-500 p-6 my-8">
               <h3 className="text-lg font-semibold mb-4">Essential Definitions</h3>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>

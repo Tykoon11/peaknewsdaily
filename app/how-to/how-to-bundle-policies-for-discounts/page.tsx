@@ -315,7 +315,7 @@ export default function BundlePoliciesForDiscounts() {
 
             <h3>National Insurers</h3>
 
-            <div class="grid md:grid-cols-2 gap-6 my-8">
+            <div className="grid md:grid-cols-2 gap-6 my-8">
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h4 className="font-semibold text-gray-800 mb-3">Strong Bundle Players</h4>
                 <ul className="text-gray-700 space-y-2">
@@ -395,7 +395,7 @@ export default function BundlePoliciesForDiscounts() {
               <li><strong>Payment management:</strong> Automatic payments and billing preferences</li>
             </ul>
 
-            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-8">
+            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-8">
               <h3 className="font-semibold mb-2">⚠️ Bundle Pitfall Warning</h3>
               <p>Never bundle just for convenience or small savings if it means:</p>
               <ul className="mt-2 space-y-1">

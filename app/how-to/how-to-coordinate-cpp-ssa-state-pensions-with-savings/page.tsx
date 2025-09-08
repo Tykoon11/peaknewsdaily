@@ -110,7 +110,7 @@ export default function CoordinatePensionsWithSavingsPage() {
 
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 my-8">
           <h3 className="font-semibold text-yellow-900 mb-4">Breakeven Considerations</h3>
-          <div class="space-y-2">
+          <div className="space-y-2">
             <p className="text-yellow-700 text-sm"><strong>If you expect average longevity:</strong> Delaying often wins financially</p>
             <p className="text-yellow-700 text-sm"><strong>If you have serious health issues:</strong> Taking benefits early may be better</p>
             <p className="text-yellow-700 text-sm"><strong>Don't forget inflation protection:</strong> Government pensions include cost-of-living adjustments</p>

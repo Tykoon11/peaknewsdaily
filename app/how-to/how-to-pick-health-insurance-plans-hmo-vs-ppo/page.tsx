@@ -231,7 +231,7 @@ export default function HMOvsPPOHealthInsurance() {
 
             <p>Don't just compare premiums—estimate your total healthcare spending:</p>
 
-            <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 my-8">
+            <div className="bg-cyan-50 border-l-4 border-cyan-500 p-6 my-8">
               <h4 className="font-semibold mb-2">Total Cost Formula</h4>
               <p className="font-mono text-center">
                 <strong>Annual Cost = </strong><br/>

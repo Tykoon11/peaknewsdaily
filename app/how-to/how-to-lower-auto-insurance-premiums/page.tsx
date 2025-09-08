@@ -307,7 +307,7 @@ export default function LowerAutoInsurancePremiums() {
 
             <p>Many insurers charge installment fees for monthly payments. Paying in larger chunks can save money.</p>
 
-            <div class="overflow-x-auto">
+            <div className="overflow-x-auto">
               <table className="min-w-full border border-gray-300 mb-6">
                 <thead className="bg-gray-50">
                   <tr>
@@ -385,7 +385,7 @@ export default function LowerAutoInsurancePremiums() {
               <li><strong>When car value decreases:</strong> May drop comprehensive/collision</li>
             </ul>
 
-            <div class="bg-red-50 border-l-4 border-red-500 p-6 my-8">
+            <div className="bg-red-50 border-l-4 border-red-500 p-6 my-8">
               <h3 className="font-semibold mb-2">⚠️ Avoid Coverage Gaps</h3>
               <p>Never let your insurance lapse, even for a day. Coverage gaps can result in:</p>
               <ul className="mt-2 space-y-1">

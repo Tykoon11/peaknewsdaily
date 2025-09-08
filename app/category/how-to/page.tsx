@@ -547,7 +547,7 @@ export default function HowToPage() {
                     <h3 className="text-xl font-bold text-gray-900">Beginner Guides</h3>
                   </div>
                   <div className="space-y-4">
-                    {section.guides.filter((guide) => typeof guide === 'object' && guide.difficulty === 'Beginner').map((guide, guideIndex) => (
+                    {section.guides.filter((guide): guide is {title: string, description: string, difficulty: string, readTime: string} => typeof guide === 'object' && 'difficulty' in guide && guide.difficulty === 'Beginner').map((guide, guideIndex) => (
                       <Link
                         key={guideIndex}
                         href={`/how-to/${createSlug(guide.title)}`}
@@ -593,7 +593,7 @@ export default function HowToPage() {
                     <h3 className="text-xl font-bold text-gray-900">Intermediate & Advanced</h3>
                   </div>
                   <div className="space-y-4">
-                    {section.guides.filter((guide) => typeof guide === 'object' && (guide.difficulty === 'Intermediate' || guide.difficulty === 'Advanced')).map((guide, guideIndex) => (
+                    {section.guides.filter((guide): guide is {title: string, description: string, difficulty: string, readTime: string} => typeof guide === 'object' && 'difficulty' in guide && (guide.difficulty === 'Intermediate' || guide.difficulty === 'Advanced')).map((guide, guideIndex) => (
                       <Link
                         key={guideIndex}
                         href={`/how-to/${createSlug(guide.title)}`}

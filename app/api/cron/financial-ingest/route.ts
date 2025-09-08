@@ -85,7 +85,7 @@ async function fetchRealCryptoPrice(symbol: string): Promise<any> {
   } catch (error) {
     console.error(`Failed to fetch real crypto price for ${symbol}:`, error)
     // Don't return 0 values - throw error so we skip this update and keep last known prices
-    throw new Error(`Unable to fetch crypto data for ${symbol}: ${error.message}`)
+    throw new Error(`Unable to fetch crypto data for ${symbol}: ${error instanceof Error ? error.message : String(error)}`)
   }
 }
 

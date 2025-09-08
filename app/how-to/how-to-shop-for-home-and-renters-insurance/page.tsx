@@ -93,7 +93,7 @@ export default function ShopHomeAndRentersInsurance() {
                     <li>• <strong>Liability:</strong> Injury/damage claims</li>
                     <li>• <strong>Medical Payments:</strong> Guest injuries</li>
                   </ul>
-                  <p class="text-cyan-600 text-sm mt-3">
+                  <p className="text-cyan-600 text-sm mt-3">
                     <strong>Note:</strong> Building structure covered by landlord's policy
                   </p>
                 </div>
