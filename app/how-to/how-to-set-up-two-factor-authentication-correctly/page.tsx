@@ -90,35 +90,35 @@ export default function SetUpTwoFactorPage() {
         
         <div className="space-y-4 my-8">
           <div className="flex items-start">
-            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;1</span>
+            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">1</span>
             <div>
               <p className="text-gray-700 font-medium">Turn on 2FA in broker settings</p>
               <p className="text-gray-600 text-sm">Usually found under "Security" or "Account Settings"</p>
             </div>
           </div>
           <div className="flex items-start">
-            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;2</span>
+            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">2</span>
             <div>
               <p className="text-gray-700 font-medium">Scan QR code in authenticator app</p>
               <p className="text-gray-600 text-sm">Google Authenticator, Authy, Microsoft Authenticator, or 1Password</p>
             </div>
           </div>
           <div className="flex items-start">
-            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;3</span>
+            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">3</span>
             <div>
               <p className="text-gray-700 font-medium">Save backup codes</p>
               <p className="text-gray-600 text-sm">Print them or store in a password manager—not just screenshots</p>
             </div>
           </div>
           <div className="flex items-start">
-            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;4</span>
+            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">4</span>
             <div>
               <p className="text-gray-700 font-medium">Add second method (if available)</p>
               <p className="text-gray-600 text-sm">Hardware key as backup to authenticator app</p>
             </div>
           </div>
           <div className="flex items-start">
-            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1"&gt;5</span>
+            <span className="bg-indigo-100 text-indigo-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">5</span>
             <div>
               <p className="text-gray-700 font-medium">Test the setup</p>
               <p className="text-gray-600 text-sm">Log out and log back in to verify it works</p>
@@ -134,7 +134,7 @@ export default function SetUpTwoFactorPage() {
                 <li>• <strong>Google Authenticator:</strong> Simple, reliable</li>
                 <li>• <strong>Authy:</strong> Cloud backup, multi-device</li>
                 <li>• <strong>Microsoft Authenticator:</strong> Push notifications</li>
-                <li>• <strong&gt;1Password:</strong> Integrated with password manager</li>
+                <li>• <strong>1Password:</strong> Integrated with password manager</li>
               </ul>
             </div>
             <div>

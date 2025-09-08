@@ -81,7 +81,7 @@ export default function LegalFairTenantScreeningPage() {
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold"&gt;1</span>
+                  <span className="text-pink-600 font-semibold">1</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Publish Written Criteria</h4>
@@ -97,7 +97,7 @@ export default function LegalFairTenantScreeningPage() {
               
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold"&gt;2</span>
+                  <span className="text-pink-600 font-semibold">2</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Pre-Screen Via Form</h4>
@@ -114,7 +114,7 @@ export default function LegalFairTenantScreeningPage() {
               
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold"&gt;3</span>
+                  <span className="text-pink-600 font-semibold">3</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Application & Disclosures</h4>
@@ -130,7 +130,7 @@ export default function LegalFairTenantScreeningPage() {
               
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold"&gt;4</span>
+                  <span className="text-pink-600 font-semibold">4</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Verification Process</h4>
@@ -146,7 +146,7 @@ export default function LegalFairTenantScreeningPage() {
               
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold"&gt;5</span>
+                  <span className="text-pink-600 font-semibold">5</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Background Reports</h4>
@@ -162,7 +162,7 @@ export default function LegalFairTenantScreeningPage() {
               
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold"&gt;6</span>
+                  <span className="text-pink-600 font-semibold">6</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Adjudication & Documentation</h4>
@@ -178,7 +178,7 @@ export default function LegalFairTenantScreeningPage() {
               
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold"&gt;7</span>
+                  <span className="text-pink-600 font-semibold">7</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Decision Communication</h4>

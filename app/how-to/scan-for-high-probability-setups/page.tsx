@@ -149,7 +149,7 @@ export default function ScanHighProbabilitySetupsPage() {
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h3 className="font-semibold text-gray-900 mb-2">How many watchlist names?</h3>
-                  <p className="text-gray-600"&gt;10–30 focused is ideal.</p>
+                  <p className="text-gray-600">10–30 focused is ideal.</p>
                 </div>
               </div>
             </div>
