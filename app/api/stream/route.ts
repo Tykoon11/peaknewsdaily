@@ -7,6 +7,7 @@ import { NextRequest } from 'next/server'
 import { getPriceSnapshots, getEquityMarketState, getVolatilityScores } from '@/lib/redis'
 import { getEquityMarketState as getCurrentMarketState, MarketState } from '@/lib/marketState'
 import { activeConnections, PriceEvent } from '@/lib/stream-broadcast'
+import { prisma } from '@/lib/prisma'
 
 /**
  * GET /api/stream - SSE endpoint for live price streaming
@@ -84,28 +85,26 @@ async function sendInitialSnapshot(
     const cryptoSymbols = symbols.filter(sym => sym.includes('-USD') || sym.includes('USD'))
     const volScores = cryptoSymbols.length > 0 ? await getVolatilityScores(cryptoSymbols) : {}
     
-    // Build snapshot data
-    const symbolData = symbols.map(sym => {
+    // Build snapshot data - only include symbols with valid data
+    const symbolData = []
+    for (const sym of symbols) {
       const snapshot = snapshots[sym]
-      if (!snapshot) {
-        // Return placeholder data for missing symbols
-        return {
-          sym,
-          price: 0,
-          changePct: 0,
-          ts: Date.now(),
+      if (snapshot && snapshot.price > 0) {
+        symbolData.push({
+          sym: snapshot.sym,
+          price: snapshot.price,
+          changePct: snapshot.changePct,
+          ts: snapshot.ts,
           volScore: volScores[sym] || 0.5
-        }
+        })
       }
-      
-      return {
-        sym: snapshot.sym,
-        price: snapshot.price,
-        changePct: snapshot.changePct,
-        ts: snapshot.ts,
-        volScore: volScores[sym]
-      }
-    })
+    }
+    
+    // If no valid snapshots from Redis, try fallback to database
+    if (symbolData.length === 0) {
+      const fallbackData = await getFallbackPriceData(symbols)
+      symbolData.push(...fallbackData)
+    }
     
     const snapshotEvent: PriceEvent = {
       t: 'snapshot',
@@ -120,12 +119,14 @@ async function sendInitialSnapshot(
   } catch (err) {
     console.error('Failed to build initial snapshot:', err)
     
-    // Send empty snapshot on error
+    // Try fallback to database before sending empty snapshot
+    const fallbackData = await getFallbackPriceData(symbols)
+    
     const errorSnapshot: PriceEvent = {
       t: 'snapshot',
       at: Date.now(),
       equitiesState: 'CLOSED',
-      symbols: symbols.map(sym => ({
+      symbols: fallbackData.length > 0 ? fallbackData : symbols.map(sym => ({
         sym,
         price: 0,
         changePct: 0,
@@ -135,6 +136,42 @@ async function sendInitialSnapshot(
     
     const eventData = `event: snapshot\ndata: ${JSON.stringify(errorSnapshot)}\n\n`
     controller.enqueue(new TextEncoder().encode(eventData))
+  }
+}
+
+/**
+ * Fallback to database when Redis cache is empty
+ */
+async function getFallbackPriceData(symbols: string[]): Promise<any[]> {
+  try {
+    const dbQuotes = await prisma.quote.findMany({
+      where: {
+        asset: { 
+          symbol: { 
+            in: symbols.map(s => s.toUpperCase()) 
+          }
+        }
+      },
+      include: {
+        asset: true
+      },
+      orderBy: { timestamp: 'desc' },
+      distinct: ['assetId']
+    })
+
+    return dbQuotes
+      .filter(quote => parseFloat(quote.price) > 0)
+      .map(quote => ({
+        sym: quote.asset.symbol,
+        price: parseFloat(quote.price),
+        changePct: quote.changePercent ? parseFloat(quote.changePercent) : 0,
+        ts: quote.timestamp.getTime(),
+        volScore: 0.5
+      }))
+
+  } catch (err) {
+    console.error('Failed to fetch fallback price data:', err)
+    return []
   }
 }
 

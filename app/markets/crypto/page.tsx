@@ -409,64 +409,148 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
   const activeCryptos = cryptos.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Cryptocurrency Market 2025
+      {/* Premium Crypto Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-orange-900 via-amber-800 to-yellow-900">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-1/2 right-0 w-96 h-96 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        {/* Digital Currency Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f59e0b12_1px,transparent_1px),linear-gradient(to_bottom,#f59e0b12_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        
+        <div className="relative container py-20">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* Live Crypto Status */}
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-orange-500/20 border border-orange-400/30 text-orange-200 text-sm font-medium mb-8 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse mr-3"></div>
+              CRYPTO MARKETS • 24/7 TRADING • LIVE DATA
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-orange-100 to-amber-200 leading-tight">
+              Digital Asset
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
+                Trading Hub
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-              Real-time crypto prices, market analysis, and trading insights. 
-              Track Bitcoin, Ethereum, and 500+ cryptocurrencies with professional-grade data.
+            
+            <p className="text-xl md:text-2xl text-orange-100/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Professional cryptocurrency analysis, real-time market data, and institutional-grade insights for digital asset traders.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className="bg-purple-800 px-4 py-2 rounded-full">✓ Live Price Data</span>
-              <span className="bg-purple-800 px-4 py-2 rounded-full">✓ Market Analysis</span>
-              <span className="bg-purple-800 px-4 py-2 rounded-full">✓ Trading Insights</span>
-              <span className="bg-purple-800 px-4 py-2 rounded-full">✓ Portfolio Tracking</span>
+            
+            {/* Feature Pills */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              {[
+                { icon: '⚡', text: 'Real-Time Data' },
+                { icon: '🔍', text: 'Technical Analysis' },
+                { icon: '📊', text: 'Market Insights' },
+                { icon: '💼', text: 'Portfolio Tracking' }
+              ].map((feature, index) => (
+                <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                  <span className="text-lg">{feature.icon}</span>
+                  <span className="text-white font-medium text-sm">{feature.text}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Market Overview Stats */}
-      <section className="py-12 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-purple-600">{activeCryptos}</div>
-              <div className="text-gray-600">Cryptocurrencies</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600">
-                ${totalMarketCap >= 1000000000000 
-                  ? (totalMarketCap / 1000000000000).toFixed(2) + 'T' 
-                  : (totalMarketCap / 1000000000).toFixed(0) + 'B'
-                }
+      {/* Premium Market Overview */}
+      <section className="py-16">
+        <div className="container">
+          <div className="relative bg-gradient-to-br from-slate-900 via-gray-900 to-black rounded-3xl p-8 shadow-2xl shadow-slate-900/20 overflow-hidden mb-16">
+            {/* Background Effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.15),transparent_70%)]"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-orange-500/20 to-transparent rounded-full blur-3xl"></div>
+            
+            <div className="relative">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold text-white mb-2">Global Crypto Market Overview</h2>
+                <p className="text-slate-300">Real-time statistics from the digital asset markets</p>
               </div>
-              <div className="text-gray-600">Total Market Cap</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600">{positiveChanges}</div>
-              <div className="text-gray-600">Gainers (24h)</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-orange-600">24/7</div>
-              <div className="text-gray-600">Market Hours</div>
+              
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg">
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2L15.09 8.26L22 9L18 13.14L19.09 21L12 17.77L4.91 21L6 13.14L2 9L8.91 8.26L12 2Z"/>
+                        </svg>
+                      </div>
+                      <div className="text-3xl font-black text-white">{activeCryptos}</div>
+                    </div>
+                    <div className="text-slate-300 font-medium">Tracked Assets</div>
+                  </div>
+                </div>
+                
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl font-black text-green-400">
+                        ${totalMarketCap >= 1000000000000 
+                          ? (totalMarketCap / 1000000000000).toFixed(2) + 'T' 
+                          : (totalMarketCap / 1000000000).toFixed(0) + 'B'
+                        }
+                      </div>
+                    </div>
+                    <div className="text-slate-300 font-medium">Market Cap</div>
+                  </div>
+                </div>
+                
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl font-black text-blue-400">{positiveChanges}</div>
+                    </div>
+                    <div className="text-slate-300 font-medium">24h Gainers</div>
+                  </div>
+                </div>
+                
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="text-3xl font-black text-orange-400">24/7</div>
+                    </div>
+                    <div className="text-slate-300 font-medium">Always Open</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="container py-8">
         
         {/* Crypto Categories */}
         <section className="mb-16">

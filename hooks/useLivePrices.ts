@@ -320,11 +320,11 @@ export function useLivePrices(options: UseLivePricesOptions) {
         
         const pollPrices = async () => {
           try {
-            // Poll Redis directly via API (you'd need to create this endpoint)
+            // Use the new prices API with fallback support
             const response = await fetch(`/api/prices?symbols=${symbols.join(',')}`)
             const data = await response.json()
             
-            if (data.prices) {
+            if (data.prices && Object.keys(data.prices).length > 0) {
               setState(prev => ({
                 ...prev,
                 prices: data.prices,
@@ -334,6 +334,10 @@ export function useLivePrices(options: UseLivePricesOptions) {
             }
           } catch (err) {
             console.error('Fallback polling error:', err)
+            setState(prev => ({
+              ...prev,
+              error: 'Failed to fetch price data'
+            }))
           }
         }
         
