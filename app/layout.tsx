@@ -7,9 +7,9 @@ import { Providers } from '@/components/providers'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
 import Plausible from '@/components/plausible'
+import ThemeScript from '@/components/theme-script'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/next'
-// Theme switching removed; Source is the default style
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,9 +28,18 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning data-theme="source">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="system" 
+          enableSystem
+          disableTransitionOnChange={false}
+          storageKey="theme"
+        >
           <Providers>
             <Suspense>
               <Plausible />

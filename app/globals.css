@@ -97,17 +97,17 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   @apply text-red-400;
 }
 
-/* Custom prose styles for education articles */
+/* Enhanced prose styles for education articles with theme support */
 .prose-education {
   @apply prose prose-lg max-w-none;
-  @apply prose-headings:text-gray-900;
+  @apply prose-headings:text-gray-900 dark:prose-headings:text-gray-100;
   @apply prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg;
-  @apply prose-p:text-gray-700 prose-li:text-gray-700;
-  @apply prose-strong:text-gray-900 prose-strong:font-semibold;
-  @apply prose-code:text-pink-600 prose-code:bg-pink-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded;
+  @apply prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300;
+  @apply prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-strong:font-semibold;
+  @apply prose-code:text-pink-600 dark:prose-code:text-pink-400 prose-code:bg-pink-50 dark:prose-code:bg-pink-900/30 prose-code:px-1 prose-code:py-0.5 prose-code:rounded;
   @apply prose-pre:bg-gray-900 prose-pre:text-gray-100;
-  @apply prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50;
-  @apply prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline;
+  @apply prose-blockquote:border-blue-500 dark:prose-blockquote:border-blue-400 prose-blockquote:bg-blue-50 dark:prose-blockquote:bg-blue-900/20;
+  @apply prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline;
 }
 
 /* Focus styles */
@@ -136,10 +136,77 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Smooth transitions for theme changes */
-* {
-  transition-property: color, background-color, border-color;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
+/* Enhanced theme transitions - Beautiful and smooth */
+*,
+*::before,
+*::after {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable transitions on theme change to prevent flash */
+.theme-transition-disabled *,
+.theme-transition-disabled *::before,
+.theme-transition-disabled *::after {
+  transition-duration: 0ms !important;
+}
+
+/* Dark mode enhancements */
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+/* Beautiful gradient backgrounds for theme switching */
+.theme-gradient-light {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    rgba(147, 51, 234, 0.1) 100%);
+}
+
+.theme-gradient-dark {
+  background: linear-gradient(135deg, 
+    rgba(30, 41, 59, 0.8) 0%, 
+    rgba(51, 65, 85, 0.8) 100%);
+}
+
+/* Enhanced focus states for dark mode */
+.dark .focus-ring {
+  @apply focus:ring-blue-400 focus:ring-offset-gray-900;
+}
+
+/* Professional dark mode prose styles */
+.dark .prose-education {
+  @apply prose-headings:text-gray-100;
+  @apply prose-p:text-gray-300 prose-li:text-gray-300;
+  @apply prose-strong:text-gray-100 prose-strong:font-semibold;
+  @apply prose-code:text-pink-400 prose-code:bg-pink-900/30 prose-code:px-1 prose-code:py-0.5 prose-code:rounded;
+  @apply prose-pre:bg-gray-800 prose-pre:text-gray-100;
+  @apply prose-blockquote:border-blue-400 prose-blockquote:bg-blue-900/20;
+  @apply prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline;
+}
+
+/* Market data specific theme styles */
+.market-card-light {
+  @apply bg-white border-gray-200 shadow-sm hover:shadow-md;
+}
+
+.market-card-dark {
+  @apply bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl;
+}
+
+/* Animated theme switch effect */
+@keyframes theme-switch {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.02); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.theme-switch-animation {
+  animation: theme-switch 0.3s ease-out;
 }
 

@@ -136,15 +136,15 @@ export default function MarketOverview() {
   if (isLoading) {
     return (
       <section className="mb-12">
-        <div className="bg-white rounded-xl border p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border dark:border-gray-700 p-6">
           <div className="animate-pulse">
-            <div className="h-6 bg-gray-200 rounded w-48 mb-4"></div>
+            <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-48 mb-4"></div>
             <div className="grid md:grid-cols-4 gap-4">
               {[...Array(8)].map((_, i) => (
                 <div key={i} className="space-y-2">
-                  <div className="h-4 bg-gray-200 rounded w-20"></div>
-                  <div className="h-6 bg-gray-200 rounded w-24"></div>
-                  <div className="h-4 bg-gray-200 rounded w-16"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20"></div>
+                  <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-24"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-16"></div>
                 </div>
               ))}
             </div>
@@ -157,8 +157,8 @@ export default function MarketOverview() {
   if (error) {
     return (
       <section className="mb-12">
-        <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-          <p className="text-red-600">{error}</p>
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6 text-center">
+          <p className="text-red-600 dark:text-red-400">{error}</p>
         </div>
       </section>
     )
@@ -171,7 +171,7 @@ export default function MarketOverview() {
         {/* Stock data status */}
         <div className="flex items-center gap-1">
           <div className={`w-2 h-2 rounded-full ${stockLivePrices.connected ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
-          <span className="text-gray-600">
+          <span className="text-gray-600 dark:text-gray-400">
             Stocks: {stockLivePrices.connected ? 'Live' : 'Delayed'} 
             {stockLivePrices.connected && (
               <span className={`ml-1 px-1 py-0.5 rounded text-xs ${getMarketStateColor(stockLivePrices.marketState)}`}>
@@ -184,21 +184,21 @@ export default function MarketOverview() {
         {/* Crypto data status */}
         <div className="flex items-center gap-1">
           <div className={`w-2 h-2 rounded-full ${cryptoLivePrices.connected ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
-          <span className="text-gray-600">Crypto: {cryptoLivePrices.connected ? 'Live' : 'Delayed'}</span>
+          <span className="text-gray-600 dark:text-gray-400">Crypto: {cryptoLivePrices.connected ? 'Live' : 'Delayed'}</span>
         </div>
         
         {/* Last update */}
         {(stockLivePrices.connected || cryptoLivePrices.connected) && (
-          <div className="text-gray-500">
+          <div className="text-gray-500 dark:text-gray-400">
             Last: {formatTimestampET(Math.max(stockLivePrices.lastUpdate, cryptoLivePrices.lastUpdate))}
           </div>
         )}
       </div>
       {/* Major Indices & Stocks */}
-      <div className="bg-white rounded-xl border mb-6 overflow-hidden">
-        <div className="border-b p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-xl border dark:border-gray-700 mb-6 overflow-hidden">
+        <div className="border-b dark:border-gray-700 p-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
               <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                 <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M7 14l5-5 5 5z"/>
@@ -208,7 +208,7 @@ export default function MarketOverview() {
             </h2>
             <Link 
               href="/markets/stocks" 
-              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
             >
               View All →
             </Link>
@@ -219,11 +219,11 @@ export default function MarketOverview() {
             {stockQuotes.slice(0, 8).map((quote) => {
               const change = formatChange(quote.change, quote.changePercent)
               return (
-                <div key={quote.symbol} className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <div key={quote.symbol} className="p-3 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-bold text-gray-900">{quote.symbol}</span>
+                    <span className="text-sm font-bold text-gray-900 dark:text-gray-100">{quote.symbol}</span>
                     <span className={`text-xs px-2 py-1 rounded-full ${
-                      quote.marketStatus === 'open' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'
+                      quote.marketStatus === 'open' ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                     }`}>
                       {quote.marketStatus === 'open' ? 'OPEN' : 'CLOSED'}
                     </span>
@@ -237,7 +237,7 @@ export default function MarketOverview() {
                   }`}>
                     {change.text}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1 truncate">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">
                     {quote.name}
                   </div>
                 </div>
@@ -249,10 +249,10 @@ export default function MarketOverview() {
 
       {/* Cryptocurrency */}
       {cryptoQuotes.length > 0 && (
-        <div className="bg-white rounded-xl border overflow-hidden">
-          <div className="border-b p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border dark:border-gray-700 overflow-hidden">
+          <div className="border-b dark:border-gray-700 p-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold flex items-center gap-2">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
                 <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -262,7 +262,7 @@ export default function MarketOverview() {
               </h2>
               <Link 
                 href="/markets/crypto" 
-                className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
               >
                 View All →
               </Link>
@@ -276,16 +276,16 @@ export default function MarketOverview() {
                 const isHighVol = cryptoLivePrices.connected && cryptoLivePrices.isHighVolatility(quote.symbol)
                 
                 return (
-                  <div key={quote.symbol} className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                  <div key={quote.symbol} className="p-3 border dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-bold text-gray-900">{displaySymbol}</span>
+                      <span className="text-sm font-bold text-gray-900 dark:text-gray-100">{displaySymbol}</span>
                       <div className="flex items-center gap-1">
                         {isHighVol && (
                           <span className="text-xs px-1 py-0.5 rounded bg-red-100 text-red-700" title="High Volatility">
                             🔥
                           </span>
                         )}
-                        <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">24/7</span>
+                        <span className="text-xs px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400">24/7</span>
                       </div>
                     </div>
                     <div className="text-lg font-semibold mb-1">
@@ -297,7 +297,7 @@ export default function MarketOverview() {
                     }`}>
                       {change.text}
                     </div>
-                    <div className="text-xs text-gray-500 mt-1 truncate">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">
                       {quote.name}
                     </div>
                   </div>
