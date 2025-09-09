@@ -160,11 +160,11 @@ async function getFallbackPriceData(symbols: string[]): Promise<any[]> {
     })
 
     return dbQuotes
-      .filter(quote => parseFloat(quote.price) > 0)
+      .filter(quote => parseFloat(quote.price.toString()) > 0)
       .map(quote => ({
         sym: quote.asset.symbol,
-        price: parseFloat(quote.price),
-        changePct: quote.changePercent ? parseFloat(quote.changePercent) : 0,
+        price: parseFloat(quote.price.toString()),
+        changePct: quote.changePercent ? parseFloat(quote.changePercent.toString()) : 0,
         ts: quote.timestamp.getTime(),
         volScore: 0.5
       }))

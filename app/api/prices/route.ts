@@ -60,8 +60,8 @@ export async function GET(request: NextRequest) {
 
       // Add database results to prices
       for (const quote of dbQuotes) {
-        const currentPrice = parseFloat(quote.price)
-        const changePercent = quote.changePercent ? parseFloat(quote.changePercent) : 0
+        const currentPrice = parseFloat(quote.price.toString())
+        const changePercent = quote.changePercent ? parseFloat(quote.changePercent.toString()) : 0
         
         prices[quote.asset.symbol] = {
           sym: quote.asset.symbol,
