@@ -121,7 +121,7 @@ export default async function NewsPage() {
         </div>
       </section>
 
-      <main className="bg-gradient-to-b from-slate-50 to-white">
+      <main className="bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           
           {/* Featured Stories */}
@@ -133,8 +133,8 @@ export default async function NewsPage() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">Featured Stories</h2>
-                <p className="text-slate-600 text-sm sm:text-base">Top market-moving news and analysis</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Featured Stories</h2>
+                <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Top market-moving news and analysis</p>
               </div>
             </div>
             
@@ -143,7 +143,7 @@ export default async function NewsPage() {
                 <Link
                   key={item.id}
                   href={`/news/${item.slug}`}
-                  className="group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-100"
+                  className="group relative bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-100 dark:border-gray-700"
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
                   <div className="aspect-video bg-gradient-to-br from-red-500 to-orange-600 relative overflow-hidden">
@@ -160,19 +160,19 @@ export default async function NewsPage() {
                     </div>
                   </div>
                   <div className="p-6 sm:p-8 relative z-20">
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-3 group-hover:text-red-600 transition-colors leading-tight line-clamp-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-gray-100 mb-3 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-tight line-clamp-2">
                       {item.title}
                     </h3>
                     {item.excerpt && (
-                      <p className="text-slate-600 text-sm sm:text-base mb-4 line-clamp-3 leading-relaxed">
+                      <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base mb-4 line-clamp-3 leading-relaxed">
                         {item.excerpt}
                       </p>
                     )}
                     <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm font-semibold text-slate-500">
+                      <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-gray-400">
                         {item.sourceName}
                       </span>
-                      <svg className="w-5 h-5 text-slate-400 group-hover:text-red-500 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-slate-400 dark:text-gray-500 group-hover:text-red-500 dark:group-hover:text-red-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </div>
@@ -192,8 +192,8 @@ export default async function NewsPage() {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">Latest Stories</h2>
-                  <p className="text-slate-600 text-sm sm:text-base">Real-time market updates and analysis</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Latest Stories</h2>
+                  <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Real-time market updates and analysis</p>
                 </div>
               </div>
               
@@ -201,9 +201,9 @@ export default async function NewsPage() {
                 {latestNews.slice(4).map((item, index) => (
                   <article
                     key={item.id}
-                    className="group bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-4 sm:p-6 hover:shadow-lg hover:border-slate-300 transition-all duration-300"
+                    className="group bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-gray-700 p-4 sm:p-6 hover:shadow-lg hover:border-slate-300 dark:hover:border-gray-600 transition-all duration-300"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-3">
                       <Link
                         href={`/news/topic/${item.topic.slug}`}
                         className="px-2 sm:px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full hover:from-blue-600 hover:to-indigo-700 transition-colors capitalize font-medium w-fit"
@@ -213,14 +213,14 @@ export default async function NewsPage() {
                       <span className="hidden sm:inline">•</span>
                       <span className="font-medium">{item.sourceName}</span>
                       <span className="hidden sm:inline">•</span>
-                      <time className="text-slate-400">{formatDistanceToNow(new Date(item.publishedAt))} ago</time>
+                      <time className="text-slate-400 dark:text-gray-500">{formatDistanceToNow(new Date(item.publishedAt))} ago</time>
                     </div>
                     <Link href={`/news/${item.slug}`} className="block">
-                      <h3 className="text-lg sm:text-xl font-bold group-hover:text-blue-600 transition-colors mb-2 sm:mb-3 leading-tight">
+                      <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2 sm:mb-3 leading-tight">
                         {item.title}
                       </h3>
                       {item.excerpt && (
-                        <p className="text-slate-600 text-sm sm:text-base line-clamp-2 leading-relaxed">
+                        <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base line-clamp-2 leading-relaxed">
                           {item.excerpt}
                         </p>
                       )}
@@ -233,14 +233,14 @@ export default async function NewsPage() {
             {/* Sidebar */}
             <aside className="space-y-6 sm:space-y-8">
               {/* Breaking News */}
-              <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-red-100/50 shadow-lg">
+              <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:bg-gradient-to-br dark:from-red-900/20 dark:to-orange-900/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-red-100/50 dark:border-red-800/50 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 bg-gradient-to-r from-red-500 to-orange-600 rounded-lg shadow-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800">Breaking News</h3>
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-gray-100">Breaking News</h3>
                 </div>
                 
                 <div className="space-y-4">
@@ -250,10 +250,10 @@ export default async function NewsPage() {
                       href={`/news/${item.slug}`}
                       className="block group"
                     >
-                      <h4 className="font-semibold group-hover:text-red-600 transition-colors text-sm sm:text-base leading-tight line-clamp-2 mb-2">
+                      <h4 className="font-semibold text-slate-800 dark:text-gray-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors text-sm sm:text-base leading-tight line-clamp-2 mb-2">
                         {item.title}
                       </h4>
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-slate-500 dark:text-gray-400">
                         {formatDistanceToNow(new Date(item.publishedAt))} ago • {item.sourceName}
                       </div>
                     </Link>
@@ -262,14 +262,14 @@ export default async function NewsPage() {
               </div>
 
               {/* Topics */}
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 shadow-lg">
+              <div className="bg-gradient-to-br from-slate-50 to-blue-50 dark:bg-gradient-to-br dark:from-gray-800 dark:to-blue-900/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 dark:border-gray-700 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg shadow-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800">News Topics</h3>
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-gray-100">News Topics</h3>
                 </div>
                 
                 <div className="space-y-4">
@@ -277,15 +277,15 @@ export default async function NewsPage() {
                     <Link
                       key={topic.id}
                       href={`/news/topic/${topic.slug}`}
-                      className="block group bg-white rounded-lg p-4 border border-blue-100/50 hover:border-blue-200 hover:shadow-md transition-all"
+                      className="block group bg-white dark:bg-gray-700 rounded-lg p-4 border border-blue-100/50 dark:border-gray-600 hover:border-blue-200 dark:hover:border-gray-500 hover:shadow-md transition-all"
                     >
-                      <h4 className="font-semibold group-hover:text-blue-600 transition-colors capitalize mb-1 text-sm sm:text-base">
+                      <h4 className="font-semibold text-slate-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors capitalize mb-1 text-sm sm:text-base">
                         {topic.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-slate-600 mb-2 line-clamp-2">
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 mb-2 line-clamp-2">
                         {topic.description || 'Latest updates and analysis'}
                       </p>
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-slate-500 dark:text-gray-400">
                         {topic._count?.NewsItem || 0} articles
                       </div>
                     </Link>

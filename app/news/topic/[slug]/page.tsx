@@ -33,7 +33,7 @@ export default async function TopicPage({ params }: { params: { slug: string } }
   return (
     <>
       {/* Premium Topic Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
@@ -99,21 +99,21 @@ export default async function TopicPage({ params }: { params: { slug: string } }
         </div>
       </section>
 
-      <main className="bg-gradient-to-b from-slate-50 to-white">
+      <main className="bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           <div className="grid gap-8 lg:grid-cols-3">
             
             {/* Articles List */}
             <div className="lg:col-span-2">
               {newsItems.length === 0 ? (
-                <div className="text-center py-12 sm:py-16 bg-white rounded-xl sm:rounded-2xl shadow-lg border border-slate-200">
+                <div className="text-center py-12 sm:py-16 bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg dark:shadow-2xl border border-slate-200 dark:border-gray-700">
                   <div className="p-6 sm:p-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 flex items-center justify-center">
                     <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
                     </svg>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2">No Articles Yet</h3>
-                  <p className="text-slate-600">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-gray-100 mb-2">No Articles Yet</h3>
+                  <p className="text-slate-600 dark:text-gray-300">
                     No articles found for this topic yet. Check back soon for updates!
                   </p>
                 </div>
@@ -122,7 +122,7 @@ export default async function TopicPage({ params }: { params: { slug: string } }
                   {newsItems.map((item, index) => (
                     <article
                       key={item.id}
-                      className="group bg-white rounded-xl sm:rounded-2xl border border-slate-200 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                      className="group bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-gray-700 overflow-hidden shadow-lg dark:shadow-2xl hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
                     >
                       {/* Featured Article (First One) */}
                       {index === 0 && (
@@ -142,20 +142,20 @@ export default async function TopicPage({ params }: { params: { slug: string } }
                       )}
                       
                       <div className="p-4 sm:p-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 mb-3">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-3">
                           <span className="font-medium">{item.sourceName}</span>
                           <span className="hidden sm:inline">•</span>
-                          <time className="text-slate-400">{formatDistanceToNow(new Date(item.publishedAt))} ago</time>
+                          <time className="text-slate-400 dark:text-gray-500">{formatDistanceToNow(new Date(item.publishedAt))} ago</time>
                         </div>
                         
                         <Link href={`/news/${item.slug}`} className="block">
-                          <h2 className={`font-bold group-hover:text-indigo-600 transition-colors mb-2 sm:mb-3 leading-tight ${
+                          <h2 className={`font-bold text-slate-800 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-2 sm:mb-3 leading-tight ${
                             index === 0 ? 'text-xl sm:text-2xl' : 'text-lg sm:text-xl'
                           }`}>
                             {item.title}
                           </h2>
                           {item.excerpt && (
-                            <p className="text-slate-600 text-sm sm:text-base line-clamp-3 leading-relaxed">
+                            <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base line-clamp-3 leading-relaxed">
                               {item.excerpt}
                             </p>
                           )}
@@ -169,14 +169,14 @@ export default async function TopicPage({ params }: { params: { slug: string } }
 
             {/* Sidebar */}
             <aside className="space-y-6 sm:space-y-8">
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-indigo-100/50 shadow-lg">
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-indigo-100/50 dark:border-gray-600 shadow-lg dark:shadow-2xl">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800">All Topics</h3>
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-gray-100">All Topics</h3>
                 </div>
                 
                 <div className="space-y-2">
@@ -187,14 +187,14 @@ export default async function TopicPage({ params }: { params: { slug: string } }
                       className={`block p-3 sm:p-4 rounded-lg transition-all capitalize group ${
                         t.slug === params.slug
                           ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
-                          : 'bg-white border border-indigo-100/50 hover:border-indigo-200 hover:shadow-md'
+                          : 'bg-white dark:bg-gray-700 border border-indigo-100/50 dark:border-gray-600 hover:border-indigo-200 dark:hover:border-gray-500 hover:shadow-md dark:hover:shadow-xl'
                       }`}
                     >
                       <div className="flex justify-between items-center">
-                        <span className={`font-medium ${t.slug === params.slug ? 'text-white' : 'text-slate-800 group-hover:text-indigo-600'}`}>
+                        <span className={`font-medium ${t.slug === params.slug ? 'text-white' : 'text-slate-800 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'}`}>
                           {t.title}
                         </span>
-                        <span className={`text-sm ${t.slug === params.slug ? 'text-white/80' : 'text-slate-500'}`}>
+                        <span className={`text-sm ${t.slug === params.slug ? 'text-white/80' : 'text-slate-500 dark:text-gray-400'}`}>
                           {t._count.NewsItem}
                         </span>
                       </div>

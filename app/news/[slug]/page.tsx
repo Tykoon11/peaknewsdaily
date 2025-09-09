@@ -30,7 +30,7 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
   return (
     <>
       {/* Premium Article Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-purple-400 to-blue-500 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
@@ -105,15 +105,15 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
       </section>
 
       {/* Article Content */}
-      <main className="bg-gradient-to-b from-slate-50 to-white">
+      <main className="bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           <div className="max-w-4xl mx-auto">
             
             {/* Main Article */}
-            <article className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-12 sm:mb-16">
+            <article className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg dark:shadow-2xl border border-slate-200 dark:border-gray-700 overflow-hidden mb-12 sm:mb-16">
               <div className="p-6 sm:p-8 lg:p-12">
                 <div 
-                  className="prose prose-lg max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-800 prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg"
+                  className="prose prose-lg max-w-none prose-headings:text-slate-800 dark:prose-headings:text-gray-100 prose-headings:font-bold prose-p:text-slate-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-800 dark:prose-strong:text-gray-100 prose-blockquote:border-l-blue-500 dark:prose-blockquote:border-l-blue-400 prose-blockquote:bg-blue-50 dark:prose-blockquote:bg-blue-900/20 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg"
                   dangerouslySetInnerHTML={{ __html: newsItem.contentHtml }} 
                 />
               </div>
@@ -121,7 +121,7 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
 
             {/* Related Articles */}
             {relatedNews.length > 0 && (
-              <section className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 shadow-lg">
+              <section className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 dark:border-gray-600 shadow-lg dark:shadow-2xl">
                 <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
                   <div className="p-2 sm:p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl sm:rounded-2xl shadow-lg">
                     <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,8 +129,8 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
                     </svg>
                   </div>
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">Related Articles</h2>
-                    <p className="text-slate-600 text-sm sm:text-base">More stories from {newsItem.topic.title}</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Related Articles</h2>
+                    <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">More stories from {newsItem.topic.title}</p>
                   </div>
                 </div>
                 
@@ -138,19 +138,19 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
                   {relatedNews.map((item) => (
                     <article
                       key={item.id}
-                      className="group bg-white rounded-lg sm:rounded-xl border border-blue-100/50 p-4 sm:p-6 hover:shadow-lg hover:border-blue-200 transition-all duration-300"
+                      className="group bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl border border-blue-100/50 dark:border-gray-600 p-4 sm:p-6 hover:shadow-lg dark:hover:shadow-2xl hover:border-blue-200 dark:hover:border-gray-500 transition-all duration-300"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-slate-500 mb-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-3">
                         <span className="font-medium">{item.sourceName}</span>
                         <span className="hidden sm:inline">•</span>
-                        <time className="text-slate-400">{formatDistanceToNow(new Date(item.publishedAt))} ago</time>
+                        <time className="text-slate-400 dark:text-gray-500">{formatDistanceToNow(new Date(item.publishedAt))} ago</time>
                       </div>
                       <Link href={`/news/${item.slug}`} className="block">
-                        <h3 className="font-bold group-hover:text-blue-600 transition-colors text-sm sm:text-base leading-tight mb-2 line-clamp-2">
+                        <h3 className="font-bold text-slate-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-sm sm:text-base leading-tight mb-2 line-clamp-2">
                           {item.title}
                         </h3>
                         {item.excerpt && (
-                          <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed">
+                          <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 line-clamp-2 leading-relaxed">
                             {item.excerpt}
                           </p>
                         )}

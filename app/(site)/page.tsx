@@ -132,7 +132,7 @@ export default async function HomePage() {
         </div>
       </div>
 
-      <main className="bg-gradient-to-b from-slate-50 to-white">
+      <main className="bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-3 xs:px-4 py-6 xs:py-8 sm:py-12 lg:py-16">
           
           {/* Market Overview Section */}
@@ -170,7 +170,7 @@ export default async function HomePage() {
 
           {/* Economic Calendar Section */}
           <div className="mb-8 xs:mb-12 sm:mb-16 lg:mb-20">
-            <div className="bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 border border-blue-100/50 shadow-xl shadow-blue-500/10">
+            <div className="bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 dark:bg-gradient-to-br dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 border border-blue-100/50 dark:border-gray-700 shadow-xl shadow-blue-500/10 dark:shadow-gray-900/20">
               <div className="flex items-center gap-2 xs:gap-3 sm:gap-4 mb-4 xs:mb-6">
                 <div className="p-1.5 xs:p-2 sm:p-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg xs:rounded-xl sm:rounded-2xl shadow-lg">
                   <svg className="w-4 h-4 xs:w-6 xs:h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,8 +178,8 @@ export default async function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 leading-tight">Economic Calendar</h2>
-                  <p className="text-slate-600 text-xs xs:text-sm sm:text-base">Upcoming events that move markets</p>
+                  <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-gray-100 leading-tight">Economic Calendar</h2>
+                  <p className="text-slate-600 dark:text-gray-300 text-xs xs:text-sm sm:text-base">Upcoming events that move markets</p>
                 </div>
               </div>
               
@@ -197,8 +197,8 @@ export default async function HomePage() {
                   </svg>
                 </div>
               </div>
-              <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 mb-2 xs:mb-3 sm:mb-4 px-2 xs:px-4 sm:px-0 leading-tight">Master Trading & Investing</h2>
-              <p className="text-sm xs:text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto px-3 xs:px-4 sm:px-0">
+              <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 dark:text-gray-100 mb-2 xs:mb-3 sm:mb-4 px-2 xs:px-4 sm:px-0 leading-tight">Master Trading & Investing</h2>
+              <p className="text-sm xs:text-base sm:text-lg lg:text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto px-3 xs:px-4 sm:px-0">
                 <span className="block xs:inline">From beginner basics to advanced strategies,</span>
                 <span className="xs:hidden"> </span>
                 <span className="block xs:inline">elevate your financial knowledge with our comprehensive education platform.</span>
@@ -215,16 +215,16 @@ export default async function HomePage() {
                   'from-orange-500 to-red-600'
                 ];
                 const bgGradients = [
-                  'from-emerald-50 to-teal-50',
-                  'from-blue-50 to-indigo-50',
-                  'from-purple-50 to-pink-50', 
-                  'from-orange-50 to-red-50'
+                  'from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20',
+                  'from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20',
+                  'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20', 
+                  'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20'
                 ];
                 return (
                   <Link
                     key={pillar.id}
                     href={pillar.slug}
-                    className={`group relative bg-gradient-to-br ${bgGradients[index]} rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 overflow-hidden`}
+                    className={`group relative bg-gradient-to-br ${bgGradients[index]} rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-700/50 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 overflow-hidden`}
                   >
                     {/* Background decoration */}
                     <div className={`absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-br ${gradients[index]} rounded-full opacity-10 group-hover:opacity-20 transition-opacity`}></div>
@@ -235,17 +235,17 @@ export default async function HomePage() {
                       </svg>
                     </div>
                     
-                    <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-slate-800 group-hover:text-slate-900 transition-colors">
+                    <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-slate-800 dark:text-gray-100 group-hover:text-slate-900 dark:group-hover:text-gray-50 transition-colors">
                       {pillar.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
                       {pillar.intro}
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-slate-500">
+                      <span className="text-xs font-semibold text-slate-500 dark:text-gray-400">
                         {ARTICLES.filter(a => a.pillar === pillar.id).length} guides
                       </span>
-                      <svg className="w-4 h-4 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-slate-400 dark:text-gray-500 group-hover:text-slate-600 dark:group-hover:text-gray-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -269,7 +269,7 @@ export default async function HomePage() {
                     <Link
                       key={article.slug}
                       href={article.slug}
-                      className="group relative bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                      className="group relative bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-gray-700 p-4 sm:p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                     >
                       {/* Article number badge */}
                       <div className={`absolute top-3 right-3 sm:top-4 sm:right-4 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r ${articleGradients[index]} rounded-full flex items-center justify-center shadow-lg`}>
@@ -282,17 +282,17 @@ export default async function HomePage() {
                         </svg>
                       </div>
                       
-                      <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-slate-800 group-hover:text-slate-900 transition-colors leading-tight">
+                      <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-slate-800 dark:text-gray-100 group-hover:text-slate-900 dark:group-hover:text-gray-50 transition-colors leading-tight">
                         {article.title}
                       </h3>
-                      <p className="text-slate-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-3">
+                      <p className="text-slate-600 dark:text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-3">
                         {PILLARS.find(p => p.id === article.pillar)?.intro || 'Learn essential trading concepts and strategies.'}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                        <span className="text-xs font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">
                           {PILLARS.find(p => p.id === article.pillar)?.title}
                         </span>
-                        <svg className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-slate-400 dark:text-gray-500 group-hover:text-slate-600 dark:group-hover:text-gray-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </div>
@@ -455,7 +455,7 @@ export default async function HomePage() {
           </section>
 
           {/* Market Data Disclaimer */}
-          <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 shadow-lg">
+          <div className="bg-gradient-to-r from-slate-50 to-blue-50 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 dark:border-gray-700 shadow-lg">
             <DataDisclaimer />
           </div>
         </div>

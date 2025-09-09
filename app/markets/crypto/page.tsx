@@ -409,7 +409,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
   const activeCryptos = cryptos.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -554,17 +554,17 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
         
         {/* Crypto Categories */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Cryptocurrency Categories
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cryptoCategories.map((category) => (
-              <div key={category.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+              <div key={category.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-2xl hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 p-6 border border-gray-100 dark:border-gray-700">
                 <div className="flex items-center mb-4">
                   <span className="text-3xl mr-3">{category.icon}</span>
-                  <h3 className="text-xl font-semibold text-gray-900">{category.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{category.name}</h3>
                 </div>
-                <p className="text-gray-600 mb-4">{category.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{category.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {category.cryptos.map(symbol => (
                     <span key={symbol} className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-purple-100 text-purple-800">
@@ -579,12 +579,12 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
 
         {/* Market Insights */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Market Insights & Analysis
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {cryptoInsights.map((insight, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">{insight.icon}</span>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
@@ -595,8 +595,8 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                     {insight.category.charAt(0).toUpperCase() + insight.category.slice(1)}
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">{insight.title}</h3>
-                <p className="text-gray-700">{insight.content}</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">{insight.title}</h3>
+                <p className="text-gray-700 dark:text-gray-300">{insight.content}</p>
               </div>
             ))}
           </div>
@@ -604,17 +604,17 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
 
         {/* Trading Strategies */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Crypto Trading Strategies
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tradingStrategies.map((strategy, index) => (
-              <div key={index} className="bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-all duration-300">
+              <div key={index} className="bg-gradient-to-br from-white to-gray-50 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-sm dark:shadow-lg border border-gray-200 dark:border-gray-600 p-6 hover:shadow-lg dark:hover:shadow-xl transition-all duration-300">
                 <div className="text-center mb-4">
                   <span className="text-4xl">{strategy.icon}</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">{strategy.title}</h3>
-                <p className="text-gray-600 text-sm mb-4 text-center">{strategy.description}</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 text-center">{strategy.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 text-center">{strategy.description}</p>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-500">Risk:</span>
                   <span className={`font-medium ${
@@ -626,8 +626,8 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                   </span>
                 </div>
                 <div className="flex justify-between text-sm mt-1">
-                  <span className="text-gray-500">Timeline:</span>
-                  <span className="font-medium text-gray-700">{strategy.timeframe}</span>
+                  <span className="text-gray-500 dark:text-gray-400">Timeline:</span>
+                  <span className="font-medium text-gray-700 dark:text-gray-300">{strategy.timeframe}</span>
                 </div>
               </div>
             ))}
@@ -637,25 +637,25 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
         {/* Live Crypto Prices Table */}
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Live Cryptocurrency Prices
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Real-time market data updated every 5 minutes
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl dark:shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gradient-to-r from-gray-50 to-blue-50 border-b-2 border-gray-200">
+                <thead className="bg-gradient-to-r from-gray-50 to-blue-50 dark:bg-gradient-to-r dark:from-gray-700 dark:to-gray-600 border-b-2 border-gray-200 dark:border-gray-600">
                   <tr>
-                    <th className="text-left p-6 font-bold text-gray-900">Cryptocurrency</th>
-                    <th className="text-right p-6 font-bold text-gray-900">Price</th>
-                    <th className="text-right p-6 font-bold text-gray-900">24h Change</th>
-                    <th className="text-right p-6 font-bold text-gray-900">24h Volume</th>
-                    <th className="text-right p-6 font-bold text-gray-900">Market Cap</th>
-                    <th className="text-center p-6 font-bold text-gray-900">Status</th>
+                    <th className="text-left p-6 font-bold text-gray-900 dark:text-gray-100">Cryptocurrency</th>
+                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">Price</th>
+                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">24h Change</th>
+                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">24h Volume</th>
+                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">Market Cap</th>
+                    <th className="text-center p-6 font-bold text-gray-900 dark:text-gray-100">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -672,7 +672,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                     const isEven = index % 2 === 0;
 
                     return (
-                      <tr key={crypto.id} className={`${isEven ? 'bg-white' : 'bg-gray-50'} hover:bg-blue-50 transition-all duration-200`}>
+                      <tr key={crypto.id} className={`${isEven ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700'} hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200`}>
                         <td className="p-6">
                           <div className="flex items-center gap-4">
                             <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl ${
@@ -684,13 +684,13 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                               {getCryptoIcon(crypto.symbol)}
                             </div>
                             <div>
-                              <div className="font-bold text-lg text-gray-900">{displaySymbol}</div>
-                              <div className="text-sm text-gray-600">{crypto.name}</div>
+                              <div className="font-bold text-lg text-gray-900 dark:text-gray-100">{displaySymbol}</div>
+                              <div className="text-sm text-gray-600 dark:text-gray-300">{crypto.name}</div>
                             </div>
                           </div>
                         </td>
                         <td className="text-right p-6">
-                          <div className="font-bold text-lg text-gray-900">
+                          <div className="font-bold text-lg text-gray-900 dark:text-gray-100">
                             {formatPrice(Number(latestQuote.price), crypto.market.currency)}
                           </div>
                         </td>
@@ -703,12 +703,12 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                           </div>
                         </td>
                         <td className="text-right p-6">
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 dark:text-gray-100">
                             {formatVolume(latestQuote.volume)}
                           </div>
                         </td>
                         <td className="text-right p-6">
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 dark:text-gray-100">
                             {formatMarketCap(latestQuote.marketCap)}
                           </div>
                         </td>
@@ -727,9 +727,9 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
             
             {cryptos.length === 0 && (
               <div className="text-center py-16">
-                <div className="text-gray-500">
+                <div className="text-gray-500 dark:text-gray-400">
                   <div className="text-6xl mb-6">₿</div>
-                  <p className="text-xl font-semibold mb-2">No cryptocurrency data available</p>
+                  <p className="text-xl font-semibold mb-2 text-gray-700 dark:text-gray-300">No cryptocurrency data available</p>
                   <p className="text-sm">Cryptocurrency prices will appear here when market data is available.</p>
                 </div>
               </div>
@@ -739,14 +739,14 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
 
         {/* Educational Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Cryptocurrency Education
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:bg-gradient-to-br dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
               <div className="text-4xl mb-4 text-center">📚</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">Getting Started</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 text-center">Getting Started</h3>
+              <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <li>• What is cryptocurrency and blockchain?</li>
                 <li>• How to buy your first Bitcoin</li>
                 <li>• Understanding crypto wallets</li>
@@ -755,10 +755,10 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
               </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:bg-gradient-to-br dark:from-green-900/30 dark:to-emerald-900/30 rounded-xl p-6 border border-green-200 dark:border-green-700">
               <div className="text-4xl mb-4 text-center">📈</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">Trading & Investing</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 text-center">Trading & Investing</h3>
+              <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <li>• Technical analysis basics</li>
                 <li>• Fundamental analysis for crypto</li>
                 <li>• Risk management strategies</li>
@@ -767,10 +767,10 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
               </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-violet-50 dark:bg-gradient-to-br dark:from-purple-900/30 dark:to-violet-900/30 rounded-xl p-6 border border-purple-200 dark:border-purple-700">
               <div className="text-4xl mb-4 text-center">🛡️</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">Security & Safety</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 text-center">Security & Safety</h3>
+              <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <li>• Hardware wallet setup</li>
                 <li>• Two-factor authentication</li>
                 <li>• Recognizing scams and phishing</li>
@@ -782,9 +782,9 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
         </section>
 
         {/* Market Disclaimer */}
-        <section className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-xl p-8">
-          <h3 className="font-bold text-yellow-800 mb-4 text-center text-xl">⚠️ Cryptocurrency Trading Risk Warning</h3>
-          <div className="text-sm text-yellow-700 space-y-3">
+        <section className="bg-gradient-to-r from-yellow-50 to-orange-50 dark:bg-gradient-to-r dark:from-yellow-900/30 dark:to-orange-900/30 border border-yellow-200 dark:border-yellow-700 rounded-xl p-8">
+          <h3 className="font-bold text-yellow-800 dark:text-yellow-300 mb-4 text-center text-xl">⚠️ Cryptocurrency Trading Risk Warning</h3>
+          <div className="text-sm text-yellow-700 dark:text-yellow-300 space-y-3">
             <p>• <strong>High Volatility:</strong> Cryptocurrency prices can fluctuate dramatically within short periods. Prices can rise or fall by 50% or more in a single day.</p>
             <p>• <strong>Regulatory Risk:</strong> Cryptocurrency regulations vary by jurisdiction and may change rapidly, affecting market access and legitimacy.</p>
             <p>• <strong>Technology Risk:</strong> Blockchain networks, smart contracts, and exchanges may experience technical issues, hacks, or failures.</p>

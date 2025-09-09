@@ -140,21 +140,21 @@ export default async function MarketsPage() {
         </div>
       </section>
 
-      <main className="bg-gradient-to-b from-slate-50 to-white">
+      <main className="bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           
           {/* Market Categories */}
           <section className="mb-12 sm:mb-16 lg:mb-20">
             <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 mb-3 sm:mb-4">Market Categories</h2>
-              <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 dark:text-gray-100 mb-3 sm:mb-4">Market Categories</h2>
+              <p className="text-base sm:text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto">
                 Access comprehensive data and analysis across all major asset classes
               </p>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8">
               {/* Stocks */}
-              <Link href="/markets/stocks" className="group relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100">
+              <Link href="/markets/stocks" className="group relative bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100 dark:border-gray-700">
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
                   <div className="p-3 sm:p-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-6 w-fit">
@@ -162,8 +162,8 @@ export default async function MarketsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-3 group-hover:text-green-600 transition-colors">Stock Market</h3>
-                  <p className="text-slate-600 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-gray-100 mb-2 sm:mb-3 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Stock Market</h3>
+                  <p className="text-slate-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                     Real-time stock prices, S&P 500, NASDAQ, and comprehensive equity analysis with institutional-grade data.
                   </p>
                   <div className="flex items-center text-green-600 group-hover:text-green-700 font-semibold text-sm sm:text-base">
@@ -176,7 +176,7 @@ export default async function MarketsPage() {
               </Link>
 
               {/* Cryptocurrency */}
-              <Link href="/markets/crypto" className="group relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100">
+              <Link href="/markets/crypto" className="group relative bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100 dark:border-gray-700">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
                   <div className="p-3 sm:p-4 bg-gradient-to-r from-orange-500 to-amber-600 rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-6 w-fit">
@@ -184,8 +184,8 @@ export default async function MarketsPage() {
                       <path d="M12 0L8.59 10.59L0 12l8.59 1.41L12 24l3.41-10.59L24 12l-8.59-1.41z"/>
                     </svg>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-3 group-hover:text-orange-600 transition-colors">Cryptocurrency</h3>
-                  <p className="text-slate-600 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-gray-100 mb-2 sm:mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Cryptocurrency</h3>
+                  <p className="text-slate-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                     24/7 crypto market data, Bitcoin, Ethereum, altcoins, and DeFi tokens with real-time price tracking.
                   </p>
                   <div className="flex items-center text-orange-600 group-hover:text-orange-700 font-semibold text-sm sm:text-base">
@@ -198,7 +198,7 @@ export default async function MarketsPage() {
               </Link>
 
               {/* Economic Calendar */}
-              <Link href="/markets/calendar" className="group relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100">
+              <Link href="/markets/calendar" className="group relative bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100 dark:border-gray-700">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
                   <div className="p-3 sm:p-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-6 w-fit">
@@ -206,8 +206,8 @@ export default async function MarketsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors">Economic Calendar</h3>
-                  <p className="text-slate-600 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-gray-100 mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Economic Calendar</h3>
+                  <p className="text-slate-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                     Key economic events, central bank meetings, and market-moving announcements with impact analysis.
                   </p>
                   <div className="flex items-center text-blue-600 group-hover:text-blue-700 font-semibold text-sm sm:text-base">
@@ -220,7 +220,7 @@ export default async function MarketsPage() {
               </Link>
 
               {/* News & Analysis */}
-              <Link href="/news" className="group relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100">
+              <Link href="/news" className="group relative bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-slate-100 dark:border-gray-700">
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
                   <div className="p-3 sm:p-4 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-6 w-fit">
@@ -228,8 +228,8 @@ export default async function MarketsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2.5 2.5 0 00-2.5-2.5H15" />
                     </svg>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-3 group-hover:text-purple-600 transition-colors">Market News</h3>
-                  <p className="text-slate-600 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-gray-100 mb-2 sm:mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Market News</h3>
+                  <p className="text-slate-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                     Breaking financial news, market analysis, and expert insights to keep you informed on market movements.
                   </p>
                   <div className="flex items-center text-purple-600 group-hover:text-purple-700 font-semibold text-sm sm:text-base">
@@ -278,7 +278,7 @@ export default async function MarketsPage() {
 
           {/* Economic Calendar Preview */}
           <section>
-            <div className="bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-blue-100/50 shadow-xl shadow-blue-500/10">
+            <div className="bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 dark:bg-gradient-to-br dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-blue-100/50 dark:border-gray-700 shadow-xl shadow-blue-500/10 dark:shadow-gray-900/20">
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 sm:mb-8">
                 <div className="flex items-center gap-3 sm:gap-4">
                   <div className="p-2 sm:p-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl sm:rounded-2xl shadow-lg">
@@ -287,8 +287,8 @@ export default async function MarketsPage() {
                     </svg>
                   </div>
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">Economic Calendar Preview</h2>
-                    <p className="text-slate-600 text-sm sm:text-base">Upcoming events that move markets</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Economic Calendar Preview</h2>
+                    <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Upcoming events that move markets</p>
                   </div>
                 </div>
               </div>

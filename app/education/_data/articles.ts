@@ -44,9 +44,9 @@ export const ARTICLES: Article[] = [
   { title:'Welcome to PeakNewsDaily: Your Trading & Investing Hub', slug:'/education/welcome', pillar:'risk-management', status:'published' },
 
   // RISK & MONEY MANAGEMENT
-  { title:'Risk–Reward Ratio Explained: Trade Expectancy the Pro Way', slug:'/education/risk-reward-expectancy', pillar:'risk-management' },
-  { title:'Stop-Loss Mastery: Fixed, ATR, and Trailing Stops Compared', slug:'/education/stop-loss-fixed-vs-trailing', pillar:'risk-management' },
-  { title:'ATR for Position Sizing', slug:'/education/atr-position-sizing', pillar:'risk-management' },
+  { title:'Risk–Reward Ratio Explained: Trade Expectancy the Pro Way', slug:'/education/risk-reward-expectancy', pillar:'risk-management' , status:'published' },
+  { title:'Stop-Loss Mastery: Fixed, ATR, and Trailing Stops Compared', slug:'/education/stop-loss-fixed-vs-trailing', pillar:'risk-management' , status:'published' },
+  { title:'ATR for Position Sizing', slug:'/education/atr-position-sizing', pillar:'risk-management' , status:'published' },
   { title:'Kelly Criterion (Safely): Fractional Kelly for Real Traders', slug:'/education/kelly-criterion-trading', pillar:'risk-management' },
   { title:'Position Sizing with Correlation: Don\'t Double-Count Risk', slug:'/education/position-sizing-correlation', pillar:'risk-management' },
   { title:'Position Sizing for Small Accounts: Staying Power First', slug:'/education/position-sizing-small-accounts', pillar:'risk-management' },

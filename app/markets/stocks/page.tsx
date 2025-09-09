@@ -308,7 +308,7 @@ export default async function StocksPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
         {/* Premium Financial Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
           {/* Animated Background Elements */}
@@ -431,12 +431,12 @@ export default async function StocksPage() {
 
         <div className="container py-8 xs:py-10 sm:py-12 px-3 xs:px-4">
           {/* Breadcrumb Navigation */}
-          <nav className="flex items-center space-x-2 text-xs xs:text-sm text-gray-500 mb-6 xs:mb-8" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-gray-700">Home</Link>
+          <nav className="flex items-center space-x-2 text-xs xs:text-sm text-gray-500 dark:text-gray-400 mb-6 xs:mb-8" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-gray-700 dark:hover:text-gray-300">Home</Link>
             <span>→</span>
-            <Link href="/markets" className="hover:text-gray-700">Markets</Link>
+            <Link href="/markets" className="hover:text-gray-700 dark:hover:text-gray-300">Markets</Link>
             <span>→</span>
-            <span className="text-gray-900 font-medium">Stocks</span>
+            <span className="text-gray-900 dark:text-gray-100 font-medium">Stocks</span>
           </nav>
 
           {/* Magnificent Seven Section */}
@@ -471,13 +471,13 @@ export default async function StocksPage() {
                   const marketCapInfo = getMarketCapCategory(latestQuote.marketCap)
 
                   return (
-                    <div key={stock.id} className="bg-white rounded-xl border shadow-lg hover:shadow-xl transition-all duration-300 p-6 group hover:scale-105">
+                    <div key={stock.id} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg dark:shadow-2xl hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 p-6 group hover:scale-105">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center space-x-3">
                           <div className="text-3xl">{getStockIcon(stock.symbol)}</div>
                           <div>
-                            <div className="font-bold text-gray-900 text-lg">{stock.symbol}</div>
-                            <div className="text-sm text-gray-500">{stock.market.name}</div>
+                            <div className="font-bold text-gray-900 dark:text-gray-100 text-lg">{stock.symbol}</div>
+                            <div className="text-sm text-gray-500 dark:text-gray-400">{stock.market.name}</div>
                           </div>
                         </div>
                         <div className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -491,22 +491,22 @@ export default async function StocksPage() {
                       </div>
                       
                       <div className="mb-4">
-                        <div className="font-medium text-gray-900 text-sm truncate">{stock.name}</div>
-                        <div className="text-xs text-gray-500 mt-1">
+                        <div className="font-medium text-gray-900 dark:text-gray-100 text-sm truncate">{stock.name}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                           {stock.sector && stock.industry ? `${stock.sector} • ${stock.industry}` : stock.sector || stock.industry || '—'}
                         </div>
                       </div>
                       
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-600">Price</span>
-                          <span className="font-bold text-lg text-gray-900">
+                          <span className="text-sm text-gray-600 dark:text-gray-400">Price</span>
+                          <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
                             {formatPrice(Number(latestQuote.price), stock.market.currency)}
                           </span>
                         </div>
                         
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-600">Change</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-400">Change</span>
                           <span className={`font-medium text-sm ${
                             change.positive === true ? 'text-green-600' :
                             change.positive === false ? 'text-red-600' : 'text-gray-500'
@@ -516,22 +516,22 @@ export default async function StocksPage() {
                         </div>
                         
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-600">Market Cap</span>
-                          <span className="font-medium text-sm text-gray-900">
+                          <span className="text-sm text-gray-600 dark:text-gray-400">Market Cap</span>
+                          <span className="font-medium text-sm text-gray-900 dark:text-gray-100">
                             {formatMarketCap(latestQuote.marketCap)}
                           </span>
                         </div>
                         
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-600">P/E Ratio</span>
-                          <span className="font-medium text-sm text-gray-900">
+                          <span className="text-sm text-gray-600 dark:text-gray-400">P/E Ratio</span>
+                          <span className="font-medium text-sm text-gray-900 dark:text-gray-100">
                             {latestQuote.pe ? Number(latestQuote.pe).toFixed(2) : '—'}
                           </span>
                         </div>
                         
                         {latestQuote.dividendYield && (
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-600">Div Yield</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Div Yield</span>
                             <span className="font-medium text-sm text-green-600">
                               {Number(latestQuote.dividendYield).toFixed(2)}%
                             </span>
@@ -550,8 +550,8 @@ export default async function StocksPage() {
             <section className="mb-12">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">💻 Technology Stocks</h2>
-                  <p className="text-gray-600">Leading technology companies driving innovation</p>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">💻 Technology Stocks</h2>
+                  <p className="text-gray-600 dark:text-gray-300">Leading technology companies driving innovation</p>
                 </div>
               </div>
               
@@ -566,17 +566,17 @@ export default async function StocksPage() {
                   )
 
                   return (
-                    <div key={stock.id} className="bg-white rounded-lg border p-4 hover:shadow-md transition-all duration-200">
+                    <div key={stock.id} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md dark:hover:shadow-lg transition-all duration-200">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center space-x-2">
                           <div className="text-lg">{getStockIcon(stock.symbol)}</div>
                           <div>
-                            <div className="font-bold text-gray-900">{stock.symbol}</div>
-                            <div className="text-xs text-gray-500 truncate max-w-32">{stock.name}</div>
+                            <div className="font-bold text-gray-900 dark:text-gray-100">{stock.symbol}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400 truncate max-w-32">{stock.name}</div>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 dark:text-gray-100">
                             {formatPrice(Number(latestQuote.price), stock.market.currency)}
                           </div>
                           <div className={`text-xs font-medium ${
@@ -587,7 +587,7 @@ export default async function StocksPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="text-xs text-gray-500 space-y-1">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 space-y-1">
                         <div className="flex justify-between">
                           <span>Volume:</span>
                           <span>{formatVolume(latestQuote.volume)}</span>
@@ -609,8 +609,8 @@ export default async function StocksPage() {
             <section className="mb-12">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">🏦 Financial Stocks</h2>
-                  <p className="text-gray-600">Major banks and financial institutions</p>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">🏦 Financial Stocks</h2>
+                  <p className="text-gray-600 dark:text-gray-300">Major banks and financial institutions</p>
                 </div>
               </div>
               
@@ -625,17 +625,17 @@ export default async function StocksPage() {
                   )
 
                   return (
-                    <div key={stock.id} className="bg-white rounded-lg border p-4 hover:shadow-md transition-all duration-200">
+                    <div key={stock.id} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md dark:hover:shadow-lg transition-all duration-200">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center space-x-2">
                           <div className="text-lg">{getStockIcon(stock.symbol)}</div>
                           <div>
-                            <div className="font-bold text-gray-900">{stock.symbol}</div>
-                            <div className="text-xs text-gray-500 truncate max-w-32">{stock.name}</div>
+                            <div className="font-bold text-gray-900 dark:text-gray-100">{stock.symbol}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400 truncate max-w-32">{stock.name}</div>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 dark:text-gray-100">
                             {formatPrice(Number(latestQuote.price), stock.market.currency)}
                           </div>
                           <div className={`text-xs font-medium ${
@@ -646,7 +646,7 @@ export default async function StocksPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="text-xs text-gray-500 space-y-1">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 space-y-1">
                         <div className="flex justify-between">
                           <span>Volume:</span>
                           <span>{formatVolume(latestQuote.volume)}</span>
@@ -668,8 +668,8 @@ export default async function StocksPage() {
             <section className="mb-12">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">🏥 Healthcare Stocks</h2>
-                  <p className="text-gray-600">Leading pharmaceutical and healthcare companies</p>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">🏥 Healthcare Stocks</h2>
+                  <p className="text-gray-600 dark:text-gray-300">Leading pharmaceutical and healthcare companies</p>
                 </div>
               </div>
               
@@ -684,17 +684,17 @@ export default async function StocksPage() {
                   )
 
                   return (
-                    <div key={stock.id} className="bg-white rounded-lg border p-4 hover:shadow-md transition-all duration-200">
+                    <div key={stock.id} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md dark:hover:shadow-lg transition-all duration-200">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center space-x-2">
                           <div className="text-lg">{getStockIcon(stock.symbol)}</div>
                           <div>
-                            <div className="font-bold text-gray-900">{stock.symbol}</div>
-                            <div className="text-xs text-gray-500 truncate max-w-32">{stock.name}</div>
+                            <div className="font-bold text-gray-900 dark:text-gray-100">{stock.symbol}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400 truncate max-w-32">{stock.name}</div>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 dark:text-gray-100">
                             {formatPrice(Number(latestQuote.price), stock.market.currency)}
                           </div>
                           <div className={`text-xs font-medium ${
@@ -705,7 +705,7 @@ export default async function StocksPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="text-xs text-gray-500 space-y-1">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 space-y-1">
                         <div className="flex justify-between">
                           <span>P/E Ratio:</span>
                           <span>{latestQuote.pe ? Number(latestQuote.pe).toFixed(2) : '—'}</span>
@@ -731,19 +731,19 @@ export default async function StocksPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl border shadow-lg overflow-hidden">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg dark:shadow-2xl overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gradient-to-r from-gray-50 to-blue-50 border-b">
+                  <thead className="bg-gradient-to-r from-gray-50 to-blue-50 dark:bg-gradient-to-r dark:from-gray-700 dark:to-gray-600 border-b border-gray-200 dark:border-gray-600">
                     <tr>
-                      <th className="text-left p-4 font-semibold text-gray-900">Stock</th>
-                      <th className="text-left p-4 font-semibold text-gray-900">Company</th>
-                      <th className="text-right p-4 font-semibold text-gray-900">Price</th>
-                      <th className="text-right p-4 font-semibold text-gray-900">Change</th>
-                      <th className="text-right p-4 font-semibold text-gray-900">Volume</th>
-                      <th className="text-right p-4 font-semibold text-gray-900">Market Cap</th>
-                      <th className="text-right p-4 font-semibold text-gray-900">P/E</th>
-                      <th className="text-right p-4 font-semibold text-gray-900">Div Yield</th>
+                      <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">Stock</th>
+                      <th className="text-left p-4 font-semibold text-gray-900 dark:text-gray-100">Company</th>
+                      <th className="text-right p-4 font-semibold text-gray-900 dark:text-gray-100">Price</th>
+                      <th className="text-right p-4 font-semibold text-gray-900 dark:text-gray-100">Change</th>
+                      <th className="text-right p-4 font-semibold text-gray-900 dark:text-gray-100">Volume</th>
+                      <th className="text-right p-4 font-semibold text-gray-900 dark:text-gray-100">Market Cap</th>
+                      <th className="text-right p-4 font-semibold text-gray-900 dark:text-gray-100">P/E</th>
+                      <th className="text-right p-4 font-semibold text-gray-900 dark:text-gray-100">Div Yield</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -757,20 +757,20 @@ export default async function StocksPage() {
                       )
 
                       return (
-                        <tr key={stock.id} className="border-b hover:bg-blue-50 transition-colors group">
+                        <tr key={stock.id} className="border-b border-gray-200 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
                           <td className="p-4">
                             <div className="flex items-center space-x-3">
                               <div className="text-xl">{getStockIcon(stock.symbol)}</div>
                               <div>
-                                <div className="font-bold text-gray-900">{stock.symbol}</div>
-                                <div className="text-xs text-gray-500">{stock.market.name}</div>
+                                <div className="font-bold text-gray-900 dark:text-gray-100">{stock.symbol}</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400">{stock.market.name}</div>
                               </div>
                             </div>
                           </td>
                           <td className="p-4">
                             <div>
-                              <div className="font-medium text-gray-900">{stock.name}</div>
-                              <div className="text-xs text-gray-500 flex items-center space-x-2">
+                              <div className="font-medium text-gray-900 dark:text-gray-100">{stock.name}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center space-x-2">
                                 {stock.sector && (
                                   <>
                                     <span>{getSectorIcon(stock.sector)}</span>
@@ -782,7 +782,7 @@ export default async function StocksPage() {
                             </div>
                           </td>
                           <td className="text-right p-4">
-                            <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                            <div className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                               {formatPrice(Number(latestQuote.price), stock.market.currency)}
                             </div>
                           </td>
@@ -795,22 +795,22 @@ export default async function StocksPage() {
                             </div>
                           </td>
                           <td className="text-right p-4">
-                            <div className="text-gray-700">
+                            <div className="text-gray-700 dark:text-gray-300">
                               {formatVolume(latestQuote.volume)}
                             </div>
                           </td>
                           <td className="text-right p-4">
-                            <div className="text-gray-700 font-medium">
+                            <div className="text-gray-700 dark:text-gray-300 font-medium">
                               {formatMarketCap(latestQuote.marketCap)}
                             </div>
                           </td>
                           <td className="text-right p-4">
-                            <div className="text-gray-700">
+                            <div className="text-gray-700 dark:text-gray-300">
                               {latestQuote.pe ? Number(latestQuote.pe).toFixed(2) : '—'}
                             </div>
                           </td>
                           <td className="text-right p-4">
-                            <div className="text-gray-700">
+                            <div className="text-gray-700 dark:text-gray-300">
                               {latestQuote.dividendYield ? `${Number(latestQuote.dividendYield).toFixed(2)}%` : '—'}
                             </div>
                           </td>
@@ -823,11 +823,11 @@ export default async function StocksPage() {
               
               {stocks.length === 0 && (
                 <div className="text-center py-12">
-                  <div className="text-gray-500">
+                  <div className="text-gray-500 dark:text-gray-400">
                     <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h2a2 2 0 01-2-2z" />
                     </svg>
-                    <p className="text-xl font-medium">No stock data available</p>
+                    <p className="text-xl font-medium text-gray-700 dark:text-gray-300">No stock data available</p>
                     <p className="text-sm mt-2">Stock prices will appear here when market data is available.</p>
                   </div>
                 </div>
