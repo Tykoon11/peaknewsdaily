@@ -6,7 +6,7 @@ async function updateFinancialData() {
   try {
     console.log('🔄 Triggering financial data update...')
     
-    const baseUrl = 'http://localhost:3002' // Use the current dev server port
+    const baseUrl = 'http://localhost:3001' // Use the current dev server port
     const response = await fetch(`${baseUrl}/api/cron/financial-ingest`, {
       method: 'POST',
       headers: {
@@ -27,7 +27,7 @@ async function updateFinancialData() {
     console.log(`  • Economic events: ${result.stats.eventsProcessed}`)
     console.log(`  • Timestamp: ${result.stats.timestamp}`)
     
-    console.log('\n🌐 You can now visit http://localhost:3002 to see updated market data!')
+    console.log('\n🌐 You can now visit http://localhost:3001 to see updated market data!')
 
   } catch (error) {
     console.error('❌ Failed to update financial data:', error.message)
