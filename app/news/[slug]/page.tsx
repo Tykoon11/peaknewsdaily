@@ -112,10 +112,83 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
             {/* Main Article */}
             <article className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg dark:shadow-2xl border border-slate-200 dark:border-gray-700 overflow-hidden mb-12 sm:mb-16">
               <div className="p-6 sm:p-8 lg:p-12">
-                <div 
-                  className="prose prose-lg max-w-none prose-headings:text-slate-800 dark:prose-headings:text-gray-100 prose-headings:font-bold prose-p:text-slate-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-800 dark:prose-strong:text-gray-100 prose-blockquote:border-l-blue-500 dark:prose-blockquote:border-l-blue-400 prose-blockquote:bg-blue-50 dark:prose-blockquote:bg-blue-900/20 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg"
-                  dangerouslySetInnerHTML={{ __html: newsItem.contentHtml }} 
-                />
+                
+                {/* Article Summary */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 sm:p-8 mb-8 border border-blue-100 dark:border-blue-800/30">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-lg flex-shrink-0">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-xl font-bold text-slate-800 dark:text-gray-100 mb-3">Article Summary</h2>
+                      <div 
+                        className="prose prose-lg max-w-none prose-p:text-slate-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:text-base"
+                        dangerouslySetInnerHTML={{ __html: newsItem.contentHtml }} 
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Full Article Notice */}
+                <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl p-6 sm:p-8 border border-amber-100 dark:border-amber-800/30">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl shadow-lg flex-shrink-0">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-slate-800 dark:text-gray-100 mb-2">Read the Full Article</h3>
+                      <p className="text-slate-600 dark:text-gray-300 mb-4 leading-relaxed">
+                        This is a summary from our news feed. For the complete article with full details, analysis, and additional content, visit the original source.
+                      </p>
+                      <Link
+                        href={newsItem.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Read Full Article on {newsItem.sourceName}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Additional Context */}
+                <div className="mt-8 p-6 bg-slate-50 dark:bg-gray-700/50 rounded-xl border border-slate-200 dark:border-gray-600">
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-gray-100 mb-3">About This Story</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="font-medium text-slate-600 dark:text-gray-400">Published:</span>
+                      <span className="ml-2 text-slate-800 dark:text-gray-200">
+                        {new Date(newsItem.publishedAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="font-medium text-slate-600 dark:text-gray-400">Source:</span>
+                      <span className="ml-2 text-slate-800 dark:text-gray-200">{newsItem.sourceName}</span>
+                    </div>
+                    <div>
+                      <span className="font-medium text-slate-600 dark:text-gray-400">Category:</span>
+                      <span className="ml-2 text-slate-800 dark:text-gray-200 capitalize">{newsItem.topic.title}</span>
+                    </div>
+                    <div>
+                      <span className="font-medium text-slate-600 dark:text-gray-400">Reading Time:</span>
+                      <span className="ml-2 text-slate-800 dark:text-gray-200">~2 min on source</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </article>
 

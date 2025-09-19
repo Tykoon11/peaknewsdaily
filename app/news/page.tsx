@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
+import NewsSearchFilter from '@/components/news-search-filter'
 
 export const revalidate = 300
 
@@ -124,7 +125,7 @@ export default async function NewsPage() {
       <main className="bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           
-          {/* Featured Stories */}
+          {/* Featured Breaking News */}
           <section className="mb-12 sm:mb-16 lg:mb-20">
             <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
               <div className="p-2 sm:p-3 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl sm:rounded-2xl shadow-lg">
@@ -133,34 +134,32 @@ export default async function NewsPage() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Featured Stories</h2>
-                <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Top market-moving news and analysis</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Breaking News</h2>
+                <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Latest market-moving headlines</p>
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {featuredNews.map((item, index) => (
-                <Link
+                <article
                   key={item.id}
-                  href={`/news/${item.slug}`}
-                  className="group relative bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-100 dark:border-gray-700"
+                  className="group bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 p-6 hover:shadow-lg hover:border-slate-300 dark:hover:border-gray-600 transition-all duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-                  <div className="aspect-video bg-gradient-to-br from-red-500 to-orange-600 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent_70%)]"></div>
-                    <div className="absolute top-4 left-4 z-20">
-                      <span className="px-3 py-1 bg-red-500/90 text-white text-xs font-medium rounded-full backdrop-blur-sm capitalize">
+                  <div className="flex flex-col gap-2 text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-3">
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/news/topic/${item.topic.slug}`}
+                        className="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-600 text-white rounded-full hover:from-red-600 hover:to-orange-700 transition-colors capitalize font-medium"
+                      >
                         {item.topic?.title || 'Market News'}
-                      </span>
-                    </div>
-                    <div className="absolute top-4 right-4 z-20">
-                      <span className="px-3 py-1 bg-black/50 text-white text-xs font-medium rounded-full backdrop-blur-sm">
+                      </Link>
+                      <span className="px-3 py-1 bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 rounded-full font-medium">
                         {formatDistanceToNow(new Date(item.publishedAt))} ago
                       </span>
                     </div>
                   </div>
-                  <div className="p-6 sm:p-8 relative z-20">
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-gray-100 mb-3 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-tight line-clamp-2">
+                  <Link href={`/news/${item.slug}`} className="block">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-gray-100 mb-3 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-tight line-clamp-3">
                       {item.title}
                     </h3>
                     {item.excerpt && (
@@ -176,15 +175,15 @@ export default async function NewsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </article>
               ))}
             </div>
           </section>
 
-          <div className="grid gap-8 lg:grid-cols-3">
-            {/* Latest Stories */}
-            <div className="lg:col-span-2">
+          <div className="grid gap-8 lg:grid-cols-4">
+            {/* Main News Feed with Search */}
+            <div className="lg:col-span-3">
               <div className="flex items-center gap-3 sm:gap-4 mb-6">
                 <div className="p-2 sm:p-3 bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl sm:rounded-2xl shadow-lg">
                   <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,75 +191,16 @@ export default async function NewsPage() {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Latest Stories</h2>
-                  <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Real-time market updates and analysis</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">All News Stories</h2>
+                  <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Search and filter real-time market updates</p>
                 </div>
               </div>
               
-              <div className="space-y-4 sm:space-y-6">
-                {latestNews.slice(4).map((item, index) => (
-                  <article
-                    key={item.id}
-                    className="group bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-gray-700 p-4 sm:p-6 hover:shadow-lg hover:border-slate-300 dark:hover:border-gray-600 transition-all duration-300"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-3">
-                      <Link
-                        href={`/news/topic/${item.topic.slug}`}
-                        className="px-2 sm:px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full hover:from-blue-600 hover:to-indigo-700 transition-colors capitalize font-medium w-fit"
-                      >
-                        {item.topic.title}
-                      </Link>
-                      <span className="hidden sm:inline">•</span>
-                      <span className="font-medium">{item.sourceName}</span>
-                      <span className="hidden sm:inline">•</span>
-                      <time className="text-slate-400 dark:text-gray-500">{formatDistanceToNow(new Date(item.publishedAt))} ago</time>
-                    </div>
-                    <Link href={`/news/${item.slug}`} className="block">
-                      <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2 sm:mb-3 leading-tight">
-                        {item.title}
-                      </h3>
-                      {item.excerpt && (
-                        <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base line-clamp-2 leading-relaxed">
-                          {item.excerpt}
-                        </p>
-                      )}
-                    </Link>
-                  </article>
-                ))}
-              </div>
+              <NewsSearchFilter initialNews={latestNews} topics={topics} />
             </div>
 
             {/* Sidebar */}
             <aside className="space-y-6 sm:space-y-8">
-              {/* Breaking News */}
-              <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:bg-gradient-to-br dark:from-red-900/20 dark:to-orange-900/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-red-100/50 dark:border-red-800/50 shadow-lg">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-gradient-to-r from-red-500 to-orange-600 rounded-lg shadow-lg">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-gray-100">Breaking News</h3>
-                </div>
-                
-                <div className="space-y-4">
-                  {breakingNews.map((item) => (
-                    <Link
-                      key={item.id}
-                      href={`/news/${item.slug}`}
-                      className="block group"
-                    >
-                      <h4 className="font-semibold text-slate-800 dark:text-gray-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors text-sm sm:text-base leading-tight line-clamp-2 mb-2">
-                        {item.title}
-                      </h4>
-                      <div className="text-xs text-slate-500 dark:text-gray-400">
-                        {formatDistanceToNow(new Date(item.publishedAt))} ago • {item.sourceName}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
               {/* Topics */}
               <div className="bg-gradient-to-br from-slate-50 to-blue-50 dark:bg-gradient-to-br dark:from-gray-800 dark:to-blue-900/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 dark:border-gray-700 shadow-lg">
                 <div className="flex items-center gap-3 mb-6">
@@ -273,7 +213,7 @@ export default async function NewsPage() {
                 </div>
                 
                 <div className="space-y-4">
-                  {topics.slice(0, 6).map((topic) => (
+                  {topics.slice(0, 8).map((topic) => (
                     <Link
                       key={topic.id}
                       href={`/news/topic/${topic.slug}`}
@@ -290,6 +230,37 @@ export default async function NewsPage() {
                       </div>
                     </Link>
                   ))}
+                </div>
+              </div>
+
+              {/* Live Updates Status */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:bg-gradient-to-br dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-green-100/50 dark:border-green-800/50 shadow-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg shadow-lg">
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-gray-100">Live Updates</h3>
+                </div>
+                
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-600 dark:text-gray-300">News Feed</span>
+                    <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full font-medium">
+                      Active
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-600 dark:text-gray-300">Last Update</span>
+                    <span className="text-slate-500 dark:text-gray-400">
+                      {latestNews.length > 0 ? formatDistanceToNow(new Date(latestNews[0].publishedAt)) + ' ago' : 'N/A'}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-600 dark:text-gray-300">Articles Today</span>
+                    <span className="text-slate-500 dark:text-gray-400 font-semibold">
+                      {latestNews.length}
+                    </span>
+                  </div>
                 </div>
               </div>
             </aside>
