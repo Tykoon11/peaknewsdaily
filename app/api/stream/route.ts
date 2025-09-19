@@ -45,11 +45,18 @@ export async function GET(request: NextRequest) {
         // Send initial snapshot
         await sendInitialSnapshot(controller, requestedSymbols)
         
-        // Send current market state
-        const currentState = await getEquityMarketState() || getCurrentMarketState()
-        const stateEvent: PriceEvent = { t: 'state', equitiesState: currentState, at: Date.now() }
-        const stateData = `event: state\ndata: ${JSON.stringify(stateEvent)}\n\n`
-        controller.enqueue(new TextEncoder().encode(stateData))
+        // Send current market state if controller is still active
+        if (activeConnections.has(controller)) {
+          const currentState = await getEquityMarketState() || getCurrentMarketState()
+          const stateEvent: PriceEvent = { t: 'state', equitiesState: currentState, at: Date.now() }
+          const stateData = `event: state\ndata: ${JSON.stringify(stateEvent)}\n\n`
+          try {
+            controller.enqueue(new TextEncoder().encode(stateData))
+          } catch (enqueueError) {
+            console.log('Controller closed during state enqueue, removing from active connections')
+            activeConnections.delete(controller)
+          }
+        }
         
       } catch (err) {
         console.error('Failed to send initial snapshot:', err)
@@ -75,6 +82,12 @@ async function sendInitialSnapshot(
   symbols: string[]
 ): Promise<void> {
   try {
+    // Check if controller is still active
+    if (!activeConnections.has(controller)) {
+      console.log('Controller already closed, skipping snapshot')
+      return
+    }
+
     // Get price snapshots from Redis
     const snapshots = await getPriceSnapshots(symbols)
     
@@ -114,10 +127,24 @@ async function sendInitialSnapshot(
     }
     
     const eventData = `event: snapshot\ndata: ${JSON.stringify(snapshotEvent)}\n\n`
-    controller.enqueue(new TextEncoder().encode(eventData))
+    
+    // Double-check controller is still active before enqueueing
+    if (activeConnections.has(controller)) {
+      try {
+        controller.enqueue(new TextEncoder().encode(eventData))
+      } catch (enqueueError) {
+        console.log('Controller closed during enqueue, removing from active connections')
+        activeConnections.delete(controller)
+      }
+    }
     
   } catch (err) {
     console.error('Failed to build initial snapshot:', err)
+    
+    // Check if controller is still active before sending error snapshot
+    if (!activeConnections.has(controller)) {
+      return
+    }
     
     // Try fallback to database before sending empty snapshot
     const fallbackData = await getFallbackPriceData(symbols)
@@ -135,7 +162,16 @@ async function sendInitialSnapshot(
     }
     
     const eventData = `event: snapshot\ndata: ${JSON.stringify(errorSnapshot)}\n\n`
-    controller.enqueue(new TextEncoder().encode(eventData))
+    
+    // Double-check controller is still active before enqueueing error
+    if (activeConnections.has(controller)) {
+      try {
+        controller.enqueue(new TextEncoder().encode(eventData))
+      } catch (enqueueError) {
+        console.log('Controller closed during error enqueue, removing from active connections')
+        activeConnections.delete(controller)
+      }
+    }
   }
 }
 

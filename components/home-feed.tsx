@@ -57,7 +57,7 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
     <>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 post-grid">
         {items.map((p) => (
-          <li key={p.id} className="rounded-lg border p-4 hover:shadow post-card" data-age={p.ageRestricted ? '1' : undefined}>
+          <li key={p.id} className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 hover:shadow dark:hover:shadow-xl post-card transition-all" data-age={p.ageRestricted ? '1' : undefined}>
             {p.media && p.media.length > 0 && (
               <div className="mb-3 -mx-4 -mt-4">
                 {p.media[0].kind === 'video' ? (
@@ -90,19 +90,19 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
               </div>
             )}
             <Link href={`/post/${p.slug}`} className="block post-card-link">
-              <h2 className="font-medium text-lg">{p.title}</h2>
-              <p className="text-sm text-gray-600 line-clamp-2">{p.description || ''}</p>
+              <h2 className="font-medium text-lg text-gray-900 dark:text-gray-100">{p.title}</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">{p.description || ''}</p>
             </Link>
             <div className="mt-2 flex gap-2 text-xs post-card-tags">
               {p.tags.map((t) => (
-                <Link key={t.tag.slug} href={`/tag/${t.tag.slug}`} className="px-2 py-0.5 rounded bg-gray-100 tag-chip">#{t.tag.name}</Link>
+                <Link key={t.tag.slug} href={`/tag/${t.tag.slug}`} className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tag-chip">#{t.tag.name}</Link>
               ))}
             </div>
           </li>
         ))}
       </ul>
       <div ref={loadMoreRef} className="h-12 flex items-center justify-center">
-        {loading ? <span className="text-sm text-gray-600">Loading…</span> : done ? <span className="text-sm text-gray-600">You’re all caught up</span> : null}
+        {loading ? <span className="text-sm text-gray-600 dark:text-gray-300">Loading…</span> : done ? <span className="text-sm text-gray-600 dark:text-gray-300">You're all caught up</span> : null}
       </div>
     </>
   )

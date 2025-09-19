@@ -850,22 +850,41 @@ export default function BrokersPage(): React.ReactElement {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Best Trading Brokers 2025 - Compare 22 Top Platforms
+      {/* Premium Brokers Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 opacity-20 dark:opacity-30">
+          <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-blue-400 to-indigo-500 dark:from-blue-400 dark:to-indigo-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-1/2 right-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-indigo-400 to-purple-500 dark:from-purple-400 dark:to-blue-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-1/2 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-purple-400 to-blue-500 dark:from-emerald-400 dark:to-teal-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] sm:bg-[size:32px_32px]"></div>
+        
+        <div className="relative container mx-auto px-4 py-12 sm:py-16 lg:py-20">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* Brokers Badge */}
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs sm:text-sm font-medium mb-6 sm:mb-8 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse mr-2 sm:mr-3"></div>
+              BROKER REVIEWS • 22+ PLATFORMS • EXPERT ANALYSIS
+            </div>
+            
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-indigo-200 leading-tight">
+              Best Trading Brokers 2025
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            
+            <p className="text-base sm:text-xl lg:text-2xl text-blue-100/80 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
               Expert rankings and comprehensive reviews of 22 top trading brokers for 2025. 
               Compare fees, platforms, regulation, and features to find your perfect trading platform.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className="bg-blue-800 px-4 py-2 rounded-full">✓ Regulatory Compliance</span>
-              <span className="bg-blue-800 px-4 py-2 rounded-full">✓ Fee Transparency</span>
-              <span className="bg-blue-800 px-4 py-2 rounded-full">✓ Platform Quality</span>
-              <span className="bg-blue-800 px-4 py-2 rounded-full">✓ Customer Support</span>
+
+            {/* Feature Pills */}
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <span className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-white font-medium text-sm">✓ Regulatory Compliance</span>
+              <span className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-white font-medium text-sm">✓ Fee Transparency</span>
+              <span className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-white font-medium text-sm">✓ Platform Quality</span>
+              <span className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-white font-medium text-sm">✓ Customer Support</span>
             </div>
           </div>
         </div>
@@ -980,22 +999,22 @@ export default function BrokersPage(): React.ReactElement {
 
                   {/* Key Metrics */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <div className="bg-gray-50 rounded-lg p-4 text-center">
-                      <div className="text-sm text-gray-500 mb-1">Min Deposit</div>
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center">
+                      <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Min Deposit</div>
                       <div className="text-lg font-semibold">
                         {broker.minDeposit === 0 ? 'No Min' : `$${broker.minDeposit.toLocaleString()}`}
                       </div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-4 text-center">
-                      <div className="text-sm text-gray-500 mb-1">Spread From</div>
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center">
+                      <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Spread From</div>
                       <div className="text-lg font-semibold">{broker.spreadFrom}</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-4 text-center">
-                      <div className="text-sm text-gray-500 mb-1">Commission</div>
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center">
+                      <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Commission</div>
                       <div className="text-lg font-semibold">{broker.commission}</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-4 text-center">
-                      <div className="text-sm text-gray-500 mb-1">Max Leverage</div>
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center">
+                      <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Max Leverage</div>
                       <div className="text-lg font-semibold">{broker.maxLeverage}</div>
                     </div>
                   </div>
@@ -1014,7 +1033,7 @@ export default function BrokersPage(): React.ReactElement {
                   {/* Detailed Info Grid */}
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">✅ Pros</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">✅ Pros</h4>
                       <ul className="space-y-1">
                         {broker.pros.map((pro, i) => (
                           <li key={i} className="text-gray-700 dark:text-gray-300 text-sm flex items-start">
@@ -1024,7 +1043,7 @@ export default function BrokersPage(): React.ReactElement {
                         ))}
                       </ul>
                       
-                      <h4 className="font-semibold text-gray-900 mb-3 mt-6">🎯 Best For</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 mt-6">🎯 Best For</h4>
                       <div className="flex flex-wrap gap-1">
                         {broker.bestFor.map((item, i) => (
                           <span key={i} className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">
@@ -1035,7 +1054,7 @@ export default function BrokersPage(): React.ReactElement {
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">❌ Cons</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">❌ Cons</h4>
                       <ul className="space-y-1 mb-6">
                         {broker.cons.map((con, i) => (
                           <li key={i} className="text-gray-700 dark:text-gray-300 text-sm flex items-start">
@@ -1045,7 +1064,7 @@ export default function BrokersPage(): React.ReactElement {
                         ))}
                       </ul>
 
-                      <h4 className="font-semibold text-gray-900 mb-3">🏛️ Regulation</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">🏛️ Regulation</h4>
                       <div className="flex flex-wrap gap-1">
                         {broker.regulators.map((reg, i) => (
                           <span key={i} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">
@@ -1137,7 +1156,7 @@ export default function BrokersPage(): React.ReactElement {
           </h2>
           <div className="space-y-8">
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">How do I choose the best trading broker?</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">How do I choose the best trading broker?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 Choose a broker based on your trading style, experience level, and needs. Key factors include regulation (SEC, FCA, ASIC), 
                 fees (commissions, spreads), platform quality, available markets, customer support, and minimum deposits. 
@@ -1146,7 +1165,7 @@ export default function BrokersPage(): React.ReactElement {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is the difference between commission-free and commission-based brokers?</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is the difference between commission-free and commission-based brokers?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 Commission-free brokers make money through spreads (the difference between buy/sell prices) and payment for order flow. 
                 Commission-based brokers charge explicit fees per trade but often offer tighter spreads and better execution. 
@@ -1155,7 +1174,7 @@ export default function BrokersPage(): React.ReactElement {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Are online trading brokers safe?</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Are online trading brokers safe?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 Regulated brokers are generally safe. Look for regulation by tier-1 authorities (SEC, FINRA, FCA, ASIC) and client fund segregation. 
                 Most regulated brokers offer investor protection schemes (SIPC up to $500K in US, FSCS up to £85K in UK). 
@@ -1164,7 +1183,7 @@ export default function BrokersPage(): React.ReactElement {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">What is the minimum amount needed to start trading?</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is the minimum amount needed to start trading?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 Minimum deposits vary from $0 (Fidelity, Charles Schwab) to $10,000+ (Saxo Bank). However, having $1,000-5,000 allows for 
                 better risk management and diversification. Some brokers offer fractional shares, letting you invest small amounts in expensive stocks. 
@@ -1173,7 +1192,7 @@ export default function BrokersPage(): React.ReactElement {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">What are the most important broker fees to compare?</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What are the most important broker fees to compare?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 Key fees include: stock/ETF commissions, options contract fees, forex spreads, inactivity fees, deposit/withdrawal fees, 
                 and margin rates. Also consider less obvious costs like wider spreads on commission-free trades, currency conversion fees 
@@ -1182,7 +1201,7 @@ export default function BrokersPage(): React.ReactElement {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Should I use multiple brokers?</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Should I use multiple brokers?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 Many experienced traders use multiple brokers to access different markets, take advantage of various strengths, 
                 and reduce counterparty risk. For example, using Interactive Brokers for international stocks, TD Ameritrade for options education, 

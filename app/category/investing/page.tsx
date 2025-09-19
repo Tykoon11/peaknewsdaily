@@ -127,7 +127,7 @@ export default async function InvestingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -135,7 +135,7 @@ export default async function InvestingPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-900 via-blue-900 to-indigo-900 text-white py-20">
+      <section className="bg-gradient-to-r from-green-900 via-blue-900 to-indigo-900 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -156,24 +156,24 @@ export default async function InvestingPage() {
       </section>
 
       {/* Market Overview Stats */}
-      <section className="py-12 bg-white border-b">
+      <section className="py-12 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">15%+</div>
-              <div className="text-sm text-gray-600">Historical Market Returns</div>
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">15%+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Historical Market Returns</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">30+</div>
-              <div className="text-sm text-gray-600">Years Investment Horizon</div>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">30+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Years Investment Horizon</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-indigo-600 mb-2">5-7</div>
-              <div className="text-sm text-gray-600">Asset Classes for Diversification</div>
+              <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">5-7</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Asset Classes for Diversification</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">2025</div>
-              <div className="text-sm text-gray-600">Strategic Investment Year</div>
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">2025</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Strategic Investment Year</div>
             </div>
           </div>
         </div>
@@ -183,18 +183,18 @@ export default async function InvestingPage() {
 
         {/* Investment Strategies Grid */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">💼 2025 Investment Strategies</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">💼 2025 Investment Strategies</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Portfolio Diversification */}
-            <div className="bg-white rounded-xl shadow-lg border overflow-hidden hover:shadow-xl transition-shadow">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-shadow">
               <div className="bg-gradient-to-r from-green-600 to-blue-600 p-6 text-white">
                 <div className="text-4xl mb-3">📊</div>
                 <h3 className="text-xl font-bold">Portfolio Diversification</h3>
                 <p className="text-green-100 text-sm mt-2">Spread risk across multiple asset classes</p>
               </div>
               <div className="p-6">
-                <ul className="space-y-3 text-sm text-gray-700">
+                <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 font-bold">•</span>
                     <span><strong>Stock Allocation:</strong> 60-70% for growth potential</span>
@@ -212,8 +212,8 @@ export default async function InvestingPage() {
                     <span><strong>Cash Reserve:</strong> 5-10% for opportunities</span>
                   </li>
                 </ul>
-                <div className="mt-4 p-3 bg-green-50 rounded-lg">
-                  <p className="text-xs text-green-800">
+                <div className="mt-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                  <p className="text-xs text-green-800 dark:text-green-300">
                     <strong>2025 Focus:</strong> Traditional 60/40 portfolios need evolution due to changing stock-bond correlations.
                   </p>
                 </div>
@@ -221,7 +221,7 @@ export default async function InvestingPage() {
             </div>
 
             {/* Asset Allocation */}
-            <div className="bg-white rounded-xl shadow-lg border overflow-hidden hover:shadow-xl transition-shadow">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-shadow">
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
                 <div className="text-4xl mb-3">🎯</div>
                 <h3 className="text-xl font-bold">Strategic Asset Allocation</h3>
@@ -242,8 +242,8 @@ export default async function InvestingPage() {
                     <div className="text-xs text-gray-600">50% Stocks | 50% Bonds</div>
                   </div>
                 </div>
-                <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                  <p className="text-xs text-blue-800">
+                <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                  <p className="text-xs text-blue-800 dark:text-blue-300">
                     <strong>Rule of Thumb:</strong> Stock allocation = 100 - your age (adjusted for 2025 longevity)
                   </p>
                 </div>
@@ -251,14 +251,14 @@ export default async function InvestingPage() {
             </div>
 
             {/* Investment Vehicles */}
-            <div className="bg-white rounded-xl shadow-lg border overflow-hidden hover:shadow-xl transition-shadow">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-shadow">
               <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6 text-white">
                 <div className="text-4xl mb-3">🚀</div>
                 <h3 className="text-xl font-bold">Investment Vehicles</h3>
                 <p className="text-purple-100 text-sm mt-2">Modern tools for portfolio construction</p>
               </div>
               <div className="p-6">
-                <ul className="space-y-3 text-sm text-gray-700">
+                <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 font-bold">📈</span>
                     <span><strong>ETFs:</strong> Low-cost diversification with liquidity</span>
@@ -276,8 +276,8 @@ export default async function InvestingPage() {
                     <span><strong>Individual Stocks:</strong> Direct ownership for growth</span>
                   </li>
                 </ul>
-                <div className="mt-4 p-3 bg-purple-50 rounded-lg">
-                  <p className="text-xs text-purple-800">
+                <div className="mt-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                  <p className="text-xs text-purple-800 dark:text-purple-300">
                     <strong>2025 Trend:</strong> ESG investing and thematic ETFs gaining traction among millennials.
                   </p>
                 </div>
@@ -288,7 +288,7 @@ export default async function InvestingPage() {
 
         {/* Investment Categories */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">🏗️ Asset Class Breakdown</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">🏗️ Asset Class Breakdown</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Stocks */}
@@ -394,10 +394,10 @@ export default async function InvestingPage() {
         {/* Latest Articles Section */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">📚 Latest Investing Articles</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">📚 Latest Investing Articles</h2>
             <Link 
               href="/category/investing"
-              className="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-1"
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm flex items-center gap-1 transition-colors"
             >
               View All Articles →
             </Link>
@@ -428,15 +428,15 @@ export default async function InvestingPage() {
               baseQuery={{ c: 'investing', s: 'latest' }} 
             />
           ) : (
-            <div className="bg-white rounded-xl border p-12 text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
               <div className="text-6xl mb-4">📈</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Building Investment Content</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Building Investment Content</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
                 Our investment analysis and guides are coming soon. Check back for expert insights and market analysis.
               </p>
               <Link
                 href="/markets/stocks"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 transition-colors"
               >
                 Browse Market Data
               </Link>

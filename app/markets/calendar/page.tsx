@@ -337,8 +337,8 @@ export default async function EconomicCalendarPage() {
 
         {/* Quick Access Tabs */}
         <div className="mb-8">
-          <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-            <div className="border-b border-gray-200">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="border-b border-gray-200 dark:border-gray-700">
               <nav className="flex space-x-8 px-6" aria-label="Tabs">
                 <button className="border-b-2 border-blue-500 py-4 px-1 text-sm font-medium text-blue-600">
                   📅 Today's Events
@@ -399,7 +399,7 @@ export default async function EconomicCalendarPage() {
                 ) : (
                   <div className="text-center py-8">
                     <div className="text-4xl mb-2">📅</div>
-                    <p className="text-gray-600">No events scheduled for today</p>
+                    <p className="text-gray-600 dark:text-gray-300">No events scheduled for today</p>
                   </div>
                 )}
               </div>
@@ -413,17 +413,17 @@ export default async function EconomicCalendarPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-6 h-6 bg-red-500 rounded-full mx-auto mb-2"></div>
-              <div className="font-semibold text-red-700">High Impact</div>
+              <div className="font-semibold text-red-700 dark:text-red-400">High Impact</div>
               <div className="text-sm text-gray-600 dark:text-gray-300">Major market movers like Fed meetings, GDP, NFP</div>
             </div>
             <div className="text-center">
               <div className="w-6 h-6 bg-yellow-500 rounded-full mx-auto mb-2"></div>
-              <div className="font-semibold text-yellow-700">Medium Impact</div>
+              <div className="font-semibold text-yellow-700 dark:text-yellow-400">Medium Impact</div>
               <div className="text-sm text-gray-600 dark:text-gray-300">Regional data, sector-specific indicators</div>
             </div>
             <div className="text-center">
               <div className="w-6 h-6 bg-green-500 rounded-full mx-auto mb-2"></div>
-              <div className="font-semibold text-green-700">Low Impact</div>
+              <div className="font-semibold text-green-700 dark:text-green-400">Low Impact</div>
               <div className="text-sm text-gray-600 dark:text-gray-300">Minor releases, preliminary data</div>
             </div>
           </div>
@@ -541,13 +541,13 @@ export default async function EconomicCalendarPage() {
               )
             })
           ) : (
-            <div className="bg-white rounded-xl border p-16 text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-16 text-center">
               <div className="text-6xl mb-4">📅</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No Upcoming Economic Events</h3>
-              <p className="text-gray-600 mb-6">Economic calendar events will appear here when available.</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">No Upcoming Economic Events</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">Economic calendar events will appear here when available.</p>
               <Link
                 href="/"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
               >
                 Browse Market Data
               </Link>

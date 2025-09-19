@@ -426,37 +426,67 @@ export default function HowToPage() {
   }
 
   return (
-    <main className="container py-8 bg-white dark:bg-gray-900 min-h-screen">
-      {/* Hero Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Complete Financial How-To Guide
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Step-by-step guides covering everything from budgeting basics to advanced trading strategies. 
-          Your comprehensive resource for financial education and practical money management.
-        </p>
-      </div>
+    <>
+      {/* Premium How-To Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 opacity-20 dark:opacity-30">
+          <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-purple-400 to-indigo-500 dark:from-blue-400 dark:to-indigo-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-1/2 right-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-indigo-400 to-purple-500 dark:from-purple-400 dark:to-blue-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-1/2 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-blue-400 to-purple-500 dark:from-emerald-400 dark:to-teal-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] sm:bg-[size:32px_32px]"></div>
+        
+        <div className="relative container mx-auto px-4 py-12 sm:py-16 lg:py-20">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* How-To Badge */}
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-purple-500/20 border border-purple-400/30 text-purple-300 text-xs sm:text-sm font-medium mb-6 sm:mb-8 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse mr-2 sm:mr-3"></div>
+              EDUCATION CENTER • {sections.reduce((total, section) => total + section.guides.length, 0)} GUIDES • FREE CONTENT
+            </div>
+            
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-100 to-indigo-200 leading-tight">
+              Complete Financial How-To Guide
+            </h1>
+            
+            <p className="text-base sm:text-xl lg:text-2xl text-purple-100/80 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
+              Step-by-step guides covering everything from budgeting basics to advanced 
+              trading strategies. Your comprehensive resource for financial education and 
+              practical money management.
+            </p>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600">{sections.length}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">Categories</div>
+            {/* Stats Row */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-purple-500/10">
+                <div className="text-xl sm:text-3xl font-black text-white mb-1">{sections.length}</div>
+                <div className="text-purple-200/80 font-medium text-xs sm:text-sm">Categories</div>
+              </div>
+              
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-indigo-500/10">
+                <div className="text-xl sm:text-3xl font-black text-indigo-400 mb-1">
+                  {sections.reduce((total, section) => total + section.guides.length, 0)}
+                </div>
+                <div className="text-purple-200/80 font-medium text-xs sm:text-sm">How-To Guides</div>
+              </div>
+              
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-orange-500/10">
+                <div className="text-xl sm:text-3xl font-black text-orange-400 mb-1">100%</div>
+                <div className="text-purple-200/80 font-medium text-xs sm:text-sm">Free Content</div>
+              </div>
+              
+              <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-purple-500/10">
+                <div className="text-xl sm:text-3xl font-black text-purple-400 mb-1">2025</div>
+                <div className="text-purple-200/80 font-medium text-xs sm:text-sm">Up to Date</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="text-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 rounded-lg">
-          <div className="text-2xl font-bold text-green-600">{sections.reduce((total, section) => total + section.guides.length, 0)}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">How-To Guides</div>
-        </div>
-        <div className="text-center p-4 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/30 dark:to-red-900/30 rounded-lg">
-          <div className="text-2xl font-bold text-orange-600">100%</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">Free Content</div>
-        </div>
-        <div className="text-center p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-lg">
-          <div className="text-2xl font-bold text-purple-600">2025</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">Up to Date</div>
-        </div>
-      </div>
+      </section>
+
+      <main className="bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
 
       {/* Table of Contents */}
       <div className="mb-12">
@@ -683,6 +713,8 @@ export default function HowToPage() {
           </svg>
         </Link>
       </div>
-    </main>
+        </div>
+      </main>
+    </>
   )
 }

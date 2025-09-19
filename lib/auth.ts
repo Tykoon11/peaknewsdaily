@@ -32,9 +32,9 @@ export const authConfig: NextAuthConfig = {
     },
     async session({ session, token, user }) {
       if (session.user) {
-        session.user.id = token.sub || user?.id || ''
+        session.user.id = token?.sub || user?.id || ''
         // Include role from token or user
-        ;(session.user as any).role = token.role || (user as any)?.role || 'reader'
+        ;(session.user as any).role = token?.role || (user as any)?.role || 'reader'
       }
       return session
     }

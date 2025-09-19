@@ -45,7 +45,7 @@ export default async function Admin({ searchParams }: { searchParams?: { q?: str
       {/* Navigation Pills */}
       <div className="flex flex-wrap gap-3 mb-6">
         <Link 
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border hover:bg-gray-50 transition-colors text-sm font-medium" 
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-medium text-gray-900 dark:text-gray-100" 
           href="/admin/posts"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,7 +63,7 @@ export default async function Admin({ searchParams }: { searchParams?: { q?: str
           Trading Education
         </Link>
         <Link 
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border hover:bg-gray-50 transition-colors text-sm font-medium" 
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-medium text-gray-900 dark:text-gray-100" 
           href="/admin/categories"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,14 +81,14 @@ export default async function Admin({ searchParams }: { searchParams?: { q?: str
             <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">All caught up!</h3>
-            <p className="text-gray-500">No pending submissions to review.</p>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">All caught up!</h3>
+            <p className="text-gray-500 dark:text-gray-400">No pending submissions to review.</p>
           </div>
         </div>
       ) : (
         <div className="space-y-4">
           {subs.map((s) => (
-            <div key={s.id} className="bg-white rounded-xl border hover:shadow-lg transition-all duration-200 overflow-hidden">
+            <div key={s.id} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg dark:hover:shadow-xl transition-all duration-200 overflow-hidden">
               <div className="p-6">
                 <div className="flex items-start gap-4">
                   {/* Enhanced Thumbnail */}
@@ -116,16 +116,16 @@ export default async function Admin({ searchParams }: { searchParams?: { q?: str
                       )}
                     </div>
                   ) : (
-                    <div className="w-24 h-18 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-24 h-18 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                      <svg className="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
                   )}
                   
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{s.post?.title}</h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2 line-clamp-2">{s.post?.title}</h3>
+                    <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300 mb-3">
                       <span className="flex items-center gap-1">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

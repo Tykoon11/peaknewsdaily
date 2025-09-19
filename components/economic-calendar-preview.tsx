@@ -99,18 +99,18 @@ export default function EconomicCalendarPreview() {
   if (loading) {
     return (
       <section className="mb-12">
-        <div className="bg-white rounded-xl border p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
           <div className="animate-pulse">
-            <div className="h-6 bg-gray-200 rounded w-48 mb-4"></div>
+            <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-48 mb-4"></div>
             <div className="space-y-4">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="flex items-center space-x-4">
-                  <div className="h-8 w-8 bg-gray-200 rounded"></div>
+                  <div className="h-8 w-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
                   <div className="flex-1">
-                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                    <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
+                    <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
                   </div>
-                  <div className="h-6 bg-gray-200 rounded w-16"></div>
+                  <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-16"></div>
                 </div>
               ))}
             </div>
@@ -123,8 +123,8 @@ export default function EconomicCalendarPreview() {
   if (error) {
     return (
       <section className="mb-12">
-        <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-          <p className="text-red-600">{error}</p>
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6 text-center">
+          <p className="text-red-600 dark:text-red-400">{error}</p>
         </div>
       </section>
     )
@@ -136,10 +136,10 @@ export default function EconomicCalendarPreview() {
 
   return (
     <section className="mb-12">
-      <div className="bg-white rounded-xl border overflow-hidden">
-        <div className="border-b p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div className="border-b border-gray-200 dark:border-gray-700 p-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold flex items-center gap-2">
+            <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 dark:text-gray-100">
               <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
                 <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
@@ -149,7 +149,7 @@ export default function EconomicCalendarPreview() {
             </h2>
             <Link 
               href="/markets/calendar" 
-              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
             >
               View All →
             </Link>
@@ -158,7 +158,7 @@ export default function EconomicCalendarPreview() {
         <div className="p-4">
           <div className="space-y-4">
             {events.slice(0, 6).map((event) => (
-              <div key={event.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+              <div key={event.id} className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                 <div className="flex items-center gap-3 flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{getCountryFlag(event.country)}</span>
@@ -166,20 +166,20 @@ export default function EconomicCalendarPreview() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-sm font-medium text-gray-900 truncate">{event.title}</h3>
-                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                      <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{event.title}</h3>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
                         {event.currency}
                       </span>
                     </div>
-                    <div className="text-xs text-gray-600">{event.category}</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-300">{event.category}</div>
                   </div>
                 </div>
                 <div className="text-right ml-4">
-                  <div className="text-xs font-medium text-gray-900">
+                  <div className="text-xs font-medium text-gray-900 dark:text-gray-100">
                     {formatEventTime(event.eventTime)}
                   </div>
                   {event.forecast && (
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       Forecast: {event.forecast}{event.unit}
                     </div>
                   )}
@@ -189,8 +189,8 @@ export default function EconomicCalendarPreview() {
           </div>
           
           {events.length === 0 && (
-            <div className="text-center py-8 text-gray-500">
-              <svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+              <svg className="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <p>No upcoming economic events</p>

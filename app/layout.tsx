@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <head>
         <ThemeScript />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-white dark:bg-gray-900 transition-colors`}>
         <ThemeProvider 
           attribute="class" 
           defaultTheme="system" 
@@ -50,9 +50,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
               crossOrigin="anonymous"
               strategy="afterInteractive"
             />
-            <div className="site">
+            <div className="site min-h-screen bg-white dark:bg-gray-900 flex flex-col">
               <Nav />
-              {children}
+              <main className="flex-1 bg-white dark:bg-gray-900">
+                {children}
+              </main>
               <Footer />
             </div>
             <SpeedInsights />
