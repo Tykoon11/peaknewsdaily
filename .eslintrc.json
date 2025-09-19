@@ -1,8 +1,30 @@
 {
   "extends": ["next", "next/core-web-vitals"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    "@next/next/no-img-element": "off",
-    "react/no-unescaped-entities": "off"
-  }
+    "@next/next/no-img-element": "warn",
+    "react/no-unescaped-entities": "warn",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-new-func": "error",
+    "no-script-url": "error",
+    "react/jsx-no-target-blank": ["error", { "allowReferrer": false }],
+    "react/no-danger": "warn",
+    "react/no-danger-with-children": "error",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "prefer-const": "warn",
+    "no-var": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "off"
+      }
+    }
+  ]
 }
 

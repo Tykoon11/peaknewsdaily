@@ -10,7 +10,13 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    console.error(error)
+    // Import logger dynamically to avoid SSR issues
+    import('@/lib/logger').then(({ logger }) => {
+      logger.error('Client-side error boundary triggered', error, {
+        digest: error.digest,
+        timestamp: Date.now()
+      })
+    })
   }, [error])
 
   return (

@@ -54,6 +54,10 @@ model User {
   portfolios    Portfolio[]
   alerts        Alert[]
   analysis      Analysis[]
+  
+  @@index([email])
+  @@index([role])
+  @@index([createdAt])
 }
 
 model Account {
@@ -149,6 +153,13 @@ model Post {
   comments     Comment[]
   viewEvents   ViewEvent[]
   embedding    Embedding?
+  
+  @@index([slug])
+  @@index([status, publishedAt])
+  @@index([categoryId, publishedAt])
+  @@index([authorId, publishedAt])
+  @@index([type, publishedAt])
+  @@index([createdAt])
 }
 
 model Submission {
@@ -265,6 +276,9 @@ model NewsItem {
   topic       Topic    @relation(fields: [topicSlug], references: [slug])
 
   @@index([topicSlug, publishedAt])
+  @@index([publishedAt])
+  @@index([sourceName, publishedAt])
+  @@index([createdAt])
 }
 
 model IngestItem {

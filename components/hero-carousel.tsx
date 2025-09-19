@@ -23,7 +23,7 @@ export default function HeroCarousel({ slides, intervalMs = 5000 }: { slides: Sl
   const paused = useRef(false)
 
   useEffect(() => {
-    if (items.length <= 1) return
+    if (items.length <= 1) return undefined
     function tick() {
       if (!paused.current) setI((v) => (v + 1) % items.length)
     }
