@@ -263,7 +263,7 @@ The markets will always present opportunities for those who are prepared, discip
 *For more comprehensive coverage of ${pillar.title.toLowerCase()}, explore our complete collection of articles in this section. Each article builds upon these foundational concepts with specific, actionable guidance for real-world application.*`
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-8">
+    <article className="max-w-4xl mx-auto px-4 py-8 bg-white dark:bg-gray-900 min-h-screen">
       <Breadcrumbs trail={[
         { href: '/education', label: 'Education' },
         { href: pillar.slug, label: pillar.title },
@@ -272,27 +272,27 @@ The markets will always present opportunities for those who are prepared, discip
 
       <header className="mb-8">
         <div className="flex items-center gap-2 mb-4">
-          <span className="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-medium">
+          <span className="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 text-xs px-3 py-1 rounded-full font-medium">
             {pillar.title}
           </span>
           {article.status === 'published' && (
-            <span className="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full font-medium">
+            <span className="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs px-3 py-1 rounded-full font-medium">
               Published
             </span>
           )}
         </div>
         
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
           {title}
         </h1>
         
         {summary && (
-          <p className="text-xl text-gray-600 leading-relaxed mb-6">
+          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
             {summary}
           </p>
         )}
         
-        <div className="flex items-center text-sm text-gray-500 border-b border-gray-200 pb-6">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 pb-6">
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -302,31 +302,31 @@ The markets will always present opportunities for those who are prepared, discip
         </div>
       </header>
 
-      <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-p:text-gray-700 prose-li:text-gray-700 prose-strong:text-gray-900 prose-code:text-pink-600 prose-code:bg-pink-50 prose-pre:bg-gray-50 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50">
+      <div className="prose prose-lg max-w-none prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-code:text-pink-600 dark:prose-code:text-pink-400 prose-code:bg-pink-50 dark:prose-code:bg-pink-900/20 prose-pre:bg-gray-50 dark:prose-pre:bg-gray-800 prose-blockquote:border-blue-500 dark:prose-blockquote:border-blue-400 prose-blockquote:bg-blue-50 dark:prose-blockquote:bg-blue-900/20">
         <ReactMarkdown 
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight]}
           components={{
-            h1: ({children}) => <h1 className="text-2xl font-bold mt-8 mb-4 text-gray-900">{children}</h1>,
-            h2: ({children}) => <h2 className="text-xl font-bold mt-8 mb-4 text-gray-900">{children}</h2>, 
-            h3: ({children}) => <h3 className="text-lg font-semibold mt-6 mb-3 text-gray-900">{children}</h3>,
-            p: ({children}) => <p className="mb-4 leading-7 text-gray-700">{children}</p>,
+            h1: ({children}) => <h1 className="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100">{children}</h1>,
+            h2: ({children}) => <h2 className="text-xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100">{children}</h2>, 
+            h3: ({children}) => <h3 className="text-lg font-semibold mt-6 mb-3 text-gray-900 dark:text-gray-100">{children}</h3>,
+            p: ({children}) => <p className="mb-4 leading-7 text-gray-700 dark:text-gray-300">{children}</p>,
             ul: ({children}) => <ul className="mb-4 pl-6 space-y-2">{children}</ul>,
             ol: ({children}) => <ol className="mb-4 pl-6 space-y-2">{children}</ol>,
-            li: ({children}) => <li className="text-gray-700">{children}</li>,
+            li: ({children}) => <li className="text-gray-700 dark:text-gray-300">{children}</li>,
             blockquote: ({children}) => (
-              <blockquote className="border-l-4 border-blue-500 bg-blue-50 pl-6 py-4 my-6 italic">
+              <blockquote className="border-l-4 border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20 pl-6 py-4 my-6 italic">
                 {children}
               </blockquote>
             ),
             code: ({children, className}) => {
               const isBlock = className?.includes('language-')
               return isBlock ? (
-                <code className={`${className} block bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto`}>
+                <code className={`${className} block bg-gray-900 dark:bg-gray-800 text-gray-100 dark:text-gray-200 p-4 rounded-lg overflow-x-auto`}>
                   {children}
                 </code>
               ) : (
-                <code className="bg-pink-50 text-pink-700 px-1 py-0.5 rounded text-sm font-mono">
+                <code className="bg-pink-50 dark:bg-pink-900/20 text-pink-700 dark:text-pink-400 px-1 py-0.5 rounded text-sm font-mono">
                   {children}
                 </code>
               )
@@ -339,11 +339,11 @@ The markets will always present opportunities for those who are prepared, discip
 
       <RelatedLinks links={[...siblingLinks, ...crossLinks.slice(0, 3)]} />
 
-      <div className="mt-12 pt-8 border-t border-gray-200">
+      <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <Link 
             href="/education" 
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+            className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -351,7 +351,7 @@ The markets will always present opportunities for those who are prepared, discip
             Back to Trading Education
           </Link>
           
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 dark:text-gray-400">
             Part of {pillar.title}
           </div>
         </div>

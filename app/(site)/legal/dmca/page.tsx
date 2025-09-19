@@ -2,7 +2,7 @@ export const metadata = { title: 'DMCA' }
 
 export default function DMCA() {
   return (
-    <main className="container py-6 prose dark:prose-invert">
+    <main className="container py-6 prose dark:prose-invert bg-white dark:bg-gray-900 min-h-screen">
       <h1>DMCA Takedown Request</h1>
       <p>Use this page to request removal of content you believe infringes your rights.</p>
       <ol>

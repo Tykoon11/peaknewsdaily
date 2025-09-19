@@ -32,7 +32,7 @@ export default async function PostPage({ params }: Props) {
   const primary = post.media[0]
 
   return (
-    <main className="container py-6">
+    <main className="container py-6 bg-white dark:bg-gray-900 min-h-screen">
       <article className="prose dark:prose-invert max-w-none">
         <h1>{post.title}</h1>
         {post.submission?.ageRestricted && <AgeGate />}

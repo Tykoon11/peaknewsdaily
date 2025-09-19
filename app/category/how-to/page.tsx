@@ -426,13 +426,13 @@ export default function HowToPage() {
   }
 
   return (
-    <main className="container py-8">
+    <main className="container py-8 bg-white dark:bg-gray-900 min-h-screen">
       {/* Hero Section */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           Complete Financial How-To Guide
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Step-by-step guides covering everything from budgeting basics to advanced trading strategies. 
           Your comprehensive resource for financial education and practical money management.
         </p>
@@ -440,42 +440,42 @@ export default function HowToPage() {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+        <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-lg">
           <div className="text-2xl font-bold text-blue-600">{sections.length}</div>
-          <div className="text-sm text-gray-600">Categories</div>
+          <div className="text-sm text-gray-600 dark:text-gray-300">Categories</div>
         </div>
-        <div className="text-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg">
+        <div className="text-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 rounded-lg">
           <div className="text-2xl font-bold text-green-600">{sections.reduce((total, section) => total + section.guides.length, 0)}</div>
-          <div className="text-sm text-gray-600">How-To Guides</div>
+          <div className="text-sm text-gray-600 dark:text-gray-300">How-To Guides</div>
         </div>
-        <div className="text-center p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg">
+        <div className="text-center p-4 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/30 dark:to-red-900/30 rounded-lg">
           <div className="text-2xl font-bold text-orange-600">100%</div>
-          <div className="text-sm text-gray-600">Free Content</div>
+          <div className="text-sm text-gray-600 dark:text-gray-300">Free Content</div>
         </div>
-        <div className="text-center p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+        <div className="text-center p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-lg">
           <div className="text-2xl font-bold text-purple-600">2025</div>
-          <div className="text-sm text-gray-600">Up to Date</div>
+          <div className="text-sm text-gray-600 dark:text-gray-300">Up to Date</div>
         </div>
       </div>
 
       {/* Table of Contents */}
       <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Quick Navigation</h2>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Quick Navigation</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
           {sections.map((section, index) => (
             <a 
               key={index}
               href={`#${createSlug(section.title)}`}
-              className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200 group"
+              className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md dark:hover:shadow-lg transition-all duration-200 group"
             >
               <div className={`w-8 h-8 ${section.color} rounded-lg flex items-center justify-center text-white text-sm font-semibold`}>
                 {section.icon}
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium group-hover:text-blue-600 transition-colors">
+                <div className="text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 transition-colors">
                   {section.title}
                 </div>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-gray-500 dark:text-gray-400">
                   {section.guides.length} guides
                 </div>
               </div>
@@ -493,13 +493,13 @@ export default function HowToPage() {
               {section.icon}
             </div>
             <div className="flex-1">
-              <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
                 {section.title}
               </h2>
               {section.description ? (
-                <p className="text-lg text-gray-600 mb-2">{section.description}</p>
+                <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">{section.description}</p>
               ) : null}
-              <div className="flex items-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                 <span className="flex items-center gap-1">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -514,7 +514,7 @@ export default function HowToPage() {
           {section.title === "Student Loans & Education" ? (
             <div className="space-y-6">
               {/* Featured Guide */}
-              <div className="bg-gradient-to-r from-violet-50 via-purple-50 to-indigo-50 rounded-2xl p-8 border border-violet-200">
+              <div className="bg-gradient-to-r from-violet-50 via-purple-50 to-indigo-50 dark:from-violet-900/30 dark:via-purple-900/30 dark:to-indigo-900/30 rounded-2xl p-8 border border-violet-200 dark:border-violet-800">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -522,9 +522,9 @@ export default function HowToPage() {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Most Popular Guide</h3>
-                    <h4 className="text-lg font-semibold text-violet-700 mb-3">How to choose federal vs private student loans</h4>
-                    <p className="text-gray-600 mb-4">Compare interest rates, repayment options, and benefits to make the right choice for your education financing.</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Most Popular Guide</h3>
+                    <h4 className="text-lg font-semibold text-violet-700 dark:text-violet-300 mb-3">How to choose federal vs private student loans</h4>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">Compare interest rates, repayment options, and benefits to make the right choice for your education financing.</p>
                     <Link href="/how-to/how-to-choose-federal-vs-private-student-loans" 
                           className="inline-flex items-center gap-2 bg-violet-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-violet-700 transition-colors">
                       Start Reading
@@ -539,29 +539,29 @@ export default function HowToPage() {
               {/* Guide Categories */}
               <div className="grid lg:grid-cols-2 gap-8">
                 {/* Beginner Guides */}
-                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-lg">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
                       <span className="text-green-600 text-sm font-semibold">★</span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">Beginner Guides</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Beginner Guides</h3>
                   </div>
                   <div className="space-y-4">
                     {section.guides.filter((guide): guide is {title: string, description: string, difficulty: string, readTime: string} => typeof guide === 'object' && 'difficulty' in guide && guide.difficulty === 'Beginner').map((guide, guideIndex) => (
                       <Link
                         key={guideIndex}
                         href={`/how-to/${createSlug(guide.title)}`}
-                        className="group block p-4 bg-gray-50 rounded-xl hover:bg-green-50 transition-colors border border-transparent hover:border-green-200"
+                        className="group block p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/30 transition-colors border border-transparent hover:border-green-200 dark:hover:border-green-700"
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-green-700 transition-colors mb-2 leading-snug">
+                            <h4 className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors mb-2 leading-snug">
                               {guide.title}
                             </h4>
-                            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                            <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
                               {guide.description}
                             </p>
-                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                            <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                               <span className="flex items-center gap-1">
                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
@@ -585,29 +585,29 @@ export default function HowToPage() {
                 </div>
 
                 {/* Advanced Guides */}
-                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-lg">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
                       <span className="text-red-600 text-sm font-semibold">◆</span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">Intermediate & Advanced</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Intermediate & Advanced</h3>
                   </div>
                   <div className="space-y-4">
                     {section.guides.filter((guide): guide is {title: string, description: string, difficulty: string, readTime: string} => typeof guide === 'object' && 'difficulty' in guide && (guide.difficulty === 'Intermediate' || guide.difficulty === 'Advanced')).map((guide, guideIndex) => (
                       <Link
                         key={guideIndex}
                         href={`/how-to/${createSlug(guide.title)}`}
-                        className="group block p-4 bg-gray-50 rounded-xl hover:bg-orange-50 transition-colors border border-transparent hover:border-orange-200"
+                        className="group block p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-orange-50 dark:hover:bg-orange-900/30 transition-colors border border-transparent hover:border-orange-200 dark:hover:border-orange-700"
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-orange-700 transition-colors mb-2 leading-snug">
+                            <h4 className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-orange-700 dark:group-hover:text-orange-300 transition-colors mb-2 leading-snug">
                               {guide.title}
                             </h4>
-                            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                            <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
                               {guide.description}
                             </p>
-                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                            <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                               <span className="flex items-center gap-1">
                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
@@ -642,14 +642,14 @@ export default function HowToPage() {
                 <Link
                   key={guideIndex}
                   href={`/how-to/${createSlug(typeof guide === 'string' ? guide : guide.title)}`}
-                  className="group p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200 hover:border-blue-300"
+                  className="group p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md dark:hover:shadow-lg transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-600"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-100 transition-colors">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full group-hover:bg-blue-500 transition-colors"></div>
+                    <div className="w-6 h-6 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors">
+                      <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full group-hover:bg-blue-500 transition-colors"></div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors leading-snug">
+                      <h3 className="font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                         {typeof guide === 'string' ? guide : guide.title}
                       </h3>
                     </div>
@@ -667,9 +667,9 @@ export default function HowToPage() {
       ))}
 
       {/* Bottom CTA */}
-      <div className="mt-20 text-center p-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl">
-        <h2 className="text-2xl font-bold mb-4">Can't Find What You're Looking For?</h2>
-        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+      <div className="mt-20 text-center p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-2xl">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Can't Find What You're Looking For?</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
           We're constantly adding new how-to guides based on community feedback. 
           Let us know what financial topics you'd like us to cover next.
         </p>

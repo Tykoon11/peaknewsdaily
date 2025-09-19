@@ -281,7 +281,7 @@ export default async function EconomicCalendarPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -289,7 +289,7 @@ export default async function EconomicCalendarPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 text-white py-16">
+      <section className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -310,24 +310,24 @@ export default async function EconomicCalendarPage() {
       </section>
 
       {/* Market Summary Stats */}
-      <section className="py-12 bg-white border-b">
+      <section className="py-12 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 mb-2">{todaysEvents.length}</div>
-              <div className="text-sm text-gray-600">Today's Events</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Today's Events</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-600 mb-2">{highImpactEvents.length}</div>
-              <div className="text-sm text-gray-600">High Impact This Week</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">High Impact This Week</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-indigo-600 mb-2">{upcomingEvents.length}</div>
-              <div className="text-sm text-gray-600">Upcoming Events</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Upcoming Events</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-green-600 mb-2">{recentEvents.length}</div>
-              <div className="text-sm text-gray-600">Recent Results</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Recent Results</div>
             </div>
           </div>
         </div>
@@ -343,13 +343,13 @@ export default async function EconomicCalendarPage() {
                 <button className="border-b-2 border-blue-500 py-4 px-1 text-sm font-medium text-blue-600">
                   📅 Today's Events
                 </button>
-                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700">
+                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
                   🔥 High Impact
                 </button>
-                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700">
+                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
                   📊 Recent Results
                 </button>
-                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700">
+                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
                   📈 All Events
                 </button>
               </nav>
@@ -363,7 +363,7 @@ export default async function EconomicCalendarPage() {
                     const categoryIcon = getCategoryIcon(event.category)
                     
                     return (
-                      <div key={event.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                      <div key={event.id} className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
                         <div className="text-2xl">{getCountryFlag(event.country)}</div>
                         <div className="flex-shrink-0 text-center min-w-[60px]">
                           <div className="text-sm font-medium">{timing.time}</div>
@@ -374,17 +374,17 @@ export default async function EconomicCalendarPage() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <span className="text-lg">{categoryIcon}</span>
-                            <h3 className="font-semibold text-gray-900 text-sm">{event.title}</h3>
+                            <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">{event.title}</h3>
                           </div>
                           <div className="flex items-center gap-3 text-xs">
                             <span className={`px-2 py-1 rounded-full ${impactStyle.bg} ${impactStyle.text} font-medium`}>
                               {event.impact.toUpperCase()}
                             </span>
-                            <span className="text-gray-500">{event.category}</span>
+                            <span className="text-gray-500 dark:text-gray-400">{event.category}</span>
                           </div>
                         </div>
                         {(event.forecast || event.previous) && (
-                          <div className="text-right text-xs text-gray-600">
+                          <div className="text-right text-xs text-gray-600 dark:text-gray-300">
                             {event.forecast && (
                               <div>Est: <span className="font-medium">{event.forecast}</span></div>
                             )}
@@ -408,30 +408,30 @@ export default async function EconomicCalendarPage() {
         </div>
 
         {/* Market Impact Legend */}
-        <div className="mb-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-6 border">
-          <h3 className="text-lg font-semibold mb-4 text-gray-900">📊 Understanding Market Impact</h3>
+        <div className="mb-8 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/30 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">📊 Understanding Market Impact</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-6 h-6 bg-red-500 rounded-full mx-auto mb-2"></div>
               <div className="font-semibold text-red-700">High Impact</div>
-              <div className="text-sm text-gray-600">Major market movers like Fed meetings, GDP, NFP</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Major market movers like Fed meetings, GDP, NFP</div>
             </div>
             <div className="text-center">
               <div className="w-6 h-6 bg-yellow-500 rounded-full mx-auto mb-2"></div>
               <div className="font-semibold text-yellow-700">Medium Impact</div>
-              <div className="text-sm text-gray-600">Regional data, sector-specific indicators</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Regional data, sector-specific indicators</div>
             </div>
             <div className="text-center">
               <div className="w-6 h-6 bg-green-500 rounded-full mx-auto mb-2"></div>
               <div className="font-semibold text-green-700">Low Impact</div>
-              <div className="text-sm text-gray-600">Minor releases, preliminary data</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Minor releases, preliminary data</div>
             </div>
           </div>
         </div>
 
         {/* Comprehensive Events Calendar */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">📅 Complete Economic Calendar</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">📅 Complete Economic Calendar</h2>
           
           {Object.entries(eventsByDate).length > 0 ? (
             (Object.entries(eventsByDate) as [string, any[]][]).map(([dateKey, dayEvents]) => {
@@ -450,10 +450,10 @@ export default async function EconomicCalendarPage() {
               if (isTomorrow) dateLabel = `⏰ Tomorrow - ${dateLabel}`
 
               return (
-                <div key={dateKey} className="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow">
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-b p-6">
-                    <h3 className="text-xl font-semibold text-gray-900">{dateLabel}</h3>
-                    <div className="mt-2 text-sm text-gray-600">
+                <div key={dateKey} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md dark:hover:shadow-xl transition-shadow">
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b border-gray-200 dark:border-gray-700 p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{dateLabel}</h3>
+                    <div className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                       {dayEvents.length} event{dayEvents.length !== 1 ? 's' : ''} scheduled
                       {dayEvents.filter(e => e.impact === 'high').length > 0 && (
                         <span className="ml-2 px-2 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">
@@ -470,13 +470,13 @@ export default async function EconomicCalendarPage() {
                       const severity = getImpactSeverity(event.actual ?? null, event.forecast ?? null, event.previous ?? null)
                       
                       return (
-                        <div key={event.id} className="p-6 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200">
+                        <div key={event.id} className="p-6 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 dark:hover:from-gray-700 dark:hover:to-blue-900/30 transition-all duration-200">
                           <div className="flex items-start gap-6">
                             {/* Time & Country */}
                             <div className="flex-shrink-0 text-center min-w-[100px]">
-                              <div className="text-lg font-bold text-gray-900 mb-1">{timing.time}</div>
+                              <div className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1">{timing.time}</div>
                               <div className="text-3xl mb-2">{getCountryFlag(event.country)}</div>
-                              <div className="text-xs text-gray-500 font-medium">{event.currency}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">{event.currency}</div>
                             </div>
                             
                             {/* Impact & Category */}
@@ -489,15 +489,15 @@ export default async function EconomicCalendarPage() {
                             <div className="flex-1 min-w-0">
                               <div className="flex items-start justify-between gap-6">
                                 <div className="flex-1">
-                                  <h4 className="text-lg font-bold text-gray-900 mb-2">{event.title}</h4>
+                                  <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{event.title}</h4>
                                   {event.description && (
-                                    <p className="text-sm text-gray-600 mb-3 leading-relaxed">{event.description}</p>
+                                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{event.description}</p>
                                   )}
                                   <div className="flex items-center gap-4 text-sm">
                                     <span className={`px-3 py-1 rounded-full font-semibold ${impactStyle.bg} ${impactStyle.text}`}>
                                       {event.impact.toUpperCase()} IMPACT
                                     </span>
-                                    <span className="flex items-center gap-1 text-gray-600">
+                                    <span className="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                                       <span>{categoryIcon}</span>
                                       {event.category}
                                     </span>
@@ -506,25 +506,25 @@ export default async function EconomicCalendarPage() {
                                 
                                 {/* Enhanced Data Values */}
                                 {(event.actual || event.forecast || event.previous) && (
-                                  <div className="flex-shrink-0 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-4 min-w-[160px] border">
+                                  <div className="flex-shrink-0 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-700 dark:to-blue-900/30 rounded-xl p-4 min-w-[160px] border border-gray-200 dark:border-gray-600">
                                     <div className="space-y-2 text-sm">
-                                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Market Data</div>
+                                      <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Market Data</div>
                                       {event.actual && (
                                         <div className="flex justify-between items-center">
-                                          <span className="text-gray-600">Actual:</span>
-                                          <span className="font-bold text-gray-900">{event.actual}{event.unit}</span>
+                                          <span className="text-gray-600 dark:text-gray-300">Actual:</span>
+                                          <span className="font-bold text-gray-900 dark:text-gray-100">{event.actual}{event.unit}</span>
                                         </div>
                                       )}
                                       {event.forecast && (
                                         <div className="flex justify-between items-center">
-                                          <span className="text-gray-600">Forecast:</span>
+                                          <span className="text-gray-600 dark:text-gray-300">Forecast:</span>
                                           <span className="font-semibold text-blue-700">{event.forecast}{event.unit}</span>
                                         </div>
                                       )}
                                       {event.previous && (
                                         <div className="flex justify-between items-center">
-                                          <span className="text-gray-600">Previous:</span>
-                                          <span className="text-gray-700">{event.previous}{event.unit}</span>
+                                          <span className="text-gray-600 dark:text-gray-300">Previous:</span>
+                                          <span className="text-gray-700 dark:text-gray-200">{event.previous}{event.unit}</span>
                                         </div>
                                       )}
                                     </div>
@@ -584,20 +584,20 @@ export default async function EconomicCalendarPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 border shadow-sm">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-lg">
               <div className="text-3xl mb-3">⏰</div>
-              <h3 className="text-lg font-semibold mb-2">Market Hours</h3>
-              <p className="text-sm text-gray-600">Economic events are released during specific market sessions. Plan your trading around GMT/EST release times.</p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Market Hours</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Economic events are released during specific market sessions. Plan your trading around GMT/EST release times.</p>
             </div>
-            <div className="bg-white rounded-xl p-6 border shadow-sm">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-lg">
               <div className="text-3xl mb-3">📊</div>
-              <h3 className="text-lg font-semibold mb-2">Data Revision</h3>
-              <p className="text-sm text-gray-600">Previous data can be revised. Always check if historical figures have been updated as this impacts analysis.</p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Data Revision</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Previous data can be revised. Always check if historical figures have been updated as this impacts analysis.</p>
             </div>
-            <div className="bg-white rounded-xl p-6 border shadow-sm">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-lg">
               <div className="text-3xl mb-3">🚨</div>
-              <h3 className="text-lg font-semibold mb-2">Volatility Warning</h3>
-              <p className="text-sm text-gray-600">High-impact events can cause extreme volatility. Adjust position sizes and use appropriate risk management.</p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Volatility Warning</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">High-impact events can cause extreme volatility. Adjust position sizes and use appropriate risk management.</p>
             </div>
           </div>
         </div>
