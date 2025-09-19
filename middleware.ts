@@ -1,6 +1,6 @@
 // middleware.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { auth } from '@/lib/auth'
+import { getToken } from 'next-auth/jwt'
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -18,7 +18,8 @@ export async function middleware(request: NextRequest) {
     '/api/prices',
     '/api/stream',
     '/api/economic-calendar',
-    '/api/assets'
+    '/api/assets',
+    '/api/auth'
   ]
   
   // Admin routes that require authentication and admin role
@@ -32,28 +33,33 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
   
-  // Get session for protected routes
-  const session = await auth()
+  // Get session token for protected routes (Edge Runtime compatible)
+  const token = await getToken({ 
+    req: request, 
+    secret: process.env.NEXTAUTH_SECRET 
+  })
   
   // Redirect to login for admin routes without authentication
   if (adminRoutes.some(route => pathname.startsWith(route))) {
-    if (!session) {
+    if (!token) {
       return NextResponse.redirect(new URL('/api/auth/signin', request.url))
     }
     
     // Check admin role for admin routes
-    if (session.user.role !== 'admin' && session.user.role !== 'editor') {
+    const userRole = token.role as string
+    if (userRole !== 'admin' && userRole !== 'editor') {
       return NextResponse.redirect(new URL('/', request.url))
     }
   }
   
   // Handle protected API routes
   if (protectedApiRoutes.some(route => pathname.startsWith(route))) {
-    if (!session) {
+    if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
     
-    if (session.user.role !== 'admin' && session.user.role !== 'editor') {
+    const userRole = token.role as string
+    if (userRole !== 'admin' && userRole !== 'editor') {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
   }
@@ -65,11 +71,12 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
-     * - api (API routes)
+     * - api/auth (authentication routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - public assets
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
+    '/((?!api/auth|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ]
 }

@@ -23,11 +23,18 @@ export const authConfig: NextAuthConfig = {
     })
   ],
   callbacks: {
-    async session({ session, user }) {
+    async jwt({ token, user }) {
+      // Include role in the token for Edge Runtime middleware access
+      if (user) {
+        token.role = (user as any).role || 'reader'
+      }
+      return token
+    },
+    async session({ session, token, user }) {
       if (session.user) {
-        session.user.id = user.id
-        // Cast to include custom Role on session user shape
-        ;(session.user as any).role = (user as any).role
+        session.user.id = token.sub || user?.id || ''
+        // Include role from token or user
+        ;(session.user as any).role = token.role || (user as any)?.role || 'reader'
       }
       return session
     }
