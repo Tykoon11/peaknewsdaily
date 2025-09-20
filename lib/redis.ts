@@ -3,8 +3,17 @@
  * Handles price snapshots, OHLC bars, and volatility scores
  */
 
-import Redis from 'ioredis'
 import { MarketState } from './marketState'
+
+// Conditionally import Redis only when not building
+let Redis: any = null
+if (!process.env.VERCEL && !process.env.CI && process.env.NODE_ENV !== 'production') {
+  try {
+    Redis = require('ioredis')
+  } catch (e) {
+    console.log('Redis not available, continuing without cache')
+  }
+}
 
 // Price data interfaces
 export interface PriceSnapshot {
@@ -42,19 +51,29 @@ export interface SymbolMeta {
 }
 
 // Redis connection
-let redis: Redis | null = null
+let redis: any = null
 let redisAvailable = true
+
+// Global flag to completely disable Redis during builds
+const isBuilding = !!(
+  process.env.VERCEL ||
+  process.env.CI ||
+  process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV ||
+  process.env.NEXT_PHASE === 'phase-production-build' ||
+  process.env.BUILDING === 'true' ||
+  (typeof process !== 'undefined' && process.argv && (
+    process.argv.includes('build') ||
+    process.argv.includes('start') ||
+    process.argv.includes('export')
+  ))
+)
 
 /**
  * Initialize Redis connection with fallback handling
  */
-export function getRedis(): Redis | null {
-  // Always skip Redis during any build process
-  if (process.env.VERCEL || 
-      process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV ||
-      process.env.NEXT_PHASE === 'phase-production-build' || 
-      process.env.BUILDING === 'true' ||
-      typeof window === 'undefined' && (process.argv.includes('build') || process.argv.includes('start'))) {
+export function getRedis(): any {
+  // NEVER create Redis during build processes
+  if (isBuilding) {
     return null
   }
   
@@ -62,19 +81,13 @@ export function getRedis(): Redis | null {
     return null
   }
 
-  // Extra safety check - don't even try to create Redis during build
-  if (process.env.VERCEL || process.env.CI) {
-    return null
-  }
-
-  if (!redis) {
+  if (!redis && Redis) {
     try {
       const redisUrl = process.env.REDIS_URL
       const redisToken = process.env.REDIS_TOKEN
       
-      // Only connect if we have explicit Redis configuration
+      // Only connect if we have explicit Redis configuration and Redis class is available
       if (!redisUrl && !redisToken) {
-        console.log('No Redis configuration found, skipping Redis')
         redisAvailable = false
         return null
       }
@@ -85,21 +98,20 @@ export function getRedis(): Redis | null {
         // Upstash or other token-based Redis
         redis = new Redis(finalRedisUrl, {
           password: redisToken,
-          maxRetriesPerRequest: 0, // Don't retry during builds
+          maxRetriesPerRequest: 0,
           lazyConnect: true,
           connectTimeout: 3000,
         })
       } else {
         // Local Redis
         redis = new Redis(finalRedisUrl, {
-          maxRetriesPerRequest: 0, // Don't retry during builds
+          maxRetriesPerRequest: 0,
           lazyConnect: true,
           connectTimeout: 3000,
         })
       }
 
       redis.on('error', (err) => {
-        // Always silently handle Redis errors
         redisAvailable = false
         if (redis) {
           redis.disconnect()
