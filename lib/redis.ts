@@ -43,35 +43,71 @@ export interface SymbolMeta {
 
 // Redis connection
 let redis: Redis | null = null
+let redisAvailable = true
 
 /**
- * Initialize Redis connection
+ * Initialize Redis connection with fallback handling
  */
-export function getRedis(): Redis {
+export function getRedis(): Redis | null {
+  // Skip Redis during build process or if explicitly disabled
+  if (process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV === undefined) {
+    return null
+  }
+  
+  // Skip Redis during any build process (Next.js build, static generation, etc.)
+  if (process.env.NEXT_PHASE === 'phase-production-build' || 
+      process.env.BUILDING === 'true' ||
+      typeof window === 'undefined' && process.argv.includes('build')) {
+    return null
+  }
+  
+  if (!redisAvailable) {
+    return null
+  }
+
   if (!redis) {
-    const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379'
-    const redisToken = process.env.REDIS_TOKEN
-    
-    if (redisToken) {
-      // Upstash or other token-based Redis
-      redis = new Redis(redisUrl, {
-        password: redisToken,
-        maxRetriesPerRequest: 3,
+    try {
+      const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379'
+      const redisToken = process.env.REDIS_TOKEN
+      
+      if (redisToken) {
+        // Upstash or other token-based Redis
+        redis = new Redis(redisUrl, {
+          password: redisToken,
+          maxRetriesPerRequest: 1,
+          lazyConnect: true,
+          connectTimeout: 5000,
+        })
+      } else {
+        // Local Redis
+        redis = new Redis(redisUrl, {
+          maxRetriesPerRequest: 1,
+          lazyConnect: true,
+          connectTimeout: 5000,
+        })
+      }
+
+      redis.on('error', (err) => {
+        // Silently handle Redis errors during build
+        if (process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV) {
+          redisAvailable = false
+          redis = null
+          return
+        }
+        console.warn('Redis connection error, falling back to no cache:', err.message)
+        redisAvailable = false
+        redis = null
       })
-    } else {
-      // Local Redis
-      redis = new Redis(redisUrl, {
-        maxRetriesPerRequest: 3,
+
+      redis.on('connect', () => {
+        console.log('Redis connected successfully')
+        redisAvailable = true
       })
+    } catch (err) {
+      console.warn('Failed to initialize Redis, continuing without cache:', err)
+      redisAvailable = false
+      return null
     }
-
-    redis.on('error', (err) => {
-      console.error('Redis connection error:', err)
-    })
-
-    redis.on('connect', () => {
-      // Redis connected successfully
-    })
   }
   
   return redis
@@ -110,13 +146,18 @@ export const RedisKeys = {
  */
 export async function setPriceSnapshot(snapshot: PriceSnapshot): Promise<void> {
   const redis = getRedis()
-  const key = RedisKeys.price(snapshot.sym)
+  if (!redis) return // Gracefully handle missing Redis
   
-  await redis.setex(
-    key,
-    7200, // 2 hour expiry
-    JSON.stringify(snapshot)
-  )
+  try {
+    const key = RedisKeys.price(snapshot.sym)
+    await redis.setex(
+      key,
+      7200, // 2 hour expiry
+      JSON.stringify(snapshot)
+    )
+  } catch (err) {
+    console.warn('Failed to store price snapshot:', err)
+  }
 }
 
 /**
@@ -124,15 +165,16 @@ export async function setPriceSnapshot(snapshot: PriceSnapshot): Promise<void> {
  */
 export async function getPriceSnapshot(sym: string): Promise<PriceSnapshot | null> {
   const redis = getRedis()
-  const key = RedisKeys.price(sym)
-  
-  const data = await redis.get(key)
-  if (!data) return null
+  if (!redis) return null // Gracefully handle missing Redis
   
   try {
+    const key = RedisKeys.price(sym)
+    const data = await redis.get(key)
+    if (!data) return null
+    
     return JSON.parse(data) as PriceSnapshot
   } catch (err) {
-    console.error(`Failed to parse price snapshot for ${sym}:`, err)
+    console.warn(`Failed to get price snapshot for ${sym}:`, err)
     return null
   }
 }
@@ -144,26 +186,33 @@ export async function getPriceSnapshots(symbols: string[]): Promise<Record<strin
   if (symbols.length === 0) return {}
   
   const redis = getRedis()
-  const keys = symbols.map(sym => RedisKeys.price(sym))
+  if (!redis) return {} // Gracefully handle missing Redis
   
-  const pipeline = redis.pipeline()
-  keys.forEach(key => pipeline.get(key))
-  const results = await pipeline.exec()
-  
-  const snapshots: Record<string, PriceSnapshot> = {}
-  
-  results?.forEach((result, index) => {
-    if (result && result[1]) {
-      try {
-        const snapshot = JSON.parse(result[1] as string) as PriceSnapshot
-        snapshots[symbols[index]] = snapshot
-      } catch (err) {
-        console.error(`Failed to parse snapshot for ${symbols[index]}:`, err)
+  try {
+    const keys = symbols.map(sym => RedisKeys.price(sym))
+    
+    const pipeline = redis.pipeline()
+    keys.forEach(key => pipeline.get(key))
+    const results = await pipeline.exec()
+    
+    const snapshots: Record<string, PriceSnapshot> = {}
+    
+    results?.forEach((result, index) => {
+      if (result && result[1]) {
+        try {
+          const snapshot = JSON.parse(result[1] as string) as PriceSnapshot
+          snapshots[symbols[index]] = snapshot
+        } catch (err) {
+          console.warn(`Failed to parse snapshot for ${symbols[index]}:`, err)
+        }
       }
-    }
-  })
-  
-  return snapshots
+    })
+    
+    return snapshots
+  } catch (err) {
+    console.warn('Failed to get price snapshots:', err)
+    return {}
+  }
 }
 
 /**
@@ -314,10 +363,12 @@ export async function getVolatilityScores(symbols: string[]): Promise<Record<str
 export async function healthCheck(): Promise<boolean> {
   try {
     const redis = getRedis()
+    if (!redis) return false // Redis not available
+    
     const pong = await redis.ping()
     return pong === 'PONG'
   } catch (err) {
-    console.error('Redis health check failed:', err)
+    console.warn('Redis health check failed:', err)
     return false
   }
 }

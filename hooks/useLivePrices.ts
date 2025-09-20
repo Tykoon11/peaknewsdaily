@@ -274,8 +274,47 @@ export function useLivePrices(options: UseLivePricesOptions) {
     
   }, [connect])
   
-  // Initialize connection
+  // Fetch initial data immediately on page load/refresh
+  const fetchInitialData = useCallback(async () => {
+    if (!enabled || symbols.length === 0) return
+    
+    try {
+      const response = await fetch(`/api/prices?symbols=${symbols.join(',')}`)
+      const data = await response.json()
+      
+      if (data.prices && Object.keys(data.prices).length > 0) {
+        // Convert API response to LivePrice format
+        const pricesMap: Record<string, LivePrice> = {}
+        Object.entries(data.prices).forEach(([symbol, priceData]: [string, any]) => {
+          pricesMap[symbol] = {
+            sym: symbol,
+            price: priceData.price || 0,
+            changePct: priceData.changePct || 0,
+            ts: Date.now(),
+            lastUpdate: Date.now()
+          }
+        })
+        
+        setState(prev => ({
+          ...prev,
+          prices: pricesMap,
+          lastUpdate: Date.now(),
+          error: null
+        }))
+        
+        console.log(`📊 Initial data loaded for ${Object.keys(pricesMap).length} symbols`)
+      }
+    } catch (err) {
+      console.error('Failed to fetch initial price data:', err)
+    }
+  }, [symbols, enabled])
+
+  // Initialize connection and fetch initial data
   useEffect(() => {
+    // Fetch initial data immediately (no waiting)
+    fetchInitialData()
+    
+    // Then connect to live stream
     connect()
     
     // Handle visibility change for adaptive throttling
@@ -304,7 +343,7 @@ export function useLivePrices(options: UseLivePricesOptions) {
       }
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [connect, scheduleThrottledUpdate])
+  }, [connect, scheduleThrottledUpdate, fetchInitialData])
   
   // Fallback polling when SSE is not available
   const fallbackPollingRef = useRef<NodeJS.Timeout | null>(null)
