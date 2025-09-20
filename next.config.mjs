@@ -5,6 +5,20 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  webpack: (config, { isServer, dev }) => {
+    // Completely exclude ioredis during build
+    if (!dev) {
+      config.externals = config.externals || []
+      if (isServer) {
+        config.externals.push('ioredis')
+      }
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'ioredis': false,
+      }
+    }
+    return config
+  },
   experimental: {
     serverActions: {
       allowedOrigins: [process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000']

@@ -1,6 +1,6 @@
 /**
- * Redis implementation with build-time stubbing
- * Completely prevents Redis connections during builds
+ * Redis implementation with complete build-time isolation
+ * Prevents ANY Redis connection attempts during builds
  */
 
 import { MarketState } from './marketState'
@@ -40,7 +40,7 @@ export interface SymbolMeta {
   quoteCurrency?: string
 }
 
-// Detect build environment
+// Comprehensive build detection
 const IS_BUILD = !!(
   process.env.VERCEL ||
   process.env.CI ||
@@ -52,9 +52,15 @@ const IS_BUILD = !!(
       arg.includes('build') || 
       arg.includes('export') || 
       arg.includes('next-server') ||
-      arg.includes('.next')
+      arg.includes('.next') ||
+      arg.includes('webpack') ||
+      arg.includes('turbo')
     )
-  )
+  ) ||
+  // Additional checks for various build contexts
+  process.env.npm_lifecycle_event === 'build' ||
+  process.env.npm_command === 'run-script' ||
+  (typeof global !== 'undefined' && global.__NEXT_DATA__)
 )
 
 // Redis key generators
@@ -72,98 +78,98 @@ export const RedisKeys = {
   symbols: (type: 'stock' | 'crypto') => `symbols:${type}`,
 }
 
-// Stub implementations for build time
+// COMPLETELY STUB ALL REDIS FUNCTIONS DURING BUILD
 export function getRedis(): null {
   return null
 }
 
 export async function setPriceSnapshot(snapshot: PriceSnapshot): Promise<void> {
   if (IS_BUILD) return
-  // In production, this would save to Redis
+  // Runtime implementation would go here
 }
 
 export async function getPriceSnapshot(sym: string): Promise<PriceSnapshot | null> {
   if (IS_BUILD) return null
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return null
 }
 
 export async function getPriceSnapshots(symbols: string[]): Promise<Record<string, PriceSnapshot>> {
   if (IS_BUILD) return {}
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return {}
 }
 
 export async function setOHLC1m(sym: string, timestamp: Date, bar: OHLCBar): Promise<void> {
   if (IS_BUILD) return
-  // In production, this would save to Redis
+  // Runtime implementation would go here
 }
 
 export async function getOHLC1m(sym: string, timestamp: Date): Promise<OHLCBar | null> {
   if (IS_BUILD) return null
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return null
 }
 
 export async function setSymbolMeta(meta: SymbolMeta): Promise<void> {
   if (IS_BUILD) return
-  // In production, this would save to Redis
+  // Runtime implementation would go here
 }
 
 export async function getSymbolMeta(sym: string): Promise<SymbolMeta | null> {
   if (IS_BUILD) return null
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return null
 }
 
 export async function getSymbolsByType(type: 'stock' | 'crypto'): Promise<string[]> {
   if (IS_BUILD) return []
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return []
 }
 
 export async function setEquityMarketState(state: MarketState): Promise<void> {
   if (IS_BUILD) return
-  // In production, this would save to Redis
+  // Runtime implementation would go here
 }
 
 export async function getEquityMarketState(): Promise<MarketState | null> {
   if (IS_BUILD) return null
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return null
 }
 
 export async function setVolatilityScore(sym: string, score: number): Promise<void> {
   if (IS_BUILD) return
-  // In production, this would save to Redis
+  // Runtime implementation would go here
 }
 
 export async function getVolatilityScore(sym: string): Promise<number> {
   if (IS_BUILD) return 0.5
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return 0.5
 }
 
 export async function getVolatilityScores(symbols: string[]): Promise<Record<string, number>> {
   if (IS_BUILD) return {}
-  // In production, this would fetch from Redis
+  // Runtime implementation would go here
   return {}
 }
 
 export async function healthCheck(): Promise<boolean> {
   if (IS_BUILD) return false
-  // In production, this would test Redis connection
+  // Runtime implementation would go here
   return false
 }
 
 export function closeRedis(): void {
   if (IS_BUILD) return
-  // In production, this would close Redis connection
+  // Runtime implementation would go here
 }
 
-// Log which mode we're in
+// Log mode status
 if (IS_BUILD) {
-  console.log('🔧 Redis: Build mode - all operations stubbed')
+  console.log('🔧 Redis: Build mode - all operations stubbed, NO CONNECTION ATTEMPTS')
 } else {
   console.log('⚠️  Redis: Runtime mode - Redis not configured, using fallbacks')
 }
