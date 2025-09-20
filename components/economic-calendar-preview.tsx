@@ -149,7 +149,7 @@ export default function EconomicCalendarPreview() {
             </h2>
             <Link 
               href="/markets/calendar" 
-              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
+              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
             >
               View All →
             </Link>

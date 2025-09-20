@@ -44,7 +44,7 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
 
   useEffect(() => {
     const el = loadMoreRef.current
-    if (!el) return
+    if (!el) return undefined
     const obs = new IntersectionObserver((entries) => {
       const e = entries[0]
       if (e.isIntersecting) onLoadMore()

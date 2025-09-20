@@ -32,7 +32,7 @@ export default function SearchGrid({ category }: { category?: string }) {
   const debouncedQ = useDebounce(q, 300)
   useEffect(() => {
     const query = debouncedQ.trim()
-    if (query === '') { setResults(null); setLoading(false); return }
+    if (query === '') { setResults(null); setLoading(false); return undefined }
     let cancelled = false
     ;(async () => {
       setLoading(true)

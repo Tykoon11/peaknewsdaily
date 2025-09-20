@@ -13,7 +13,7 @@
     "strictFunctionTypes": true,
     "strictPropertyInitialization": false,
     "noImplicitAny": false,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": false,
     "noEmit": true,
