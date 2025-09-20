@@ -136,12 +136,12 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Enhanced theme transitions - Beautiful and smooth */
+/* Enhanced theme transitions - Clean and professional */
 *,
 *::before,
 *::after {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
