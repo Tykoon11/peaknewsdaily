@@ -4,6 +4,10 @@
  */
 
 import { NextRequest } from 'next/server'
+
+// Add runtime configuration to handle dynamic usage
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 import { getPriceSnapshots, getEquityMarketState, getVolatilityScores } from '@/lib/redis'
 import { getEquityMarketState as getCurrentMarketState, MarketState } from '@/lib/marketState'
 import { activeConnections, PriceEvent } from '@/lib/stream-broadcast'

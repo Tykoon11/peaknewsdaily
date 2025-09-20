@@ -49,15 +49,12 @@ let redisAvailable = true
  * Initialize Redis connection with fallback handling
  */
 export function getRedis(): Redis | null {
-  // Skip Redis during build process or if explicitly disabled
-  if (process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV === undefined) {
-    return null
-  }
-  
-  // Skip Redis during any build process (Next.js build, static generation, etc.)
-  if (process.env.NEXT_PHASE === 'phase-production-build' || 
+  // Always skip Redis during any build process
+  if (process.env.VERCEL || 
+      process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV ||
+      process.env.NEXT_PHASE === 'phase-production-build' || 
       process.env.BUILDING === 'true' ||
-      typeof window === 'undefined' && process.argv.includes('build')) {
+      typeof window === 'undefined' && (process.argv.includes('build') || process.argv.includes('start'))) {
     return null
   }
   
@@ -65,46 +62,55 @@ export function getRedis(): Redis | null {
     return null
   }
 
+  // Extra safety check - don't even try to create Redis during build
+  if (process.env.VERCEL || process.env.CI) {
+    return null
+  }
+
   if (!redis) {
     try {
-      const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379'
+      const redisUrl = process.env.REDIS_URL
       const redisToken = process.env.REDIS_TOKEN
+      
+      // Only connect if we have explicit Redis configuration
+      if (!redisUrl && !redisToken) {
+        console.log('No Redis configuration found, skipping Redis')
+        redisAvailable = false
+        return null
+      }
+      
+      const finalRedisUrl = redisUrl || 'redis://localhost:6379'
       
       if (redisToken) {
         // Upstash or other token-based Redis
-        redis = new Redis(redisUrl, {
+        redis = new Redis(finalRedisUrl, {
           password: redisToken,
-          maxRetriesPerRequest: 1,
+          maxRetriesPerRequest: 0, // Don't retry during builds
           lazyConnect: true,
-          connectTimeout: 5000,
+          connectTimeout: 3000,
         })
       } else {
         // Local Redis
-        redis = new Redis(redisUrl, {
-          maxRetriesPerRequest: 1,
+        redis = new Redis(finalRedisUrl, {
+          maxRetriesPerRequest: 0, // Don't retry during builds
           lazyConnect: true,
-          connectTimeout: 5000,
+          connectTimeout: 3000,
         })
       }
 
       redis.on('error', (err) => {
-        // Silently handle Redis errors during build
-        if (process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV) {
-          redisAvailable = false
-          redis = null
-          return
-        }
-        console.warn('Redis connection error, falling back to no cache:', err.message)
+        // Always silently handle Redis errors
         redisAvailable = false
-        redis = null
+        if (redis) {
+          redis.disconnect()
+          redis = null
+        }
       })
 
       redis.on('connect', () => {
-        console.log('Redis connected successfully')
         redisAvailable = true
       })
     } catch (err) {
-      console.warn('Failed to initialize Redis, continuing without cache:', err)
       redisAvailable = false
       return null
     }

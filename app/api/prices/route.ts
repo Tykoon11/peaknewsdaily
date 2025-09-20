@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getPriceSnapshots } from '@/lib/redis'
 import { prisma } from '@/lib/prisma'
 
+// Add runtime configuration to handle dynamic usage
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 /**
  * GET /api/prices - Get live price data with fallback to database
  * Query params:
@@ -9,7 +13,15 @@ import { prisma } from '@/lib/prisma'
  */
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
+    // Safely handle URL parsing during build
+    let searchParams: URLSearchParams
+    try {
+      searchParams = new URL(request.url).searchParams
+    } catch (e) {
+      // Fallback during build when request.url might not be available
+      searchParams = new URLSearchParams()
+    }
+    
     const symbolsParam = searchParams.get('symbols') || ''
     const requestedSymbols = symbolsParam.split(',').filter(s => s.trim())
     
