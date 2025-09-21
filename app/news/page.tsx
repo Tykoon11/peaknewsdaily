@@ -94,26 +94,26 @@ export default async function NewsPage() {
             </p>
 
             {/* Live Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
               <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-red-500/10">
-                <div className="text-xl sm:text-3xl font-black text-white mb-1">{latestNews.length}</div>
+                <div className="text-xl sm:text-3xl font-black text-white mb-1 whitespace-nowrap">{latestNews.length}</div>
                 <div className="text-red-200/80 font-medium text-xs sm:text-sm">Stories Today</div>
               </div>
               
               <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-orange-500/10">
-                <div className="text-xl sm:text-3xl font-black text-orange-400 mb-1">{topics.length}</div>
+                <div className="text-xl sm:text-3xl font-black text-orange-400 mb-1 whitespace-nowrap">{topics.length}</div>
                 <div className="text-red-200/80 font-medium text-xs sm:text-sm">News Topics</div>
               </div>
               
               <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-amber-500/10">
-                <div className="text-xl sm:text-3xl font-black text-amber-400 mb-1">24/7</div>
+                <div className="text-xl sm:text-3xl font-black text-amber-400 mb-1 whitespace-nowrap">24/7</div>
                 <div className="text-red-200/80 font-medium text-xs sm:text-sm">Coverage</div>
               </div>
               
               <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-red-500/10">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <div className="text-xl sm:text-3xl font-black text-green-400">LIVE</div>
+                  <div className="text-xl sm:text-3xl font-black text-green-400 whitespace-nowrap">LIVE</div>
                 </div>
                 <div className="text-red-200/80 font-medium text-xs sm:text-sm">Real-time</div>
               </div>

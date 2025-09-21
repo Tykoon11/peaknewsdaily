@@ -42,7 +42,7 @@ export default function TradingEducationHub() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Learning Paths</h2>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {PILLARS.map((pillar, index) => {
             const articleCount = ARTICLES.filter(a => a.pillar === pillar.id).length;
             const gradients = [
@@ -111,7 +111,7 @@ export default function TradingEducationHub() {
               </Link>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.map((article) => (
                 <ArticleCard 
                   key={article.slug}
@@ -177,7 +177,7 @@ export default function TradingEducationHub() {
 
       {/* Stats Section */}
       <section className="text-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{ARTICLES.length}+</div>
             <div className="text-gray-600 dark:text-gray-300">Expert Guides</div>

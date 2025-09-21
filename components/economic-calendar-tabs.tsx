@@ -126,39 +126,45 @@ export default function EconomicCalendarTabs({
               const categoryIcon = getCategoryIcon(event.category)
               
               return (
-                <div key={event.id} className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
-                  <div className="text-2xl">{getCountryFlag(event.country)}</div>
-                  <div className="flex-shrink-0 text-center min-w-[60px]">
-                    <div className="text-sm font-medium">{timing.time}</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">{timing.date}</div>
-                  </div>
-                  <div className="flex-shrink-0">
-                    <div className={`w-3 h-3 rounded-full ${impactStyle.dot}`} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg">{categoryIcon}</span>
-                      <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate">{event.title}</h3>
+                <div key={event.id} className="p-3 md:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 flex items-center gap-2">
+                      <div className="text-xl">{getCountryFlag(event.country)}</div>
+                      <div className={`w-3 h-3 rounded-full ${impactStyle.dot}`} />
                     </div>
-                    <div className="flex items-center gap-3 text-xs">
-                      <span className={`px-2 py-1 rounded-full ${impactStyle.bg} ${impactStyle.text} font-medium`}>
-                        {event.impact.toUpperCase()}
-                      </span>
-                      <span className="text-gray-500 dark:text-gray-400">{event.category}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="text-lg flex-shrink-0">{categoryIcon}</span>
+                          <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm leading-tight">{event.title}</h3>
+                        </div>
+                        <div className="flex-shrink-0 text-right text-xs">
+                          <div className="font-medium text-gray-900 dark:text-gray-100">{timing.time}</div>
+                          <div className="text-gray-500 dark:text-gray-400">{timing.date}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3 text-xs">
+                          <span className={`px-2 py-1 rounded-full ${impactStyle.bg} ${impactStyle.text} font-medium`}>
+                            {event.impact.toUpperCase()}
+                          </span>
+                          <span className="text-gray-500 dark:text-gray-400">{event.category}</span>
+                        </div>
+                        {(event.forecast || event.previous || event.actual) && (
+                          <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300">
+                            {event.actual ? (
+                              <span>Act: <span className="font-medium">{event.actual}</span></span>
+                            ) : event.forecast ? (
+                              <span>Est: <span className="font-medium">{event.forecast}</span></span>
+                            ) : null}
+                            {event.previous && (
+                              <span>Prev: <span className="font-medium">{event.previous}</span></span>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                  {(event.forecast || event.previous || event.actual) && (
-                    <div className="text-right text-xs text-gray-600 dark:text-gray-300 hidden sm:block">
-                      {event.actual ? (
-                        <div>Actual: <span className="font-medium">{event.actual}</span></div>
-                      ) : event.forecast ? (
-                        <div>Est: <span className="font-medium">{event.forecast}</span></div>
-                      ) : null}
-                      {event.previous && (
-                        <div>Prev: <span className="font-medium">{event.previous}</span></div>
-                      )}
-                    </div>
-                  )}
                 </div>
               )
             })

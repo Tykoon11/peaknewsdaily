@@ -75,7 +75,7 @@ export default async function MarketsPage() {
             </p>
 
             {/* Premium Market Statistics */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
               <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-blue-500/10 group hover:scale-105 transition-transform">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl sm:rounded-2xl"></div>
                 <div className="relative">
@@ -85,7 +85,7 @@ export default async function MarketsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h2a2 2 0 01-2-2z" />
                       </svg>
                     </div>
-                    <div className="text-xl sm:text-3xl font-black text-white">{marketStats.totalAssets}</div>
+                    <div className="text-xl sm:text-3xl font-black text-white whitespace-nowrap">{marketStats.totalAssets}</div>
                   </div>
                   <div className="text-blue-200/80 font-medium text-xs sm:text-sm">Assets Tracked</div>
                 </div>
@@ -100,7 +100,7 @@ export default async function MarketsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
-                    <div className="text-xl sm:text-3xl font-black text-green-400">{marketStats.gainers}</div>
+                    <div className="text-xl sm:text-3xl font-black text-green-400 whitespace-nowrap">{marketStats.gainers}</div>
                   </div>
                   <div className="text-blue-200/80 font-medium text-xs sm:text-sm">Advancing</div>
                 </div>
@@ -115,7 +115,7 @@ export default async function MarketsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                       </svg>
                     </div>
-                    <div className="text-xl sm:text-3xl font-black text-red-400">{marketStats.decliners}</div>
+                    <div className="text-xl sm:text-3xl font-black text-red-400 whitespace-nowrap">{marketStats.decliners}</div>
                   </div>
                   <div className="text-blue-200/80 font-medium text-xs sm:text-sm">Declining</div>
                 </div>
@@ -130,7 +130,7 @@ export default async function MarketsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
                       </svg>
                     </div>
-                    <div className="text-xl sm:text-3xl font-black text-purple-400">{marketStats.activeMarkets}</div>
+                    <div className="text-xl sm:text-3xl font-black text-purple-400 whitespace-nowrap">{marketStats.activeMarkets}</div>
                   </div>
                   <div className="text-blue-200/80 font-medium text-xs sm:text-sm">Market Types</div>
                 </div>

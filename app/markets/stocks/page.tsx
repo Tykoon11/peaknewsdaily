@@ -346,7 +346,7 @@ export default async function StocksPage() {
               </p>
               
               {/* Premium Market Statistics */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 mt-8 xs:mt-10 sm:mt-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 mt-8 xs:mt-10 sm:mt-12">
                 <div className="relative bg-white/10 backdrop-blur-lg rounded-lg xs:rounded-xl lg:rounded-2xl p-3 xs:p-4 lg:p-6 border border-white/20 shadow-2xl shadow-blue-500/10 overflow-hidden group hover:scale-105 transition-transform">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative">
@@ -459,7 +459,7 @@ export default async function StocksPage() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xs:gap-6 mb-6 xs:mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 {topStocks.slice(0, 7).map((stock) => {
                   const latestQuote = stock.quotes[0]
                   if (!latestQuote) return null
@@ -500,14 +500,14 @@ export default async function StocksPage() {
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-600 dark:text-gray-400">Price</span>
-                          <span className="font-bold text-lg text-gray-900 dark:text-gray-100">
+                          <span className="font-bold text-lg text-gray-900 dark:text-gray-100 whitespace-nowrap">
                             {formatPrice(Number(latestQuote.price), stock.market.currency)}
                           </span>
                         </div>
                         
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-600 dark:text-gray-400">Change</span>
-                          <span className={`font-medium text-sm ${
+                          <span className={`font-medium text-sm whitespace-nowrap ${
                             change.positive === true ? 'text-green-600' :
                             change.positive === false ? 'text-red-600' : 'text-gray-500'
                           }`}>
@@ -517,14 +517,14 @@ export default async function StocksPage() {
                         
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-600 dark:text-gray-400">Market Cap</span>
-                          <span className="font-medium text-sm text-gray-900 dark:text-gray-100">
+                          <span className="font-medium text-sm text-gray-900 dark:text-gray-100 whitespace-nowrap">
                             {formatMarketCap(latestQuote.marketCap)}
                           </span>
                         </div>
                         
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-600 dark:text-gray-400">P/E Ratio</span>
-                          <span className="font-medium text-sm text-gray-900 dark:text-gray-100">
+                          <span className="font-medium text-sm text-gray-900 dark:text-gray-100 whitespace-nowrap">
                             {latestQuote.pe ? Number(latestQuote.pe).toFixed(2) : '—'}
                           </span>
                         </div>
