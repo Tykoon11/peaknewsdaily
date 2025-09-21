@@ -36,9 +36,9 @@ export default function MobileNav({
 
       {/* Mobile menu overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
-          <div className="fixed right-0 top-0 h-full w-full max-w-sm bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800 shadow-xl">
+        <div className="fixed inset-0 z-[100] lg:hidden" style={{ zIndex: 9999 }}>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+          <div className="fixed right-0 top-0 h-full w-full max-w-sm bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800 shadow-xl isolate" style={{ zIndex: 10000 }}>
             <div className="flex h-16 items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800">
               <span className="text-lg font-semibold text-gray-900 dark:text-white">Menu</span>
               <button

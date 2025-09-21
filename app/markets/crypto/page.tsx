@@ -479,7 +479,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                 <p className="text-slate-300">Real-time statistics from the digital asset markets</p>
               </div>
               
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
                   <div className="relative">
@@ -489,7 +489,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                           <path d="M12 2L15.09 8.26L22 9L18 13.14L19.09 21L12 17.77L4.91 21L6 13.14L2 9L8.91 8.26L12 2Z"/>
                         </svg>
                       </div>
-                      <div className="text-3xl font-black text-white">{activeCryptos}</div>
+                      <div className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">{activeCryptos}</div>
                     </div>
                     <div className="text-slate-300 font-medium">Tracked Assets</div>
                   </div>
@@ -504,7 +504,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                         </svg>
                       </div>
-                      <div className="text-3xl font-black text-green-400">
+                      <div className="text-2xl sm:text-3xl font-black text-green-400 whitespace-nowrap">
                         ${totalMarketCap >= 1000000000000 
                           ? (totalMarketCap / 1000000000000).toFixed(2) + 'T' 
                           : (totalMarketCap / 1000000000).toFixed(0) + 'B'
@@ -524,7 +524,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                         </svg>
                       </div>
-                      <div className="text-3xl font-black text-blue-400">{positiveChanges}</div>
+                      <div className="text-2xl sm:text-3xl font-black text-blue-400 whitespace-nowrap">{positiveChanges}</div>
                     </div>
                     <div className="text-slate-300 font-medium">24h Gainers</div>
                   </div>
@@ -539,7 +539,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <div className="text-3xl font-black text-orange-400">24/7</div>
+                      <div className="text-2xl sm:text-3xl font-black text-orange-400 whitespace-nowrap">24/7</div>
                     </div>
                     <div className="text-slate-300 font-medium">Always Open</div>
                   </div>
@@ -557,7 +557,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Cryptocurrency Categories
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cryptoCategories.map((category) => (
               <div key={category.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-2xl hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 p-6 border border-gray-100 dark:border-gray-700">
                 <div className="flex items-center mb-4">
@@ -582,7 +582,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Market Insights & Analysis
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {cryptoInsights.map((insight, index) => (
               <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-lg border border-gray-100 dark:border-gray-700 p-6">
                 <div className="flex items-center mb-3">
@@ -607,7 +607,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Crypto Trading Strategies
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {tradingStrategies.map((strategy, index) => (
               <div key={index} className="bg-gradient-to-br from-white to-gray-50 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-sm dark:shadow-lg border border-gray-200 dark:border-gray-600 p-6 hover:shadow-lg dark:hover:shadow-xl transition-all duration-300">
                 <div className="text-center mb-4">
@@ -650,12 +650,12 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
               <table className="w-full">
                 <thead className="bg-gradient-to-r from-gray-50 to-blue-50 dark:bg-gradient-to-r dark:from-gray-700 dark:to-gray-600 border-b-2 border-gray-200 dark:border-gray-600">
                   <tr>
-                    <th className="text-left p-6 font-bold text-gray-900 dark:text-gray-100">Cryptocurrency</th>
-                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">Price</th>
-                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">24h Change</th>
-                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">24h Volume</th>
-                    <th className="text-right p-6 font-bold text-gray-900 dark:text-gray-100">Market Cap</th>
-                    <th className="text-center p-6 font-bold text-gray-900 dark:text-gray-100">Status</th>
+                    <th className="text-left p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100">Cryptocurrency</th>
+                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100">Price</th>
+                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100">24h Change</th>
+                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100 hidden md:table-cell">24h Volume</th>
+                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100 hidden lg:table-cell">Market Cap</th>
+                    <th className="text-center p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100 hidden lg:table-cell">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -673,9 +673,9 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
 
                     return (
                       <tr key={crypto.id} className={`${isEven ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700'} hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200`}>
-                        <td className="p-6">
-                          <div className="flex items-center gap-4">
-                            <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl ${
+                        <td className="p-3 md:p-6">
+                          <div className="flex items-center gap-2 md:gap-4">
+                            <div className={`w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-sm md:text-xl ${
                               displaySymbol === 'BTC' ? 'bg-orange-100 text-orange-600' :
                               displaySymbol === 'ETH' ? 'bg-blue-100 text-blue-600' :
                               displaySymbol === 'ADA' ? 'bg-blue-100 text-blue-600' :
@@ -683,38 +683,38 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                             }`}>
                               {getCryptoIcon(crypto.symbol)}
                             </div>
-                            <div>
-                              <div className="font-bold text-lg text-gray-900 dark:text-gray-100">{displaySymbol}</div>
-                              <div className="text-sm text-gray-600 dark:text-gray-300">{crypto.name}</div>
+                            <div className="min-w-0">
+                              <div className="font-bold text-sm md:text-lg text-gray-900 dark:text-gray-100">{displaySymbol}</div>
+                              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-300 truncate">{crypto.name}</div>
                             </div>
                           </div>
                         </td>
-                        <td className="text-right p-6">
-                          <div className="font-bold text-lg text-gray-900 dark:text-gray-100">
+                        <td className="text-right p-3 md:p-6">
+                          <div className="font-bold text-sm md:text-lg text-gray-900 dark:text-gray-100 whitespace-nowrap">
                             {formatPrice(Number(latestQuote.price), crypto.market.currency)}
                           </div>
                         </td>
-                        <td className="text-right p-6">
-                          <div className={`font-bold text-lg ${
+                        <td className="text-right p-3 md:p-6">
+                          <div className={`font-bold text-sm md:text-lg whitespace-nowrap ${
                             change.positive === true ? 'text-green-600' :
                             change.positive === false ? 'text-red-600' : 'text-gray-500'
                           }`}>
                             {change.text}
                           </div>
                         </td>
-                        <td className="text-right p-6">
-                          <div className="font-semibold text-gray-900 dark:text-gray-100">
+                        <td className="text-right p-3 md:p-6 hidden md:table-cell">
+                          <div className="font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
                             {formatVolume(latestQuote.volume)}
                           </div>
                         </td>
-                        <td className="text-right p-6">
-                          <div className="font-semibold text-gray-900 dark:text-gray-100">
+                        <td className="text-right p-3 md:p-6 hidden lg:table-cell">
+                          <div className="font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
                             {formatMarketCap(latestQuote.marketCap)}
                           </div>
                         </td>
-                        <td className="text-center p-6">
-                          <span className="inline-flex items-center px-3 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                        <td className="text-center p-3 md:p-6 hidden lg:table-cell">
+                          <span className="inline-flex items-center px-2 md:px-3 py-1 md:py-2 rounded-full text-xs md:text-sm font-medium bg-green-100 text-green-800">
+                            <div className="w-2 h-2 bg-green-500 rounded-full mr-1 md:mr-2 animate-pulse"></div>
                             Live
                           </span>
                         </td>
@@ -742,7 +742,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Cryptocurrency Education
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:bg-gradient-to-br dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
               <div className="text-4xl mb-4 text-center">📚</div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 text-center">Getting Started</h3>

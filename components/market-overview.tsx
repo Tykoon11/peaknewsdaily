@@ -215,7 +215,7 @@ export default function MarketOverview() {
           </div>
         </div>
         <div className="p-4">
-          <div className="grid md:grid-cols-4 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {stockQuotes.slice(0, 8).map((quote) => {
               const change = formatChange(quote.change, quote.changePercent)
               return (
@@ -228,7 +228,7 @@ export default function MarketOverview() {
                       {quote.marketStatus === 'open' ? 'OPEN' : 'CLOSED'}
                     </span>
                   </div>
-                  <div className="text-lg font-semibold mb-1">
+                  <div className="text-lg font-semibold mb-1 whitespace-nowrap">
                     {formatPrice(quote.price, quote.currency)}
                   </div>
                   <div className={`text-sm font-medium ${
@@ -269,7 +269,7 @@ export default function MarketOverview() {
             </div>
           </div>
           <div className="p-4">
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {cryptoQuotes.slice(0, 6).map((quote) => {
                 const change = formatChange(quote.change, quote.changePercent)
                 const displaySymbol = quote.symbol.replace('-USD', '')
@@ -288,7 +288,7 @@ export default function MarketOverview() {
                         <span className="text-xs px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400">24/7</span>
                       </div>
                     </div>
-                    <div className="text-lg font-semibold mb-1">
+                    <div className="text-lg font-semibold mb-1 whitespace-nowrap">
                       {formatPrice(quote.price, quote.currency)}
                     </div>
                     <div className={`text-sm font-medium ${

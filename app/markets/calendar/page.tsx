@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
+import EconomicCalendarTabs from '@/components/economic-calendar-tabs';
 
 export const metadata: Metadata = {
   title: 'Economic Calendar 2025 - Live Economic Events & Market Data | PeakNewsDaily',
@@ -335,82 +336,20 @@ export default async function EconomicCalendarPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        {/* Quick Access Tabs */}
+        {/* Interactive Economic Calendar Tabs */}
         <div className="mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <div className="border-b border-gray-200 dark:border-gray-700">
-              <nav className="flex space-x-8 px-6" aria-label="Tabs">
-                <button className="border-b-2 border-blue-500 py-4 px-1 text-sm font-medium text-blue-600">
-                  📅 Today's Events
-                </button>
-                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-                  🔥 High Impact
-                </button>
-                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-                  📊 Recent Results
-                </button>
-                <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-                  📈 All Events
-                </button>
-              </nav>
-            </div>
-            <div className="p-6">
-              <div className="grid gap-4">
-                {todaysEvents.length > 0 ? (
-                  todaysEvents.slice(0, 5).map((event) => {
-                    const timing = formatEventTime(event.eventTime)
-                    const impactStyle = getImpactColor(event.impact)
-                    const categoryIcon = getCategoryIcon(event.category)
-                    
-                    return (
-                      <div key={event.id} className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
-                        <div className="text-2xl">{getCountryFlag(event.country)}</div>
-                        <div className="flex-shrink-0 text-center min-w-[60px]">
-                          <div className="text-sm font-medium">{timing.time}</div>
-                        </div>
-                        <div className="flex-shrink-0">
-                          <div className={`w-3 h-3 rounded-full ${impactStyle.dot}`} />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-lg">{categoryIcon}</span>
-                            <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">{event.title}</h3>
-                          </div>
-                          <div className="flex items-center gap-3 text-xs">
-                            <span className={`px-2 py-1 rounded-full ${impactStyle.bg} ${impactStyle.text} font-medium`}>
-                              {event.impact.toUpperCase()}
-                            </span>
-                            <span className="text-gray-500 dark:text-gray-400">{event.category}</span>
-                          </div>
-                        </div>
-                        {(event.forecast || event.previous) && (
-                          <div className="text-right text-xs text-gray-600 dark:text-gray-300">
-                            {event.forecast && (
-                              <div>Est: <span className="font-medium">{event.forecast}</span></div>
-                            )}
-                            {event.previous && (
-                              <div>Prev: <span className="font-medium">{event.previous}</span></div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    )
-                  })
-                ) : (
-                  <div className="text-center py-8">
-                    <div className="text-4xl mb-2">📅</div>
-                    <p className="text-gray-600 dark:text-gray-300">No events scheduled for today</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <EconomicCalendarTabs
+            todaysEvents={todaysEvents}
+            highImpactEvents={highImpactEvents}
+            recentEvents={recentEvents}
+            allEvents={upcomingEvents}
+          />
         </div>
 
         {/* Market Impact Legend */}
         <div className="mb-8 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/30 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
           <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">📊 Understanding Market Impact</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-6 h-6 bg-red-500 rounded-full mx-auto mb-2"></div>
               <div className="font-semibold text-red-700 dark:text-red-400">High Impact</div>

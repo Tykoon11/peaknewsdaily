@@ -16,7 +16,7 @@ export default async function Nav() {
   }
 
   return (
-    <header className="site-header sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 backdrop-blur-md bg-white/95 dark:bg-gray-900/95">
+    <header className="site-header sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 backdrop-blur-md bg-white/95 dark:bg-gray-900/95">
       <div className="container">
         <div className="flex h-14 items-center justify-between">
           {/* Logo */}
