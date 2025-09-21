@@ -55,14 +55,14 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
 
   return (
     <>
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 post-grid">
+      <ul className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-6 post-grid mx-2 xs:mx-0">
         {items.map((p) => (
-          <li key={p.id} className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 hover:shadow dark:hover:shadow-xl post-card transition-all" data-age={p.ageRestricted ? '1' : undefined}>
+          <li key={p.id} className="rounded-md xs:rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-3 xs:p-4 hover:shadow dark:hover:shadow-xl post-card transition-all" data-age={p.ageRestricted ? '1' : undefined}>
             {p.media && p.media.length > 0 && (
-              <div className="mb-3 -mx-4 -mt-4">
+              <div className="mb-2 xs:mb-3 -mx-3 xs:-mx-4 -mt-3 xs:-mt-4">
                 {p.media[0].kind === 'video' ? (
                   <video
-                    className="w-full h-48 object-cover"
+                    className="w-full h-32 xs:h-40 sm:h-48 object-cover"
                     muted
                     playsInline
                     preload="metadata"
@@ -83,26 +83,26 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     alt={p.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-32 xs:h-40 sm:h-48 object-cover"
                     src={p.media[0].sourceUrl || (process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && p.media[0].publicId ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media[0].publicId}.jpg` : '')}
                   />
                 )}
               </div>
             )}
             <Link href={`/post/${p.slug}`} className="block post-card-link">
-              <h2 className="font-medium text-lg text-gray-900 dark:text-gray-100">{p.title}</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">{p.description || ''}</p>
+              <h2 className="font-medium text-sm xs:text-base sm:text-lg text-gray-900 dark:text-gray-100 leading-tight">{p.title}</h2>
+              <p className="text-xs xs:text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mt-1">{p.description || ''}</p>
             </Link>
-            <div className="mt-2 flex gap-2 text-xs post-card-tags">
+            <div className="mt-2 flex flex-wrap gap-1 xs:gap-2 text-xs post-card-tags">
               {p.tags.map((t) => (
-                <Link key={t.tag.slug} href={`/tag/${t.tag.slug}`} className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tag-chip">#{t.tag.name}</Link>
+                <Link key={t.tag.slug} href={`/tag/${t.tag.slug}`} className="px-1.5 xs:px-2 py-0.5 rounded text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tag-chip">#{t.tag.name}</Link>
               ))}
             </div>
           </li>
         ))}
       </ul>
-      <div ref={loadMoreRef} className="h-12 flex items-center justify-center">
-        {loading ? <span className="text-sm text-gray-600 dark:text-gray-300">Loading…</span> : done ? <span className="text-sm text-gray-600 dark:text-gray-300">You're all caught up</span> : null}
+      <div ref={loadMoreRef} className="h-10 xs:h-12 flex items-center justify-center mx-2 xs:mx-0">
+        {loading ? <span className="text-xs xs:text-sm text-gray-600 dark:text-gray-300">Loading…</span> : done ? <span className="text-xs xs:text-sm text-gray-600 dark:text-gray-300">You're all caught up</span> : null}
       </div>
     </>
   )

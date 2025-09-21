@@ -45,29 +45,29 @@ export default async function AdminEducationPage({ searchParams }: { searchParam
   })
 
   return (
-    <main className="container py-6">
-      <div className="flex items-center justify-between mb-6">
+    <main className="container px-2 xs:px-4 py-4 xs:py-6">
+      <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between mb-4 xs:mb-6 gap-3 xs:gap-0">
         <div>
-          <h1 className="text-2xl font-semibold">Trading Education Management</h1>
-          <p className="text-gray-600 text-sm mt-1">
+          <h1 className="text-xl xs:text-2xl font-semibold">Trading Education Management</h1>
+          <p className="text-gray-600 text-xs xs:text-sm mt-1">
             Manage all trading education content across pillars and learning paths
           </p>
         </div>
-        <div className="text-sm flex gap-3">
+        <div className="text-xs xs:text-sm flex flex-wrap gap-2 xs:gap-3">
           <Link className="underline" href="/admin">Admin Dashboard</Link>
           <Link className="underline" href="/admin/posts">Regular Posts</Link>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border p-4 mb-6">
-        <div className="flex flex-wrap gap-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Filter by Pillar:</label>
-            <div className="flex flex-wrap gap-2">
+      <div className="bg-white rounded-lg border p-3 xs:p-4 mb-4 xs:mb-6">
+        <div className="flex flex-col lg:flex-row gap-3 xs:gap-4">
+          <div className="flex-1">
+            <label className="block text-xs xs:text-sm font-medium mb-1 xs:mb-2">Filter by Pillar:</label>
+            <div className="flex flex-wrap gap-1 xs:gap-2">
               <Link 
                 href="/admin/education"
-                className={`px-3 py-1 rounded text-sm border ${pillarFilter === 'all' ? 'bg-blue-600 text-white' : 'hover:bg-gray-50'}`}
+                className={`px-2 xs:px-3 py-1 rounded text-xs xs:text-sm border ${pillarFilter === 'all' ? 'bg-blue-600 text-white' : 'hover:bg-gray-50'}`}
               >
                 All ({ARTICLES.length})
               </Link>
@@ -75,31 +75,34 @@ export default async function AdminEducationPage({ searchParams }: { searchParam
                 <Link
                   key={pillar.id}
                   href={`/admin/education?pillar=${pillar.id}`}
-                  className={`px-3 py-1 rounded text-sm border ${pillarFilter === pillar.id ? 'bg-blue-600 text-white' : 'hover:bg-gray-50'}`}
+                  className={`px-2 xs:px-3 py-1 rounded text-xs xs:text-sm border ${pillarFilter === pillar.id ? 'bg-blue-600 text-white' : 'hover:bg-gray-50'} truncate max-w-[120px] xs:max-w-none`}
+                  title={pillar.title}
                 >
-                  {pillar.title} ({ARTICLES.filter(a => a.pillar === pillar.id).length})
+                  <span className="hidden xs:inline">{pillar.title}</span>
+                  <span className="xs:hidden">{pillar.title.split(' ')[0]}</span>
+                  {' '}({ARTICLES.filter(a => a.pillar === pillar.id).length})
                 </Link>
               ))}
             </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Filter by Status:</label>
-            <div className="flex gap-2">
+          <div className="flex-1">
+            <label className="block text-xs xs:text-sm font-medium mb-1 xs:mb-2">Filter by Status:</label>
+            <div className="flex flex-wrap gap-1 xs:gap-2">
               <Link
                 href={`/admin/education${pillarFilter !== 'all' ? `?pillar=${pillarFilter}` : ''}`}
-                className={`px-3 py-1 rounded text-sm border ${statusFilter === 'all' ? 'bg-green-600 text-white' : 'hover:bg-gray-50'}`}
+                className={`px-2 xs:px-3 py-1 rounded text-xs xs:text-sm border ${statusFilter === 'all' ? 'bg-green-600 text-white' : 'hover:bg-gray-50'}`}
               >
                 All Status
               </Link>
               <Link
                 href={`/admin/education?status=published${pillarFilter !== 'all' ? `&pillar=${pillarFilter}` : ''}`}
-                className={`px-3 py-1 rounded text-sm border ${statusFilter === 'published' ? 'bg-green-600 text-white' : 'hover:bg-gray-50'}`}
+                className={`px-2 xs:px-3 py-1 rounded text-xs xs:text-sm border ${statusFilter === 'published' ? 'bg-green-600 text-white' : 'hover:bg-gray-50'}`}
               >
                 Published ({ARTICLES.filter(a => a.status === 'published').length})
               </Link>
               <Link
                 href={`/admin/education?status=draft${pillarFilter !== 'all' ? `&pillar=${pillarFilter}` : ''}`}
-                className={`px-3 py-1 rounded text-sm border ${statusFilter === 'draft' ? 'bg-yellow-600 text-white' : 'hover:bg-gray-50'}`}
+                className={`px-2 xs:px-3 py-1 rounded text-xs xs:text-sm border ${statusFilter === 'draft' ? 'bg-yellow-600 text-white' : 'hover:bg-gray-50'}`}
               >
                 Draft ({ARTICLES.filter(a => !a.status || a.status === 'draft').length})
               </Link>
@@ -109,44 +112,44 @@ export default async function AdminEducationPage({ searchParams }: { searchParam
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-blue-50 rounded-lg p-4">
-          <div className="text-2xl font-bold text-blue-600 whitespace-nowrap">{ARTICLES.length}</div>
-          <div className="text-sm text-blue-800">Total Articles</div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 xs:gap-4 mb-6 xs:mb-8">
+        <div className="bg-blue-50 rounded-lg p-3 xs:p-4">
+          <div className="text-xl xs:text-2xl font-bold text-blue-600 whitespace-nowrap">{ARTICLES.length}</div>
+          <div className="text-xs xs:text-sm text-blue-800">Total Articles</div>
         </div>
-        <div className="bg-green-50 rounded-lg p-4">
-          <div className="text-2xl font-bold text-green-600">
+        <div className="bg-green-50 rounded-lg p-3 xs:p-4">
+          <div className="text-xl xs:text-2xl font-bold text-green-600">
             {ARTICLES.filter(a => a.status === 'published').length}
           </div>
-          <div className="text-sm text-green-800">Published</div>
+          <div className="text-xs xs:text-sm text-green-800">Published</div>
         </div>
-        <div className="bg-yellow-50 rounded-lg p-4">
-          <div className="text-2xl font-bold text-yellow-600">
+        <div className="bg-yellow-50 rounded-lg p-3 xs:p-4">
+          <div className="text-xl xs:text-2xl font-bold text-yellow-600">
             {ARTICLES.filter(a => !a.status || a.status === 'draft').length}
           </div>
-          <div className="text-sm text-yellow-800">Draft/Pending</div>
+          <div className="text-xs xs:text-sm text-yellow-800">Draft/Pending</div>
         </div>
-        <div className="bg-purple-50 rounded-lg p-4">
-          <div className="text-2xl font-bold text-purple-600">{PILLARS.length}</div>
-          <div className="text-sm text-purple-800">Learning Pillars</div>
+        <div className="bg-purple-50 rounded-lg p-3 xs:p-4">
+          <div className="text-xl xs:text-2xl font-bold text-purple-600">{PILLARS.length}</div>
+          <div className="text-xs xs:text-sm text-purple-800">Learning Pillars</div>
         </div>
       </div>
 
       {/* Trading Education Articles */}
-      <div className="bg-white rounded-lg border mb-8">
-        <div className="px-6 py-4 border-b bg-gray-50">
-          <h2 className="text-lg font-semibold">Trading Education Articles</h2>
-          <p className="text-sm text-gray-600">Structured learning content organized by pillars</p>
+      <div className="bg-white rounded-lg border mb-6 xs:mb-8">
+        <div className="px-3 xs:px-4 lg:px-6 py-3 xs:py-4 border-b bg-gray-50">
+          <h2 className="text-base xs:text-lg font-semibold">Trading Education Articles</h2>
+          <p className="text-xs xs:text-sm text-gray-600">Structured learning content organized by pillars</p>
         </div>
         
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-xs xs:text-sm">
             <thead>
               <tr className="text-left border-b bg-gray-50">
-                <th className="py-3 px-4">Title</th>
-                <th className="py-3 px-4">Pillar</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4">Actions</th>
+                <th className="py-2 xs:py-3 px-2 xs:px-4">Title</th>
+                <th className="py-2 xs:py-3 px-2 xs:px-4 hidden sm:table-cell">Pillar</th>
+                <th className="py-2 xs:py-3 px-2 xs:px-4 hidden xs:table-cell">Status</th>
+                <th className="py-2 xs:py-3 px-2 xs:px-4">Actions</th>
               </tr>
             </thead>
             <tbody>

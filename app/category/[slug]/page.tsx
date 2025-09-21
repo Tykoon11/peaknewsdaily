@@ -15,8 +15,8 @@ export default async function CategoryPage({ params }: { params: { slug: string 
     include: { media: true, tags: { include: { tag: true } } }
   })
   return (
-    <main className="container py-6 bg-white dark:bg-gray-900 min-h-screen">
-      <h1 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">{category.name}</h1>
+    <main className="container px-3 xs:px-4 py-4 xs:py-6 bg-white dark:bg-gray-900 min-h-screen">
+      <h1 className="text-xl xs:text-2xl font-semibold mb-3 xs:mb-4 text-gray-900 dark:text-gray-100">{category.name}</h1>
       <SearchGrid category={category.slug} />
       <HomeFeed initial={posts.map((p) => ({
         id: p.id,

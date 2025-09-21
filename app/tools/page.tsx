@@ -78,73 +78,73 @@ const categories = [...new Set(upcomingTools.map(tool => tool.category))]
 export default function ToolsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-2 xs:px-4 py-6 xs:py-12">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mb-6">
-            <Zap className="h-8 w-8 text-white" />
+        <div className="text-center mb-8 xs:mb-12 lg:mb-16">
+          <div className="inline-flex items-center justify-center w-12 h-12 xs:w-16 xs:h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl xs:rounded-2xl mb-4 xs:mb-6">
+            <Zap className="h-6 w-6 xs:h-8 xs:w-8 text-white" />
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 dark:from-white dark:via-blue-100 dark:to-indigo-100 bg-clip-text text-transparent mb-6">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 dark:from-white dark:via-blue-100 dark:to-indigo-100 bg-clip-text text-transparent mb-4 xs:mb-6">
             Financial Tools
           </h1>
           
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base xs:text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-6 xs:mb-8 max-w-3xl mx-auto leading-relaxed px-2 xs:px-0">
             Professional-grade financial calculators, analysis tools, and investment utilities designed to empower your financial decisions
           </p>
           
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-amber-100 to-yellow-100 dark:from-amber-900/30 dark:to-yellow-900/30 border border-amber-200 dark:border-amber-700 rounded-full">
+          <div className="inline-flex items-center px-4 xs:px-6 py-2 xs:py-3 bg-gradient-to-r from-amber-100 to-yellow-100 dark:from-amber-900/30 dark:to-yellow-900/30 border border-amber-200 dark:border-amber-700 rounded-full">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-              <span className="text-amber-800 dark:text-amber-200 font-medium">Coming Soon</span>
+              <span className="text-amber-800 dark:text-amber-200 font-medium text-sm xs:text-base">Coming Soon</span>
             </div>
           </div>
         </div>
 
         {/* Status Banner */}
-        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl p-8 mb-12 text-center">
-          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white mb-4">
+        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-xl xs:rounded-2xl p-4 xs:p-6 lg:p-8 mb-8 xs:mb-12 text-center">
+          <h2 className="text-lg xs:text-xl lg:text-2xl font-semibold text-slate-900 dark:text-white mb-3 xs:mb-4">
             🚀 Advanced Financial Tools in Development
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-lg">
+          <p className="text-slate-600 dark:text-slate-300 text-sm xs:text-base lg:text-lg">
             We're building a comprehensive suite of professional financial tools to enhance your investment research and portfolio management. 
             These tools will integrate seamlessly with our real-time market data to provide you with accurate, up-to-date calculations and analysis.
           </p>
         </div>
 
         {/* Upcoming Tools by Category */}
-        <div className="space-y-12">
+        <div className="space-y-8 xs:space-y-12">
           {categories.map((category) => (
-            <div key={category} className="space-y-6">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700 pb-2">
+            <div key={category} className="space-y-4 xs:space-y-6">
+              <h3 className="text-xl xs:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700 pb-2">
                 {category}
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6">
                 {upcomingTools
                   .filter(tool => tool.category === category)
                   .map((tool, index) => (
                     <div
                       key={index}
-                      className="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-xl p-6 hover:shadow-lg hover:shadow-blue-500/10 dark:hover:shadow-blue-400/10 transition-all duration-300 hover:-translate-y-1"
+                      className="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-lg xs:rounded-xl p-4 xs:p-6 hover:shadow-lg hover:shadow-blue-500/10 dark:hover:shadow-blue-400/10 transition-all duration-300 hover:-translate-y-1"
                     >
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <tool.icon className="h-6 w-6 text-white" />
+                      <div className="flex items-start space-x-3 xs:space-x-4">
+                        <div className="flex-shrink-0 w-10 h-10 xs:w-12 xs:h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg xs:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <tool.icon className="h-5 w-5 xs:h-6 xs:w-6 text-white" />
                         </div>
                         
                         <div className="flex-1">
-                          <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                          <h4 className="text-base xs:text-lg font-semibold text-slate-900 dark:text-white mb-1 xs:mb-2">
                             {tool.title}
                           </h4>
-                          <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                          <p className="text-slate-600 dark:text-slate-300 text-xs xs:text-sm leading-relaxed">
                             {tool.description}
                           </p>
                         </div>
                       </div>
                       
-                      <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
-                        <span className="inline-flex items-center px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium rounded-full">
+                      <div className="mt-3 xs:mt-4 pt-3 xs:pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <span className="inline-flex items-center px-2 xs:px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium rounded-full">
                           In Development
                         </span>
                       </div>

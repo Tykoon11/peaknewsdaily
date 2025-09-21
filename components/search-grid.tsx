@@ -56,22 +56,22 @@ export default function SearchGrid({ category }: { category?: string }) {
   }, [debouncedQ, category])
 
   return (
-    <div className="mb-6">
-      <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-2">
-        <input className="input w-full sm:flex-1 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400" placeholder={`Search ${category ? category : 'everything'}...`} value={q} onChange={(e) => setQ(e.target.value)} />
-        <button className="btn w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors" type="submit">Search</button>
+    <div className="mb-4 xs:mb-6 mx-2 xs:mx-0">
+      <form onSubmit={onSubmit} className="flex flex-col xs:flex-row gap-2 xs:gap-3">
+        <input className="input w-full xs:flex-1 rounded-md xs:rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2.5 xs:py-2 text-sm xs:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400" placeholder={`Search ${category ? category : 'everything'}...`} value={q} onChange={(e) => setQ(e.target.value)} />
+        <button className="btn w-full xs:w-auto bg-blue-600 hover:bg-blue-700 text-white px-3 xs:px-4 py-2.5 xs:py-2 rounded-md xs:rounded text-sm xs:text-base font-medium transition-colors" type="submit">Search</button>
       </form>
-      {loading && <div className="text-sm text-gray-500 dark:text-gray-400 mt-2">Searching...</div>}
+      {loading && <div className="text-xs xs:text-sm text-gray-500 dark:text-gray-400 mt-2">Searching...</div>}
       {results && (
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="mt-3 xs:mt-4 grid grid-cols-1 xs:grid-cols-2 gap-3 xs:gap-4">
           {results.map((p) => (
-            <a key={p.id} href={`/post/${p.slug}`} className="group-card block rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md dark:hover:shadow-xl transition-all overflow-hidden">
+            <a key={p.id} href={`/post/${p.slug}`} className="group-card block rounded-md xs:rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md dark:hover:shadow-xl transition-all overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={p.title} src={p.media?.[0]?.sourceUrl || (p.media?.[0]?.publicId ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media?.[0]?.publicId}.jpg` : 'https://picsum.photos/seed/search/400/280')} />
-              <h3 className="px-3 py-2 text-sm font-medium leading-tight text-gray-900 dark:text-gray-100">{p.title}</h3>
+              <h3 className="px-2 xs:px-3 py-2 text-xs xs:text-sm font-medium leading-tight text-gray-900 dark:text-gray-100">{p.title}</h3>
             </a>
           ))}
-          {results.length === 0 && <div className="text-sm text-gray-500 dark:text-gray-400">No results</div>}
+          {results.length === 0 && <div className="text-xs xs:text-sm text-gray-500 dark:text-gray-400 col-span-full text-center py-4">No results</div>}
         </div>
       )}
     </div>
