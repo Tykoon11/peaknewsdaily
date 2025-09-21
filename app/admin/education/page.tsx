@@ -109,9 +109,9 @@ export default async function AdminEducationPage({ searchParams }: { searchParam
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-blue-50 rounded-lg p-4">
-          <div className="text-2xl font-bold text-blue-600">{ARTICLES.length}</div>
+          <div className="text-2xl font-bold text-blue-600 whitespace-nowrap">{ARTICLES.length}</div>
           <div className="text-sm text-blue-800">Total Articles</div>
         </div>
         <div className="bg-green-50 rounded-lg p-4">

@@ -458,7 +458,7 @@ export default function HowToPage() {
             </p>
 
             {/* Stats Row */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12">
               <div className="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 shadow-2xl shadow-purple-500/10">
                 <div className="text-xl sm:text-3xl font-black text-white mb-1">{sections.length}</div>
                 <div className="text-purple-200/80 font-medium text-xs sm:text-sm">Categories</div>
@@ -491,7 +491,7 @@ export default function HowToPage() {
       {/* Table of Contents */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Quick Navigation</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {sections.map((section, index) => (
             <a 
               key={index}
@@ -567,7 +567,7 @@ export default function HowToPage() {
               </div>
 
               {/* Guide Categories */}
-              <div className="grid lg:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Beginner Guides */}
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-lg">
                   <div className="flex items-center gap-3 mb-6">

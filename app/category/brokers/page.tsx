@@ -893,7 +893,7 @@ export default function BrokersPage(): React.ReactElement {
       {/* Quick Stats */}
       <section className="py-12 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-blue-600">{topBrokers.length}</div>
               <div className="text-gray-600 dark:text-gray-300">Brokers Reviewed</div>
@@ -921,7 +921,7 @@ export default function BrokersPage(): React.ReactElement {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
             Find Your Perfect Broker
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {brokerCategories.map((category, index) => (
               <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-2xl hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 p-6 border border-gray-100 dark:border-gray-700">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">{category.title}</h3>
@@ -998,7 +998,7 @@ export default function BrokersPage(): React.ReactElement {
                   </div>
 
                   {/* Key Metrics */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                     <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center">
                       <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Min Deposit</div>
                       <div className="text-lg font-semibold">
@@ -1031,7 +1031,7 @@ export default function BrokersPage(): React.ReactElement {
                   </div>
 
                   {/* Detailed Info Grid */}
-                  <div className="grid md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">✅ Pros</h4>
                       <ul className="space-y-1">
@@ -1077,7 +1077,7 @@ export default function BrokersPage(): React.ReactElement {
 
                   {/* Additional Details */}
                   <div className="mt-6 pt-6 border-t border-gray-200">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-sm">
                       <div>
                         <span className="text-gray-500">Established:</span>
                         <div className="font-medium">{broker.established}</div>

@@ -94,7 +94,7 @@ export default function CoveredCallsPage() {
               When Covered Calls Make Sense
             </h2>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">Ideal Conditions:</h3>
                 <ul className="space-y-3">
@@ -192,7 +192,7 @@ export default function CoveredCallsPage() {
             <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-6 border border-green-200 dark:border-green-800">
               <h3 className="text-xl font-semibold text-green-900 dark:text-green-100 mb-4">Real Example: AAPL Covered Call</h3>
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <h4 className="font-semibold text-slate-900 dark:text-white">Setup:</h4>
                   <ul className="space-y-1 text-sm">
