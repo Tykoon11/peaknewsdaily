@@ -35,7 +35,12 @@ export default function NewsSearchFilter({ initialNews, topics }: NewsSearchFilt
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedTopic, setSelectedTopic] = useState('all')
   const [sortBy, setSortBy] = useState('newest')
-  const [filteredNews, setFilteredNews] = useState(initialNews)
+  const [filteredNews, setFilteredNews] = useState<NewsItem[]>([])
+  
+  // Update filteredNews when initialNews changes
+  useEffect(() => {
+    setFilteredNews(initialNews)
+  }, [initialNews])
 
   useEffect(() => {
     let filtered = [...initialNews]

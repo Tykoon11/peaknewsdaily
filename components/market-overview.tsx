@@ -15,6 +15,7 @@ interface Quote {
   change: number | null
   changePercent: number | null
   marketStatus: string
+  timestamp?: Date
 }
 
 interface MarketData {
@@ -52,18 +53,30 @@ export default function MarketOverview() {
   useEffect(() => {
     async function fetchFallbackData() {
       try {
-        // Only fetch fallback if live prices aren't connected
-        if (!stockLivePrices.connected && !cryptoLivePrices.connected) {
-          // Fetch stock quotes
-          const stockResponse = await fetch('/api/quotes?type=stock&limit=8')
-          const stockData: MarketData = await stockResponse.json()
-          
-          // Fetch crypto quotes
-          const cryptoResponse = await fetch('/api/quotes?type=crypto&limit=6')
-          const cryptoData: MarketData = await cryptoResponse.json()
-          
-          setFallbackStocks(stockData.quotes || [])
-          setFallbackCrypto(cryptoData.quotes || [])
+        // Always try to get fresh fallback data for comparison
+        // Fetch stock quotes
+        const stockResponse = await fetch('/api/quotes?type=stock&limit=8')
+        const stockData: MarketData = await stockResponse.json()
+        
+        // Fetch crypto quotes with cache busting
+        const cryptoResponse = await fetch(`/api/quotes?type=crypto&limit=6&t=${Date.now()}`)
+        const cryptoData: MarketData = await cryptoResponse.json()
+        
+        setFallbackStocks(stockData.quotes || [])
+        setFallbackCrypto(cryptoData.quotes || [])
+        
+        // Also try to trigger a price update if data seems stale
+        if (cryptoData.quotes && cryptoData.quotes.length > 0) {
+          const btcQuote = cryptoData.quotes.find(q => q.symbol === 'BTC-USD')
+          if (btcQuote) {
+            const priceAge = Date.now() - new Date(btcQuote.timestamp || Date.now()).getTime()
+            if (priceAge > 5 * 60 * 1000) { // If price is older than 5 minutes
+              console.log('🔄 Triggering price update - data seems stale')
+              fetch('/api/prices/update', { method: 'POST' }).catch(e => 
+                console.log('Price update trigger failed:', e)
+              )
+            }
+          }
         }
       } catch (err) {
         setError('Failed to fetch market data')
@@ -74,6 +87,10 @@ export default function MarketOverview() {
     }
 
     fetchFallbackData()
+    
+    // Refresh fallback data every 2 minutes
+    const refreshInterval = setInterval(fetchFallbackData, 2 * 60 * 1000)
+    return () => clearInterval(refreshInterval)
   }, [stockLivePrices.connected, cryptoLivePrices.connected])
 
   // Convert live prices to Quote format for display
