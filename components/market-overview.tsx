@@ -87,6 +87,7 @@ export default function MarketOverview() {
 
           const realtimeCryptoData = CRYPTO_SYMBOLS.map(symbol => {
             const priceData = realtimeData.prices[symbol]
+            // console.log(`🔍 Checking ${symbol}:`, priceData ? 'FOUND' : 'MISSING')
             if (priceData) {
               return {
                 symbol: priceData.symbol,
@@ -103,13 +104,15 @@ export default function MarketOverview() {
             }
             return null
           }).filter(Boolean) as Quote[]
+          
+          // console.log(`🔍 Crypto data conversion result: ${realtimeCryptoData.length} out of ${CRYPTO_SYMBOLS.length} symbols`)
 
           // Set real-time data and mark as using real-time
           setRealtimeStocks(realtimeStockData)
           setRealtimeCrypto(realtimeCryptoData)
           setUsingRealtime(true)
           setLoading(false)
-          console.log('✅ Real-time data set, disabling live price hooks')
+          // console.log('✅ Real-time data set, disabling live price hooks')
           return
         }
         
@@ -160,34 +163,29 @@ export default function MarketOverview() {
 
   // Get current quotes (PRIORITY: real-time > live price hooks > fallback)
   const stockQuotes = usingRealtime && realtimeStocks.length > 0
-    ? (() => {
-        console.log('📈 STOCKS: Using real-time data ✅')
-        return realtimeStocks.slice(0, 8)
-      })()
+    ? realtimeStocks.slice(0, 8)
     : stockLivePrices.connected 
-      ? (() => {
-          console.log('📊 STOCKS: Using live price hooks (fallback)')
-          return STOCK_SYMBOLS.map(sym => convertLivePriceToQuote(sym, stockLivePrices.getPrice(sym), 'stock')).slice(0, 8)
-        })()
-      : (() => {
-          console.log('📉 STOCKS: Using cached fallback data')
-          return fallbackStocks
-        })()
+      ? STOCK_SYMBOLS.map(sym => convertLivePriceToQuote(sym, stockLivePrices.getPrice(sym), 'stock')).slice(0, 8)
+      : fallbackStocks
 
-  const cryptoQuotes = usingRealtime && realtimeCrypto.length > 0
-    ? (() => {
-        console.log('₿ CRYPTO: Using real-time data ✅')
-        return realtimeCrypto.slice(0, 6)
-      })()
-    : cryptoLivePrices.connected
-      ? (() => {
-          console.log('📊 CRYPTO: Using live price hooks (fallback)')
-          return CRYPTO_SYMBOLS.map(sym => convertLivePriceToQuote(sym, cryptoLivePrices.getPrice(sym), 'crypto')).slice(0, 6)
-        })()
-      : (() => {
-          console.log('📉 CRYPTO: Using cached fallback data')
-          return fallbackCrypto
-        })()
+  // ABSOLUTE PRIORITY: Real-time data first, everything else is fallback
+  const cryptoQuotes = realtimeCrypto.length > 0
+    ? realtimeCrypto.slice(0, 6)
+    : cryptoLivePrices.connected && !usingRealtime
+      ? CRYPTO_SYMBOLS.map(sym => convertLivePriceToQuote(sym, cryptoLivePrices.getPrice(sym), 'crypto')).slice(0, 6)
+      : CRYPTO_SYMBOLS.map(symbol => ({
+          symbol,
+          name: symbol.replace('-USD', ''),
+          type: 'crypto' as const,
+          market: 'CRYPTO',
+          currency: 'USD',
+          price: 0,
+          change: null,
+          changePercent: null,
+          marketStatus: 'open'
+        }))
+        
+  // console.log('🎯 FINAL cryptoQuotes:', cryptoQuotes.length, 'symbols -', cryptoQuotes.map(q => q.symbol))
 
   // Update loading state 
   const isLoading = loading && !usingRealtime && !stockLivePrices.connected && !cryptoLivePrices.connected && stockQuotes.length === 0

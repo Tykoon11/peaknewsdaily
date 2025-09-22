@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
 import NewsSearchFilter from '@/components/news-search-filter'
 
-export const revalidate = 300
+export const revalidate = 60 // Refresh news every minute
 
 export async function generateMetadata() {
   return {

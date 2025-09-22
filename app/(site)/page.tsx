@@ -6,7 +6,7 @@ import EconomicCalendarPreview from '@/components/economic-calendar-preview'
 import DataDisclaimer from '@/components/data-disclaimer'
 import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 
-export const revalidate = 300 // Cache for 5 minutes
+export const revalidate = 60 // Cache for 1 minute - keep news fresh
 
 interface NewsItem {
   id: string
@@ -48,8 +48,13 @@ export default async function HomePage() {
     try {
       // Get live trading/investing content
       const results = await Promise.all([
-        // Latest RSS news items
+        // Latest RSS news items - prioritize recent ones
         prisma.newsItem.findMany({
+          where: {
+            publishedAt: {
+              gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) // Last 7 days
+            }
+          },
           orderBy: { publishedAt: 'desc' },
           take: 8,
           include: { topic: true }
@@ -73,6 +78,39 @@ export default async function HomePage() {
       latestNews = results[0]
       trendingTopics = results[1]
       featuredPosts = results[2]
+      
+      // If news is stale (older than 24 hours), supplement with live news
+      if (latestNews.length === 0 || 
+          (latestNews[0] && new Date().getTime() - new Date(latestNews[0].publishedAt).getTime() > 24 * 60 * 60 * 1000)) {
+        console.log('📰 Database news is stale, fetching live news...')
+        
+        try {
+          const liveNewsResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/news/live`)
+          if (liveNewsResponse.ok) {
+            const liveNewsData = await liveNewsResponse.json()
+            
+            // Convert live news to our format
+            const liveNewsItems = liveNewsData.news.map((item: any, index: number) => ({
+              id: `live-${index}`,
+              slug: `external-${index}`,
+              title: item.title.replace(/&#x[\d\w]+;/g, ''), // Clean HTML entities
+              excerpt: item.description,
+              publishedAt: new Date(item.pubDate),
+              sourceName: item.source,
+              topic: {
+                slug: 'markets',
+                title: 'Markets'
+              }
+            }))
+            
+            latestNews = liveNewsItems.slice(0, 8)
+            console.log('✅ Using live news from external feeds')
+          }
+        } catch (error) {
+          console.error('Failed to fetch live news:', error)
+        }
+      }
+      
     } catch (error) {
       console.warn('Failed to fetch homepage data:', error)
     }

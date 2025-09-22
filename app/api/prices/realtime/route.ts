@@ -126,6 +126,34 @@ async function fetchRealTimePrice(symbol: string) {
     }
   }
   
+  // Add support for all other crypto symbols
+  const cryptoMap: { [key: string]: string } = {
+    'BNB-USD': 'binancecoin',
+    'ADA-USD': 'cardano', 
+    'SOL-USD': 'solana',
+    'DOT-USD': 'polkadot'
+  }
+  
+  if (cryptoMap[cleanSymbol]) {
+    try {
+      const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoMap[cleanSymbol]}&vs_currencies=usd&include_24hr_change=true`)
+      const data = await response.json()
+      const coinData = data[cryptoMap[cleanSymbol]]
+      
+      if (coinData) {
+        return {
+          symbol: cleanSymbol,
+          price: coinData.usd,
+          changePct: coinData.usd_24h_change,
+          source: 'coingecko',
+          timestamp: new Date().toISOString()
+        }
+      }
+    } catch (error) {
+      console.log(`CoinGecko failed for ${cleanSymbol}:`, error instanceof Error ? error.message : String(error))
+    }
+  }
+  
   // Stock prices
   const stockSymbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'META', 'NVDA', 'NFLX']
   if (stockSymbols.includes(cleanSymbol)) {
