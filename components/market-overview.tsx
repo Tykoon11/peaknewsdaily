@@ -32,22 +32,25 @@ const CRYPTO_SYMBOLS = ['BTC-USD', 'ETH-USD', 'BNB-USD', 'ADA-USD', 'SOL-USD', '
 export default function MarketOverview() {
   const [fallbackStocks, setFallbackStocks] = useState<Quote[]>([])
   const [fallbackCrypto, setFallbackCrypto] = useState<Quote[]>([])
+  const [realtimeStocks, setRealtimeStocks] = useState<Quote[]>([])
+  const [realtimeCrypto, setRealtimeCrypto] = useState<Quote[]>([])
+  const [usingRealtime, setUsingRealtime] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Use live prices for both stocks and crypto
+  // Only use live prices as a fallback when real-time fails
   const stockLivePrices = useLivePrices({
     symbols: STOCK_SYMBOLS,
     component: 'table',
-    enabled: true,
-    fallbackPolling: true
+    enabled: !usingRealtime, // Disable when real-time is working
+    fallbackPolling: !usingRealtime
   })
 
   const cryptoLivePrices = useLivePrices({
     symbols: CRYPTO_SYMBOLS,
     component: 'table',
-    enabled: true,
-    fallbackPolling: true
+    enabled: !usingRealtime, // Disable when real-time is working
+    fallbackPolling: !usingRealtime
   })
 
   // Primary real-time data fetch with fallback
@@ -63,7 +66,7 @@ export default function MarketOverview() {
           console.log('📈 Using real-time exchange data:', Object.keys(realtimeData.prices).length, 'symbols')
           
           // Convert real-time data to Quote format
-          const realtimeStocks = STOCK_SYMBOLS.map(symbol => {
+          const realtimeStockData = STOCK_SYMBOLS.map(symbol => {
             const priceData = realtimeData.prices[symbol]
             if (priceData) {
               return {
@@ -82,7 +85,7 @@ export default function MarketOverview() {
             return null
           }).filter(Boolean) as Quote[]
 
-          const realtimeCrypto = CRYPTO_SYMBOLS.map(symbol => {
+          const realtimeCryptoData = CRYPTO_SYMBOLS.map(symbol => {
             const priceData = realtimeData.prices[symbol]
             if (priceData) {
               return {
@@ -101,14 +104,19 @@ export default function MarketOverview() {
             return null
           }).filter(Boolean) as Quote[]
 
-          setFallbackStocks(realtimeStocks)
-          setFallbackCrypto(realtimeCrypto)
+          // Set real-time data and mark as using real-time
+          setRealtimeStocks(realtimeStockData)
+          setRealtimeCrypto(realtimeCryptoData)
+          setUsingRealtime(true)
           setLoading(false)
+          console.log('✅ Real-time data set, disabling live price hooks')
           return
         }
         
         // Fallback to cached data if real-time fails
         console.log('⚠️ Real-time API failed, using cached data')
+        setUsingRealtime(false)
+        
         const [stockResponse, cryptoResponse] = await Promise.all([
           fetch('/api/quotes?type=stock&limit=8'),
           fetch(`/api/quotes?type=crypto&limit=6&t=${Date.now()}`)
@@ -133,7 +141,7 @@ export default function MarketOverview() {
     // Refresh real-time data every minute
     const refreshInterval = setInterval(fetchMarketData, 60 * 1000)
     return () => clearInterval(refreshInterval)
-  }, [stockLivePrices.connected, cryptoLivePrices.connected])
+  }, []) // Remove dependencies to prevent conflicts with live price hooks
 
   // Convert live prices to Quote format for display
   const convertLivePriceToQuote = (sym: string, livePrice: any, type: 'stock' | 'crypto'): Quote => {
@@ -150,17 +158,39 @@ export default function MarketOverview() {
     }
   }
 
-  // Get current quotes (prefer live data, fallback to API data)
-  const stockQuotes = stockLivePrices.connected 
-    ? STOCK_SYMBOLS.map(sym => convertLivePriceToQuote(sym, stockLivePrices.getPrice(sym), 'stock')).slice(0, 8)
-    : fallbackStocks
+  // Get current quotes (PRIORITY: real-time > live price hooks > fallback)
+  const stockQuotes = usingRealtime && realtimeStocks.length > 0
+    ? (() => {
+        console.log('📈 STOCKS: Using real-time data ✅')
+        return realtimeStocks.slice(0, 8)
+      })()
+    : stockLivePrices.connected 
+      ? (() => {
+          console.log('📊 STOCKS: Using live price hooks (fallback)')
+          return STOCK_SYMBOLS.map(sym => convertLivePriceToQuote(sym, stockLivePrices.getPrice(sym), 'stock')).slice(0, 8)
+        })()
+      : (() => {
+          console.log('📉 STOCKS: Using cached fallback data')
+          return fallbackStocks
+        })()
 
-  const cryptoQuotes = cryptoLivePrices.connected
-    ? CRYPTO_SYMBOLS.map(sym => convertLivePriceToQuote(sym, cryptoLivePrices.getPrice(sym), 'crypto')).slice(0, 6)
-    : fallbackCrypto
+  const cryptoQuotes = usingRealtime && realtimeCrypto.length > 0
+    ? (() => {
+        console.log('₿ CRYPTO: Using real-time data ✅')
+        return realtimeCrypto.slice(0, 6)
+      })()
+    : cryptoLivePrices.connected
+      ? (() => {
+          console.log('📊 CRYPTO: Using live price hooks (fallback)')
+          return CRYPTO_SYMBOLS.map(sym => convertLivePriceToQuote(sym, cryptoLivePrices.getPrice(sym), 'crypto')).slice(0, 6)
+        })()
+      : (() => {
+          console.log('📉 CRYPTO: Using cached fallback data')
+          return fallbackCrypto
+        })()
 
-  // Update loading state based on live prices
-  const isLoading = loading && !stockLivePrices.connected && !cryptoLivePrices.connected && stockQuotes.length === 0
+  // Update loading state 
+  const isLoading = loading && !usingRealtime && !stockLivePrices.connected && !cryptoLivePrices.connected && stockQuotes.length === 0
 
   const formatPrice = (price: number, currency: string = 'USD') => {
     if (currency === 'USD' && price > 1000) {
