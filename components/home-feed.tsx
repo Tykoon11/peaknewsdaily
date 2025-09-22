@@ -1,6 +1,7 @@
 "use client"
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type Tag = { slug: string; name: string }
 type Post = {
@@ -80,11 +81,13 @@ export default function HomeFeed({ initial, baseQuery }: { initial: Post[]; base
                     ) : null}
                   </video>
                 ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     alt={p.title}
                     className="w-full h-32 xs:h-40 sm:h-48 object-cover"
                     src={p.media[0].sourceUrl || (process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && p.media[0].publicId ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media[0].publicId}.jpg` : '')}
+                    width={300}
+                    height={200}
+                    sizes="(max-width: 480px) 100vw, (max-width: 640px) 50vw, 33vw"
                   />
                 )}
               </div>

@@ -171,7 +171,6 @@ export default function NewsSearchFilter({ initialNews, topics }: NewsSearchFilt
                 setSelectedTopic('all')
               }}
               className="px-3 xs:px-4 py-2 bg-blue-600 text-white rounded-md xs:rounded-lg hover:bg-blue-700 transition-colors text-sm xs:text-base">
-            >
               Show all articles
             </button>
           </div>
@@ -180,12 +179,10 @@ export default function NewsSearchFilter({ initialNews, topics }: NewsSearchFilt
             <article
               key={item.id}
               className="group bg-white dark:bg-gray-800 rounded-lg xs:rounded-xl border border-slate-200 dark:border-gray-700 p-4 xs:p-6 hover:shadow-lg hover:border-slate-300 dark:hover:border-gray-600 transition-all duration-300 mx-2 xs:mx-0">
-            >
               <div className="flex flex-col xs:flex-row xs:items-center gap-1 xs:gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-2 xs:mb-3">
                 <Link
                   href={`/news/topic/${item.topic.slug}`}
                   className="px-2 xs:px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full hover:from-blue-600 hover:to-indigo-700 transition-colors capitalize font-medium w-fit text-xs xs:text-sm">
-                >
                   {item.topic.title}
                 </Link>
                 <span className="hidden xs:inline">•</span>

@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useMemo, useRef, useState } from 'react'
+import Image from 'next/image'
 
 type Item = { id: string; slug: string; title: string; description?: string | null; media?: { publicId?: string | null; sourceUrl?: string | null }[] }
 
@@ -66,8 +67,14 @@ export default function SearchGrid({ category }: { category?: string }) {
         <div className="mt-3 xs:mt-4 grid grid-cols-1 xs:grid-cols-2 gap-3 xs:gap-4">
           {results.map((p) => (
             <a key={p.id} href={`/post/${p.slug}`} className="group-card block rounded-md xs:rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md dark:hover:shadow-xl transition-all overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt={p.title} src={p.media?.[0]?.sourceUrl || (p.media?.[0]?.publicId ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media?.[0]?.publicId}.jpg` : 'https://picsum.photos/seed/search/400/280')} />
+              <Image 
+                alt={p.title} 
+                src={p.media?.[0]?.sourceUrl || (p.media?.[0]?.publicId ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${p.media?.[0]?.publicId}.jpg` : 'https://picsum.photos/seed/search/400/280')} 
+                width={400}
+                height={280}
+                className="w-full h-auto"
+                sizes="(max-width: 480px) 100vw, 50vw"
+              />
               <h3 className="px-2 xs:px-3 py-2 text-xs xs:text-sm font-medium leading-tight text-gray-900 dark:text-gray-100">{p.title}</h3>
             </a>
           ))}

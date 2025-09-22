@@ -22,11 +22,40 @@ export async function generateMetadata() {
   }
 }
 
+interface NewsItem {
+  id: string
+  slug: string
+  title: string
+  excerpt?: string | null
+  publishedAt: Date
+  sourceName: string
+  topic: {
+    slug: string
+    title: string
+  }
+}
+
+interface Topic {
+  id: string
+  slug: string
+  title: string
+  description?: string | null
+  NewsItem: Array<{
+    id: string
+    slug: string
+    title: string
+    publishedAt: Date
+  }>
+  _count: {
+    NewsItem: number
+  }
+}
+
 export default async function NewsPage() {
-  let topics: Array<any> = []
-  let latestNews: Array<any> = []
-  let featuredNews: Array<any> = []
-  let breakingNews: Array<any> = []
+  let topics: Topic[] = []
+  let latestNews: NewsItem[] = []
+  let featuredNews: NewsItem[] = []
+  let breakingNews: NewsItem[] = []
 
   if (process.env.DATABASE_URL) {
     try {
@@ -196,7 +225,13 @@ export default async function NewsPage() {
                 </div>
               </div>
               
-              <NewsSearchFilter initialNews={latestNews} topics={topics} />
+              <NewsSearchFilter 
+                initialNews={latestNews.map(item => ({
+                  ...item,
+                  publishedAt: item.publishedAt.toISOString()
+                }))} 
+                topics={topics} 
+              />
             </div>
 
             {/* Sidebar */}

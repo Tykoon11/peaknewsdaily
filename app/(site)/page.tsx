@@ -8,10 +8,41 @@ import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 
 export const revalidate = 300 // Cache for 5 minutes
 
+interface NewsItem {
+  id: string
+  slug: string
+  title: string
+  excerpt?: string | null
+  publishedAt: Date
+  sourceName: string
+  topic: {
+    slug: string
+    title: string
+  }
+}
+
+interface Topic {
+  id: string
+  slug: string
+  title: string
+  description?: string | null
+  _count: {
+    NewsItem: number
+  }
+}
+
+interface Post {
+  id: string
+  slug: string
+  title: string
+  description?: string | null
+  createdAt: Date
+}
+
 export default async function HomePage() {
-  let latestNews: Array<any> = []
-  let trendingTopics: Array<any> = []
-  let featuredPosts: Array<any> = []
+  let latestNews: NewsItem[] = []
+  let trendingTopics: Topic[] = []
+  let featuredPosts: Post[] = []
 
   if (process.env.DATABASE_URL) {
     try {
@@ -352,7 +383,7 @@ export default async function HomePage() {
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                  {latestNews.slice(0, 8).map((item, index) => (
+                  {latestNews.slice(0, 8).map((item) => (
                     <Link
                       key={item.id}
                       href={`/news/${item.slug}`}
