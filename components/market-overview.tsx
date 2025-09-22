@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useLivePrices } from '@/hooks/useLivePrices'
 import { getMarketStateLabel, getMarketStateColor, formatTimestampET } from '@/lib/marketState'
+import PriceValidationIndicator from './price-validation-indicator'
 
 interface Quote {
   symbol: string
@@ -49,35 +50,76 @@ export default function MarketOverview() {
     fallbackPolling: true
   })
 
-  // Fallback to existing API if live prices aren't available
+  // Primary real-time data fetch with fallback
   useEffect(() => {
-    async function fetchFallbackData() {
+    async function fetchMarketData() {
       try {
-        // Always try to get fresh fallback data for comparison
-        // Fetch stock quotes
-        const stockResponse = await fetch('/api/quotes?type=stock&limit=8')
-        const stockData: MarketData = await stockResponse.json()
+        // First, try to get real-time data directly from exchanges
+        const realtimeSymbols = [...STOCK_SYMBOLS, ...CRYPTO_SYMBOLS].join(',')
+        const realtimeResponse = await fetch(`/api/prices/realtime?symbols=${realtimeSymbols}&t=${Date.now()}`)
         
-        // Fetch crypto quotes with cache busting
-        const cryptoResponse = await fetch(`/api/quotes?type=crypto&limit=6&t=${Date.now()}`)
+        if (realtimeResponse.ok) {
+          const realtimeData = await realtimeResponse.json()
+          console.log('📈 Using real-time exchange data:', Object.keys(realtimeData.prices).length, 'symbols')
+          
+          // Convert real-time data to Quote format
+          const realtimeStocks = STOCK_SYMBOLS.map(symbol => {
+            const priceData = realtimeData.prices[symbol]
+            if (priceData) {
+              return {
+                symbol: priceData.symbol,
+                name: symbol, // Simplified for now
+                type: 'stock',
+                market: 'NASDAQ',
+                currency: 'USD',
+                price: priceData.price,
+                change: priceData.price * (priceData.changePct / 100),
+                changePercent: priceData.changePct,
+                marketStatus: 'REGULAR',
+                timestamp: new Date(priceData.timestamp)
+              }
+            }
+            return null
+          }).filter(Boolean) as Quote[]
+
+          const realtimeCrypto = CRYPTO_SYMBOLS.map(symbol => {
+            const priceData = realtimeData.prices[symbol]
+            if (priceData) {
+              return {
+                symbol: priceData.symbol,
+                name: symbol.replace('-USD', ''),
+                type: 'crypto',
+                market: 'CRYPTO',
+                currency: 'USD',
+                price: priceData.price,
+                change: priceData.price * (priceData.changePct / 100),
+                changePercent: priceData.changePct,
+                marketStatus: 'REGULAR',
+                timestamp: new Date(priceData.timestamp)
+              }
+            }
+            return null
+          }).filter(Boolean) as Quote[]
+
+          setFallbackStocks(realtimeStocks)
+          setFallbackCrypto(realtimeCrypto)
+          setLoading(false)
+          return
+        }
+        
+        // Fallback to cached data if real-time fails
+        console.log('⚠️ Real-time API failed, using cached data')
+        const [stockResponse, cryptoResponse] = await Promise.all([
+          fetch('/api/quotes?type=stock&limit=8'),
+          fetch(`/api/quotes?type=crypto&limit=6&t=${Date.now()}`)
+        ])
+        
+        const stockData: MarketData = await stockResponse.json()
         const cryptoData: MarketData = await cryptoResponse.json()
         
         setFallbackStocks(stockData.quotes || [])
         setFallbackCrypto(cryptoData.quotes || [])
         
-        // Also try to trigger a price update if data seems stale
-        if (cryptoData.quotes && cryptoData.quotes.length > 0) {
-          const btcQuote = cryptoData.quotes.find(q => q.symbol === 'BTC-USD')
-          if (btcQuote) {
-            const priceAge = Date.now() - new Date(btcQuote.timestamp || Date.now()).getTime()
-            if (priceAge > 5 * 60 * 1000) { // If price is older than 5 minutes
-              console.log('🔄 Triggering price update - data seems stale')
-              fetch('/api/prices/update', { method: 'POST' }).catch(e => 
-                console.log('Price update trigger failed:', e)
-              )
-            }
-          }
-        }
       } catch (err) {
         setError('Failed to fetch market data')
         console.error('Market data fetch error:', err)
@@ -86,10 +128,10 @@ export default function MarketOverview() {
       }
     }
 
-    fetchFallbackData()
+    fetchMarketData()
     
-    // Refresh fallback data every 2 minutes
-    const refreshInterval = setInterval(fetchFallbackData, 2 * 60 * 1000)
+    // Refresh real-time data every minute
+    const refreshInterval = setInterval(fetchMarketData, 60 * 1000)
     return () => clearInterval(refreshInterval)
   }, [stockLivePrices.connected, cryptoLivePrices.connected])
 
