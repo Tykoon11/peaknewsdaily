@@ -14,9 +14,26 @@ export const revalidate = 300 // Cache for 5 minutes
 export default async function MarketsPage() {
   let marketStats = {
     totalAssets: 0,
-    activeMarkets: 0,
+    activeMarkets: 4, // stocks, crypto, forex, commodities
     gainers: 0,
     decliners: 0
+  }
+  let liveMarketData: any = null
+
+  // Fetch live market analytics data
+  try {
+    const marketResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'}/api/market-analytics`, {
+      next: { revalidate: 300 }, // Cache for 5 minutes
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'PeakNewsDaily-Server/1.0'
+      }
+    })
+    if (marketResponse.ok) {
+      liveMarketData = await marketResponse.json()
+    }
+  } catch (error) {
+    console.warn('Failed to fetch live market data:', error)
   }
 
   if (process.env.DATABASE_URL) {
@@ -32,10 +49,10 @@ export default async function MarketsPage() {
         })
       ])
       
-      marketStats.totalAssets = assets
-      marketStats.activeMarkets = 4 // stocks, crypto, forex, commodities
-      marketStats.gainers = quotes.filter(q => q.changePercent && Number(q.changePercent) > 0).length
-      marketStats.decliners = quotes.filter(q => q.changePercent && Number(q.changePercent) < 0).length
+      // Use live data when available, fallback to database
+      marketStats.totalAssets = liveMarketData?.activeCryptocurrencies || assets
+      marketStats.gainers = liveMarketData?.gainers24h || quotes.filter(q => q.changePercent && Number(q.changePercent) > 0).length
+      marketStats.decliners = liveMarketData?.losers24h || quotes.filter(q => q.changePercent && Number(q.changePercent) < 0).length
     } catch (error) {
       console.warn('Failed to fetch market stats:', error)
     }
@@ -85,7 +102,9 @@ export default async function MarketsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h2a2 2 0 01-2-2z" />
                       </svg>
                     </div>
-                    <div className="text-xl sm:text-3xl font-black text-white whitespace-nowrap">{marketStats.totalAssets}</div>
+                    <div className="text-xl sm:text-3xl font-black text-white whitespace-nowrap">
+                      {liveMarketData?.activeCryptocurrencies?.toLocaleString() || marketStats.totalAssets.toLocaleString()}
+                    </div>
                   </div>
                   <div className="text-blue-200/80 font-medium text-xs sm:text-sm">Assets Tracked</div>
                 </div>
@@ -100,7 +119,9 @@ export default async function MarketsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
-                    <div className="text-xl sm:text-3xl font-black text-green-400 whitespace-nowrap">{marketStats.gainers}</div>
+                    <div className="text-xl sm:text-3xl font-black text-green-400 whitespace-nowrap">
+                      {liveMarketData?.gainers24h?.toLocaleString() || marketStats.gainers.toLocaleString()}
+                    </div>
                   </div>
                   <div className="text-blue-200/80 font-medium text-xs sm:text-sm">Advancing</div>
                 </div>
@@ -115,7 +136,9 @@ export default async function MarketsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
                       </svg>
                     </div>
-                    <div className="text-xl sm:text-3xl font-black text-red-400 whitespace-nowrap">{marketStats.decliners}</div>
+                    <div className="text-xl sm:text-3xl font-black text-red-400 whitespace-nowrap">
+                      {liveMarketData?.losers24h?.toLocaleString() || marketStats.decliners.toLocaleString()}
+                    </div>
                   </div>
                   <div className="text-blue-200/80 font-medium text-xs sm:text-sm">Declining</div>
                 </div>

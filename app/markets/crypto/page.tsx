@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
+import LiveCryptoOverview from '@/components/live-crypto-overview';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -184,6 +185,26 @@ const tradingStrategies = [
 
 export default async function CryptoPage(): Promise<React.ReactElement> {
   let cryptos: Array<any> = []
+  let liveMarketData: any = null
+
+  // Try to fetch live market data first
+  try {
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://peaknewsdaily.com' 
+      : 'http://localhost:3001'
+    
+    const response = await fetch(`${baseUrl}/api/market-analytics`, {
+      next: { revalidate: 300 }, // Cache for 5 minutes
+      headers: { 'User-Agent': 'PeakNewsDaily-Server/1.0' }
+    })
+    
+    if (response.ok) {
+      liveMarketData = await response.json()
+      console.log('✅ Server-side live market data fetched successfully')
+    }
+  } catch (error) {
+    console.warn('Server-side market analytics fetch failed:', error)
+  }
 
   if (process.env.DATABASE_URL) {
     try {
@@ -395,18 +416,26 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
     }
   };
 
-  // Calculate market stats
-  const totalMarketCap = cryptos.reduce((sum, crypto) => {
+  // Use live data when available, fallback to database
+  const totalMarketCap = liveMarketData?.totalMarketCap || cryptos.reduce((sum, crypto) => {
     const marketCap = crypto.quotes[0]?.marketCap ? Number(crypto.quotes[0].marketCap) : 0;
     return sum + marketCap;
   }, 0);
 
-  const positiveChanges = cryptos.filter(crypto => {
+  const positiveChanges = liveMarketData?.gainers24h || cryptos.filter(crypto => {
     const change = crypto.quotes[0]?.change;
     return change && Number(change) > 0;
   }).length;
 
-  const activeCryptos = cryptos.length;
+  const activeCryptos = liveMarketData?.activeCryptocurrencies || cryptos.length;
+
+  // Debug server-side values
+  console.log('🖥️ Server-side crypto page values:', {
+    cryptosCount: cryptos.length,
+    activeCryptos,
+    totalMarketCap,
+    positiveChanges
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
@@ -489,9 +518,14 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                           <path d="M12 2L15.09 8.26L22 9L18 13.14L19.09 21L12 17.77L4.91 21L6 13.14L2 9L8.91 8.26L12 2Z"/>
                         </svg>
                       </div>
-                      <div className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">{activeCryptos}</div>
+                      <div className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">
+                        {activeCryptos.toLocaleString()}
+                      </div>
                     </div>
                     <div className="text-slate-300 font-medium">Tracked Assets</div>
+                    {liveMarketData && (
+                      <div className="text-xs text-green-400 mt-1 opacity-75">● Live</div>
+                    )}
                   </div>
                 </div>
                 
@@ -505,13 +539,18 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                         </svg>
                       </div>
                       <div className="text-2xl sm:text-3xl font-black text-green-400 whitespace-nowrap">
-                        ${totalMarketCap >= 1000000000000 
-                          ? (totalMarketCap / 1000000000000).toFixed(2) + 'T' 
-                          : (totalMarketCap / 1000000000).toFixed(0) + 'B'
+                        {liveMarketData?.formatting?.totalMarketCapFormatted || 
+                          (totalMarketCap >= 1000000000000 
+                            ? `$${(totalMarketCap / 1000000000000).toFixed(2)}T` 
+                            : `$${(totalMarketCap / 1000000000).toFixed(0)}B`
+                          )
                         }
                       </div>
                     </div>
                     <div className="text-slate-300 font-medium">Market Cap</div>
+                    {liveMarketData && (
+                      <div className="text-xs text-green-400 mt-1 opacity-75">● Live</div>
+                    )}
                   </div>
                 </div>
                 
@@ -524,9 +563,14 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                         </svg>
                       </div>
-                      <div className="text-2xl sm:text-3xl font-black text-blue-400 whitespace-nowrap">{positiveChanges}</div>
+                      <div className="text-2xl sm:text-3xl font-black text-blue-400 whitespace-nowrap">
+                        {positiveChanges.toLocaleString()}
+                      </div>
                     </div>
                     <div className="text-slate-300 font-medium">24h Gainers</div>
+                    {liveMarketData && (
+                      <div className="text-xs text-green-400 mt-1 opacity-75">● Live</div>
+                    )}
                   </div>
                 </div>
                 
