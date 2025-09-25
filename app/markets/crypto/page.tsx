@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
 import LiveCryptoOverview from '@/components/live-crypto-overview';
+import LiveCryptoTable from '@/components/live-crypto-table';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -689,96 +690,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl dark:shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gradient-to-r from-gray-50 to-blue-50 dark:bg-gradient-to-r dark:from-gray-700 dark:to-gray-600 border-b-2 border-gray-200 dark:border-gray-600">
-                  <tr>
-                    <th className="text-left p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100">Cryptocurrency</th>
-                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100">Price</th>
-                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100">24h Change</th>
-                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100 hidden md:table-cell">24h Volume</th>
-                    <th className="text-right p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100 hidden lg:table-cell">Market Cap</th>
-                    <th className="text-center p-3 md:p-6 font-bold text-gray-900 dark:text-gray-100 hidden lg:table-cell">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cryptos.map((crypto, index) => {
-                    const latestQuote = crypto.quotes[0];
-                    if (!latestQuote) return null;
-                    
-                    const change = formatChange(
-                      latestQuote.change ? Number(latestQuote.change) : null,
-                      latestQuote.changePercent ? Number(latestQuote.changePercent) : null
-                    );
-                    
-                    const displaySymbol = crypto.symbol.replace('-USD', '');
-                    const isEven = index % 2 === 0;
-
-                    return (
-                      <tr key={crypto.id} className={`${isEven ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700'} hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200`}>
-                        <td className="p-3 md:p-6">
-                          <div className="flex items-center gap-2 md:gap-4">
-                            <div className={`w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-sm md:text-xl ${
-                              displaySymbol === 'BTC' ? 'bg-orange-100 text-orange-600' :
-                              displaySymbol === 'ETH' ? 'bg-blue-100 text-blue-600' :
-                              displaySymbol === 'ADA' ? 'bg-blue-100 text-blue-600' :
-                              'bg-purple-100 text-purple-600'
-                            }`}>
-                              {getCryptoIcon(crypto.symbol)}
-                            </div>
-                            <div className="min-w-0">
-                              <div className="font-bold text-sm md:text-lg text-gray-900 dark:text-gray-100">{displaySymbol}</div>
-                              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-300 truncate">{crypto.name}</div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="text-right p-3 md:p-6">
-                          <div className="font-bold text-sm md:text-lg text-gray-900 dark:text-gray-100 whitespace-nowrap">
-                            {formatPrice(Number(latestQuote.price), crypto.market.currency)}
-                          </div>
-                        </td>
-                        <td className="text-right p-3 md:p-6">
-                          <div className={`font-bold text-sm md:text-lg whitespace-nowrap ${
-                            change.positive === true ? 'text-green-600' :
-                            change.positive === false ? 'text-red-600' : 'text-gray-500'
-                          }`}>
-                            {change.text}
-                          </div>
-                        </td>
-                        <td className="text-right p-3 md:p-6 hidden md:table-cell">
-                          <div className="font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
-                            {formatVolume(latestQuote.volume)}
-                          </div>
-                        </td>
-                        <td className="text-right p-3 md:p-6 hidden lg:table-cell">
-                          <div className="font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
-                            {formatMarketCap(latestQuote.marketCap)}
-                          </div>
-                        </td>
-                        <td className="text-center p-3 md:p-6 hidden lg:table-cell">
-                          <span className="inline-flex items-center px-2 md:px-3 py-1 md:py-2 rounded-full text-xs md:text-sm font-medium bg-green-100 text-green-800">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mr-1 md:mr-2 animate-pulse"></div>
-                            Live
-                          </span>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            
-            {cryptos.length === 0 && (
-              <div className="text-center py-16">
-                <div className="text-gray-500 dark:text-gray-400">
-                  <div className="text-6xl mb-6">₿</div>
-                  <p className="text-xl font-semibold mb-2 text-gray-700 dark:text-gray-300">No cryptocurrency data available</p>
-                  <p className="text-sm">Cryptocurrency prices will appear here when market data is available.</p>
-                </div>
-              </div>
-            )}
-          </div>
+          <LiveCryptoTable />
         </section>
 
         {/* Educational Section */}

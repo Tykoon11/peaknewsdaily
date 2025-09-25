@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
+import LiveStockTable from '@/components/live-stock-table';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -722,12 +723,24 @@ export default async function StocksPage() {
             </section>
           )}
 
+          {/* Live Stock Prices */}
+          <section className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">📈 Live Stock Prices</h2>
+                <p className="text-gray-600 dark:text-gray-400">Real-time prices from major exchanges</p>
+              </div>
+            </div>
+            
+            <LiveStockTable />
+          </section>
+
           {/* All Stocks Table */}
           <section className="mb-12">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">📊 Complete Stock List</h2>
-                <p className="text-gray-600">Comprehensive view of all tracked stocks</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">📊 Complete Stock List</h2>
+                <p className="text-gray-600 dark:text-gray-400">Comprehensive view of all tracked stocks</p>
               </div>
             </div>
 
