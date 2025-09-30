@@ -209,7 +209,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
 
   if (process.env.DATABASE_URL) {
     try {
-      cryptos = await prisma.asset.findMany({
+      const rawCryptos = await prisma.asset.findMany({
         where: { 
           type: 'crypto',
           isActive: true 
@@ -225,6 +225,17 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
         },
         orderBy: { symbol: 'asc' }
       })
+      
+      // Convert BigInt and Decimal values to numbers using JSON serialization
+      cryptos = JSON.parse(JSON.stringify(rawCryptos, (key, value) => {
+        if (typeof value === 'bigint') {
+          return Number(value)
+        }
+        if (value && typeof value === 'object' && value.constructor && value.constructor.name === 'Decimal') {
+          return Number(value.toString())
+        }
+        return value
+      }))
     } catch (error) {
       console.warn('Failed to fetch crypto data:', error)
     }

@@ -18,6 +18,9 @@
     "fix:media": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/fix.media.ts",
     "update:financial": "node scripts/update-financial-data.js",
     "update:prices": "node scripts/update-prices.js",
+    "update:stocks": "node scripts/stock-refresh.js",
+    "update:economic": "node scripts/economic-calendar-refresh.js",
+    "update:news": "node scripts/news-refresh.js",
     "seed:market": "node scripts/seed-market-data.js",
     "typecheck": "tsc --noEmit",
     "postinstall": "prisma generate"

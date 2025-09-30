@@ -1,5 +1,6 @@
 "use client"
 import { ReactNode, useEffect } from 'react'
+import { ThemeProvider } from 'next-themes'
 
 export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -22,5 +23,14 @@ export function Providers({ children }: { children: ReactNode }) {
     window.addEventListener('storage', apply)
     return () => window.removeEventListener('storage', apply)
   }, [])
-  return <>{children}</>
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </ThemeProvider>
+  )
 }

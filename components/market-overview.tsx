@@ -87,7 +87,7 @@ export default function MarketOverview() {
 
           const realtimeCryptoData = CRYPTO_SYMBOLS.map(symbol => {
             const priceData = realtimeData.prices[symbol]
-            // console.log(`🔍 Checking ${symbol}:`, priceData ? 'FOUND' : 'MISSING')
+            console.log(`🔍 Checking ${symbol}:`, priceData ? 'FOUND' : 'MISSING')
             if (priceData) {
               return {
                 symbol: priceData.symbol,
@@ -105,7 +105,7 @@ export default function MarketOverview() {
             return null
           }).filter(Boolean) as Quote[]
           
-          // console.log(`🔍 Crypto data conversion result: ${realtimeCryptoData.length} out of ${CRYPTO_SYMBOLS.length} symbols`)
+          console.log(`🔍 Crypto data conversion result: ${realtimeCryptoData.length} out of ${CRYPTO_SYMBOLS.length} symbols`)
 
           // Set real-time data and mark as using real-time
           setRealtimeStocks(realtimeStockData)

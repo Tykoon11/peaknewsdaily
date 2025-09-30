@@ -15,7 +15,7 @@ export default async function TopicPage({ params }: { params: { slug: string } }
   const newsItems = await prisma.newsItem.findMany({
     where: { topicSlug: params.slug },
     orderBy: { publishedAt: 'desc' },
-    take: 50,
+    take: 100, // Show more articles
     include: {
       topic: true,
     },
@@ -82,7 +82,7 @@ export default async function TopicPage({ params }: { params: { slug: string } }
               
               <div className="relative bg-white/10 backdrop-blur-lg rounded-lg xs:rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 border border-white/20 shadow-2xl shadow-indigo-500/10">
                 <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-indigo-400 mb-1">
-                  {newsItems.length > 0 ? Math.ceil((Date.now() - new Date(newsItems[0].publishedAt).getTime()) / (1000 * 60 * 60 * 24)) : 0}d
+                  {newsItems.length > 0 ? formatDistanceToNow(new Date(newsItems[0].publishedAt), { addSuffix: false }) : 'No data'}
                 </div>
                 <div className="text-indigo-200/80 font-medium text-xs sm:text-sm leading-tight">Since Latest</div>
               </div>

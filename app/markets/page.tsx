@@ -22,8 +22,8 @@ export default async function MarketsPage() {
 
   // Fetch live market analytics data
   try {
-    const marketResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'}/api/market-analytics`, {
-      next: { revalidate: 300 }, // Cache for 5 minutes
+    const marketResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/market-analytics`, {
+      cache: 'no-cache', // Always fetch fresh data
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'PeakNewsDaily-Server/1.0'
