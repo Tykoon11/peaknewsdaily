@@ -8,7 +8,8 @@ export const metadata = { title: 'Admin' }
 
 export default async function Admin({ searchParams }: { searchParams?: { q?: string } }) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes(session.user.role as any)) redirect('/')
+  if (!session?.user) redirect('/api/auth/signin')
+  // Temporarily allow any authenticated user (for Google Ads review)
   const q = (searchParams?.q || '').trim()
   const subs = await prisma.submission.findMany({
     where: {

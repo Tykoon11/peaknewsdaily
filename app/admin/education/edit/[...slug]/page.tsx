@@ -7,9 +7,10 @@ export const metadata = { title: 'Edit Trading Education Article' }
 
 export default async function EditEducationArticle({ params }: { params: { slug: string[] } }) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) {
-    redirect('/')
+  if (!session?.user) {
+    redirect('/api/auth/signin')
   }
+  // Temporarily allow any authenticated user (for Google Ads review)
 
   const articleSlug = `/education/${params.slug.join('/')}`
   const article = ARTICLES.find(a => a.slug === articleSlug)

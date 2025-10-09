@@ -4,9 +4,10 @@ import { revalidatePath } from 'next/cache'
 
 export async function POST(_: Request, { params }: { params: { id: string } }) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) {
-    return new Response('Forbidden', { status: 403 })
+  if (!session?.user) {
+    return new Response('Unauthorized', { status: 401 })
   }
+  // Temporarily allow any authenticated user (for Google Ads review)
 
   const post = await prisma.post.findUnique({ where: { id: params.id }, select: { id: true, slug: true, status: true, deletedAt: true } })
   if (!post) return new Response('Not found', { status: 404 })

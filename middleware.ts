@@ -45,11 +45,8 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/api/auth/signin', request.url))
     }
     
-    // Check admin role for admin routes
-    const userRole = token.role as string
-    if (userRole !== 'admin' && userRole !== 'editor') {
-      return NextResponse.redirect(new URL('/', request.url))
-    }
+    // Allow any authenticated user access to admin routes (temporarily for Google Ads review)
+    // Note: This will be restricted back to admin/editor roles later
   }
   
   // Handle protected API routes
@@ -58,10 +55,8 @@ export async function middleware(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
     
-    const userRole = token.role as string
-    if (userRole !== 'admin' && userRole !== 'editor') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    // Allow any authenticated user access to admin API routes (temporarily for Google Ads review)
+    // Note: This will be restricted back to admin/editor roles later
   }
   
   return NextResponse.next()

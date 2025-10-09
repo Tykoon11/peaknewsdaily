@@ -6,9 +6,10 @@ import path from 'path'
 export async function POST(request: NextRequest) {
   try {
     const session = await auth()
-    if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) {
+    if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    // Temporarily allow any authenticated user (for Google Ads review)
 
     const { slug, title, summary, status, content } = await request.json()
 

@@ -9,7 +9,8 @@ export const metadata = { title: 'Posts' }
 
 export default async function AdminPostsPage({ searchParams }: { searchParams?: { q?: string; c?: string } }) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) redirect('/')
+  if (!session?.user) redirect('/api/auth/signin')
+  // Temporarily allow any authenticated user (for Google Ads review)
   const q = (searchParams?.q || '').trim()
   const c = (searchParams?.c || '').trim()
   const categories = await prisma.category.findMany({ orderBy: { name: 'asc' }, select: { slug: true, name: true } })

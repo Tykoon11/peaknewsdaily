@@ -8,7 +8,8 @@ function toSlug(input: string) {
 
 export async function POST(req: Request, { params }: { params: { id: string } }) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) return new Response('Forbidden', { status: 403 })
+  if (!session?.user) return new Response('Unauthorized', { status: 401 })
+  // Temporarily allow any authenticated user (for Google Ads review)
   const id = params.id
   const form = await req.formData()
   const nameRaw = String(form.get('name') || '').trim()

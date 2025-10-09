@@ -20,7 +20,8 @@ async function updatePostAction(formData: FormData) {
   try { mediaItems = JSON.parse(mediaJson) } catch {}
 
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) redirect('/')
+  if (!session?.user) redirect('/api/auth/signin')
+  // Temporarily allow any authenticated user (for Google Ads review)
 
   const tagNames = tagsRaw
     .split(',')
@@ -59,7 +60,8 @@ async function updatePostAction(formData: FormData) {
 
 export default async function EditPostPage({ params }: { params: { id: string } }) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) redirect('/')
+  if (!session?.user) redirect('/api/auth/signin')
+  // Temporarily allow any authenticated user (for Google Ads review)
 
   const [post, categories] = await Promise.all([
     prisma.post.findUnique({

@@ -9,7 +9,8 @@ export const metadata = { title: 'Trading Education Management' }
 
 export default async function AdminEducationPage({ searchParams }: { searchParams?: { pillar?: string; status?: string } }) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) redirect('/')
+  if (!session?.user) redirect('/api/auth/signin')
+  // Temporarily allow any authenticated user (for Google Ads review)
   
   const pillarFilter = searchParams?.pillar || 'all'
   const statusFilter = searchParams?.status || 'all'

@@ -9,9 +9,10 @@ import path from 'path'
 // Update article status in the articles.ts file (direct call)
 export async function updateArticleStatus(slug: string, status: 'published' | 'draft'): Promise<{success: boolean, error?: string}> {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) {
+  if (!session?.user) {
     throw new Error('Unauthorized')
   }
+  // Temporarily allow any authenticated user (for Google Ads review)
 
   try {
     const articlesPath = path.join(process.cwd(), 'app/education/_data/articles.ts')
@@ -52,9 +53,10 @@ export async function updateArticleStatusAction(formData: FormData): Promise<voi
 // Redirect to article editing (we'll create this next)
 export async function editArticle(slug: string) {
   const session = await auth()
-  if (!session?.user || !['editor', 'admin'].includes((session.user as any).role)) {
+  if (!session?.user) {
     throw new Error('Unauthorized')
   }
+  // Temporarily allow any authenticated user (for Google Ads review)
   
   redirect(`/admin/education/edit${slug}`)
 }
