@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     const startTime = Date.now()
 
     // Import the price update function
-    const { updateAllPrices } = require('@/lib/financial-data')
+    const { updateAllPrices } = await import('@/lib/financial-data')
     
     // Update all stock and crypto prices
     await updateAllPrices()

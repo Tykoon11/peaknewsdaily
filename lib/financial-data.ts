@@ -3,17 +3,17 @@
  * Uses multiple free APIs for stock and crypto data
  */
 
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // Redis stub during build
 const redis = {
-  get: () => Promise.resolve(null),
-  set: () => Promise.resolve('OK'),
-  setex: () => Promise.resolve('OK'),
-  del: () => Promise.resolve(1),
-  exists: () => Promise.resolve(0),
+  get: (key: string) => Promise.resolve(null),
+  set: (key: string, value: string) => Promise.resolve('OK'),
+  setex: (key: string, seconds: number, value: string) => Promise.resolve('OK'),
+  del: (key: string) => Promise.resolve(1),
+  exists: (key: string) => Promise.resolve(0),
   disconnect: () => Promise.resolve('OK')
 };
 
@@ -149,7 +149,7 @@ async function fetchStockPrice(symbol) {
       }
     }
   } catch (error) {
-    console.log(`⚠️ Yahoo Finance failed for ${symbol}:`, error.message);
+    console.log(`⚠️ Yahoo Finance failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
   // Secondary Source: Finnhub (comprehensive financial data)
@@ -192,7 +192,7 @@ async function fetchStockPrice(symbol) {
       }
     }
   } catch (error) {
-    console.log(`⚠️ Finnhub failed for ${symbol}:`, error.message);
+    console.log(`⚠️ Finnhub failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
   // Tertiary Source: Alpha Vantage (reliable backup)
@@ -234,7 +234,7 @@ async function fetchStockPrice(symbol) {
       }
     }
   } catch (error) {
-    console.log(`⚠️ Alpha Vantage failed for ${symbol}:`, error.message);
+    console.log(`⚠️ Alpha Vantage failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
   // Fourth Source: Financial Modeling Prep (alternative)
@@ -272,7 +272,7 @@ async function fetchStockPrice(symbol) {
       }
     }
   } catch (error) {
-    console.log(`⚠️ FMP failed for ${symbol}:`, error.message);
+    console.log(`⚠️ FMP failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
   console.log(`⚠️ All APIs failed for ${symbol}, no real-time data available`);
@@ -330,7 +330,7 @@ async function fetchCryptoPrice(symbol) {
       }
     }
   } catch (error) {
-    console.log(`⚠️ Binance failed for ${symbol}:`, error.message);
+    console.log(`⚠️ Binance failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
   // Secondary Source: CoinGecko (comprehensive data)
@@ -369,7 +369,7 @@ async function fetchCryptoPrice(symbol) {
       }
     }
   } catch (error) {
-    console.log(`⚠️ CoinGecko failed for ${symbol}:`, error.message);
+    console.log(`⚠️ CoinGecko failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
   // Tertiary Source: Coinbase (reliable backup)
@@ -405,7 +405,7 @@ async function fetchCryptoPrice(symbol) {
       }
     }
   } catch (error) {
-    console.log(`⚠️ Coinbase failed for ${symbol}:`, error.message);
+    console.log(`⚠️ Coinbase failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
   console.log(`⚠️ All crypto APIs failed for ${symbol}`);
@@ -635,7 +635,7 @@ async function updateAssetPrice(asset, priceData) {
     console.log(`✅ Updated ${asset.symbol}: $${priceData.price.toFixed(2)} (${changePercent.toFixed(2)}%)`);
     
   } catch (error) {
-    console.error(`❌ Error updating ${asset.symbol}:`, error.message);
+    console.error(`❌ Error updating ${asset.symbol}:`, error instanceof Error ? error.message : String(error));
   }
 }
 
@@ -690,12 +690,12 @@ async function getPrice(symbol) {
     return null;
     
   } catch (error) {
-    console.error(`❌ Error getting price for ${symbol}:`, error.message);
+    console.error(`❌ Error getting price for ${symbol}:`, error instanceof Error ? error.message : String(error));
     return null;
   }
 }
 
-module.exports = {
+export {
   updateAllPrices,
   getPrice,
   fetchStockPrice,

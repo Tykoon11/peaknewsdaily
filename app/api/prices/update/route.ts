@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-const { updateAllPrices } = require('@/lib/financial-data')
+import { updateAllPrices } from '@/lib/financial-data'
 
 export async function POST(request: NextRequest) {
   try {

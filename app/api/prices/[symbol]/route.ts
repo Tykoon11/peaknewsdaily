@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-const { getPrice } = require('@/lib/financial-data')
+import { getPrice } from '@/lib/financial-data'
 
 export async function GET(
   request: NextRequest,
