@@ -86,51 +86,82 @@ const COINGECKO_MAP: { [key: string]: string } = {
 
 async function fetchAllBinancePrices(): Promise<Record<string, any>> {
   try {
-    // Get all 24hr ticker data from Binance with Vercel-optimized settings
-    const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 8000) // 8s timeout for Vercel
+    // Use CoinGecko instead - more reliable on Vercel
+    console.log('🚀 Fetching REAL prices from CoinGecko API...')
     
-    const response = await fetch('https://api.binance.com/api/v3/ticker/24hr', {
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,cardano,solana,polkadot,avalanche-2,polygon,chainlink,litecoin,uniswap,cosmos,internet-computer,near,algorand,vechain,fantom,hedera-hashgraph,stellar,aave,maker,curve-dao-token,compound-governance-token,sushi,yearn-finance,balancer,havven,1inch,arbitrum,optimism,loopring,immutable-x&vs_currencies=usd&include_24hr_change=true', {
       cache: 'no-cache',
-      signal: controller.signal,
-      headers: { 
-        'Cache-Control': 'no-cache',
-        'User-Agent': 'PeakNewsDaily-Live/1.0',
-        'Accept': 'application/json'
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (compatible; PeakNewsDaily/1.0)'
       }
     })
-    
-    clearTimeout(timeoutId)
 
     if (!response.ok) {
-      throw new Error(`Binance API error: ${response.status}`)
+      throw new Error(`CoinGecko API error: ${response.status}`)
     }
 
-    const allTickers = await response.json()
+    const data = await response.json()
+    
+    // Map CoinGecko data to our format
+    const priceMap: Record<string, any> = {
+      'BTC-USD': { id: 'bitcoin', symbol: 'BTC-USD' },
+      'ETH-USD': { id: 'ethereum', symbol: 'ETH-USD' },
+      'BNB-USD': { id: 'binancecoin', symbol: 'BNB-USD' },
+      'XRP-USD': { id: 'ripple', symbol: 'XRP-USD' },
+      'ADA-USD': { id: 'cardano', symbol: 'ADA-USD' },
+      'SOL-USD': { id: 'solana', symbol: 'SOL-USD' },
+      'DOT-USD': { id: 'polkadot', symbol: 'DOT-USD' },
+      'AVAX-USD': { id: 'avalanche-2', symbol: 'AVAX-USD' },
+      'MATIC-USD': { id: 'polygon', symbol: 'MATIC-USD' },
+      'LINK-USD': { id: 'chainlink', symbol: 'LINK-USD' },
+      'LTC-USD': { id: 'litecoin', symbol: 'LTC-USD' },
+      'UNI-USD': { id: 'uniswap', symbol: 'UNI-USD' },
+      'ATOM-USD': { id: 'cosmos', symbol: 'ATOM-USD' },
+      'ICP-USD': { id: 'internet-computer', symbol: 'ICP-USD' },
+      'NEAR-USD': { id: 'near', symbol: 'NEAR-USD' },
+      'ALGO-USD': { id: 'algorand', symbol: 'ALGO-USD' },
+      'VET-USD': { id: 'vechain', symbol: 'VET-USD' },
+      'FTM-USD': { id: 'fantom', symbol: 'FTM-USD' },
+      'HBAR-USD': { id: 'hedera-hashgraph', symbol: 'HBAR-USD' },
+      'XLM-USD': { id: 'stellar', symbol: 'XLM-USD' },
+      'AAVE-USD': { id: 'aave', symbol: 'AAVE-USD' },
+      'MKR-USD': { id: 'maker', symbol: 'MKR-USD' },
+      'CRV-USD': { id: 'curve-dao-token', symbol: 'CRV-USD' },
+      'COMP-USD': { id: 'compound-governance-token', symbol: 'COMP-USD' },
+      'SUSHI-USD': { id: 'sushi', symbol: 'SUSHI-USD' },
+      'YFI-USD': { id: 'yearn-finance', symbol: 'YFI-USD' },
+      'BAL-USD': { id: 'balancer', symbol: 'BAL-USD' },
+      'SNX-USD': { id: 'havven', symbol: 'SNX-USD' },
+      '1INCH-USD': { id: '1inch', symbol: '1INCH-USD' },
+      'ARB-USD': { id: 'arbitrum', symbol: 'ARB-USD' },
+      'OP-USD': { id: 'optimism', symbol: 'OP-USD' },
+      'LRC-USD': { id: 'loopring', symbol: 'LRC-USD' },
+      'IMX-USD': { id: 'immutable-x', symbol: 'IMX-USD' }
+    }
+    
     const prices: Record<string, any> = {}
-
-    // Convert Binance data to our format
-    for (const [ourSymbol, binanceSymbol] of Object.entries(BINANCE_SYMBOL_MAP)) {
-      const ticker = allTickers.find((t: any) => t.symbol === binanceSymbol)
-      if (ticker) {
-        prices[ourSymbol] = {
-          symbol: ourSymbol,
-          price: parseFloat(ticker.lastPrice),
-          changePct: parseFloat(ticker.priceChangePercent),
-          source: 'binance',
+    let liveCount = 0
+    
+    for (const [symbol, config] of Object.entries(priceMap)) {
+      const coinData = data[config.id]
+      if (coinData && coinData.usd) {
+        prices[symbol] = {
+          symbol,
+          price: coinData.usd,
+          changePct: coinData.usd_24h_change || 0,
+          source: 'coingecko-live',
           timestamp: new Date().toISOString()
         }
+        liveCount++
       }
     }
 
-    console.log(`🚀 LIVE SUCCESS: Fetched ${Object.keys(prices).length} real prices from Binance`)
+    console.log(`✅ SUCCESS: Fetched ${liveCount} REAL LIVE prices from CoinGecko`)
     return prices
+    
   } catch (error) {
-    console.error('⚠️ Binance API failed on Vercel:', error)
-    
-    // Skip complex fallbacks to prevent errors
-    console.log('⚠️ Using safe fallback mode to prevent site breakage')
-    
+    console.error('❌ CoinGecko API failed:', error)
     return {}
   }
 }
