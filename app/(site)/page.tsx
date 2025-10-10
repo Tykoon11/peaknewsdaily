@@ -85,7 +85,17 @@ export default async function HomePage() {
         console.log('📰 Database news is stale, fetching live news...')
         
         try {
-          const liveNewsResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/news/live`)
+          // Skip live news fetch during build/static generation
+          if (process.env.NODE_ENV === 'production' && !process.env.VERCEL_URL) {
+            console.log('⏭️ Skipping live news fetch during static generation')
+            throw new Error('Skip during build')
+          }
+          
+          const baseUrl = process.env.VERCEL_URL 
+            ? `https://${process.env.VERCEL_URL}` 
+            : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+            
+          const liveNewsResponse = await fetch(`${baseUrl}/api/news/live`)
           if (liveNewsResponse.ok) {
             const liveNewsData = await liveNewsResponse.json()
             
