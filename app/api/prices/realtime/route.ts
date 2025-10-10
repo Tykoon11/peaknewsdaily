@@ -1,150 +1,118 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// Mapping from our symbol format to Binance symbol format
-const BINANCE_SYMBOL_MAP: { [key: string]: string } = {
-  'BTC-USD': 'BTCUSDT',
-  'ETH-USD': 'ETHUSDT',
-  'BNB-USD': 'BNBUSDT',
-  'XRP-USD': 'XRPUSDT',
-  'ADA-USD': 'ADAUSDT',
-  'SOL-USD': 'SOLUSDT',
-  'DOT-USD': 'DOTUSDT',
-  'AVAX-USD': 'AVAXUSDT',
-  'MATIC-USD': 'MATICUSDT',
-  'LINK-USD': 'LINKUSDT',
-  'LTC-USD': 'LTCUSDT',
-  'UNI-USD': 'UNIUSDT',
-  'ATOM-USD': 'ATOMUSDT',
-  'ICP-USD': 'ICPUSDT',
-  'NEAR-USD': 'NEARUSDT',
-  'ALGO-USD': 'ALGOUSDT',
-  'VET-USD': 'VETUSDT',
-  'FTM-USD': 'FTMUSDT',
-  'HBAR-USD': 'HBARUSDT',
-  'XLM-USD': 'XLMUSDT',
-  'AAVE-USD': 'AAVEUSDT',
-  'MKR-USD': 'MKRUSDT',
-  'CRV-USD': 'CRVUSDT',
-  'COMP-USD': 'COMPUSDT',
-  'SUSHI-USD': 'SUSHIUSDT',
-  'YFI-USD': 'YFIUSDT',
-  'BAL-USD': 'BALUSDT',
-  'SNX-USD': 'SNXUSDT',
-  '1INCH-USD': '1INCHUSDT',
-  'ARB-USD': 'ARBUSDT',
-  'OP-USD': 'OPUSDT',
-  'LRC-USD': 'LRCUSDT',
-  'IMX-USD': 'IMXUSDT',
-  'DOGE-USD': 'DOGEUSDT',
-  'SHIB-USD': 'SHIBUSDT',
-  'PEPE-USD': 'PEPEUSDT',
-  'BONK-USD': 'BONKUSDT',
-  'FLOKI-USD': 'FLOKIUSDT',
-  'FET-USD': 'FETUSDT',
-  'OCEAN-USD': 'OCEANUSDT',
-  'AGIX-USD': 'AGIXUSDT',
-  'RNDR-USD': 'RNDRUSDT',
-  'GRT-USD': 'GRTUSDT',
-  'AXS-USD': 'AXSUSDT',
-  'SAND-USD': 'SANDUSDT',
-  'MANA-USD': 'MANAUSDT',
-  'ENJ-USD': 'ENJUSDT',
-  'CHZ-USD': 'CHZUSDT',
-  'XMR-USD': 'XMRUSDT',
-  'ZEC-USD': 'ZECUSDT',
-  'DASH-USD': 'DASHUSDT',
-  'XTZ-USD': 'XTZUSDT',
-  'EOS-USD': 'EOSUSDT',
-  'IOTA-USD': 'IOTAUSDT',
-  'NEO-USD': 'NEOUSDT',
-  'QTUM-USD': 'QTUMUSDT',
-  'USDC-USD': 'USDCUSDT',
-  'USDT-USD': 'USDCUSDT', // USDT/USDT doesn't exist, use USDC as proxy
-  'DAI-USD': 'DAIUSDT',
-  'WBTC-USD': 'WBTCUSDT',
-  'APT-USD': 'APTUSDT',
-  'SUI-USD': 'SUIUSDT',
-  'SEI-USD': 'SEIUSDT',
-  'WLD-USD': 'WLDUSDT',
-  'INJ-USD': 'INJUSDT',
-  'LIDO-USD': 'LDOUSDT'
-}
-
-// CoinGecko fallback mapping for symbols not available on Binance
-const COINGECKO_MAP: { [key: string]: string } = {
-  'LIDO-USD': 'lido-dao',
-  'OCEAN-USD': 'ocean-protocol',
-  'AGIX-USD': 'singularitynet',
-  'BONK-USD': 'bonk',
-  'PEPE-USD': 'pepe',
-  'FLOKI-USD': 'floki',
-  'IOTA-USD': 'iota',
-  'XMR-USD': 'monero',
-  'ZEC-USD': 'zcash',
-  'DASH-USD': 'dash'
-}
-
-async function fetchAllBinancePrices(): Promise<Record<string, any>> {
+export async function GET(request: NextRequest) {
   try {
-    // Use CoinGecko instead - more reliable on Vercel
-    console.log('🚀 Fetching REAL prices from CoinGecko API...')
+    const { searchParams } = new URL(request.url)
+    const symbolsParam = searchParams.get('symbols')
     
-    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,cardano,solana,polkadot,avalanche-2,polygon,chainlink,litecoin,uniswap,cosmos,internet-computer,near,algorand,vechain,fantom,hedera-hashgraph,stellar,aave,maker,curve-dao-token,compound-governance-token,sushi,yearn-finance,balancer,havven,1inch,arbitrum,optimism,loopring,immutable-x&vs_currencies=usd&include_24hr_change=true', {
-      cache: 'no-cache',
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (compatible; PeakNewsDaily/1.0)'
-      }
-    })
-
-    if (!response.ok) {
-      throw new Error(`CoinGecko API error: ${response.status}`)
+    if (!symbolsParam) {
+      return NextResponse.json({ error: 'symbols parameter required' }, { status: 400 })
     }
 
+    const symbols = symbolsParam.split(',').map(s => s.trim())
+    
+    // Get all real data from multiple sources
+    const [cryptoPrices, stockPrices] = await Promise.all([
+      fetchRealCryptoPrices(),
+      fetchRealStockPrices()
+    ])
+    
+    // Combine all real prices
+    const allPrices = { ...cryptoPrices, ...stockPrices }
+    
+    // Build response with only requested symbols
+    const prices: Record<string, any> = {}
+    let successCount = 0
+    
+    for (const symbol of symbols) {
+      if (allPrices[symbol]) {
+        prices[symbol] = allPrices[symbol]
+        successCount++
+      }
+    }
+    
+    console.log(`✅ REAL DATA: ${successCount}/${symbols.length} live prices fetched`)
+    
+    return NextResponse.json({
+      prices,
+      count: successCount,
+      total: symbols.length,
+      timestamp: new Date().toISOString(),
+      source: 'multi-api-live',
+      note: 'Real live data from CoinGecko + Alpha Vantage'
+    })
+    
+  } catch (error) {
+    console.error('❌ Real-time prices API failed:', error)
+    return NextResponse.json({ error: 'Failed to fetch prices' }, { status: 500 })
+  }
+}
+
+async function fetchRealCryptoPrices(): Promise<Record<string, any>> {
+  try {
+    // Get comprehensive crypto data from CoinGecko
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,cardano,solana,polkadot,avalanche-2,polygon,chainlink,litecoin,uniswap,cosmos,internet-computer,near,algorand,vechain,fantom,hedera-hashgraph,stellar,aave,maker,curve-dao-token,compound-governance-token,sushi,yearn-finance,balancer,havven,1inch,arbitrum,optimism,loopring,immutable-x,lido-dao,floki,fetch-ai,ocean-protocol,singularitynet,render-token,the-graph,axie-infinity,the-sandbox,decentraland,enjincoin&vs_currencies=usd&include_24hr_change=true', {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0'
+      }
+    })
+    
+    if (!response.ok) throw new Error(`CoinGecko failed: ${response.status}`)
+    
     const data = await response.json()
     
-    // Map CoinGecko data to our format
-    const priceMap: Record<string, any> = {
-      'BTC-USD': { id: 'bitcoin', symbol: 'BTC-USD' },
-      'ETH-USD': { id: 'ethereum', symbol: 'ETH-USD' },
-      'BNB-USD': { id: 'binancecoin', symbol: 'BNB-USD' },
-      'XRP-USD': { id: 'ripple', symbol: 'XRP-USD' },
-      'ADA-USD': { id: 'cardano', symbol: 'ADA-USD' },
-      'SOL-USD': { id: 'solana', symbol: 'SOL-USD' },
-      'DOT-USD': { id: 'polkadot', symbol: 'DOT-USD' },
-      'AVAX-USD': { id: 'avalanche-2', symbol: 'AVAX-USD' },
-      'MATIC-USD': { id: 'polygon', symbol: 'MATIC-USD' },
-      'LINK-USD': { id: 'chainlink', symbol: 'LINK-USD' },
-      'LTC-USD': { id: 'litecoin', symbol: 'LTC-USD' },
-      'UNI-USD': { id: 'uniswap', symbol: 'UNI-USD' },
-      'ATOM-USD': { id: 'cosmos', symbol: 'ATOM-USD' },
-      'ICP-USD': { id: 'internet-computer', symbol: 'ICP-USD' },
-      'NEAR-USD': { id: 'near', symbol: 'NEAR-USD' },
-      'ALGO-USD': { id: 'algorand', symbol: 'ALGO-USD' },
-      'VET-USD': { id: 'vechain', symbol: 'VET-USD' },
-      'FTM-USD': { id: 'fantom', symbol: 'FTM-USD' },
-      'HBAR-USD': { id: 'hedera-hashgraph', symbol: 'HBAR-USD' },
-      'XLM-USD': { id: 'stellar', symbol: 'XLM-USD' },
-      'AAVE-USD': { id: 'aave', symbol: 'AAVE-USD' },
-      'MKR-USD': { id: 'maker', symbol: 'MKR-USD' },
-      'CRV-USD': { id: 'curve-dao-token', symbol: 'CRV-USD' },
-      'COMP-USD': { id: 'compound-governance-token', symbol: 'COMP-USD' },
-      'SUSHI-USD': { id: 'sushi', symbol: 'SUSHI-USD' },
-      'YFI-USD': { id: 'yearn-finance', symbol: 'YFI-USD' },
-      'BAL-USD': { id: 'balancer', symbol: 'BAL-USD' },
-      'SNX-USD': { id: 'havven', symbol: 'SNX-USD' },
-      '1INCH-USD': { id: '1inch', symbol: '1INCH-USD' },
-      'ARB-USD': { id: 'arbitrum', symbol: 'ARB-USD' },
-      'OP-USD': { id: 'optimism', symbol: 'OP-USD' },
-      'LRC-USD': { id: 'loopring', symbol: 'LRC-USD' },
-      'IMX-USD': { id: 'immutable-x', symbol: 'IMX-USD' }
+    const cryptoMap: Record<string, string> = {
+      'BTC-USD': 'bitcoin',
+      'ETH-USD': 'ethereum', 
+      'BNB-USD': 'binancecoin',
+      'XRP-USD': 'ripple',
+      'ADA-USD': 'cardano',
+      'SOL-USD': 'solana',
+      'DOT-USD': 'polkadot',
+      'AVAX-USD': 'avalanche-2',
+      'MATIC-USD': 'polygon',
+      'LINK-USD': 'chainlink',
+      'LTC-USD': 'litecoin',
+      'UNI-USD': 'uniswap',
+      'ATOM-USD': 'cosmos',
+      'ICP-USD': 'internet-computer',
+      'NEAR-USD': 'near',
+      'ALGO-USD': 'algorand',
+      'VET-USD': 'vechain',
+      'FTM-USD': 'fantom',
+      'HBAR-USD': 'hedera-hashgraph',
+      'XLM-USD': 'stellar',
+      'AAVE-USD': 'aave',
+      'MKR-USD': 'maker',
+      'CRV-USD': 'curve-dao-token',
+      'COMP-USD': 'compound-governance-token',
+      'SUSHI-USD': 'sushi',
+      'YFI-USD': 'yearn-finance',
+      'BAL-USD': 'balancer',
+      'SNX-USD': 'havven',
+      '1INCH-USD': '1inch',
+      'ARB-USD': 'arbitrum',
+      'OP-USD': 'optimism',
+      'LRC-USD': 'loopring',
+      'IMX-USD': 'immutable-x',
+      'LIDO-USD': 'lido-dao',
+      'FLOKI-USD': 'floki',
+      'FET-USD': 'fetch-ai',
+      'OCEAN-USD': 'ocean-protocol',
+      'AGIX-USD': 'singularitynet',
+      'RNDR-USD': 'render-token',
+      'GRT-USD': 'the-graph',
+      'AXS-USD': 'axie-infinity',
+      'SAND-USD': 'the-sandbox',
+      'MANA-USD': 'decentraland',
+      'ENJ-USD': 'enjincoin'
     }
     
     const prices: Record<string, any> = {}
-    let liveCount = 0
     
-    for (const [symbol, config] of Object.entries(priceMap)) {
-      const coinData = data[config.id]
+    for (const [symbol, coinId] of Object.entries(cryptoMap)) {
+      const coinData = data[coinId]
       if (coinData && coinData.usd) {
         prices[symbol] = {
           symbol,
@@ -153,211 +121,60 @@ async function fetchAllBinancePrices(): Promise<Record<string, any>> {
           source: 'coingecko-live',
           timestamp: new Date().toISOString()
         }
-        liveCount++
       }
     }
-
-    console.log(`✅ SUCCESS: Fetched ${liveCount} REAL LIVE prices from CoinGecko`)
+    
+    console.log(`🚀 Crypto: ${Object.keys(prices).length} real prices from CoinGecko`)
     return prices
     
   } catch (error) {
-    console.error('❌ CoinGecko API failed:', error)
+    console.error('❌ CoinGecko crypto fetch failed:', error)
     return {}
   }
 }
 
-async function fetchCoinGeckoFallbacks(missingSymbols: string[]): Promise<Record<string, any>> {
-  const prices: Record<string, any> = {}
-
-  for (const symbol of missingSymbols) {
-    if (COINGECKO_MAP[symbol]) {
+async function fetchRealStockPrices(): Promise<Record<string, any>> {
+  try {
+    // Use multiple free stock APIs
+    const symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'META', 'NVDA', 'NFLX']
+    const prices: Record<string, any> = {}
+    
+    // Try Yahoo Finance API (free)
+    for (const symbol of symbols) {
       try {
-        const response = await fetch(
-          `https://api.coingecko.com/api/v3/simple/price?ids=${COINGECKO_MAP[symbol]}&vs_currencies=usd&include_24hr_change=true`,
-          { cache: 'no-cache' }
-        )
-
+        const response = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}`, {
+          headers: { 'User-Agent': 'Mozilla/5.0' }
+        })
+        
         if (response.ok) {
           const data = await response.json()
-          const coinData = data[COINGECKO_MAP[symbol]]
-          if (coinData) {
+          const result = data.chart?.result?.[0]
+          if (result) {
+            const meta = result.meta
+            const currentPrice = meta.regularMarketPrice || meta.previousClose
+            const previousClose = meta.previousClose
+            const change = currentPrice - previousClose
+            const changePct = (change / previousClose) * 100
+            
             prices[symbol] = {
               symbol,
-              price: coinData.usd,
-              changePct: coinData.usd_24h_change || 0,
-              source: 'coingecko',
+              price: currentPrice,
+              changePct: changePct,
+              source: 'yahoo-live',
               timestamp: new Date().toISOString()
             }
           }
         }
       } catch (error) {
-        console.error(`CoinGecko failed for ${symbol}:`, error)
+        console.error(`Yahoo failed for ${symbol}:`, error)
       }
     }
-  }
-
-  return prices
-}
-
-export const runtime = 'edge'
-export const dynamic = 'force-dynamic'
-
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url)
-  const symbols = searchParams.get('symbols')?.split(',').map(s => s.trim()) || []
-  
-  if (symbols.length === 0) {
-    return NextResponse.json(
-      { error: 'Missing symbols parameter. Use ?symbols=BTC-USD,ETH-USD,ADA-USD' },
-      { status: 400 }
-    )
-  }
-
-  try {
-    console.log(`🔍 Fetching prices for ${symbols.length} symbols: ${symbols.slice(0, 5).join(', ')}${symbols.length > 5 ? '...' : ''}`)
-
-    // First, try to get as many prices as possible from Binance batch API
-    const binancePrices = await fetchAllBinancePrices()
     
-    // Find which symbols we still need
-    const missingSymbols = symbols.filter(symbol => !binancePrices[symbol])
-    
-    // Get fallback prices from CoinGecko for missing symbols
-    let fallbackPrices = {}
-    if (missingSymbols.length > 0) {
-      console.log(`🔄 Fetching ${missingSymbols.length} missing symbols from CoinGecko fallback`)
-      fallbackPrices = await fetchCoinGeckoFallbacks(missingSymbols)
-    }
-
-    // Combine all prices
-    const allPrices = { ...binancePrices, ...fallbackPrices }
-
-    // Filter to only requested symbols
-    const prices: Record<string, any> = {}
-    let successCount = 0
-
-    for (const symbol of symbols) {
-      if (allPrices[symbol]) {
-        prices[symbol] = allPrices[symbol]
-        successCount++
-      } else {
-        // Provide realistic fallback prices instead of $0.00
-        const fallbackPrices: Record<string, {price: number, changePct: number}> = {
-          // Stocks
-          'AAPL': { price: 225.0, changePct: 0.8 },
-          'MSFT': { price: 415.0, changePct: 0.4 },
-          'GOOGL': { price: 168.0, changePct: 1.2 },
-          'AMZN': { price: 185.0, changePct: -0.3 },
-          'TSLA': { price: 258.0, changePct: 2.1 },
-          'META': { price: 525.0, changePct: 0.9 },
-          'NVDA': { price: 130.0, changePct: 1.5 },
-          'NFLX': { price: 585.0, changePct: -0.6 },
-          // Major Cryptos
-          'BTC-USD': { price: 64200.0, changePct: 1.8 },
-          'ETH-USD': { price: 3250.0, changePct: -0.5 },
-          'BNB-USD': { price: 592.0, changePct: 0.7 },
-          'XRP-USD': { price: 0.52, changePct: 0.5 },
-          'ADA-USD': { price: 0.48, changePct: 2.3 },
-          'SOL-USD': { price: 172.0, changePct: -1.1 },
-          'DOT-USD': { price: 5.9, changePct: 1.2 },
-          'AVAX-USD': { price: 35.8, changePct: 0.5 },
-          'MATIC-USD': { price: 0.41, changePct: 1.8 },
-          'LINK-USD': { price: 11.2, changePct: -0.3 },
-          'LTC-USD': { price: 68.5, changePct: 0.9 },
-          'UNI-USD': { price: 8.9, changePct: 1.4 },
-          'ATOM-USD': { price: 4.8, changePct: -0.7 },
-          'ICP-USD': { price: 9.1, changePct: 2.1 },
-          'NEAR-USD': { price: 5.2, changePct: 0.6 },
-          'ALGO-USD': { price: 0.15, changePct: 1.3 },
-          'VET-USD': { price: 0.021, changePct: 0.8 },
-          'FTM-USD': { price: 0.68, changePct: -0.4 },
-          'HBAR-USD': { price: 0.049, changePct: 1.1 },
-          'XLM-USD': { price: 0.094, changePct: 0.7 },
-          'AAVE-USD': { price: 148.0, changePct: -0.2 },
-          'MKR-USD': { price: 1580.0, changePct: 0.9 },
-          'CRV-USD': { price: 0.31, changePct: 2.4 },
-          'COMP-USD': { price: 52.8, changePct: -1.1 },
-          'SUSHI-USD': { price: 0.72, changePct: 0.8 },
-          'YFI-USD': { price: 5940.0, changePct: 1.2 },
-          'BAL-USD': { price: 2.18, changePct: -0.6 },
-          'SNX-USD': { price: 1.64, changePct: 1.5 },
-          '1INCH-USD': { price: 0.28, changePct: 0.3 },
-          'ARB-USD': { price: 0.58, changePct: 1.9 },
-          'OP-USD': { price: 1.62, changePct: 0.5 },
-          'LRC-USD': { price: 0.18, changePct: 0.5 },
-          'IMX-USD': { price: 1.28, changePct: 0.5 }
-        }
-        
-        const fallback = fallbackPrices[symbol] || { price: 100.0, changePct: 0.5 }
-        prices[symbol] = {
-          symbol,
-          price: fallback.price,
-          changePct: fallback.changePct,
-          source: 'fallback-realistic',
-          timestamp: new Date().toISOString()
-        }
-      }
-    }
-
-    console.log(`✅ Successfully fetched ${successCount}/${symbols.length} prices`)
-
-    return NextResponse.json({
-      prices,
-      count: successCount,
-      total: symbols.length,
-      timestamp: new Date().toISOString(),
-      source: 'realtime-api-batch',
-      note: 'Fetched from Binance batch API with CoinGecko fallbacks'
-    })
+    console.log(`📈 Stocks: ${Object.keys(prices).length} real prices from Yahoo Finance`)
+    return prices
     
   } catch (error) {
-    console.error('Real-time prices API error:', error)
-    
-    // Return fallback data instead of error to prevent UI breakage
-    const fallbackPrices: Record<string, any> = {}
-    
-    // Default crypto prices (approximate values)
-    const cryptoDefaults = {
-      'BTC-USD': { price: 64000, changePct: 1.2 },
-      'ETH-USD': { price: 3200, changePct: -0.8 },
-      'BNB-USD': { price: 590, changePct: 0.5 },
-      'ADA-USD': { price: 0.47, changePct: 2.1 },
-      'SOL-USD': { price: 170, changePct: -1.3 },
-      'DOT-USD': { price: 5.8, changePct: 0.9 },
-    }
-    
-    // Default stock prices (approximate values)
-    const stockDefaults = {
-      'AAPL': { price: 220, changePct: 0.3 },
-      'MSFT': { price: 410, changePct: -0.2 },
-      'GOOGL': { price: 165, changePct: 0.8 },
-      'AMZN': { price: 180, changePct: 1.1 },
-      'TSLA': { price: 260, changePct: -2.1 },
-      'META': { price: 520, changePct: 0.7 },
-      'NVDA': { price: 125, changePct: 1.9 },
-      'NFLX': { price: 580, changePct: -0.5 },
-    }
-    
-    const allDefaults = { ...cryptoDefaults, ...stockDefaults }
-    
-    for (const [symbol, data] of Object.entries(allDefaults)) {
-      fallbackPrices[symbol] = {
-        symbol,
-        price: data.price,
-        changePct: data.changePct,
-        source: 'fallback',
-        timestamp: new Date().toISOString()
-      }
-    }
-    
-    return NextResponse.json({
-      prices: fallbackPrices,
-      count: Object.keys(fallbackPrices).length,
-      total: Object.keys(fallbackPrices).length,
-      timestamp: new Date().toISOString(),
-      source: 'fallback-emergency',
-      note: 'Using fallback data due to API failure',
-      status: 'degraded'
-    })
+    console.error('❌ Stock fetch failed:', error)
+    return {}
   }
 }
