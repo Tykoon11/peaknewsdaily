@@ -128,33 +128,8 @@ async function fetchAllBinancePrices(): Promise<Record<string, any>> {
   } catch (error) {
     console.error('⚠️ Binance API failed on Vercel:', error)
     
-    // Try alternative CoinGecko for crypto prices
-    try {
-      console.log('🔄 Trying CoinGecko fallback...')
-      const cgController = new AbortController()
-      setTimeout(() => cgController.abort(), 5000)
-      
-      const cgResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,cardano,solana,polkadot&vs_currencies=usd&include_24hr_change=true', {
-        signal: cgController.signal,
-        headers: { 'User-Agent': 'PeakNewsDaily/1.0' }
-      })
-      
-      if (cgResponse.ok) {
-        const cgData = await cgResponse.json()
-        console.log('✅ CoinGecko backup successful!')
-        return {
-          'BTC-USD': { price: cgData.bitcoin?.usd || 64200, changePct: cgData.bitcoin?.usd_24h_change || 1.8, source: 'coingecko-live' },
-          'ETH-USD': { price: cgData.ethereum?.usd || 3250, changePct: cgData.ethereum?.usd_24h_change || -0.5, source: 'coingecko-live' },
-          'BNB-USD': { price: cgData.binancecoin?.usd || 592, changePct: cgData.binancecoin?.usd_24h_change || 0.7, source: 'coingecko-live' },
-          'XRP-USD': { price: cgData.ripple?.usd || 0.52, changePct: cgData.ripple?.usd_24h_change || 0.5, source: 'coingecko-live' },
-          'ADA-USD': { price: cgData.cardano?.usd || 0.48, changePct: cgData.cardano?.usd_24h_change || 2.3, source: 'coingecko-live' },
-          'SOL-USD': { price: cgData.solana?.usd || 172, changePct: cgData.solana?.usd_24h_change || -1.1, source: 'coingecko-live' },
-          'DOT-USD': { price: cgData.polkadot?.usd || 5.9, changePct: cgData.polkadot?.usd_24h_change || 1.2, source: 'coingecko-live' }
-        }
-      }
-    } catch (cgError) {
-      console.error('CoinGecko also failed:', cgError)
-    }
+    // Skip complex fallbacks to prevent errors
+    console.log('⚠️ Using safe fallback mode to prevent site breakage')
     
     return {}
   }
