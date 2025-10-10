@@ -198,6 +198,7 @@ export async function GET(request: NextRequest) {
       } else {
         // Provide realistic fallback prices instead of $0.00
         const fallbackPrices: Record<string, {price: number, changePct: number}> = {
+          // Stocks
           'AAPL': { price: 225.0, changePct: 0.8 },
           'MSFT': { price: 415.0, changePct: 0.4 },
           'GOOGL': { price: 168.0, changePct: 1.2 },
@@ -206,12 +207,40 @@ export async function GET(request: NextRequest) {
           'META': { price: 525.0, changePct: 0.9 },
           'NVDA': { price: 130.0, changePct: 1.5 },
           'NFLX': { price: 585.0, changePct: -0.6 },
+          // Major Cryptos
           'BTC-USD': { price: 64200.0, changePct: 1.8 },
           'ETH-USD': { price: 3250.0, changePct: -0.5 },
           'BNB-USD': { price: 592.0, changePct: 0.7 },
+          'XRP-USD': { price: 0.52, changePct: 0.5 },
           'ADA-USD': { price: 0.48, changePct: 2.3 },
           'SOL-USD': { price: 172.0, changePct: -1.1 },
-          'DOT-USD': { price: 5.9, changePct: 1.2 }
+          'DOT-USD': { price: 5.9, changePct: 1.2 },
+          'AVAX-USD': { price: 35.8, changePct: 0.5 },
+          'MATIC-USD': { price: 0.41, changePct: 1.8 },
+          'LINK-USD': { price: 11.2, changePct: -0.3 },
+          'LTC-USD': { price: 68.5, changePct: 0.9 },
+          'UNI-USD': { price: 8.9, changePct: 1.4 },
+          'ATOM-USD': { price: 4.8, changePct: -0.7 },
+          'ICP-USD': { price: 9.1, changePct: 2.1 },
+          'NEAR-USD': { price: 5.2, changePct: 0.6 },
+          'ALGO-USD': { price: 0.15, changePct: 1.3 },
+          'VET-USD': { price: 0.021, changePct: 0.8 },
+          'FTM-USD': { price: 0.68, changePct: -0.4 },
+          'HBAR-USD': { price: 0.049, changePct: 1.1 },
+          'XLM-USD': { price: 0.094, changePct: 0.7 },
+          'AAVE-USD': { price: 148.0, changePct: -0.2 },
+          'MKR-USD': { price: 1580.0, changePct: 0.9 },
+          'CRV-USD': { price: 0.31, changePct: 2.4 },
+          'COMP-USD': { price: 52.8, changePct: -1.1 },
+          'SUSHI-USD': { price: 0.72, changePct: 0.8 },
+          'YFI-USD': { price: 5940.0, changePct: 1.2 },
+          'BAL-USD': { price: 2.18, changePct: -0.6 },
+          'SNX-USD': { price: 1.64, changePct: 1.5 },
+          '1INCH-USD': { price: 0.28, changePct: 0.3 },
+          'ARB-USD': { price: 0.58, changePct: 1.9 },
+          'OP-USD': { price: 1.62, changePct: 0.5 },
+          'LRC-USD': { price: 0.18, changePct: 0.5 },
+          'IMX-USD': { price: 1.28, changePct: 0.5 }
         }
         
         const fallback = fallbackPrices[symbol] || { price: 100.0, changePct: 0.5 }
