@@ -106,7 +106,7 @@ const rateLimiter = {
  */
 async function fetchStockPrice(symbol) {
   const cleanSymbol = symbol.replace('.TO', ''); // Handle Canadian stocks
-  console.log(`🔄 Fetching stock data for ${symbol}...`);
+  // Minimal logging for efficiency
   
   // Primary Source: Yahoo Finance (most reliable and comprehensive)
   try {
@@ -127,7 +127,7 @@ async function fetchStockPrice(symbol) {
           const currentPrice = quote.close[latest] || meta.regularMarketPrice;
           const previousClose = meta.previousClose || meta.chartPreviousClose;
           
-          console.log(`✅ Yahoo Finance ${symbol}: $${currentPrice.toFixed(2)}`);
+          // Success - minimal logging
           
           return {
             symbol: symbol,
@@ -170,7 +170,7 @@ async function fetchStockPrice(symbol) {
         const profile = profileRes.ok ? await profileRes.json() : {};
         
         if (quote.c && quote.c > 0) {
-          console.log(`✅ Finnhub ${symbol}: $${quote.c.toFixed(2)}`);
+          // Success - minimal logging
           
           return {
             symbol: symbol,
@@ -212,7 +212,7 @@ async function fetchStockPrice(symbol) {
           const previousClose = parseFloat(quote['08. previous close']);
           const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
           
-          console.log(`✅ Alpha Vantage ${symbol}: $${currentPrice.toFixed(2)}`);
+          // Success - minimal logging
           
           return {
             symbol: symbol,
@@ -250,7 +250,7 @@ async function fetchStockPrice(symbol) {
         const quote = data[0];
         
         if (quote && quote.price > 0) {
-          console.log(`✅ FMP ${symbol}: $${quote.price.toFixed(2)}`);
+          // Success - minimal logging
           
           return {
             symbol: symbol,
@@ -275,7 +275,7 @@ async function fetchStockPrice(symbol) {
     console.log(`⚠️ FMP failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
-  console.log(`⚠️ All APIs failed for ${symbol}, no real-time data available`);
+  // All APIs failed - no data available
   return null;
 }
 
@@ -284,7 +284,7 @@ async function fetchStockPrice(symbol) {
  * Matches the multi-API approach used for stocks
  */
 async function fetchCryptoPrice(symbol) {
-  console.log(`🔄 Fetching crypto data for ${symbol}...`);
+  // Minimal logging for efficiency
   
   // Primary Source: Binance (most accurate and real-time)
   try {
@@ -312,7 +312,7 @@ async function fetchCryptoPrice(symbol) {
           const previousClose = parseFloat(tickerData.prevClosePrice);
           const change = currentPrice - previousClose;
           
-          console.log(`✅ Binance ${symbol}: $${currentPrice.toFixed(2)}`);
+          // Success - minimal logging
           
           return {
             symbol: symbol,
@@ -350,7 +350,7 @@ async function fetchCryptoPrice(symbol) {
             const previousClose = crypto.usd / (1 + (crypto.usd_24h_change / 100));
             const change = crypto.usd - previousClose;
             
-            console.log(`✅ CoinGecko ${symbol}: $${crypto.usd.toFixed(2)}`);
+            // Success - minimal logging
             
             return {
               symbol: symbol,
@@ -387,7 +387,7 @@ async function fetchCryptoPrice(symbol) {
         if (rate && parseFloat(rate) > 0) {
           const currentPrice = parseFloat(rate);
           
-          console.log(`✅ Coinbase ${symbol}: $${currentPrice.toFixed(2)}`);
+          // Success - minimal logging
           
           return {
             symbol: symbol,
@@ -408,7 +408,7 @@ async function fetchCryptoPrice(symbol) {
     console.log(`⚠️ Coinbase failed for ${symbol}:`, error instanceof Error ? error.message : String(error));
   }
   
-  console.log(`⚠️ All crypto APIs failed for ${symbol}`);
+  // All crypto APIs failed
   return null;
 }
 
@@ -492,7 +492,7 @@ function getCryptoId(symbol) {
  * Update all asset prices
  */
 async function updateAllPrices() {
-  console.log('🔄 Starting real-time price update...');
+  console.log('🔄 Price update started');
   
   try {
     // Get all active assets
@@ -531,7 +531,7 @@ async function updateAllPrices() {
       await processBatch(cryptoPromises);
     }
     
-    console.log('✅ Price update completed');
+    console.log(`✅ Updated ${assets.length} assets`);
     
   } catch (error) {
     console.error('❌ Price update failed:', error);
@@ -632,7 +632,7 @@ async function updateAssetPrice(asset, priceData) {
     
     await redis.setex(`price:${asset.symbol}`, 300, JSON.stringify(legacyCacheData)); // 5 min cache
     
-    console.log(`✅ Updated ${asset.symbol}: $${priceData.price.toFixed(2)} (${changePercent.toFixed(2)}%)`);
+    // Asset updated successfully
     
   } catch (error) {
     console.error(`❌ Error updating ${asset.symbol}:`, error instanceof Error ? error.message : String(error));
