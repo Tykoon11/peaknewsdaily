@@ -281,60 +281,8 @@ export default function MarketOverview() {
           </div>
         )}
       </div>
-      {/* Major Indices & Stocks */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg xs:rounded-xl border dark:border-gray-700 mb-4 xs:mb-6 overflow-hidden">
-        <div className="border-b dark:border-gray-700 p-3 xs:p-4">
-          <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-2 xs:gap-0">
-            <h2 className="text-lg xs:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
-              <div className="w-5 h-5 xs:w-6 xs:h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                <svg className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M7 14l5-5 5 5z"/>
-                </svg>
-              </div>
-              Major Stocks
-            </h2>
-            <Link 
-              href="/markets/stocks" 
-              className="text-xs xs:text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
-            >
-              View All →
-            </Link>
-          </div>
-        </div>
-        <div className="p-3 xs:p-4">
-          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4">
-            {stockQuotes.slice(0, 8).map((quote) => {
-              const change = formatChange(quote.change, quote.changePercent)
-              return (
-                <div key={quote.symbol} className="p-2.5 xs:p-3 border dark:border-gray-700 rounded-md xs:rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs xs:text-sm font-bold text-gray-900 dark:text-gray-100">{quote.symbol}</span>
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      quote.marketStatus === 'open' ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
-                    }`}>
-                      {quote.marketStatus === 'open' ? 'OPEN' : 'CLOSED'}
-                    </span>
-                  </div>
-                  <div className="text-sm xs:text-base lg:text-lg font-semibold mb-1">
-                    {formatPrice(quote.price, quote.currency)}
-                  </div>
-                  <div className={`text-xs xs:text-sm font-medium ${
-                    change.positive === true ? 'text-green-600' :
-                    change.positive === false ? 'text-red-600' : 'text-gray-500'
-                  }`}>
-                    {change.text}
-                  </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate hidden xs:block">
-                    {quote.name}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Cryptocurrency */}
+      
+      {/* Cryptocurrency - MOVED TO TOP */}
       {cryptoQuotes.length > 0 && (
         <div className="bg-white dark:bg-gray-800 rounded-lg xs:rounded-xl border dark:border-gray-700 overflow-hidden">
           <div className="border-b dark:border-gray-700 p-3 xs:p-4">
@@ -394,6 +342,59 @@ export default function MarketOverview() {
           </div>
         </div>
       )}
+
+      {/* Major Indices & Stocks - NOW BELOW CRYPTO */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg xs:rounded-xl border dark:border-gray-700 mt-4 xs:mt-6 overflow-hidden">
+        <div className="border-b dark:border-gray-700 p-3 xs:p-4">
+          <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-2 xs:gap-0">
+            <h2 className="text-lg xs:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+              <div className="w-5 h-5 xs:w-6 xs:h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M7 14l5-5 5 5z"/>
+                </svg>
+              </div>
+              Major Stocks
+            </h2>
+            <Link 
+              href="/markets/stocks" 
+              className="text-xs xs:text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+            >
+              View All →
+            </Link>
+          </div>
+        </div>
+        <div className="p-3 xs:p-4">
+          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4">
+            {stockQuotes.slice(0, 8).map((quote) => {
+              const change = formatChange(quote.change, quote.changePercent)
+              return (
+                <div key={quote.symbol} className="p-2.5 xs:p-3 border dark:border-gray-700 rounded-md xs:rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs xs:text-sm font-bold text-gray-900 dark:text-gray-100">{quote.symbol}</span>
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      quote.marketStatus === 'open' ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                    }`}>
+                      {quote.marketStatus === 'open' ? 'OPEN' : 'CLOSED'}
+                    </span>
+                  </div>
+                  <div className="text-sm xs:text-base lg:text-lg font-semibold mb-1">
+                    {formatPrice(quote.price, quote.currency)}
+                  </div>
+                  <div className={`text-xs xs:text-sm font-medium ${
+                    change.positive === true ? 'text-green-600' :
+                    change.positive === false ? 'text-red-600' : 'text-gray-500'
+                  }`}>
+                    {change.text}
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate hidden xs:block">
+                    {quote.name}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
