@@ -8,46 +8,48 @@ export const metadata: Metadata = {
 
 export default function BuildTradingJournalPage() {
   return (
-    <main className="container py-8 max-w-4xl mx-auto">
-      <nav className="mb-8 text-sm">
+    <main className="responsive-container py-4 xs:py-6 sm:py-8 max-w-4xl mx-auto">
+      <nav className="mb-4 xs:mb-6 sm:mb-8 text-xs xs:text-sm overflow-x-auto whitespace-nowrap">
         <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
-        <span className="mx-2 text-gray-500">→</span>
+        <span className="mx-1 xs:mx-2 text-gray-500">→</span>
         <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
-        <span className="mx-2 text-gray-500">→</span>
-        <span className="text-gray-700">Build Trading Journal</span>
+        <span className="mx-1 xs:mx-2 text-gray-500">→</span>
+        <span className="text-gray-700 dark:text-gray-300">Build Trading Journal</span>
       </nav>
 
-      <header className="mb-12">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center text-white text-xl">
+      <header className="mb-6 xs:mb-8 sm:mb-12">
+        <div className="flex flex-col xs:flex-row xs:items-center gap-3 xs:gap-4 mb-3 xs:mb-4">
+          <div className="w-10 h-10 xs:w-12 xs:h-12 bg-green-600 rounded-lg xs:rounded-xl flex items-center justify-center text-white text-lg xs:text-xl flex-shrink-0">
             📝
           </div>
-          <div>
-            <p className="text-sm text-green-600 font-medium">Stock &amp; ETF Trading</p>
-            <h1 className="text-4xl font-bold text-gray-900">How to build a trading journal that improves results</h1>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs xs:text-sm text-green-600 font-medium">Stock &amp; ETF Trading</p>
+            <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight text-balance">
+              How to build a trading journal that improves results
+            </h1>
           </div>
         </div>
-        <p className="text-xl text-gray-600 leading-relaxed">
+        <p className="text-base xs:text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
           Transform random trades into systematic improvement with disciplined record-keeping and analysis.
         </p>
       </header>
 
-      <article className="prose prose-lg max-w-none">
-        <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
-          <h2 className="text-xl font-semibold text-blue-800 mb-2">Why Journaling Works</h2>
-          <p className="text-blue-700 mb-3">
+      <article className="prose prose-education max-w-none">
+        <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-3 xs:p-4 sm:p-6 mb-4 xs:mb-6 sm:mb-8 rounded-r-lg">
+          <h2 className="text-lg xs:text-xl font-semibold text-blue-800 dark:text-blue-300 mb-2">Why Journaling Works</h2>
+          <p className="text-blue-700 dark:text-blue-300 mb-3 text-sm xs:text-base">
             Professional traders journal every trade. It&apos;s the fastest way to identify what works, what doesn&apos;t, and what patterns lead to your biggest wins and losses.
           </p>
-          <p className="text-blue-600 text-sm">
+          <p className="text-blue-600 dark:text-blue-400 text-xs xs:text-sm">
             Without a journal, you&apos;re just gambling with expensive lessons.
           </p>
         </div>
 
-        <h2>What to log: setup, thesis, risk, execution, outcome, lesson</h2>
-        <div className="bg-gray-100 p-6 rounded-lg my-8">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Essential Journal Fields</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-gray-300">
+        <h2 className="responsive-heading">What to log: setup, thesis, risk, execution, outcome, lesson</h2>
+        <div className="bg-gray-100 dark:bg-gray-800 p-3 xs:p-4 sm:p-6 rounded-lg my-4 xs:my-6 sm:my-8">
+          <h3 className="text-base xs:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 xs:mb-4">Essential Journal Fields</h3>
+          <div className="table-responsive">
+            <table className="w-full text-xs xs:text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="border border-gray-300 px-3 py-2 text-left">Field</th>

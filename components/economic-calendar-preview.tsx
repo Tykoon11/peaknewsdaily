@@ -30,13 +30,32 @@ export default function EconomicCalendarPreview() {
   const [events, setEvents] = useState<EconomicEvent[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isLiveData, setIsLiveData] = useState(false)
+  const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
 
   useEffect(() => {
     async function fetchEconomicData() {
       try {
-        const response = await fetch('/api/economic-calendar?limit=6')
+        // Try live API first, fallback to database
+        const liveResponse = await fetch(`/api/economic-calendar/live?t=${Date.now()}`)
+        if (liveResponse.ok) {
+          const liveData: EconomicCalendarData = await liveResponse.json()
+          if (liveData.events && liveData.events.length > 0) {
+            setEvents(liveData.events)
+            setIsLiveData(true)
+            setLastUpdate(new Date())
+            console.log('📅 Using live economic calendar data:', liveData.events.length, 'events')
+            return
+          }
+        }
+        
+        // Fallback to database API
+        const response = await fetch(`/api/economic-calendar?limit=6&t=${Date.now()}`)
         const data: EconomicCalendarData = await response.json()
         setEvents(data.events || [])
+        setIsLiveData(false)
+        setLastUpdate(new Date())
+        console.log('📅 Using database economic calendar data:', data.events?.length || 0, 'events')
       } catch (err) {
         setError('Failed to fetch economic events')
         console.error('Economic calendar fetch error:', err)
@@ -47,8 +66,8 @@ export default function EconomicCalendarPreview() {
 
     fetchEconomicData()
     
-    // Update every hour
-    const interval = setInterval(fetchEconomicData, 60 * 60 * 1000)
+    // Update every 5 minutes (same as market data)
+    const interval = setInterval(fetchEconomicData, 5 * 60 * 1000)
     return () => clearInterval(interval)
   }, [])
 
@@ -137,22 +156,34 @@ export default function EconomicCalendarPreview() {
   return (
     <section className="mb-12">
       <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="border-b border-gray-200 dark:border-gray-700 p-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 dark:text-gray-100">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <div className="border-b border-gray-200 dark:border-gray-700 p-3 xs:p-4">
+          <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-2 xs:gap-0 mb-2 xs:mb-0">
+            <h2 className="text-lg xs:text-xl font-bold flex items-center gap-2 text-gray-900 dark:text-gray-100">
+              <div className="w-5 h-5 xs:w-6 xs:h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
                 </svg>
               </div>
-              Economic Calendar
+              <span className="hidden xs:inline">Economic Calendar</span>
+              <span className="xs:hidden">Events</span>
             </h2>
             <Link 
               href="/markets/calendar" 
-              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
+              className="text-xs xs:text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
             >
               View All →
             </Link>
+          </div>
+          
+          {/* Live Status Indicator */}
+          <div className="flex items-center gap-1.5 xs:gap-2 text-xs">
+            <div className={`w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full ${isLiveData ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+            <span className="text-gray-600 dark:text-gray-400">
+              {isLiveData ? 'Live Data' : 'Cached Data'}
+            </span>
+            <span className="text-gray-500 dark:text-gray-400">
+              • Last: {lastUpdate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+            </span>
           </div>
         </div>
         <div className="p-3 xs:p-4">
