@@ -22,12 +22,12 @@ export async function GET(request: NextRequest) {
     // Try to fetch from multiple financial news sources
     const sources = [
       {
-        name: 'Yahoo Finance',
-        url: 'https://feeds.finance.yahoo.com/rss/2.0/headline'
+        name: 'MarketWatch',
+        url: 'https://feeds.content.dowjones.io/public/rss/mw_topstories'
       },
       {
-        name: 'MarketWatch',
-        url: 'https://feeds.marketwatch.com/marketwatch/topstories/'
+        name: 'The Motley Fool',
+        url: 'https://feeds.feedburner.com/TheMotleyFool'
       }
     ]
     
