@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import MarketOverview from '@/components/market-overview'
 import EconomicCalendarPreview from '@/components/economic-calendar-preview'
-import LiveNewsPreview from '@/components/live-news-preview'
 import DataDisclaimer from '@/components/data-disclaimer'
 import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 
@@ -326,8 +325,6 @@ export default async function HomePage() {
             </div>
           </section>
 
-          {/* Live Market News */}
-          <LiveNewsPreview />
 
           {/* Market Topics */}
           <section className="mb-12 sm:mb-16 lg:mb-20">
