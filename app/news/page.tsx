@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
 import NewsSearchFilter from '@/components/news-search-filter'
+import FreshNewsSection from '@/components/fresh-news-section'
 
 export const revalidate = 60 // Refresh news every minute
 
@@ -54,8 +55,6 @@ interface Topic {
 export default async function NewsPage() {
   let topics: Topic[] = []
   let latestNews: NewsItem[] = []
-  let featuredNews: NewsItem[] = []
-  let breakingNews: NewsItem[] = []
 
   if (process.env.DATABASE_URL) {
     try {
@@ -81,9 +80,6 @@ export default async function NewsPage() {
           topic: true,
         },
       })
-
-      featuredNews = latestNews.slice(0, 4)
-      breakingNews = latestNews.slice(4, 8)
     } catch (error) {
       console.warn('Failed to fetch news data:', error)
     }
@@ -154,61 +150,8 @@ export default async function NewsPage() {
       <main className="bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           
-          {/* Featured Breaking News */}
-          <section className="mb-12 sm:mb-16 lg:mb-20">
-            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <div className="p-2 sm:p-3 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl sm:rounded-2xl shadow-lg">
-                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-gray-100">Breaking News</h2>
-                <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base">Latest market-moving headlines</p>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {featuredNews.map((item, index) => (
-                <article
-                  key={item.id}
-                  className="group bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 p-6 hover:shadow-lg hover:border-slate-300 dark:hover:border-gray-600 transition-all duration-300"
-                >
-                  <div className="flex flex-col gap-2 text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-3">
-                    <div className="flex items-center gap-2">
-                      <Link
-                        href={`/news/topic/${item.topic.slug}`}
-                        className="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-600 text-white rounded-full hover:from-red-600 hover:to-orange-700 transition-colors capitalize font-medium"
-                      >
-                        {item.topic?.title || 'Market News'}
-                      </Link>
-                      <span className="px-3 py-1 bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 rounded-full font-medium">
-                        {formatDistanceToNow(new Date(item.publishedAt))} ago
-                      </span>
-                    </div>
-                  </div>
-                  <Link href={`/news/${item.slug}`} className="block">
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-gray-100 mb-3 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors leading-tight line-clamp-3">
-                      {item.title}
-                    </h3>
-                    {item.excerpt && (
-                      <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base mb-4 line-clamp-3 leading-relaxed">
-                        {item.excerpt}
-                      </p>
-                    )}
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-gray-400">
-                        {item.sourceName}
-                      </span>
-                      <svg className="w-5 h-5 text-slate-400 dark:text-gray-500 group-hover:text-red-500 dark:group-hover:text-red-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </Link>
-                </article>
-              ))}
-            </div>
-          </section>
+          {/* FRESH Live Breaking News - NO CACHE */}
+          <FreshNewsSection />
 
           <div className="grid gap-8 lg:grid-cols-4">
             {/* Main News Feed with Search */}
