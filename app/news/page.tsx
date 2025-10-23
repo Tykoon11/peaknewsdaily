@@ -4,7 +4,7 @@ import { formatDistanceToNow } from 'date-fns'
 import NewsSearchFilter from '@/components/news-search-filter'
 import FreshNewsSection from '@/components/fresh-news-section'
 
-export const revalidate = 60 // Refresh news every minute
+export const revalidate = 0 // NO CACHE - Fresh data always
 
 export async function generateMetadata() {
   return {
@@ -150,7 +150,7 @@ export default async function NewsPage() {
       <main className="bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
           
-          {/* FRESH Live Breaking News - NO CACHE */}
+          {/* FRESH Live Breaking News - NO CACHE - DEPLOYMENT TRIGGER: Oct23-2025-3:43AM */}
           <FreshNewsSection />
 
           <div className="grid gap-8 lg:grid-cols-4">
