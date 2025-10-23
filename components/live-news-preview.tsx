@@ -29,14 +29,21 @@ export default function LiveNewsPreview() {
   useEffect(() => {
     async function fetchLiveNews() {
       try {
-        const response = await fetch(`/api/news/live?t=${Date.now()}`)
+        const cacheBuster = Date.now()
+        const response = await fetch(`/api/news/live?t=${cacheBuster}&force=true`, {
+          method: 'GET',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        })
         if (response.ok) {
           const data: LiveNewsData = await response.json()
           if (data.news && data.news.length > 0) {
             setNews(data.news.slice(0, 6)) // Show top 6 articles
             setIsLiveData(true)
             setLastUpdate(new Date())
-            console.log('📰 Using live news data:', data.news.length, 'articles')
+            console.log('📰 LIVE NEWS LOADED:', data.news.length, 'fresh articles')
           }
         } else {
           throw new Error('Failed to fetch live news')
@@ -49,10 +56,11 @@ export default function LiveNewsPreview() {
       }
     }
 
+    // Fetch immediately on mount
     fetchLiveNews()
     
-    // Update every 5 minutes (same as market data and economic calendar)
-    const interval = setInterval(fetchLiveNews, 5 * 60 * 1000)
+    // Update every 2 minutes for more frequent updates
+    const interval = setInterval(fetchLiveNews, 2 * 60 * 1000)
     return () => clearInterval(interval)
   }, [])
 
