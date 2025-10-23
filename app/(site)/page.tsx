@@ -6,7 +6,7 @@ import LiveNewsPreview from '@/components/live-news-preview'
 import DataDisclaimer from '@/components/data-disclaimer'
 import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 
-export const revalidate = 0 // Force fresh data always - no cache
+export const revalidate = 0 // Force fresh data always - no cache - cache busted v2
 
 interface Topic {
   id: string
