@@ -1,25 +1,12 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
-import { formatDistanceToNow } from 'date-fns'
 import MarketOverview from '@/components/market-overview'
 import EconomicCalendarPreview from '@/components/economic-calendar-preview'
+import LiveNewsPreview from '@/components/live-news-preview'
 import DataDisclaimer from '@/components/data-disclaimer'
 import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
 
-export const revalidate = 60 // Cache for 1 minute - keep news fresh
-
-interface NewsItem {
-  id: string
-  slug: string
-  title: string
-  excerpt?: string | null
-  publishedAt: Date
-  sourceName: string
-  topic: {
-    slug: string
-    title: string
-  }
-}
+export const revalidate = 60 // Keep fast updates for live data
 
 interface Topic {
   id: string
@@ -40,25 +27,13 @@ interface Post {
 }
 
 export default async function HomePage() {
-  let latestNews: NewsItem[] = []
   let trendingTopics: Topic[] = []
   let featuredPosts: Post[] = []
 
   if (process.env.DATABASE_URL) {
     try {
-      // Get live trading/investing content
+      // Get topics and posts (keeping these for market topics section)
       const results = await Promise.all([
-        // Latest RSS news items - prioritize recent ones
-        prisma.newsItem.findMany({
-          where: {
-            publishedAt: {
-              gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) // Last 7 days
-            }
-          },
-          orderBy: { publishedAt: 'desc' },
-          take: 8,
-          include: { topic: true }
-        }),
         // Topics with news count
         prisma.topic.findMany({
           include: {
@@ -75,51 +50,8 @@ export default async function HomePage() {
         })
       ])
       
-      latestNews = results[0]
-      trendingTopics = results[1]
-      featuredPosts = results[2]
-      
-      // If news is stale (older than 24 hours), supplement with live news
-      if (latestNews.length === 0 || 
-          (latestNews[0] && new Date().getTime() - new Date(latestNews[0].publishedAt).getTime() > 24 * 60 * 60 * 1000)) {
-        console.log('📰 Database news is stale, fetching live news...')
-        
-        try {
-          // Skip live news fetch during build/static generation
-          if (process.env.NODE_ENV === 'production' && !process.env.VERCEL_URL) {
-            console.log('⏭️ Skipping live news fetch during static generation')
-            throw new Error('Skip during build')
-          }
-          
-          const baseUrl = process.env.VERCEL_URL 
-            ? `https://${process.env.VERCEL_URL}` 
-            : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-            
-          const liveNewsResponse = await fetch(`${baseUrl}/api/news/live`)
-          if (liveNewsResponse.ok) {
-            const liveNewsData = await liveNewsResponse.json()
-            
-            // Convert live news to our format
-            const liveNewsItems = liveNewsData.news.map((item: any, index: number) => ({
-              id: `live-${index}`,
-              slug: `external-${index}`,
-              title: item.title.replace(/&#x[\d\w]+;/g, ''), // Clean HTML entities
-              excerpt: item.description,
-              publishedAt: new Date(item.pubDate),
-              sourceName: item.source,
-              topic: {
-                slug: 'markets',
-                title: 'Markets'
-              }
-            }))
-            
-            latestNews = liveNewsItems.slice(0, 8)
-            console.log('✅ Using live news from external feeds')
-          }
-        } catch (error) {
-          console.error('Failed to fetch live news:', error)
-        }
-      }
+      trendingTopics = results[0]
+      featuredPosts = results[1]
       
     } catch (error) {
       console.warn('Failed to fetch homepage data:', error)
@@ -395,68 +327,7 @@ export default async function HomePage() {
           </section>
 
           {/* Live Market News */}
-          <section className="mb-12 sm:mb-16 lg:mb-20">
-            <div className="relative bg-gradient-to-br from-red-900 via-red-800 to-orange-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl shadow-red-900/20 overflow-hidden">
-              {/* Background Effects */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(239,68,68,0.2),transparent_70%)]"></div>
-              <div className="absolute top-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-orange-500/20 to-transparent rounded-full blur-3xl"></div>
-              
-              <div className="relative">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0 mb-6 sm:mb-8">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                    <div className="p-2 sm:p-3 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl sm:rounded-2xl shadow-lg w-fit">
-                      <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1">Breaking Market News</h2>
-                      <p className="text-red-100 text-sm sm:text-base">Real-time updates from global markets</p>
-                    </div>
-                    <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-red-500/30 rounded-full border border-red-400/40 backdrop-blur-sm w-fit">
-                      <div className="w-2 h-2 bg-red-300 rounded-full animate-pulse"></div>
-                      <span className="text-red-200 text-xs sm:text-sm font-medium">LIVE</span>
-                    </div>
-                  </div>
-                  <Link 
-                    href="/news" 
-                    className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg sm:rounded-xl border border-white/20 hover:bg-white/20 transform hover:-translate-y-1 transition-all duration-200 group text-sm sm:text-base w-fit"
-                  >
-                    <span className="hidden sm:inline">View All News</span>
-                    <span className="sm:hidden">View All</span>
-                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                  {latestNews.slice(0, 8).map((item) => (
-                    <Link
-                      key={item.id}
-                      href={`/news/${item.slug}`}
-                      className="group bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl border border-white/20 p-4 sm:p-5 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-                        <span className="text-xs bg-orange-500/80 text-white px-2 sm:px-3 py-1 rounded-full font-medium capitalize backdrop-blur-sm w-fit">
-                          {item.topic?.title || 'Market News'}
-                        </span>
-                        <span className="text-xs text-red-200">
-                          {item.publishedAt ? formatDistanceToNow(new Date(item.publishedAt)) + ' ago' : 'Recently'}
-                        </span>
-                      </div>
-                      <h3 className="text-sm sm:text-base font-medium mb-2 line-clamp-3 text-white group-hover:text-red-200 transition-colors leading-tight">
-                        {item.title}
-                      </h3>
-                      <div className="text-xs text-red-300">
-                        {item.sourceName}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
+          <LiveNewsPreview />
 
           {/* Market Topics */}
           <section className="mb-12 sm:mb-16 lg:mb-20">
