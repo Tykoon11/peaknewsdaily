@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
-import NewsSearchFilter from '@/components/news-search-filter'
+import LiveNewsSearch from '@/components/live-news-search'
 import FreshNewsSection from '@/components/fresh-news-section'
 
 export const revalidate = 0 // NO CACHE - Fresh data always
@@ -168,13 +168,7 @@ export default async function NewsPage() {
                 </div>
               </div>
               
-              <NewsSearchFilter 
-                initialNews={latestNews.map(item => ({
-                  ...item,
-                  publishedAt: item.publishedAt.toISOString()
-                }))} 
-                topics={topics} 
-              />
+              <LiveNewsSearch />
             </div>
 
             {/* Sidebar */}
