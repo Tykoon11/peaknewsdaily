@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
 async function fetchRealCryptoPrices(): Promise<Record<string, any>> {
   try {
     // Get comprehensive crypto data from CoinGecko - only active coins with real volume
-    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,cardano,solana,polkadot,avalanche-2,polygon,chainlink,litecoin,uniswap,cosmos,algorand,dogecoin,shiba-inu,tron,wrapped-bitcoin,the-open-network,arbitrum,optimism,render-token,injective-protocol,maker,aave,mantle,starknet,kaspa,filecoin,cronos,internet-computer,first-digital-usd,bittensor,celestia,sei-network,immutable-x,floki,pepe,bonk,jupiter-exchange-solana&vs_currencies=usd&include_24hr_change=true', {
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,cardano,solana,polkadot,avalanche-2,polygon,chainlink,litecoin,uniswap,cosmos,algorand,dogecoin,shiba-inu,pepe,bonk,floki,optimism,arbitrum,loopring,immutable-x,internet-computer,near,vechain,fantom,hedera-hashgraph,stellar,aave,maker,curve-dao-token,compound-coin,sushiswap,yearn-finance,balancer,synthetix-network-token,1inch,lido-dao,fetch-ai,ocean-protocol,singularitynet,render-token,the-graph,axie-infinity,the-sandbox,decentraland,enjincoin,chiliz,monero,zcash,dash,tezos,eos,iota,neo,qtum,usd-coin,tether,dai,wrapped-bitcoin,aptos,sui,sei-network,worldcoin,injective-protocol&vs_currencies=usd&include_24hr_change=true', {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0'
@@ -78,33 +78,76 @@ async function fetchRealCryptoPrices(): Promise<Record<string, any>> {
       'UNI-USD': 'uniswap',
       'ATOM-USD': 'cosmos',
       'ALGO-USD': 'algorand',
-      // High-volume active cryptos (replacing dead ones)
       'DOGE-USD': 'dogecoin',
       'SHIB-USD': 'shiba-inu',
-      'TRX-USD': 'tron',
-      'WBTC-USD': 'wrapped-bitcoin',
-      'TON-USD': 'the-open-network',
-      'ARB-USD': 'arbitrum',
-      'OP-USD': 'optimism',
-      'RNDR-USD': 'render-token',
-      'INJ-USD': 'injective-protocol',
-      'MKR-USD': 'maker',
-      'AAVE-USD': 'aave',
-      'MNT-USD': 'mantle',
-      'STRK-USD': 'starknet',
-      'KAS-USD': 'kaspa',
-      'FIL-USD': 'filecoin',
-      'CRO-USD': 'cronos',
-      'ICP-USD': 'internet-computer',
-      'FDUSD-USD': 'first-digital-usd',
-      'TAO-USD': 'bittensor',
-      'TIA-USD': 'celestia',
-      'SEI-USD': 'sei-network',
-      'IMX-USD': 'immutable-x',
-      'FLOKI-USD': 'floki',
       'PEPE-USD': 'pepe',
       'BONK-USD': 'bonk',
-      'JUP-USD': 'jupiter-exchange-solana'
+      'FLOKI-USD': 'floki',
+      
+      // Layer 2 & Scaling
+      'OP-USD': 'optimism',
+      'ARB-USD': 'arbitrum',
+      'LRC-USD': 'loopring',
+      'IMX-USD': 'immutable-x',
+      
+      // Enterprise & Utility
+      'ICP-USD': 'internet-computer',
+      'NEAR-USD': 'near',
+      'VET-USD': 'vechain',
+      'FTM-USD': 'fantom',
+      'HBAR-USD': 'hedera-hashgraph',
+      'XLM-USD': 'stellar',
+      
+      // DeFi Tokens
+      'AAVE-USD': 'aave',
+      'MKR-USD': 'maker',
+      'CRV-USD': 'curve-dao-token',
+      'COMP-USD': 'compound-coin',
+      'SUSHI-USD': 'sushiswap',
+      'YFI-USD': 'yearn-finance',
+      'BAL-USD': 'balancer',
+      'SNX-USD': 'synthetix-network-token',
+      '1INCH-USD': '1inch',
+      'LIDO-USD': 'lido-dao',
+      
+      // AI & Tech Tokens
+      'FET-USD': 'fetch-ai',
+      'OCEAN-USD': 'ocean-protocol',
+      'AGIX-USD': 'singularitynet',
+      'RNDR-USD': 'render-token',
+      'GRT-USD': 'the-graph',
+      
+      // Gaming & Metaverse
+      'AXS-USD': 'axie-infinity',
+      'SAND-USD': 'the-sandbox',
+      'MANA-USD': 'decentraland',
+      'ENJ-USD': 'enjincoin',
+      'CHZ-USD': 'chiliz',
+      
+      // Privacy Coins
+      'XMR-USD': 'monero',
+      'ZEC-USD': 'zcash',
+      'DASH-USD': 'dash',
+      
+      // Traditional Chains
+      'XTZ-USD': 'tezos',
+      'EOS-USD': 'eos',
+      'IOTA-USD': 'iota',
+      'NEO-USD': 'neo',
+      'QTUM-USD': 'qtum',
+      
+      // Stablecoins & Wrapped Assets
+      'USDC-USD': 'usd-coin',
+      'USDT-USD': 'tether',
+      'DAI-USD': 'dai',
+      'WBTC-USD': 'wrapped-bitcoin',
+      
+      // New & Trending
+      'APT-USD': 'aptos',
+      'SUI-USD': 'sui',
+      'SEI-USD': 'sei-network',
+      'WLD-USD': 'worldcoin',
+      'INJ-USD': 'injective-protocol'
     }
     
     const prices: Record<string, any> = {}

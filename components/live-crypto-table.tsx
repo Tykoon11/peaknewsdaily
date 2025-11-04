@@ -171,7 +171,7 @@ export default function LiveCryptoTable() {
     }))
 
     setCryptoAssets(allCryptos)
-    setLoading(false)
+    // Keep loading state until we get live prices
     
     // Try to fetch live prices for ALL cryptocurrencies
     const fetchLivePrices = async () => {
@@ -289,12 +289,11 @@ export default function LiveCryptoTable() {
               const priceData = prices[asset.symbol]
               const fallbackPrice = asset.quotes[0] // Use database price as fallback
               
-              // Use live price if available, fallback to database price, or show $0 if no data
-              const displayPrice = priceData?.price || fallbackPrice?.price || 0
-              const displayChange = priceData?.changePct || fallbackPrice?.changePercent || 0
+              // Only show cryptos with live CoinGecko data - no database fallbacks!
+              if (!priceData?.price) return null
               
-              // Show all assets, even those without prices (will display $0.00)
-              // if (displayPrice === 0) return null
+              const displayPrice = priceData.price
+              const displayChange = priceData.changePct
 
               const displaySymbol = asset.symbol.replace('-USD', '')
               const change = formatChange(displayChange)
