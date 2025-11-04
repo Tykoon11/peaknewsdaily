@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
 import LiveNewsSearch from '@/components/live-news-search'
 import FreshNewsSection from '@/components/fresh-news-section'
+import { cachedQuery } from '@/lib/cache'
 
 export const revalidate = 0 // NO CACHE - Fresh data always
 
@@ -58,28 +59,38 @@ export default async function NewsPage() {
 
   if (process.env.DATABASE_URL) {
     try {
-      topics = await prisma.topic.findMany({
-        orderBy: { title: 'asc' },
-        include: {
-          NewsItem: {
-            orderBy: { publishedAt: 'desc' },
-            take: 5,
-          },
-          _count: {
-            select: {
-              NewsItem: true
+      // Cache topics for 10 minutes since they don't change often
+      topics = await cachedQuery(
+        'news-topics',
+        () => prisma.topic.findMany({
+          orderBy: { title: 'asc' },
+          include: {
+            NewsItem: {
+              orderBy: { publishedAt: 'desc' },
+              take: 5,
+            },
+            _count: {
+              select: {
+                NewsItem: true
+              }
             }
-          }
-        },
-      })
+          },
+        }),
+        600 // 10 minutes
+      )
 
-      latestNews = await prisma.newsItem.findMany({
-        orderBy: { publishedAt: 'desc' },
-        take: 20,
-        include: {
-          topic: true,
-        },
-      })
+      // Cache latest news for 2 minutes (less since it changes more)
+      latestNews = await cachedQuery(
+        'latest-news',
+        () => prisma.newsItem.findMany({
+          orderBy: { publishedAt: 'desc' },
+          take: 20,
+          include: {
+            topic: true,
+          },
+        }),
+        120 // 2 minutes
+      )
     } catch (error) {
       console.warn('Failed to fetch news data:', error)
     }

@@ -5,6 +5,7 @@ import EconomicCalendarPreview from '@/components/economic-calendar-preview'
 import FreshNewsSection from '@/components/fresh-news-section'
 import DataDisclaimer from '@/components/data-disclaimer'
 import { PILLARS, ARTICLES } from '@/app/education/_data/articles'
+import { cachedQuery } from '@/lib/cache'
 
 export const revalidate = 0 // Force fresh data always - no cache - FINAL FIX
 
@@ -32,22 +33,30 @@ export default async function HomePage() {
 
   if (process.env.DATABASE_URL) {
     try {
-      // Get topics and posts (keeping these for market topics section)
+      // Get topics and posts with caching to reduce DB hits
       const results = await Promise.all([
-        // Topics with news count
-        prisma.topic.findMany({
-          include: {
-            _count: { select: { NewsItem: true } }
-          },
-          orderBy: { NewsItem: { _count: 'desc' } }
-        }),
-        // Our 3 featured trading posts
-        prisma.post.findMany({
-          where: { status: 'published' },
-          orderBy: { createdAt: 'desc' },
-          take: 3,
-          select: { id: true, slug: true, title: true, description: true, createdAt: true }
-        })
+        // Cache topics for 15 minutes (they don't change often)
+        cachedQuery(
+          'homepage-topics',
+          () => prisma.topic.findMany({
+            include: {
+              _count: { select: { NewsItem: true } }
+            },
+            orderBy: { NewsItem: { _count: 'desc' } }
+          }),
+          900 // 15 minutes
+        ),
+        // Cache featured posts for 5 minutes
+        cachedQuery(
+          'homepage-featured-posts',
+          () => prisma.post.findMany({
+            where: { status: 'published' },
+            orderBy: { createdAt: 'desc' },
+            take: 3,
+            select: { id: true, slug: true, title: true, description: true, createdAt: true }
+          }),
+          300 // 5 minutes
+        )
       ])
       
       trendingTopics = results[0]
