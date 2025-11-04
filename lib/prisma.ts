@@ -13,14 +13,6 @@ export const prisma =
         },
       },
     }),
-    // Optimize connection settings for Neon free tier
-    connectionLimit: 5, // Limit concurrent connections
-    pool: {
-      max: 5,
-      min: 1,
-      idleTimeoutMillis: 30000, // Close idle connections after 30s
-      acquireTimeoutMillis: 60000,
-    },
   })
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
