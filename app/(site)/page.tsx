@@ -88,11 +88,11 @@ export default async function HomePage() {
                 <div className="text-sm text-gray-500">Coverage</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">500+</div>
-                <div className="text-sm text-gray-500">Assets</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">15+</div>
+                <div className="text-sm text-gray-500">Crypto Assets</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">5min</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">1min</div>
                 <div className="text-sm text-gray-500">Updates</div>
               </div>
             </div>
