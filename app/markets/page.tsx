@@ -116,26 +116,23 @@ export default async function MarketsPage() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 xs:gap-6 sm:gap-8 mx-2 xs:mx-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
               {/* Stocks */}
-              <Link href="/markets/stocks" className="group relative bg-white dark:bg-gray-800 rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 xs:hover:-translate-y-2 overflow-hidden border border-slate-100 dark:border-gray-700">
-                <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative">
-                  <div className="p-2 xs:p-3 sm:p-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg xs:rounded-xl sm:rounded-2xl shadow-lg mb-3 xs:mb-4 sm:mb-6 w-fit">
-                    <svg className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-slate-800 dark:text-gray-100 mb-2 xs:mb-2 sm:mb-3 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Stock Market</h3>
-                  <p className="text-slate-600 dark:text-gray-300 mb-3 xs:mb-4 sm:mb-6 text-xs xs:text-sm sm:text-base leading-relaxed">
-                    Real-time stock prices, S&P 500, NASDAQ, and comprehensive equity analysis with institutional-grade data.
-                  </p>
-                  <div className="flex items-center text-green-600 group-hover:text-green-700 font-semibold text-xs xs:text-sm sm:text-base">
-                    <span>Explore Stocks</span>
-                    <svg className="w-3 h-3 xs:w-4 xs:h-4 ml-1 xs:ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
+              <Link href="/markets/stocks" className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Stock Market</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                  Real-time stock prices, S&P 500, NASDAQ, and comprehensive equity analysis.
+                </p>
+                <div className="flex items-center text-green-600 text-sm font-medium">
+                  <span>Explore Stocks</span>
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
               </Link>
 
