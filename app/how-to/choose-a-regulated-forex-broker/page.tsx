@@ -168,7 +168,7 @@ export default function ChooseRegulatedForexBrokerPage() {
                   How to start trading forex (complete beginner guide)
                 </a>
                 <a href="/how-to/avoid-bank-scams-and-phishing-forex" className="text-indigo-600 hover:text-indigo-700 hover:underline">
-                  How to avoid bank scams & phishing (forex edition)
+                  How to avoid bank scams and phishing (forex edition)
                 </a>
                 <a href="/how-to/avoid-over-leveraging-in-fx" className="text-indigo-600 hover:text-indigo-700 hover:underline">
                   How to avoid over-leveraging in FX

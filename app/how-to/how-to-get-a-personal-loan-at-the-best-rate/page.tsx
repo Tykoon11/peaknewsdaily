@@ -72,6 +72,30 @@ export default function GetPersonalLoanBestRatePage() {
           <p className="text-purple-700">Get rate quotes from top lenders in 60 seconds (no hard pull).</p>
         </div>
       </article>
+
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <Link 
+              href="/how-to/how-to-consolidate-credit-card-debt-options-compared" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">← Consolidate Credit Card Debt</h3>
+              <p className="text-sm text-blue-700 mt-1">Compare all options first</p>
+            </Link>
+          </div>
+          
+          <div>
+            <Link 
+              href="/how-to/how-to-calculate-apr-vs-interest-rate-and-why-it-matters" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">APR vs Interest Rate →</h3>
+              <p className="text-sm text-green-700 mt-1">Understand true borrowing costs</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Calculator, TrendingUp, AlertTriangle, CheckCircle, DollarSign, Target, Calendar, BarChart3 } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -269,6 +270,33 @@ export default function CoveredCallsPage() {
               </button>
             </div>
           </section>
+
+          {/* Navigation Section */}
+          <nav className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <Link 
+                    href="/how-to/how-to-understand-options-for-stock-traders" 
+                    className="block p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-colors"
+                  >
+                    <h3 className="font-semibold text-yellow-900 dark:text-yellow-100">← Understand Options First</h3>
+                    <p className="text-sm text-yellow-700 dark:text-yellow-300 mt-1">Beginner options fundamentals</p>
+                  </Link>
+                </div>
+                
+                <div>
+                  <Link 
+                    href="/how-to/how-to-use-cash-secured-puts-to-buy-stocks-cheaper" 
+                    className="block p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+                  >
+                    <h3 className="font-semibold text-blue-900 dark:text-blue-100">Cash-Secured Puts →</h3>
+                    <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">Buy stocks at a discount</p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
       

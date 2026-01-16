@@ -290,7 +290,7 @@ export default function SetUpTwoFactorAuthenticationPage() {
                   How to verify if a broker is regulated
                 </a>
                 <a href="/how-to/avoid-bank-scams-phishing-investors" className="text-indigo-600 hover:text-indigo-700 hover:underline">
-                  How to spot and avoid bank scams & phishing
+                  How to spot and avoid bank scams and phishing
                 </a>
                 <a href="/how-to/choose-stock-broker-fees-tools-support" className="text-indigo-600 hover:text-indigo-700 hover:underline">
                   How to choose a stock broker (fees, tools, support)

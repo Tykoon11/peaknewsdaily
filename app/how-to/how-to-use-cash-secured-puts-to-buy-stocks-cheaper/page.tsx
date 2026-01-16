@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { ShoppingCart, TrendingDown, Shield, CheckCircle, DollarSign, Target, Calculator, BarChart3 } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -109,6 +110,33 @@ export default function CashSecuredPutsPage() {
               ))}
             </div>
           </section>
+
+          {/* Navigation Section */}
+          <nav className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <Link 
+                    href="/how-to/how-to-trade-covered-calls-for-monthly-income" 
+                    className="block p-4 bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+                  >
+                    <h3 className="font-semibold text-green-900 dark:text-green-100">← Covered Calls</h3>
+                    <p className="text-sm text-green-700 dark:text-green-300 mt-1">Generate monthly income</p>
+                  </Link>
+                </div>
+                
+                <div>
+                  <Link 
+                    href="/how-to/how-to-set-up-a-protective-put-hedging-101" 
+                    className="block p-4 bg-red-50 dark:bg-red-900/20 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"
+                  >
+                    <h3 className="font-semibold text-red-900 dark:text-red-100">Protective Puts →</h3>
+                    <p className="text-sm text-red-700 dark:text-red-300 mt-1">Hedging fundamentals</p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
     </article>

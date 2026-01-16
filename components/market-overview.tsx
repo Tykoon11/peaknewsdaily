@@ -64,6 +64,7 @@ export default function MarketOverview() {
         if (realtimeResponse.ok) {
           const realtimeData = await realtimeResponse.json()
           console.log('📈 Using real-time exchange data:', Object.keys(realtimeData.prices).length, 'symbols')
+          // console.log('📊 Raw API response:', realtimeData)
           
           // Convert real-time data to Quote format
           const realtimeStockData = STOCK_SYMBOLS.map(symbol => {
@@ -87,8 +88,7 @@ export default function MarketOverview() {
 
           const realtimeCryptoData = CRYPTO_SYMBOLS.map(symbol => {
             const priceData = realtimeData.prices[symbol]
-            console.log(`🔍 Checking ${symbol}:`, priceData ? 'FOUND' : 'MISSING')
-            if (priceData) {
+            if (priceData && typeof priceData.price === 'number' && priceData.price >= 0) {
               return {
                 symbol: priceData.symbol,
                 name: symbol.replace('-USD', ''),
@@ -105,8 +105,6 @@ export default function MarketOverview() {
             return null
           }).filter(Boolean) as Quote[]
           
-          console.log(`🔍 Crypto data conversion result: ${realtimeCryptoData.length} out of ${CRYPTO_SYMBOLS.length} symbols`)
-
           // Set real-time data and mark as using real-time
           setRealtimeStocks(realtimeStockData)
           setRealtimeCrypto(realtimeCryptoData)
@@ -186,6 +184,7 @@ export default function MarketOverview() {
         }))
         
   // console.log('🎯 FINAL cryptoQuotes:', cryptoQuotes.length, 'symbols -', cryptoQuotes.map(q => q.symbol))
+  // console.log('🎯 Debug states - usingRealtime:', usingRealtime, 'realtimeCrypto.length:', realtimeCrypto.length, 'cryptoLivePrices.connected:', cryptoLivePrices.connected)
 
   // Update loading state 
   const isLoading = loading && !usingRealtime && !stockLivePrices.connected && !cryptoLivePrices.connected && stockQuotes.length === 0

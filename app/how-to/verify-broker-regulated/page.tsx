@@ -222,7 +222,7 @@ export default function VerifyBrokerRegulatedPage() {
                   How to file complaints against a broker
                 </a>
                 <a href="/how-to/avoid-bank-scams-phishing-investors" className="text-indigo-600 hover:text-indigo-700 hover:underline">
-                  How to spot and avoid bank scams & phishing
+                  How to spot and avoid bank scams and phishing
                 </a>
                 <a href="/how-to/set-up-two-factor-authentication" className="text-indigo-600 hover:text-indigo-700 hover:underline">
                   How to set up two-factor authentication correctly

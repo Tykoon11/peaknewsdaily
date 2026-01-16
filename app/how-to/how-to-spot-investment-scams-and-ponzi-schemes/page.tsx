@@ -8,22 +8,31 @@ export const metadata: Metadata = {
 
 export default function SpotInvestmentScamsAndPonziSchemes() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Spot Investment Scams & Ponzi Schemes</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🔒
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Fraud, Security & Recovery</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Spot Investment Scams & Ponzi Schemes</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Learn the classic red flags of investment scams and Ponzi schemes, how to verify offers, and what to do if you've been targeted.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Spot Investment Scams & Ponzi Schemes
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Learn the classic red flags of investment scams and Ponzi schemes, how to verify offers, and what to do if you've been targeted.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
           <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
@@ -271,16 +280,16 @@ export default function SpotInvestmentScamsAndPonziSchemes() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Security Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/how-to-report-fraud-to-your-bank-and-authorities" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-report-fraud-to-your-bank-and-authorities" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Report Fraud to Your Bank and Authorities
             </Link>
-            <Link href="/how-to/how-to-recover-from-identity-theft-step-by-step" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-recover-from-identity-theft-step-by-step" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Recover from Identity Theft Step by Step
             </Link>
-            <Link href="/how-to/how-to-verify-crypto-projects-and-smart-contracts" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-verify-crypto-projects-and-smart-contracts" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Verify Crypto Projects and Smart Contracts
             </Link>
-            <Link href="/how-to/how-to-create-a-financial-emergency-plan" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-create-a-financial-emergency-plan" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Create a Financial Emergency Plan
             </Link>
           </div>
@@ -379,6 +388,6 @@ export default function SpotInvestmentScamsAndPonziSchemes() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }

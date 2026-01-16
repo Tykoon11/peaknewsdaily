@@ -40,35 +40,40 @@ export default function HowToSetUpTransactionAlertsPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <main className="container py-8 max-w-4xl mx-auto">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <nav className="mb-8">
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <Link href="/" className="hover:text-pink-600">Home</Link>
-          <span>→</span>
-          <Link href="/category/how-to" className="hover:text-pink-600">How-To Guides</Link>
-          <span>→</span>
-          <span className="text-pink-600">Transaction Alerts</span>
-        </div>
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Transaction Alerts</span>
       </nav>
 
-      <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Set Up Alerts for Unusual Transactions: Complete Fraud Protection Guide
-          </h1>
-          <p className="text-xl text-gray-700 leading-relaxed">
-            Catch fraudulent activity before it escalates with comprehensive transaction monitoring. Learn to configure alerts that protect your finances 24/7.
-          </p>
-        </header>
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🔒
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Fraud, Security & Recovery</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Set Up Alerts for Unusual Transactions</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Catch fraudulent activity before it escalates with comprehensive transaction monitoring. Learn to configure alerts that protect your finances 24/7.
+        </p>
+      </header>
 
-        <div className="bg-green-50 border-l-4 border-green-400 p-6 mb-8">
-          <h2 className="text-xl font-semibold text-green-800 mb-2">🛡️ Early Warning System</h2>
-          <p className="text-green-700">
+      <article>
+
+        <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+          <h2 className="text-xl font-semibold text-red-800 mb-2">🛡️ Early Warning System</h2>
+          <p className="text-red-700">
             Transaction alerts are your first line of defense against fraud. Early detection can prevent thousands of dollars in losses and minimize recovery time.
           </p>
         </div>
@@ -502,8 +507,8 @@ export default function HowToSetUpTransactionAlertsPage() {
           </div>
 
           <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-green-800 mb-3">🎯 Key Takeaways</h3>
-            <ul className="text-green-700 space-y-1">
+            <h3 className="text-xl font-semibold text-red-800 mb-3">🎯 Key Takeaways</h3>
+            <ul className="text-red-700 space-y-1">
               <li>• Enable alerts for ALL transactions, regardless of amount</li>
               <li>• Use multiple contact methods (SMS, email, push notifications)</li>
               <li>• Set up geographic and international transaction alerts</li>
@@ -530,6 +535,6 @@ export default function HowToSetUpTransactionAlertsPage() {
           </Link>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }

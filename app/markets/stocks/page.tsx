@@ -309,23 +309,14 @@ export default async function StocksPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
-        {/* Premium Financial Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-0 left-0 w-48 h-48 xs:w-72 xs:h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-emerald-400 to-blue-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute top-1/2 right-0 w-48 h-48 xs:w-72 xs:h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-violet-400 to-purple-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute bottom-0 left-1/2 w-48 h-48 xs:w-72 xs:h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
-          </div>
-          
-          {/* Grid Pattern Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px] xs:bg-[size:24px_24px] sm:bg-[size:32px_32px]"></div>
+      <main className="min-h-screen bg-white dark:bg-gray-900">
+        {/* Clean Financial Hero Section */}
+        <section className="relative overflow-hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
           
           <div className="relative container py-12 xs:py-16 sm:py-20 px-3 xs:px-4">
             <div className="max-w-5xl mx-auto text-center">
               {/* Live Market Status */}
-              <div className="inline-flex items-center px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-full bg-green-500/20 border border-green-400/30 text-green-300 text-xs xs:text-sm font-medium mb-6 xs:mb-8 backdrop-blur-sm">
+              <div className="inline-flex items-center px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-full bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 text-xs xs:text-sm font-medium mb-6 xs:mb-8">
                 <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-green-400 rounded-full animate-pulse mr-2 xs:mr-3"></div>
                 <span className="hidden xs:inline">MARKETS OPEN • LIVE DATA • </span>
                 <span className="xs:hidden">LIVE • </span>
@@ -333,98 +324,68 @@ export default async function StocksPage() {
                 <span className="sm:hidden">MARKETS</span>
               </div>
               
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 xs:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-indigo-200 leading-tight">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 xs:mb-6 text-gray-900 dark:text-white leading-tight">
                 <span className="block xs:inline">Stock Market</span>
-                <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-blue-400 to-violet-400">
+                <span className="block text-blue-600 dark:text-blue-400">
                   Intelligence Hub
                 </span>
               </h1>
               
-              <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100/80 mb-6 xs:mb-8 max-w-3xl mx-auto leading-relaxed px-2 xs:px-4 sm:px-0">
+              <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-6 xs:mb-8 max-w-3xl mx-auto leading-relaxed px-2 xs:px-4 sm:px-0">
                 <span className="block xs:inline">Professional-grade equity analysis,</span>
                 <span className="xs:hidden"> </span>
                 <span className="block xs:inline">real-time pricing data, and institutional-quality research for sophisticated investors.</span>
               </p>
               
-              {/* Premium Market Statistics */}
+              {/* Clean Market Statistics */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 mt-8 xs:mt-10 sm:mt-12">
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-lg xs:rounded-xl lg:rounded-2xl p-3 xs:p-4 lg:p-6 border border-white/20 shadow-2xl shadow-blue-500/10 overflow-hidden group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-2 xs:gap-3 mb-1 xs:mb-2">
-                      <div className="p-1 xs:p-1.5 lg:p-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-md xs:rounded-lg">
-                        <svg className="w-4 h-4 xs:w-5 xs:h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h2a2 2 0 01-2-2z" />
-                        </svg>
-                      </div>
-                      <div className="text-xl xs:text-2xl lg:text-3xl font-black text-white">{stocks.length}</div>
+                <div className="relative bg-gray-50 dark:bg-gray-800 rounded-lg xs:rounded-xl lg:rounded-2xl p-3 xs:p-4 lg:p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-2 xs:gap-3 mb-1 xs:mb-2">
+                    <div className="p-1 xs:p-1.5 lg:p-2 bg-blue-100 dark:bg-blue-900 rounded-md xs:rounded-lg">
+                      <svg className="w-4 h-4 xs:w-5 xs:h-5 lg:w-6 lg:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h2a2 2 0 01-2-2z" />
+                      </svg>
                     </div>
-                    <div className="text-blue-200/80 font-medium text-xs xs:text-sm lg:text-base leading-tight">
-                      <span className="block xs:hidden">Stocks</span>
-                      <span className="hidden xs:block">Stocks Tracked</span>
-                    </div>
+                    <div className="text-xl xs:text-2xl lg:text-3xl font-black text-gray-900 dark:text-white">{stocks.length}</div>
+                  </div>
+                  <div className="text-gray-600 dark:text-gray-300 font-medium text-xs xs:text-sm lg:text-base leading-tight">
+                    <span className="block xs:hidden">Stocks</span>
+                    <span className="hidden xs:block">Stocks Tracked</span>
                   </div>
                 </div>
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-green-500/10 overflow-hidden group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                      </div>
-                      <div className="text-3xl font-black text-green-400">{gainers}</div>
+                <div className="relative bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
+                      <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
                     </div>
-                    <div className="text-blue-200/80 font-medium">Advancing</div>
+                    <div className="text-3xl font-black text-green-600 dark:text-green-400">{gainers}</div>
                   </div>
+                  <div className="text-gray-600 dark:text-gray-300 font-medium">Advancing</div>
                 </div>
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-red-500/10 overflow-hidden group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-gradient-to-r from-red-500 to-rose-600 rounded-lg">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
-                        </svg>
-                      </div>
-                      <div className="text-3xl font-black text-red-400">{losers}</div>
+                <div className="relative bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-red-100 dark:bg-red-900 rounded-lg">
+                      <svg className="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+                      </svg>
                     </div>
-                    <div className="text-blue-200/80 font-medium">Declining</div>
+                    <div className="text-3xl font-black text-red-600 dark:text-red-400">{losers}</div>
                   </div>
+                  <div className="text-gray-600 dark:text-gray-300 font-medium">Declining</div>
                 </div>
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-purple-500/10 overflow-hidden group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-gradient-to-r from-purple-500 to-violet-600 rounded-lg">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                        </svg>
-                      </div>
-                      <div className="text-3xl font-black text-purple-400">{formatMarketCap(BigInt(totalMarketValue)).replace('$', '')}</div>
+                <div className="relative bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                      <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                      </svg>
                     </div>
-                    <div className="text-blue-200/80 font-medium">Total Market Cap</div>
+                    <div className="text-3xl font-black text-purple-600 dark:text-purple-400">{formatMarketCap(BigInt(totalMarketValue)).replace('$', '')}</div>
                   </div>
+                  <div className="text-gray-600 dark:text-gray-300 font-medium">Total Market Cap</div>
                 </div>
-              </div>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col xs:flex-row gap-2 xs:gap-3 sm:gap-4 justify-center mt-6 xs:mt-8 px-2 xs:px-0">
-                <button className="inline-flex items-center px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 bg-gradient-to-r from-emerald-500 to-blue-600 text-white font-semibold rounded-md xs:rounded-lg sm:rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1 transition-all duration-200 group text-sm xs:text-base">
-                  <svg className="w-4 h-4 xs:w-5 xs:h-5 mr-1.5 xs:mr-2 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                  <span className="xs:hidden">Analysis</span>
-                  <span className="hidden xs:inline">Start Analysis</span>
-                </button>
-                <button className="inline-flex items-center px-4 xs:px-6 sm:px-8 py-2.5 xs:py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-md xs:rounded-lg sm:rounded-xl border border-white/20 hover:bg-white/20 transform hover:-translate-y-1 transition-all duration-200 group text-sm xs:text-base">
-                  <svg className="w-4 h-4 xs:w-5 xs:h-5 mr-1.5 xs:mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h2a2 2 0 01-2-2z" />
-                  </svg>
-                  <span className="xs:hidden">Watchlist</span>
-                  <span className="hidden xs:inline">View Watchlists</span>
-                </button>
               </div>
             </div>
           </div>

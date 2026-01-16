@@ -19,11 +19,11 @@ export default function SpotAvoidBankScamsPhishingPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white text-xl">
-            🔒
+          <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white text-xl">
+            🏦
           </div>
           <div>
-            <p className="text-sm text-blue-600 font-medium">Investing Basics</p>
+            <p className="text-sm text-blue-600 font-medium">Banking & Accounts</p>
             <h1 className="text-4xl font-bold text-gray-900">How to spot and avoid bank scams &amp; phishing</h1>
           </div>
         </div>
@@ -292,25 +292,28 @@ export default function SpotAvoidBankScamsPhishingPage() {
         </div>
       </article>
 
+      {/* Navigation */}
       <nav className="mt-16 pt-8 border-t border-gray-200">
         <div className="grid md:grid-cols-2 gap-8">
           <div>
+            <p className="text-sm text-gray-600 mb-2">Previous</p>
             <Link 
-              href="/how-to/how-to-invest-for-the-long-term-evidence-based" 
+              href="/how-to/how-to-use-credit-unions-vs-banks-pros-cons" 
               className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
             >
-              <h3 className="font-semibant text-blue-900">← Long-Term Investing</h3>
-              <p className="text-sm text-blue-700 mt-1">Evidence-based playbook</p>
+              <h3 className="font-semibold text-blue-900">Credit Unions vs Banks</h3>
+              <p className="text-sm text-blue-700 mt-1">Pros, cons & when to choose</p>
             </Link>
           </div>
           
           <div>
+            <p className="text-sm text-gray-600 mb-2">More Guides</p>
             <Link 
-              href="/how-to/how-to-start-investing-with-100-step-by-step" 
+              href="/category/how-to" 
               className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
             >
-              <h3 className="font-semibant text-green-900">Start Investing With $100 →</h3>
-              <p className="text-sm text-green-700 mt-1">Complete beginner guide</p>
+              <h3 className="font-semibold text-green-900">Explore All How-To Guides</h3>
+              <p className="text-sm text-green-700 mt-1">Credit scores, investing, trading & more</p>
             </Link>
           </div>
         </div>

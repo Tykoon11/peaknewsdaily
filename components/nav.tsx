@@ -1,19 +1,10 @@
 import Link from 'next/link'
 import ThemeToggle from '@/components/theme-toggle'
-import { auth, signOut } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import MobileNav from '@/components/mobile-nav'
 
 export default async function Nav() {
-  const session = await auth()
   const categories = await prisma.category.findMany({ orderBy: { name: 'asc' } })
-  const role = (session?.user as any)?.role as string | undefined
-  const isStaff = role === 'editor' || role === 'admin'
-
-  async function doSignOut() {
-    'use server'
-    await signOut()
-  }
 
   return (
     <header className="site-header sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
@@ -80,49 +71,15 @@ export default async function Nav() {
               News
             </Link>
 
-            {isStaff && (
-              <>
-                <Link 
-                  href="/submit" 
-                  className="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                >
-                  Submit
-                </Link>
-                <Link 
-                  href="/admin" 
-                  className="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                >
-                  Admin
-                </Link>
-              </>
-            )}
           </nav>
 
           {/* Right side buttons */}
           <div className="flex items-center space-x-3">
             <ThemeToggle />
-            
-            {!session?.user ? (
-              <Link
-                href="/api/auth/signin"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
-              >
-                Sign in
-              </Link>
-            ) : (
-              <form action={doSignOut}>
-                <button
-                  type="submit"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md transition-colors"
-                >
-                  Sign out
-                </button>
-              </form>
-            )}
 
             {/* Mobile menu button */}
             <div className="lg:hidden">
-              <MobileNav categories={categories} isStaff={isStaff} signedIn={!!session?.user} />
+              <MobileNav categories={categories} />
             </div>
           </div>
         </div>

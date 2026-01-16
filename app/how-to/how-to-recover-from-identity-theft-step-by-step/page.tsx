@@ -8,22 +8,31 @@ export const metadata: Metadata = {
 
 export default function RecoverFromIdentityTheftStepByStep() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Identity Theft Recovery Action Plan</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🔒
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Fraud, Security & Recovery</p>
+            <h1 className="text-4xl font-bold text-gray-900">Identity Theft Recovery: A Step-by-Step Action Plan</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Freeze your credit, close fraudulent accounts, file reports, and restore your identity with this clear recovery checklist.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Identity Theft Recovery: A Step-by-Step Action Plan
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Freeze your credit, close fraudulent accounts, file reports, and restore your identity with this clear recovery checklist.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
           <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
@@ -381,16 +390,16 @@ export default function RecoverFromIdentityTheftStepByStep() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Security Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/how-to-report-fraud-to-your-bank-and-authorities" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-report-fraud-to-your-bank-and-authorities" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Report Fraud to Your Bank and Authorities
             </Link>
-            <Link href="/how-to/how-to-secure-your-accounts-with-password-managers" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-secure-your-accounts-with-password-managers" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Secure Your Accounts with Password Managers
             </Link>
-            <Link href="/how-to/how-to-set-up-alerts-for-unusual-transactions" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-set-up-alerts-for-unusual-transactions" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Set Up Alerts for Unusual Transactions
             </Link>
-            <Link href="/how-to/how-to-create-a-financial-emergency-plan" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-create-a-financial-emergency-plan" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Create a Financial Emergency Plan
             </Link>
           </div>
@@ -489,6 +498,6 @@ export default function RecoverFromIdentityTheftStepByStep() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }

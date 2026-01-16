@@ -89,25 +89,28 @@ export default function NegotiateBillsScriptsPage() {
         </div>
       </article>
 
+      {/* Navigation */}
       <nav className="mt-16 pt-8 border-t border-gray-200">
         <div className="grid md:grid-cols-2 gap-8">
           <div>
+            <p className="text-sm text-gray-600 mb-2">Previous</p>
             <Link 
-              href="/how-to/how-to-save-money-on-a-low-income-practical-steps" 
+              href="/how-to/how-to-use-sinking-funds-for-big-purchases" 
               className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
             >
-              <h3 className="font-semibold text-blue-900">← Save Money on Low Income</h3>
-              <p className="text-sm text-blue-700 mt-1">Practical money-saving strategies</p>
+              <h3 className="font-semibold text-blue-900">Use Sinking Funds</h3>
+              <p className="text-sm text-blue-700 mt-1">Pay for big purchases without debt</p>
             </Link>
           </div>
           
           <div>
+            <p className="text-sm text-gray-600 mb-2">More Guides</p>
             <Link 
               href="/category/how-to" 
               className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
             >
-              <h3 className="font-semibold text-green-900">More How-To Guides →</h3>
-              <p className="text-sm text-green-700 mt-1">Explore all financial topics</p>
+              <h3 className="font-semibold text-green-900">Explore All How-To Guides</h3>
+              <p className="text-sm text-green-700 mt-1">Banking, investing, trading & more</p>
             </Link>
           </div>
         </div>

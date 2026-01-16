@@ -40,35 +40,40 @@ export default function HowToCreateFinancialEmergencyPlanPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <main className="container py-8 max-w-4xl mx-auto">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <nav className="mb-8">
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <Link href="/" className="hover:text-pink-600">Home</Link>
-          <span>→</span>
-          <Link href="/category/how-to" className="hover:text-pink-600">How-To Guides</Link>
-          <span>→</span>
-          <span className="text-pink-600">Financial Emergency Plan</span>
-        </div>
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-red-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-red-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Financial Emergency Plan</span>
       </nav>
 
-      <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Create a Financial Emergency Plan: Complete Crisis Preparedness Guide
-          </h1>
-          <p className="text-xl text-gray-700 leading-relaxed">
-            Prepare for financial emergencies with a comprehensive crisis plan. Learn to build emergency funds, organize documents, and protect your family's financial security.
-          </p>
-        </header>
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🔒
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Fraud, Security & Recovery</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Create a Financial Emergency Plan</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Prepare for financial emergencies with a comprehensive crisis plan. Learn to build emergency funds, organize documents, and protect your family's financial security.
+        </p>
+      </header>
 
-        <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
-          <h2 className="text-xl font-semibold text-blue-800 mb-2">🛡️ Financial Security Foundation</h2>
-          <p className="text-blue-700">
+      <article>
+
+        <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+          <h2 className="text-xl font-semibold text-red-800 mb-2">🛡️ Financial Security Foundation</h2>
+          <p className="text-red-700">
             A well-prepared financial emergency plan can mean the difference between weathering a crisis and facing long-term financial damage. Preparation today protects your family's future.
           </p>
         </div>
@@ -556,6 +561,6 @@ export default function HowToCreateFinancialEmergencyPlanPage() {
           </Link>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }

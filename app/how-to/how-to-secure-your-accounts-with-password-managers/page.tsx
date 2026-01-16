@@ -8,27 +8,36 @@ export const metadata: Metadata = {
 
 export default function SecureAccountsPasswordManagers() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Secure Accounts with Password Managers</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🔒
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Fraud, Security & Recovery</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Use a Password Manager to Secure Every Account</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Set up a password manager, create strong unique passwords, enable MFA, and lock down your digital life in under 30 minutes.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Use a Password Manager to Secure Every Account
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Set up a password manager, create strong unique passwords, enable MFA, and lock down your digital life in under 30 minutes.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
-          <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-            <h2 className="text-lg font-semibold text-green-800 mb-2">Quick Security Setup</h2>
-            <p className="text-green-700 mb-0">
+          <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+            <h2 className="text-lg font-semibold text-red-800 mb-2">Quick Security Setup</h2>
+            <p className="text-red-700 mb-0">
               Use a reputable password manager to generate unique 16–24-character passwords, store them encrypted, and enable multi-factor authentication on critical accounts.
             </p>
           </div>
@@ -179,9 +188,9 @@ export default function SecureAccountsPasswordManagers() {
             <li><strong>SMS/Phone</strong> (backup only) - Convenient but less secure</li>
           </ol>
 
-          <div className="bg-green-50 border-l-4 border-green-500 p-6 my-6">
-            <h4 className="font-semibold text-green-800 mb-3">Authenticator App Setup:</h4>
-            <ol className="text-green-700 space-y-2">
+          <div className="bg-red-50 border-l-4 border-red-500 p-6 my-6">
+            <h4 className="font-semibold text-red-800 mb-3">Authenticator App Setup:</h4>
+            <ol className="text-red-700 space-y-2">
               <li>Download Authy or Google Authenticator on your phone</li>
               <li>In your password manager, go to Security Settings</li>
               <li>Choose "Add Authenticator App" and scan the QR code</li>
@@ -318,16 +327,16 @@ export default function SecureAccountsPasswordManagers() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Security Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/how-to-set-up-alerts-for-unusual-transactions" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-set-up-alerts-for-unusual-transactions" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Set Up Alerts for Unusual Transactions
             </Link>
-            <Link href="/how-to/how-to-protect-yourself-on-public-wi-fi" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-protect-yourself-on-public-wi-fi" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Protect Yourself on Public Wi-Fi
             </Link>
-            <Link href="/how-to/how-to-spot-investment-scams-and-ponzi-schemes" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-spot-investment-scams-and-ponzi-schemes" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Spot Investment Scams and Ponzi Schemes
             </Link>
-            <Link href="/how-to/how-to-recover-from-identity-theft-step-by-step" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-recover-from-identity-theft-step-by-step" className="text-red-600 hover:text-red-700 hover:underline">
               → How to Recover from Identity Theft Step by Step
             </Link>
           </div>
@@ -426,6 +435,6 @@ export default function SecureAccountsPasswordManagers() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }

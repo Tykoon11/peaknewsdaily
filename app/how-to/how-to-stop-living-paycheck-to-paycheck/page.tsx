@@ -67,6 +67,33 @@ export default function StopLivingPaycheckPage() {
           </div>
         </div>
       </article>
+
+      {/* Navigation */}
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Previous</p>
+            <Link 
+              href="/how-to/how-to-save-money-on-a-low-income-practical-steps" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">Save Money on Low Income</h3>
+              <p className="text-sm text-blue-700 mt-1">Practical steps when money's tight</p>
+            </Link>
+          </div>
+          
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Up Next</p>
+            <Link 
+              href="/how-to/how-to-set-smart-financial-goals-templates-examples" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">Set SMART Financial Goals</h3>
+              <p className="text-sm text-green-700 mt-1">Templates & examples included</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

@@ -8,28 +8,36 @@ export const metadata: Metadata = {
 
 export default function AvoidSideHustleBurnoutFinancially() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Avoid Side Hustle Burnout Financially</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center text-white text-xl">
+            💼
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Side Hustles & Income</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Avoid Side Hustle Burnout Financially</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Build a sustainable side hustle that generates consistent income without destroying your health, relationships, or sanity through smart financial planning and boundaries.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Avoid Side Hustle Burnout Financially
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Build a sustainable side hustle that generates consistent income without destroying 
-            your health, relationships, or sanity through smart financial planning and boundaries.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
-          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 mb-8">
-            <h2 className="text-lg font-semibold text-pink-800 mb-2">The Burnout Prevention Formula</h2>
-            <p className="text-pink-700 mb-0">
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6 mb-8">
+            <h2 className="text-lg font-semibold text-amber-800 mb-2">The Burnout Prevention Formula</h2>
+            <p className="text-amber-700 mb-0">
               Sustainable side hustles prioritize profit per hour over total revenue, maintain 
               strict work-life boundaries, and build systems that generate income without constant 
               personal involvement. Work smarter, not harder, for long-term success.
@@ -417,16 +425,16 @@ export default function AvoidSideHustleBurnoutFinancially() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Side Hustle Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/how-to-scale-a-side-hustle-into-a-business" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-scale-a-side-hustle-into-a-business" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Scale a Side Hustle Into a Business
             </Link>
-            <Link href="/how-to/how-to-price-freelance-services-hourly-vs-value-based" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-price-freelance-services-hourly-vs-value-based" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Price Freelance Services: Hourly vs Value-Based
             </Link>
-            <Link href="/how-to/how-to-save-for-taxes-as-a-freelancer" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-save-for-taxes-as-a-freelancer" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Save for Taxes as a Freelancer
             </Link>
-            <Link href="/how-to/how-to-find-clients-without-paid-ads" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-find-clients-without-paid-ads" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Find Clients Without Paid Ads
             </Link>
           </div>
@@ -535,6 +543,6 @@ export default function AvoidSideHustleBurnoutFinancially() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }

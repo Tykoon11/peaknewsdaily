@@ -81,6 +81,33 @@ export default function SaveOnLowIncomePage() {
           </div>
         </div>
       </article>
+
+      {/* Navigation */}
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Previous</p>
+            <Link 
+              href="/how-to/how-to-build-a-3-6-month-emergency-fund-fast" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">Build Emergency Fund Fast</h3>
+              <p className="text-sm text-blue-700 mt-1">3-6 months of expenses quickly</p>
+            </Link>
+          </div>
+          
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Up Next</p>
+            <Link 
+              href="/how-to/how-to-stop-living-paycheck-to-paycheck" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">Stop Living Paycheck to Paycheck</h3>
+              <p className="text-sm text-green-700 mt-1">Break the cycle with a 7-step plan</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

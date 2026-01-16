@@ -83,6 +83,30 @@ export default function ConsolidateCreditCardDebtPage() {
           <p className="text-purple-700">Try our Consolidation Calculator to check if you'll actually save.</p>
         </div>
       </article>
+
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <Link 
+              href="/how-to/how-to-use-a-balance-transfer-card-the-right-way" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">← Balance Transfer Cards</h3>
+              <p className="text-sm text-blue-700 mt-1">Use 0% APR the right way</p>
+            </Link>
+          </div>
+          
+          <div>
+            <Link 
+              href="/how-to/how-to-get-a-personal-loan-at-the-best-rate" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">Personal Loan Best Rates →</h3>
+              <p className="text-sm text-green-700 mt-1">How to qualify for lowest APR</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

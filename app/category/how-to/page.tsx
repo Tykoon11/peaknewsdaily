@@ -35,7 +35,7 @@ export default function HowToPage() {
         "How to reconcile your bank statement like a pro",
         "How to set up joint accounts safely",
         "How to use credit unions vs banks (pros & cons)",
-        "How to spot and avoid bank scams & phishing"
+        "How to spot and avoid bank scams and phishing"
       ]
     },
     {

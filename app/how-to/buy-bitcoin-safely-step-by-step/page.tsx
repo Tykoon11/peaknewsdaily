@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'How to Buy Bitcoin Safely: A Step-by-Step Guide',
@@ -176,18 +177,18 @@ export default function BuyBitcoinSafelyPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Guides</h3>
               <div className="grid md:grid-cols-2 gap-4">
-                <a href="/how-to/choose-crypto-exchange-security-checklist" className="text-orange-600 hover:text-orange-700 hover:underline">
+                <Link href="/how-to/choose-crypto-exchange-security-checklist" className="text-orange-600 hover:text-orange-700 hover:underline">
                   How to choose a crypto exchange (security checklist)
-                </a>
-                <a href="/how-to/setup-hardware-wallet-cold-storage" className="text-orange-600 hover:text-orange-700 hover:underline">
+                </Link>
+                <Link href="/how-to/setup-hardware-wallet-cold-storage" className="text-orange-600 hover:text-orange-700 hover:underline">
                   How to set up a hardware wallet (cold storage)
-                </a>
-                <a href="/how-to/avoid-crypto-rug-pulls-scams" className="text-orange-600 hover:text-orange-700 hover:underline">
+                </Link>
+                <Link href="/how-to/avoid-crypto-rug-pulls-scams" className="text-orange-600 hover:text-orange-700 hover:underline">
                   How to avoid crypto rug pulls and scams
-                </a>
-                <a href="/how-to/avoid-bank-scams-and-phishing" className="text-orange-600 hover:text-orange-700 hover:underline">
-                  How to spot and avoid bank scams & phishing
-                </a>
+                </Link>
+                <Link href="/how-to/avoid-bank-scams-and-phishing" className="text-orange-600 hover:text-orange-700 hover:underline">
+                  How to spot and avoid bank scams and phishing
+                </Link>
               </div>
             </div>
           </div>

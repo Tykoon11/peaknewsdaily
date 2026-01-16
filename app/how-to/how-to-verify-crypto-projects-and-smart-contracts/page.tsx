@@ -40,35 +40,40 @@ export default function HowToVerifyCryptoProjectsPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <main className="container py-8 max-w-4xl mx-auto">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <nav className="mb-8">
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <Link href="/" className="hover:text-pink-600">Home</Link>
-          <span>→</span>
-          <Link href="/category/how-to" className="hover:text-pink-600">How-To Guides</Link>
-          <span>→</span>
-          <span className="text-pink-600">Verify Crypto Projects</span>
-        </div>
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Verify Crypto Projects</span>
       </nav>
 
-      <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Verify Crypto Projects and Smart Contracts: Complete Due Diligence Guide
-          </h1>
-          <p className="text-xl text-gray-700 leading-relaxed">
-            Protect your investments with comprehensive verification techniques for cryptocurrency projects and smart contracts. Learn professional due diligence methods used by institutional investors.
-          </p>
-        </header>
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🔒
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Fraud, Security & Recovery</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Verify Crypto Projects and Smart Contracts</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Protect your investments with comprehensive verification techniques for cryptocurrency projects and smart contracts. Learn professional due diligence methods used by institutional investors.
+        </p>
+      </header>
 
-        <div className="bg-pink-50 border-l-4 border-pink-400 p-6 mb-8">
-          <h2 className="text-xl font-semibold text-pink-800 mb-2">⚠️ Critical Safety Notice</h2>
-          <p className="text-pink-700">
+      <article>
+
+        <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+          <h2 className="text-xl font-semibold text-red-800 mb-2">⚠️ Critical Safety Notice</h2>
+          <p className="text-red-700">
             The crypto space contains numerous scams and rug pulls. Never invest based on hype alone. Always conduct thorough due diligence and only invest what you can afford to lose completely.
           </p>
         </div>
@@ -81,7 +86,7 @@ export default function HowToVerifyCryptoProjectsPage() {
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold text-sm">1</span>
+                  <span className="text-red-600 font-semibold text-sm">1</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Verify Team Identity</h4>
@@ -90,7 +95,7 @@ export default function HowToVerifyCryptoProjectsPage() {
               </div>
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold text-sm">2</span>
+                  <span className="text-red-600 font-semibold text-sm">2</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Check Track Record</h4>
@@ -99,7 +104,7 @@ export default function HowToVerifyCryptoProjectsPage() {
               </div>
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold text-sm">3</span>
+                  <span className="text-red-600 font-semibold text-sm">3</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Verify Credentials</h4>
@@ -116,7 +121,7 @@ export default function HowToVerifyCryptoProjectsPage() {
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold text-sm">1</span>
+                  <span className="text-red-600 font-semibold text-sm">1</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Verify Contract Source Code</h4>
@@ -125,7 +130,7 @@ export default function HowToVerifyCryptoProjectsPage() {
               </div>
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold text-sm">2</span>
+                  <span className="text-red-600 font-semibold text-sm">2</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Look for Security Audits</h4>
@@ -134,7 +139,7 @@ export default function HowToVerifyCryptoProjectsPage() {
               </div>
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
-                  <span className="text-pink-600 font-semibold text-sm">3</span>
+                  <span className="text-red-600 font-semibold text-sm">3</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Check for Admin Functions</h4>
@@ -235,31 +240,31 @@ export default function HowToVerifyCryptoProjectsPage() {
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <input type="checkbox" className="w-5 h-5 text-pink-600" />
+                <input type="checkbox" className="w-5 h-5 text-red-600" />
                 <span className="text-gray-900">Research team backgrounds and verify identities</span>
               </div>
               <div className="flex items-center space-x-3">
-                <input type="checkbox" className="w-5 h-5 text-pink-600" />
+                <input type="checkbox" className="w-5 h-5 text-red-600" />
                 <span className="text-gray-900">Read whitepaper and technical documentation</span>
               </div>
               <div className="flex items-center space-x-3">
-                <input type="checkbox" className="w-5 h-5 text-pink-600" />
+                <input type="checkbox" className="w-5 h-5 text-red-600" />
                 <span className="text-gray-900">Verify smart contract code and audits</span>
               </div>
               <div className="flex items-center space-x-3">
-                <input type="checkbox" className="w-5 h-5 text-pink-600" />
+                <input type="checkbox" className="w-5 h-5 text-red-600" />
                 <span className="text-gray-900">Analyze tokenomics and distribution</span>
               </div>
               <div className="flex items-center space-x-3">
-                <input type="checkbox" className="w-5 h-5 text-pink-600" />
+                <input type="checkbox" className="w-5 h-5 text-red-600" />
                 <span className="text-gray-900">Check community engagement and partnerships</span>
               </div>
               <div className="flex items-center space-x-3">
-                <input type="checkbox" className="w-5 h-5 text-pink-600" />
+                <input type="checkbox" className="w-5 h-5 text-red-600" />
                 <span className="text-gray-900">Review GitHub activity and development progress</span>
               </div>
               <div className="flex items-center space-x-3">
-                <input type="checkbox" className="w-5 h-5 text-pink-600" />
+                <input type="checkbox" className="w-5 h-5 text-red-600" />
                 <span className="text-gray-900">Test small amount before larger investment</span>
               </div>
             </div>
@@ -316,20 +321,20 @@ export default function HowToVerifyCryptoProjectsPage() {
 
       <footer className="mt-12 pt-8 border-t border-gray-200">
         <div className="flex flex-wrap gap-4">
-          <Link href="/how-to/how-to-spot-investment-scams-and-ponzi-schemes" className="text-pink-600 hover:text-pink-700 underline">
+          <Link href="/how-to/how-to-spot-investment-scams-and-ponzi-schemes" className="text-red-600 hover:text-red-700 underline">
             How to Spot Investment Scams
           </Link>
-          <Link href="/how-to/how-to-secure-your-accounts-with-password-managers" className="text-pink-600 hover:text-pink-700 underline">
+          <Link href="/how-to/how-to-secure-your-accounts-with-password-managers" className="text-red-600 hover:text-red-700 underline">
             Password Manager Security
           </Link>
-          <Link href="/how-to/how-to-recover-from-identity-theft-step-by-step" className="text-pink-600 hover:text-pink-700 underline">
+          <Link href="/how-to/how-to-recover-from-identity-theft-step-by-step" className="text-red-600 hover:text-red-700 underline">
             Identity Theft Recovery
           </Link>
-          <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 underline">
+          <Link href="/category/how-to" className="text-red-600 hover:text-red-700 underline">
             All How-To Guides
           </Link>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }

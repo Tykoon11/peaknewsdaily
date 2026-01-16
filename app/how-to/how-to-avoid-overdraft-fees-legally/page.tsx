@@ -66,6 +66,33 @@ export default function AvoidOverdraftFeesPage() {
           </div>
         </div>
       </article>
+
+      {/* Navigation */}
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Previous</p>
+            <Link 
+              href="/how-to/how-to-set-up-direct-deposit-and-automatic-transfers" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">Set Up Direct Deposit</h3>
+              <p className="text-sm text-blue-700 mt-1">Automate your banking</p>
+            </Link>
+          </div>
+          
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Up Next</p>
+            <Link 
+              href="/how-to/how-to-open-a-business-bank-account-requirements" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">Open Business Bank Account</h3>
+              <p className="text-sm text-green-700 mt-1">Requirements & setup tips</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'How to Start Trading Forex: Complete Beginner Guide',
@@ -194,18 +195,18 @@ export default function StartTradingForexPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Guides</h3>
               <div className="grid md:grid-cols-2 gap-4">
-                <a href="/how-to/read-currency-pairs-and-pips" className="text-indigo-600 hover:text-indigo-700 hover:underline">
+                <Link href="/how-to/read-currency-pairs-and-pips" className="text-indigo-600 hover:text-indigo-700 hover:underline">
                   How to read currency pairs and pips
-                </a>
-                <a href="/how-to/size-a-forex-position-properly" className="text-indigo-600 hover:text-indigo-700 hover:underline">
+                </Link>
+                <Link href="/how-to/size-a-forex-position-properly" className="text-indigo-600 hover:text-indigo-700 hover:underline">
                   How to size a forex position properly
-                </a>
-                <a href="/how-to/choose-a-regulated-forex-broker" className="text-indigo-600 hover:text-indigo-700 hover:underline">
+                </Link>
+                <Link href="/how-to/choose-a-regulated-forex-broker" className="text-indigo-600 hover:text-indigo-700 hover:underline">
                   How to choose a regulated forex broker
-                </a>
-                <a href="/how-to/avoid-over-leveraging-in-fx" className="text-indigo-600 hover:text-indigo-700 hover:underline">
+                </Link>
+                <Link href="/how-to/avoid-over-leveraging-in-fx" className="text-indigo-600 hover:text-indigo-700 hover:underline">
                   How to avoid over-leveraging in FX
-                </a>
+                </Link>
               </div>
             </div>
           </div>

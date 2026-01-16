@@ -88,7 +88,7 @@ export default function AvoidCryptoRugPullsScamsPage() {
                   How to use DeFi safely (wallet hygiene)
                 </a>
                 <a href="/how-to/avoid-bank-scams-and-phishing" className="text-orange-600 hover:text-orange-700 hover:underline">
-                  How to spot and avoid bank scams & phishing
+                  How to spot and avoid bank scams and phishing
                 </a>
                 <a href="/how-to/buy-bitcoin-safely-step-by-step" className="text-orange-600 hover:text-orange-700 hover:underline">
                   How to buy Bitcoin safely (step by step)

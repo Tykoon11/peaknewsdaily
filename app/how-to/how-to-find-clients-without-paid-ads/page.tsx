@@ -8,28 +8,36 @@ export const metadata: Metadata = {
 
 export default function FindClientsWithoutPaidAds() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Find Clients Without Paid Ads</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center text-white text-xl">
+            💼
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Side Hustles & Income</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Find Clients Without Paid Ads</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Master organic client acquisition strategies that build sustainable relationships, establish expertise, and generate high-quality leads without spending money on advertising.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Find Clients Without Paid Ads
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Master organic client acquisition strategies that build sustainable relationships, 
-            establish expertise, and generate high-quality leads without spending money on advertising.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
-          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 mb-8">
-            <h2 className="text-lg font-semibold text-pink-800 mb-2">Organic Client Advantage</h2>
-            <p className="text-pink-700 mb-0">
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6 mb-8">
+            <h2 className="text-lg font-semibold text-amber-800 mb-2">Organic Client Advantage</h2>
+            <p className="text-amber-700 mb-0">
               Organic clients convert 3x higher than paid advertising leads and have 50% longer 
               retention rates. They come pre-qualified through trust and referrals, making 
               sales conversations easier and project success more likely.
@@ -482,16 +490,16 @@ export default function FindClientsWithoutPaidAds() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Side Hustle Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/how-to-build-a-simple-website-that-converts" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-build-a-simple-website-that-converts" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Build a Simple Website That Converts
             </Link>
-            <Link href="/how-to/how-to-scale-a-side-hustle-into-a-business" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-scale-a-side-hustle-into-a-business" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Scale a Side Hustle Into a Business
             </Link>
-            <Link href="/how-to/how-to-start-a-profitable-side-hustle-with-0" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-start-a-profitable-side-hustle-with-0" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Start a Profitable Side Hustle With $0
             </Link>
-            <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Send Invoices That Get Paid Fast
             </Link>
           </div>
@@ -600,6 +608,6 @@ export default function FindClientsWithoutPaidAds() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }

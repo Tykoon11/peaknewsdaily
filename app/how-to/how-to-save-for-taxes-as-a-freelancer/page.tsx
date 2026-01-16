@@ -8,28 +8,36 @@ export const metadata: Metadata = {
 
 export default function SaveTaxesFreelancer() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Save for Taxes as a Freelancer</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center text-white text-xl">
+            💼
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Side Hustles & Income</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Save for Taxes as a Freelancer</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Build a bulletproof tax savings strategy that prevents year-end surprises, maximizes deductions, and keeps you compliant with quarterly payment requirements.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Save for Taxes as a Freelancer
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Build a bulletproof tax savings strategy that prevents year-end surprises, maximizes 
-            deductions, and keeps you compliant with quarterly payment requirements.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
-          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 mb-8">
-            <h2 className="text-lg font-semibold text-pink-800 mb-2">Critical Tax Reality</h2>
-            <p className="text-pink-700 mb-0">
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6 mb-8">
+            <h2 className="text-lg font-semibold text-amber-800 mb-2">Critical Tax Reality</h2>
+            <p className="text-amber-700 mb-0">
               Freelancers pay both employee and employer portions of Social Security and Medicare 
               taxes (15.3% total) PLUS income tax. If you earn $50,000, expect to owe $10,000-15,000 
               in taxes. Start saving 25-30% of every payment immediately.
@@ -412,16 +420,16 @@ export default function SaveTaxesFreelancer() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Side Hustle Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/how-to-track-income-and-expenses-for-side-gig" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-track-income-and-expenses-for-side-gig" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Track Income and Expenses for Your Side Gig
             </Link>
-            <Link href="/how-to/how-to-open-separate-bank-account-for-hustle" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-open-separate-bank-account-for-hustle" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Open a Separate Bank Account for Your Hustle
             </Link>
-            <Link href="/how-to/how-to-scale-side-hustle-into-business" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-scale-side-hustle-into-business" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Scale Your Side Hustle Into a Business
             </Link>
-            <Link href="/how-to/send-invoices-that-get-paid-fast" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Send Invoices That Get Paid Fast
             </Link>
           </div>
@@ -530,6 +538,6 @@ export default function SaveTaxesFreelancer() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }

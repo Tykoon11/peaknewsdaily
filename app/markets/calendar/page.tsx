@@ -65,35 +65,58 @@ export default async function EconomicCalendarPage() {
   let upcomingEvents: Array<any> = []
   let recentEvents: Array<any> = []
 
-  if (process.env.DATABASE_URL) {
-    try {
-      // Fetch upcoming events for the next 30 days
-      upcomingEvents = await prisma.economicEvent.findMany({
-        where: {
-          eventTime: {
-            gte: new Date(),
-            lte: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-          }
-        },
-        orderBy: { eventTime: 'asc' },
-        take: 100
-      })
-
-      // Fetch recent events with actual data (last 7 days)
-      recentEvents = await prisma.economicEvent.findMany({
-        where: {
-          eventTime: {
-            gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-            lt: new Date()
-          },
-          actual: { not: null }
-        },
-        orderBy: { eventTime: 'desc' },
-        take: 20
-      })
-    } catch (error) {
-      console.warn('Failed to fetch economic events:', error)
+  try {
+    // First try to fetch from live API (same as homepage)
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    const liveResponse = await fetch(`${baseUrl}/api/economic-calendar/live`, {
+      next: { revalidate: 300 } // Cache for 5 minutes
+    })
+    
+    if (liveResponse.ok) {
+      const liveData = await liveResponse.json()
+      if (liveData.events && liveData.events.length > 0) {
+        upcomingEvents = liveData.events.map((event: any) => ({
+          ...event,
+          eventTime: new Date(event.eventTime)
+        }))
+        console.log('📅 Calendar page using live API data:', upcomingEvents.length, 'events')
+      }
     }
+    
+    // If live API fails or returns no data, fallback to database
+    if (upcomingEvents.length === 0 && process.env.DATABASE_URL) {
+      try {
+        // Fetch upcoming events for the next 30 days
+        upcomingEvents = await prisma.economicEvent.findMany({
+          where: {
+            eventTime: {
+              gte: new Date(),
+              lte: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+            }
+          },
+          orderBy: { eventTime: 'asc' },
+          take: 100
+        })
+
+        // Fetch recent events with actual data (last 7 days)
+        recentEvents = await prisma.economicEvent.findMany({
+          where: {
+            eventTime: {
+              gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+              lt: new Date()
+            },
+            actual: { not: null }
+          },
+          orderBy: { eventTime: 'desc' },
+          take: 20
+        })
+        console.log('📅 Calendar page fallback to database:', upcomingEvents.length, 'events')
+      } catch (dbError) {
+        console.warn('Failed to fetch economic events from database:', dbError)
+      }
+    }
+  } catch (error) {
+    console.warn('Failed to fetch economic events:', error)
   }
 
   // Get today's events
@@ -106,16 +129,14 @@ export default async function EconomicCalendarPage() {
     event.eventTime >= todayStart && event.eventTime <= todayEnd
   )
 
-  // Get high impact events for the week
-  const weekStart = new Date()
-  weekStart.setDate(weekStart.getDate() - weekStart.getDay())
-  const weekEnd = new Date()
-  weekEnd.setDate(weekEnd.getDate() + (6 - weekEnd.getDay()))
-  
+  // Get high impact events from all upcoming events (not just this week since events are in future)
   const highImpactEvents = upcomingEvents.filter(event => 
-    event.impact.toLowerCase() === 'high' &&
-    event.eventTime >= weekStart && 
-    event.eventTime <= weekEnd
+    event.impact && event.impact.toLowerCase() === 'high'
+  )
+
+  // Get recent events (those with actual data)
+  const recentEventsWithActual = upcomingEvents.filter(event => 
+    event.actual && event.actual !== null
   )
 
   const formatEventTime = (eventTime: Date) => {
@@ -320,14 +341,14 @@ export default async function EconomicCalendarPage() {
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-600 mb-2">{highImpactEvents.length}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">High Impact This Week</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">High Impact Events</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-indigo-600 mb-2">{upcomingEvents.length}</div>
               <div className="text-sm text-gray-600 dark:text-gray-300">Upcoming Events</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">{recentEvents.length}</div>
+              <div className="text-3xl font-bold text-green-600 mb-2">{recentEventsWithActual.length}</div>
               <div className="text-sm text-gray-600 dark:text-gray-300">Recent Results</div>
             </div>
           </div>
@@ -341,7 +362,7 @@ export default async function EconomicCalendarPage() {
           <EconomicCalendarTabs
             todaysEvents={todaysEvents}
             highImpactEvents={highImpactEvents}
-            recentEvents={recentEvents}
+            recentEvents={recentEventsWithActual}
             allEvents={upcomingEvents}
           />
         </div>

@@ -8,32 +8,34 @@ export const metadata: Metadata = {
 
 export default function HowToPriceFreelanceServices() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-        <a href="/category/how-to" className="hover:text-pink-600">How-To Guides</a>
-        <span>/</span>
-        <span className="text-gray-900">Price Freelance Services</span>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Price Freelance Services</span>
       </nav>
 
-      <div className="mb-8">
-        <div className="flex items-center mb-4">
-          <div className="w-8 h-8 bg-pink-600 rounded-lg flex items-center justify-center text-white mr-3">
-            💰
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center text-white text-xl">
+            💼
           </div>
-          <span className="text-pink-600 font-medium">Side Hustles & Income</span>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Side Hustles & Income</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Price Freelance Services: Hourly, Fixed, or Value-Based</h1>
+          </div>
         </div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          How to Price Freelance Services: Hourly, Fixed, or Value-Based
-        </h1>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-gray-600 leading-relaxed">
           Learn formulas to set your floor rate, when to use hourly vs fixed pricing, and how to quote value-based projects with confidence.
         </p>
-      </div>
+      </header>
 
       <article className="prose prose-lg max-w-none">
-        <div className="bg-pink-50 border-l-4 border-pink-600 p-6 mb-8">
-          <h3 className="text-lg font-semibold text-pink-800 mb-2">⚖️ Pricing Strategy Formula</h3>
-          <p className="text-pink-700">
+        <div className="bg-amber-50 border-l-4 border-amber-600 p-6 mb-8">
+          <h3 className="text-lg font-semibold text-amber-800 mb-2">⚖️ Pricing Strategy Formula</h3>
+          <p className="text-amber-700">
             Set your floor rate based on target income + costs + taxes ÷ billable hours. Use hourly for unclear scope, fixed for defined deliverables, value-based for measurable business outcomes. Price on value, not time.
           </p>
         </div>
@@ -231,9 +233,9 @@ export default function HowToPriceFreelanceServices() {
             </ul>
           </div>
           
-          <div className="border-2 border-pink-600 rounded-lg p-4 bg-pink-50">
-            <h4 className="font-semibold mb-3 text-center text-pink-800">Better</h4>
-            <p className="text-2xl font-bold text-center mb-3 text-pink-800">$3,750</p>
+          <div className="border-2 border-amber-600 rounded-lg p-4 bg-amber-50">
+            <h4 className="font-semibold mb-3 text-center text-amber-800">Better</h4>
+            <p className="text-2xl font-bold text-center mb-3 text-amber-800">$3,750</p>
             <ul className="text-sm space-y-2">
               <li>• Everything in Good</li>
               <li>• Priority timeline (1 week)</li>
@@ -242,7 +244,7 @@ export default function HowToPriceFreelanceServices() {
               <li>• Detailed analytics</li>
               <li>• 30-day follow-up</li>
             </ul>
-            <p className="text-center mt-3 text-sm font-semibold text-pink-800">MOST POPULAR</p>
+            <p className="text-center mt-3 text-sm font-semibold text-amber-800">MOST POPULAR</p>
           </div>
           
           <div className="border border-gray-200 rounded-lg p-4">
@@ -261,7 +263,7 @@ export default function HowToPriceFreelanceServices() {
 
         <h3>Quote Components</h3>
 
-        <div className="bg-pink-50 border-l-4 border-pink-500 p-6 my-8">
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 my-8">
           <h3 className="font-semibold mb-2">📋 Winning Quote Structure</h3>
           <ul className="mt-2 space-y-1">
             <li>☐ Project overview and objectives</li>
@@ -334,25 +336,25 @@ export default function HowToPriceFreelanceServices() {
 
         <h2>Related Guides</h2>
         <div className="grid md:grid-cols-2 gap-4 mt-8">
-          <Link href="/how-to/start-a-profitable-side-hustle-with-0" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Start Side Hustle With $0</h3>
-            <p className="text-pink-600 text-sm mt-2">Launch your freelance business without upfront costs</p>
+          <Link href="/how-to/how-to-start-a-profitable-side-hustle-with-0" 
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Start Side Hustle With $0</h3>
+            <p className="text-amber-600 text-sm mt-2">Launch your freelance business without upfront costs</p>
           </Link>
           <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Send Invoices That Get Paid</h3>
-            <p className="text-pink-600 text-sm mt-2">Convert your pricing into actual payments</p>
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Send Invoices That Get Paid</h3>
+            <p className="text-amber-600 text-sm mt-2">Convert your pricing into actual payments</p>
           </Link>
           <Link href="/how-to/how-to-find-clients-without-paid-ads" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Find Clients Without Ads</h3>
-            <p className="text-pink-600 text-sm mt-2">Higher rates require better client acquisition</p>
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Find Clients Without Ads</h3>
+            <p className="text-amber-600 text-sm mt-2">Higher rates require better client acquisition</p>
           </Link>
           <Link href="/how-to/how-to-scale-side-hustle-into-business" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Scale Side Hustle Into Business</h3>
-            <p className="text-pink-600 text-sm mt-2">Value-based pricing enables business scaling</p>
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Scale Side Hustle Into Business</h3>
+            <p className="text-amber-600 text-sm mt-2">Value-based pricing enables business scaling</p>
           </Link>
         </div>
       </article>
@@ -426,6 +428,6 @@ export default function HowToPriceFreelanceServices() {
           }}
         />
       </section>
-    </div>
+    </main>
   )
 }

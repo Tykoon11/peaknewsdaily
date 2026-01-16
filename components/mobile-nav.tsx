@@ -5,13 +5,9 @@ import { useState } from 'react'
 type Category = { id: string; name: string; slug: string }
 
 export default function MobileNav({
-  categories,
-  isStaff,
-  signedIn
+  categories
 }: {
   categories: Category[]
-  isStaff: boolean
-  signedIn: boolean
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -107,52 +103,9 @@ export default function MobileNav({
                   News
                 </Link>
 
-                {isStaff && (
-                  <>
-                    <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
-                    <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-3 py-2">
-                      Staff
-                    </div>
-                    <Link
-                      href="/submit"
-                      className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Submit
-                    </Link>
-                    <Link
-                      href="/admin"
-                      className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Admin
-                    </Link>
-                  </>
-                )}
               </div>
             </nav>
 
-            <div className="border-t border-gray-200 dark:border-gray-700 p-4">
-              {!signedIn ? (
-                <Link
-                  href="/api/auth/signin"
-                  className="block w-full px-4 py-3 text-center text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Sign in
-                </Link>
-              ) : (
-                <form action="/api/auth/signout" method="post">
-                  <button
-                    type="submit"
-                    className="block w-full px-4 py-3 text-center text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Sign out
-                  </button>
-                </form>
-              )}
-            </div>
           </div>
         </div>
       )}

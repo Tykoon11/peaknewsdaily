@@ -90,7 +90,7 @@ export default function UseDeFiSafelyPage() {
                   How to bridge tokens across chains
                 </a>
                 <a href="/how-to/avoid-bank-scams-and-phishing" className="text-orange-600 hover:text-orange-700 hover:underline">
-                  How to spot and avoid bank scams & phishing
+                  How to spot and avoid bank scams and phishing
                 </a>
               </div>
             </div>

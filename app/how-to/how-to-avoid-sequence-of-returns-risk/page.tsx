@@ -37,64 +37,61 @@ export default function HowToAvoidSequenceOfReturnsRisk() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <nav className="text-sm text-gray-600 mb-2">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
-            <span className="mx-2">/</span>
-            <Link href="/category/how-to" className="hover:text-blue-600">How To</Link>
-            <span className="mx-2">/</span>
-            <span>How to Avoid Sequence of Returns Risk</span>
-          </nav>
-        </div>
-      </div>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Avoid Sequence of Returns Risk</span>
+      </nav>
 
-      <article className="max-w-4xl mx-auto px-6 py-8">
-        <div className="bg-white rounded-lg shadow-sm p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">
-              🏖️
-            </div>
-            <div>
-              <div className="text-sm text-teal-600 font-medium">Retirement & Pensions</div>
-              <h1 className="text-3xl font-bold text-gray-900">How to Avoid Sequence of Returns Risk</h1>
-            </div>
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🏖️
           </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Retirement & Pensions</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to avoid sequence of returns risk</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Learn proven strategies to protect your retirement from sequence of returns risk. Bucket strategy, bond tents, and flexible withdrawal rules explained.
+        </p>
+      </header>
 
-          <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-600 mb-8">
-              Sequence of returns risk can destroy retirement plans even with good long-term market returns. Early losses combined with ongoing withdrawals create a devastating combination that's nearly impossible to recover from. Here's how to protect yourself.
-            </p>
+      <article className="prose prose-lg max-w-none">
+        <p>Sequence of returns risk can destroy retirement plans even with good long-term market returns. Early losses combined with ongoing withdrawals create a devastating combination that's nearly impossible to recover from. Here's how to protect yourself.</p>
 
-            <h2>Understanding Sequence of Returns Risk</h2>
+        <h2>Understanding Sequence of Returns Risk</h2>
+        
+        <p>Sequence of returns risk occurs when poor investment returns happen early in retirement while you're making withdrawals. Unlike the accumulation phase where you can ride out downturns, taking money out during bear markets locks in losses and reduces the principal available for future growth.</p>
+
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6 my-8">
+          <h3 className="font-semibold text-red-900 mb-4">Example: The Danger of Early Losses</h3>
+          <p className="text-red-700 text-sm mb-3">Two retirees with identical portfolios and returns, but different sequences:</p>
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <h4 className="font-semibold text-red-800 mb-2">Retiree A: Bad Early Returns</h4>
+              <ul className="text-red-700 text-sm space-y-1">
+                <li>• Year 1: -20% (withdraw $40,000)</li>
+                <li>• Year 2: -10% (withdraw $40,000)</li>
+                <li>• Year 3: +15% (withdraw $40,000)</li>
+                <li>• Years 4-30: Average 8% returns</li>
+              </ul>
+              <p className="text-red-700 font-medium mt-2 text-sm">Portfolio depleted by year 24</p>
+            </div>
             
-            <p>Sequence of returns risk occurs when poor investment returns happen early in retirement while you're making withdrawals. Unlike the accumulation phase where you can ride out downturns, taking money out during bear markets locks in losses and reduces the principal available for future growth.</p>
-
-            <div className="bg-red-50 border-l-4 border-red-500 p-6 my-8">
-              <h3 className="text-lg font-semibold mb-3">Example: The Danger of Early Losses</h3>
-              <p className="mb-3">Two retirees with identical portfolios and returns, but different sequences:</p>
-              
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold text-red-800">Retiree A: Bad Early Returns</h4>
-                  <ul className="text-sm space-y-1">
-                    <li>Year 1: -20% (withdraw $40,000)</li>
-                    <li>Year 2: -10% (withdraw $40,000)</li>
-                    <li>Year 3: +15% (withdraw $40,000)</li>
-                    <li>Years 4-30: Average 8% returns</li>
-                  </ul>
-                  <p className="text-red-700 font-medium mt-2">Portfolio depleted by year 24</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-green-800">Retiree B: Good Early Returns</h4>
-                  <ul className="text-sm space-y-1">
-                    <li>Year 1: +15% (withdraw $40,000)</li>
-                    <li>Year 2: +8% (withdraw $40,000)</li>
-                    <li>Year 3: +12% (withdraw $40,000)</li>
-                    <li>Years 4-30: Same sequence as A</li>
-                  </ul>
+            <div>
+              <h4 className="font-semibold text-green-800 mb-2">Retiree B: Good Early Returns</h4>
+              <ul className="text-green-700 text-sm space-y-1">
+                <li>• Year 1: +15% (withdraw $40,000)</li>
+                <li>• Year 2: +8% (withdraw $40,000)</li>
+                <li>• Year 3: +12% (withdraw $40,000)</li>
+                <li>• Years 4-30: Same sequence as A</li>
+              </ul>
                   <p className="text-green-700 font-medium mt-2">Portfolio lasts beyond 30 years</p>
                 </div>
               </div>
@@ -384,8 +381,6 @@ export default function HowToAvoidSequenceOfReturnsRisk() {
                 <p className="text-teal-600 text-sm mt-2">Optimize your investment allocation across different account types</p>
               </Link>
             </div>
-          </div>
-        </div>
 
         <div className="bg-white rounded-lg shadow-sm p-8 mt-8">
           <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
@@ -417,7 +412,31 @@ export default function HowToAvoidSequenceOfReturnsRisk() {
             })
           }}
         />
+
+        <nav className="mt-16 pt-8 border-t border-gray-200">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <Link 
+                href="/how-to/how-to-ladder-bonds-or-gics-for-steady-income" 
+                className="block p-4 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <h3 className="font-semibold text-teal-900">← Ladder Bonds or GICs</h3>
+                <p className="text-sm text-teal-700 mt-1">Build steady income with predictable returns</p>
+              </Link>
+            </div>
+            
+            <div>
+              <Link 
+                href="/how-to/how-to-create-a-retirement-income-withdrawal-plan" 
+                className="block p-4 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <h3 className="font-semibold text-teal-900">Create Withdrawal Plan →</h3>
+                <p className="text-sm text-teal-700 mt-1">Turn savings into retirement income</p>
+              </Link>
+            </div>
+          </div>
+        </nav>
       </article>
-    </div>
+    </main>
   )
 }

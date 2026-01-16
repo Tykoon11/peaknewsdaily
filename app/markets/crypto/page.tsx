@@ -192,7 +192,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
   try {
     const baseUrl = process.env.NODE_ENV === 'production' 
       ? 'https://peaknewsdaily.com' 
-      : 'http://localhost:3001'
+      : 'http://localhost:3000'
     
     const response = await fetch(`${baseUrl}/api/market-analytics`, {
       next: { revalidate: 300 }, // Cache for 5 minutes
@@ -450,41 +450,31 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Premium Crypto Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-orange-900 via-amber-800 to-yellow-900 dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 opacity-20 dark:opacity-30">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-400 to-amber-500 dark:from-blue-400 dark:to-indigo-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute top-1/2 right-0 w-96 h-96 bg-gradient-to-br from-yellow-400 to-orange-500 dark:from-purple-400 dark:to-blue-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-br from-amber-400 to-yellow-500 dark:from-emerald-400 dark:to-teal-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
-        </div>
-        
-        {/* Digital Currency Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f59e0b12_1px,transparent_1px),linear-gradient(to_bottom,#f59e0b12_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-        
-        <div className="relative container py-20">
+      {/* Clean Crypto Hero Section */}
+      <section className="relative overflow-hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <div className="relative container py-16">
           <div className="max-w-5xl mx-auto text-center">
             {/* Live Crypto Status */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-orange-500/20 border border-orange-400/30 text-orange-200 text-sm font-medium mb-8 backdrop-blur-sm">
-              <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse mr-3"></div>
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 text-sm font-medium mb-8">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-3"></div>
               CRYPTO MARKETS • 24/7 TRADING • LIVE DATA
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-orange-100 to-amber-200 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-black mb-6 text-gray-900 dark:text-white leading-tight">
               Digital Asset
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
+              <span className="block text-blue-600 dark:text-blue-400">
                 Trading Hub
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-orange-100/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Professional cryptocurrency analysis, real-time market data, and institutional-grade insights for digital asset traders.
             </p>
             
@@ -496,9 +486,9 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
                 { icon: '📊', text: 'Market Insights' },
                 { icon: '💼', text: 'Portfolio Tracking' }
               ].map((feature, index) => (
-                <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                <div key={index} className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700">
                   <span className="text-lg">{feature.icon}</span>
-                  <span className="text-white font-medium text-sm">{feature.text}</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium text-sm">{feature.text}</span>
                 </div>
               ))}
             </div>
@@ -506,101 +496,22 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
         </div>
       </section>
 
-      {/* Premium Market Overview */}
+      {/* Clean Market Overview */}
       <section className="py-16">
         <div className="container">
-          <div className="relative bg-gradient-to-br from-slate-900 via-gray-900 to-black rounded-3xl p-8 shadow-2xl shadow-slate-900/20 overflow-hidden mb-16">
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.15),transparent_70%)]"></div>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-orange-500/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="relative bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 mb-16">
             
             <div className="relative">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-white mb-2">Global Crypto Market Overview</h2>
-                <p className="text-slate-300">Real-time statistics from the digital asset markets</p>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Global Crypto Market Overview</h2>
+                <p className="text-gray-600 dark:text-gray-300">Real-time statistics from the digital asset markets</p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg">
-                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2L15.09 8.26L22 9L18 13.14L19.09 21L12 17.77L4.91 21L6 13.14L2 9L8.91 8.26L12 2Z"/>
-                        </svg>
-                      </div>
-                      <div className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">
-                        {activeCryptos.toLocaleString()}
-                      </div>
-                    </div>
-                    <div className="text-slate-300 font-medium">Tracked Assets</div>
-                    {liveMarketData && (
-                      <div className="text-xs text-green-400 mt-1 opacity-75">● Live</div>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                        </svg>
-                      </div>
-                      <div className="text-2xl sm:text-3xl font-black text-green-400 whitespace-nowrap">
-                        {liveMarketData?.formatting?.totalMarketCapFormatted || 
-                          (totalMarketCap >= 1000000000000 
-                            ? `$${(totalMarketCap / 1000000000000).toFixed(2)}T` 
-                            : `$${(totalMarketCap / 1000000000).toFixed(0)}B`
-                          )
-                        }
-                      </div>
-                    </div>
-                    <div className="text-slate-300 font-medium">Market Cap</div>
-                    {liveMarketData && (
-                      <div className="text-xs text-green-400 mt-1 opacity-75">● Live</div>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-lg">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                      </div>
-                      <div className="text-2xl sm:text-3xl font-black text-blue-400 whitespace-nowrap">
-                        {positiveChanges.toLocaleString()}
-                      </div>
-                    </div>
-                    <div className="text-slate-300 font-medium">24h Gainers</div>
-                    {liveMarketData && (
-                      <div className="text-xs text-green-400 mt-1 opacity-75">● Live</div>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl shadow-black/10 group hover:scale-105 transition-transform">
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <div className="text-2xl sm:text-3xl font-black text-orange-400 whitespace-nowrap">24/7</div>
-                    </div>
-                    <div className="text-slate-300 font-medium">Always Open</div>
-                  </div>
-                </div>
-              </div>
+              <LiveCryptoOverview 
+                fallbackActiveCryptos={activeCryptos}
+                fallbackTotalMarketCap={totalMarketCap}
+                fallbackGainers={positiveChanges}
+              />
             </div>
           </div>
         </div>
@@ -697,7 +608,7 @@ export default async function CryptoPage(): Promise<React.ReactElement> {
               Live Cryptocurrency Prices
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Real-time market data updated every 5 minutes
+              Real-time market data updated every 10 seconds
             </p>
           </div>
 

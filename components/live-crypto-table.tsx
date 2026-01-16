@@ -15,10 +15,40 @@ export default function LiveCryptoTable() {
   const [loading, setLoading] = useState(true)
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null)
 
-  // All crypto symbols we want to display
+  // All crypto symbols from the API (63 total)
   const cryptoSymbols = [
-    'BTC-USD', 'ETH-USD', 'XRP-USD', 'BNB-USD', 'ADA-USD', 'SOL-USD', 'DOT-USD', 'AVAX-USD', 
-    'MATIC-USD', 'LINK-USD', 'LTC-USD', 'UNI-USD', 'ATOM-USD', 'ALGO-USD', 'DOGE-USD', 'SHIB-USD'
+    // Major cryptocurrencies
+    'BTC-USD', 'ETH-USD', 'BNB-USD', 'XRP-USD', 'ADA-USD', 'SOL-USD', 'DOT-USD', 'AVAX-USD', 
+    'MATIC-USD', 'LINK-USD', 'LTC-USD', 'UNI-USD', 'ATOM-USD', 'ALGO-USD', 'DOGE-USD', 'SHIB-USD',
+    'PEPE-USD', 'BONK-USD', 'FLOKI-USD',
+    
+    // Layer 2 & Scaling
+    'OP-USD', 'ARB-USD', 'LRC-USD', 'IMX-USD',
+    
+    // Enterprise & Utility
+    'ICP-USD', 'NEAR-USD', 'VET-USD', 'FTM-USD', 'HBAR-USD', 'XLM-USD',
+    
+    // DeFi Tokens
+    'AAVE-USD', 'MKR-USD', 'CRV-USD', 'COMP-USD', 'SUSHI-USD', 'YFI-USD', 'BAL-USD', 'SNX-USD', 
+    '1INCH-USD', 'LIDO-USD',
+    
+    // AI & Tech Tokens
+    'FET-USD', 'OCEAN-USD', 'AGIX-USD', 'RNDR-USD', 'GRT-USD',
+    
+    // Gaming & Metaverse
+    'AXS-USD', 'SAND-USD', 'MANA-USD', 'ENJ-USD', 'CHZ-USD',
+    
+    // Privacy Coins
+    'XMR-USD', 'ZEC-USD', 'DASH-USD',
+    
+    // Traditional Chains
+    'XTZ-USD', 'EOS-USD', 'IOTA-USD', 'NEO-USD', 'QTUM-USD',
+    
+    // Stablecoins & Wrapped Assets
+    'USDC-USD', 'USDT-USD', 'DAI-USD', 'WBTC-USD',
+    
+    // New & Trending
+    'APT-USD', 'SUI-USD', 'SEI-USD', 'WLD-USD', 'INJ-USD', 'TIA-USD', 'JTO-USD', 'PYTH-USD'
   ]
 
   useEffect(() => {
@@ -55,7 +85,8 @@ export default function LiveCryptoTable() {
     }
 
     fetchPrices()
-    const interval = setInterval(fetchPrices, 60000)
+    // Update every 30 seconds to avoid rate limiting
+    const interval = setInterval(fetchPrices, 30000)
     return () => clearInterval(interval)
   }, [])
 

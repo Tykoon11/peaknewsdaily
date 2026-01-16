@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { TrendingUp, AlertTriangle, Shield } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -67,6 +68,33 @@ export default function LeveragePage() {
           </section>
         </div>
       </div>
+      
+      {/* Navigation Section */}
+      <nav className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <Link 
+                href="/how-to/how-to-trade-futures-with-proper-margin-management" 
+                className="block p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors"
+              >
+                <h3 className="font-semibold text-orange-900 dark:text-orange-100">← Futures & Margin</h3>
+                <p className="text-sm text-orange-700 dark:text-orange-300 mt-1">Trade futures safely</p>
+              </Link>
+            </div>
+            
+            <div>
+              <Link 
+                href="/how-to/how-to-calculate-risk-reward-on-advanced-trades" 
+                className="block p-4 bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+              >
+                <h3 className="font-semibold text-green-900 dark:text-green-100">Risk/Reward Calculation →</h3>
+                <p className="text-sm text-green-700 dark:text-green-300 mt-1">Advanced trade analysis</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
     </article>
   )
 }

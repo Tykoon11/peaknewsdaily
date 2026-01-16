@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { BarChart3, Eye, Calculator, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -146,6 +147,33 @@ export default function OptionChainPage() {
           </section>
         </div>
       </div>
+      
+      {/* Navigation Section */}
+      <nav className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <Link 
+                href="/how-to/how-to-set-up-a-protective-put-hedging-101" 
+                className="block p-4 bg-red-50 dark:bg-red-900/20 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"
+              >
+                <h3 className="font-semibold text-red-900 dark:text-red-100">← Protective Puts</h3>
+                <p className="text-sm text-red-700 dark:text-red-300 mt-1">Hedging fundamentals</p>
+              </Link>
+            </div>
+            
+            <div>
+              <Link 
+                href="/how-to/how-to-avoid-assignment-risk-on-options" 
+                className="block p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors"
+              >
+                <h3 className="font-semibold text-orange-900 dark:text-orange-100">Avoid Assignment Risk →</h3>
+                <p className="text-sm text-orange-700 dark:text-orange-300 mt-1">Manage options safely</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
     </article>
   )
 }

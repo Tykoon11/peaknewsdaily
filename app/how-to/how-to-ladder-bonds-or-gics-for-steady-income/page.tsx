@@ -37,53 +37,50 @@ export default function HowToLadderBondsGICs() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <nav className="text-sm text-gray-600 mb-2">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
-            <span className="mx-2">/</span>
-            <Link href="/category/how-to" className="hover:text-blue-600">How To</Link>
-            <span className="mx-2">/</span>
-            <span>How to Ladder Bonds or GICs for Steady Income</span>
-          </nav>
-        </div>
-      </div>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Ladder Bonds or GICs</span>
+      </nav>
 
-      <article className="max-w-4xl mx-auto px-6 py-8">
-        <div className="bg-white rounded-lg shadow-sm p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white text-lg font-bold">
-              🏖️
-            </div>
-            <div>
-              <div className="text-sm text-teal-600 font-medium">Retirement & Pensions</div>
-              <h1 className="text-3xl font-bold text-gray-900">How to Ladder Bonds or GICs for Steady Income</h1>
-            </div>
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🏖️
           </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Retirement & Pensions</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to ladder bonds or GICs for steady income</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Learn how to build a bond or GIC ladder for predictable retirement income. Complete guide with examples, timing strategies, and reinvestment tactics.
+        </p>
+      </header>
 
-          <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-600 mb-8">
-              Bond and GIC laddering creates predictable income streams perfect for retirement. This strategy involves purchasing bonds or GICs with staggered maturity dates, providing regular income and principal return while managing interest rate risk.
-            </p>
+      <article className="prose prose-lg max-w-none">
+        <p>Bond and GIC laddering creates predictable income streams perfect for retirement. This strategy involves purchasing bonds or GICs with staggered maturity dates, providing regular income and principal return while managing interest rate risk.</p>
 
-            <h2>What is a Bond/GIC Ladder?</h2>
-            
-            <p>A ladder is a portfolio of bonds or GICs with different maturity dates, typically spaced equally apart (e.g., one maturing each year). As each security matures, you receive your principal back and can reinvest at current rates.</p>
+        <h2>What is a Bond/GIC Ladder?</h2>
+        
+        <p>A ladder is a portfolio of bonds or GICs with different maturity dates, typically spaced equally apart (e.g., one maturing each year). As each security matures, you receive your principal back and can reinvest at current rates.</p>
 
-            <div className="bg-teal-50 border-l-4 border-teal-500 p-6 my-8">
-              <h3 className="text-lg font-semibold mb-3">Example: 5-Year GIC Ladder</h3>
-              <ul className="space-y-2">
-                <li><strong>Year 1:</strong> $10,000 GIC @ 3.5% (matures 2025)</li>
-                <li><strong>Year 2:</strong> $10,000 GIC @ 4.0% (matures 2026)</li>
-                <li><strong>Year 3:</strong> $10,000 GIC @ 3.8% (matures 2027)</li>
-                <li><strong>Year 4:</strong> $10,000 GIC @ 4.2% (matures 2028)</li>
-                <li><strong>Year 5:</strong> $10,000 GIC @ 3.9% (matures 2029)</li>
-              </ul>
-              <p className="mt-3 text-sm text-gray-600">
-                Starting in 2025, you receive $10,000 + interest annually, which you can spend or reinvest in a new 5-year GIC.
-              </p>
-            </div>
+        <div className="bg-teal-50 border border-teal-200 rounded-lg p-6 my-8">
+          <h3 className="font-semibold text-teal-900 mb-4">Example: 5-Year GIC Ladder</h3>
+          <ul className="text-teal-700 text-sm space-y-2">
+            <li>• <strong>Year 1:</strong> $10,000 GIC @ 3.5% (matures 2025)</li>
+            <li>• <strong>Year 2:</strong> $10,000 GIC @ 4.0% (matures 2026)</li>
+            <li>• <strong>Year 3:</strong> $10,000 GIC @ 3.8% (matures 2027)</li>
+            <li>• <strong>Year 4:</strong> $10,000 GIC @ 4.2% (matures 2028)</li>
+            <li>• <strong>Year 5:</strong> $10,000 GIC @ 3.9% (matures 2029)</li>
+          </ul>
+          <p className="mt-3 text-sm text-teal-700">
+            Starting in 2025, you receive $10,000 + interest annually, which you can spend or reinvest in a new 5-year GIC.
+          </p>
+        </div>
 
             <h2>Step 1: Choose Your Ladder Strategy</h2>
 
@@ -292,8 +289,6 @@ export default function HowToLadderBondsGICs() {
                 <p className="text-teal-600 text-sm mt-2">Determine how much you need for financial independence</p>
               </Link>
             </div>
-          </div>
-        </div>
 
         <div className="bg-white rounded-lg shadow-sm p-8 mt-8">
           <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
@@ -325,7 +320,31 @@ export default function HowToLadderBondsGICs() {
             })
           }}
         />
+
+        <nav className="mt-16 pt-8 border-t border-gray-200">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <Link 
+                href="/how-to/how-to-coordinate-cpp-ssa-state-pensions-with-savings" 
+                className="block p-4 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <h3 className="font-semibold text-teal-900">← Coordinate Pensions with Savings</h3>
+                <p className="text-sm text-teal-700 mt-1">Optimize your retirement income strategy</p>
+              </Link>
+            </div>
+            
+            <div>
+              <Link 
+                href="/how-to/how-to-avoid-sequence-of-returns-risk" 
+                className="block p-4 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
+              >
+                <h3 className="font-semibold text-teal-900">Avoid Sequence Risk →</h3>
+                <p className="text-sm text-teal-700 mt-1">Protect against bad market timing</p>
+              </Link>
+            </div>
+          </div>
+        </nav>
       </article>
-    </div>
+    </main>
   )
 }

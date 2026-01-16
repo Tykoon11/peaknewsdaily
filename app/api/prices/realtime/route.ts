@@ -48,17 +48,41 @@ export async function GET(request: NextRequest) {
   }
 }
 
+// Cache for crypto prices to reduce API calls
+let cryptoPriceCache: { data: Record<string, any>, timestamp: number } | null = null
+const CACHE_DURATION = 10 * 1000 // 10 seconds cache (reduced for testing)
+
 async function fetchRealCryptoPrices(): Promise<Record<string, any>> {
   try {
+    // Check cache first
+    const now = Date.now()
+    if (cryptoPriceCache && (now - cryptoPriceCache.timestamp) < CACHE_DURATION) {
+      console.log('🎯 Using cached crypto prices')
+      return cryptoPriceCache.data
+    }
+
     // Get comprehensive crypto data from CoinGecko - only active coins with real volume
     const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,ripple,cardano,solana,polkadot,avalanche-2,polygon,chainlink,litecoin,uniswap,cosmos,algorand,dogecoin,shiba-inu,pepe,bonk,floki,optimism,arbitrum,loopring,immutable-x,internet-computer,near,vechain,fantom,hedera-hashgraph,stellar,aave,maker,curve-dao-token,compound-coin,sushiswap,yearn-finance,balancer,synthetix-network-token,1inch,lido-dao,fetch-ai,ocean-protocol,singularitynet,render-token,the-graph,axie-infinity,the-sandbox,decentraland,enjincoin,chiliz,monero,zcash,dash,tezos,eos,iota,neo,qtum,usd-coin,tether,dai,wrapped-bitcoin,aptos,sui,sei-network,worldcoin,injective-protocol&vs_currencies=usd&include_24hr_change=true', {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0'
-      }
+      },
+      // Add timeout to prevent hanging
+      signal: AbortSignal.timeout(10000)
     })
     
-    if (!response.ok) throw new Error(`CoinGecko failed: ${response.status}`)
+    if (!response.ok) {
+      // Handle rate limiting gracefully
+      if (response.status === 429) {
+        console.warn('⚠️ CoinGecko rate limited, using cached data if available')
+        if (cryptoPriceCache) {
+          return cryptoPriceCache.data
+        }
+        // Return empty object instead of throwing
+        return {}
+      }
+      throw new Error(`CoinGecko failed: ${response.status}`)
+    }
     
     const data = await response.json()
     
@@ -165,11 +189,22 @@ async function fetchRealCryptoPrices(): Promise<Record<string, any>> {
       }
     }
     
+    // Cache successful response
+    cryptoPriceCache = {
+      data: prices,
+      timestamp: now
+    }
+    
     console.log(`🚀 Crypto: ${Object.keys(prices).length} real prices from CoinGecko`)
     return prices
     
   } catch (error) {
     console.error('❌ CoinGecko crypto fetch failed:', error)
+    // Return cached data if available during errors
+    if (cryptoPriceCache) {
+      console.log('📦 Using cached crypto data due to API error')
+      return cryptoPriceCache.data
+    }
     return {}
   }
 }

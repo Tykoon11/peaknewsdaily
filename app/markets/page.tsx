@@ -206,34 +206,28 @@ export default async function MarketsPage() {
 
           {/* Live Market Overview */}
           <section className="mb-8 xs:mb-12 sm:mb-16 lg:mb-20">
-            <div className="relative bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 shadow-2xl shadow-slate-900/20 overflow-hidden mx-2 xs:mx-0">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]"></div>
-              <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-bl from-blue-500/20 to-transparent rounded-full blur-3xl"></div>
-              
-              <div className="relative">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 sm:mb-8">
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="p-2 sm:p-3 bg-gradient-to-r from-emerald-500 to-blue-600 rounded-xl sm:rounded-2xl shadow-lg">
-                      <svg className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white">Live Market Overview</h2>
-                      <p className="text-slate-300 text-sm sm:text-base">Real-time data from global financial markets</p>
-                    </div>
+            <div className="relative bg-gray-50 dark:bg-gray-800 rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 border border-gray-200 dark:border-gray-700 shadow-lg mx-2 xs:mx-0">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 sm:mb-8">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900 rounded-xl sm:rounded-2xl">
+                    <svg className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                    </svg>
                   </div>
-                  <div className="sm:ml-auto">
-                    <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-emerald-500/20 rounded-full border border-emerald-400/30">
-                      <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                      <span className="text-emerald-300 text-xs sm:text-sm font-medium">LIVE</span>
-                    </div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Live Market Overview</h2>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Real-time data from global financial markets</p>
                   </div>
                 </div>
-                
-                <MarketOverview />
+                <div className="sm:ml-auto">
+                  <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-200 dark:border-green-800">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-green-700 dark:text-green-300 text-xs sm:text-sm font-medium">LIVE</span>
+                  </div>
+                </div>
               </div>
+              
+              <MarketOverview />
             </div>
           </section>
 

@@ -8,32 +8,34 @@ export const metadata: Metadata = {
 
 export default function StartProfitableSideHustleWithZero() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-        <a href="/category/how-to" className="hover:text-pink-600">How-To Guides</a>
-        <span>/</span>
-        <span className="text-gray-900">Start Profitable Side Hustle With $0</span>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Start Profitable Side Hustle With $0</span>
       </nav>
 
-      <div className="mb-8">
-        <div className="flex items-center mb-4">
-          <div className="w-8 h-8 bg-pink-600 rounded-lg flex items-center justify-center text-white mr-3">
-            💰
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center text-white text-xl">
+            💼
           </div>
-          <span className="text-pink-600 font-medium">Side Hustles & Income</span>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Side Hustles & Income</p>
+            <h1 className="text-4xl font-bold text-gray-900">Start a profitable side hustle with $0</h1>
+          </div>
         </div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Start a Profitable Side Hustle With $0 (Step-By-Step)
-        </h1>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-gray-600 leading-relaxed">
           No budget? Use free tools to validate an idea, land your first clients, and make your first $1,000 without upfront costs. Templates and scripts included.
         </p>
-      </div>
+      </header>
 
       <article className="prose prose-lg max-w-none">
-        <div className="bg-pink-50 border-l-4 border-pink-600 p-6 mb-8">
-          <h3 className="text-lg font-semibold text-pink-800 mb-2">🚀 The $0 Launch Blueprint</h3>
-          <p className="text-pink-700">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 my-8">
+          <h3 className="font-semibold text-amber-900 mb-4">🚀 The $0 Launch Blueprint</h3>
+          <p className="text-amber-700 text-sm">
             Pick a skills-based offer, define a pain-killing promise, use only free tools, pre-sell before building, do warm outreach daily, deliver with templates, and ask for referrals. Start earning within 7-14 days with consistent action.
           </p>
         </div>
@@ -106,11 +108,11 @@ export default function StartProfitableSideHustleWithZero() {
 
         <h3>Promise Formula</h3>
 
-        <div className="bg-pink-50 border-l-4 border-pink-500 p-6 my-8">
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 my-8">
           <h3 className="font-semibold mb-2">💡 Value Proposition Template</h3>
           <div className="mt-2 bg-white p-4 rounded border text-lg">
             <p className="text-center font-medium">
-              "I help <span className="text-pink-600">[niche]</span> get <span className="text-pink-600">[result]</span> in <span className="text-pink-600">[timeframe]</span> without <span className="text-pink-600">[friction]</span>"
+              "I help <span className="text-amber-600">[niche]</span> get <span className="text-amber-600">[result]</span> in <span className="text-amber-600">[timeframe]</span> without <span className="text-amber-600">[friction]</span>"
             </p>
           </div>
           <div className="mt-4 space-y-2 text-sm">
@@ -251,7 +253,7 @@ export default function StartProfitableSideHustleWithZero() {
 
         <h3>Daily Outreach Plan</h3>
 
-        <div className="bg-pink-50 border-l-4 border-pink-500 p-6 my-8">
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 my-8">
           <h3 className="font-semibold mb-2">📊 Daily Activity Goals</h3>
           <ul className="mt-2 space-y-1">
             <li>☐ 10 personalized messages (LinkedIn, Instagram, email)</li>
@@ -376,24 +378,24 @@ export default function StartProfitableSideHustleWithZero() {
         <h2>Related Guides</h2>
         <div className="grid md:grid-cols-2 gap-4 mt-8">
           <Link href="/how-to/how-to-price-freelance-services-hourly-vs-value-based" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Price Freelance Services</h3>
-            <p className="text-pink-600 text-sm mt-2">Move beyond pilot pricing with proper valuation</p>
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Price Freelance Services</h3>
+            <p className="text-amber-600 text-sm mt-2">Move beyond pilot pricing with proper valuation</p>
           </Link>
           <Link href="/how-to/how-to-find-clients-without-paid-ads" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Find Clients Without Ads</h3>
-            <p className="text-pink-600 text-sm mt-2">Scale your outreach and acquisition strategies</p>
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Find Clients Without Ads</h3>
+            <p className="text-amber-600 text-sm mt-2">Scale your outreach and acquisition strategies</p>
           </Link>
           <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Send Invoices That Get Paid</h3>
-            <p className="text-pink-600 text-sm mt-2">Professional invoicing for faster payments</p>
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Send Invoices That Get Paid</h3>
+            <p className="text-amber-600 text-sm mt-2">Professional invoicing for faster payments</p>
           </Link>
           <Link href="/how-to/how-to-track-income-and-expenses-for-side-gig" 
-                className="block p-4 bg-pink-50 rounded-lg border border-pink-200 hover:border-pink-300 transition-colors">
-            <h3 className="font-semibold text-pink-800">Track Income and Expenses</h3>
-            <p className="text-pink-600 text-sm mt-2">Simple bookkeeping for side hustlers</p>
+                className="block p-4 bg-amber-50 rounded-lg border border-amber-200 hover:border-amber-300 transition-colors">
+            <h3 className="font-semibold text-amber-800">Track Income and Expenses</h3>
+            <p className="text-amber-600 text-sm mt-2">Simple bookkeeping for side hustlers</p>
           </Link>
         </div>
       </article>
@@ -467,6 +469,6 @@ export default function StartProfitableSideHustleWithZero() {
           }}
         />
       </section>
-    </div>
+    </main>
   )
 }

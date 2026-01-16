@@ -80,6 +80,33 @@ export default function SinkingFundsPage() {
           </div>
         </div>
       </article>
+
+      {/* Navigation */}
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Previous</p>
+            <Link 
+              href="/how-to/how-to-set-smart-financial-goals-templates-examples" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">Set SMART Financial Goals</h3>
+              <p className="text-sm text-blue-700 mt-1">Templates & examples included</p>
+            </Link>
+          </div>
+          
+          <div>
+            <p className="text-sm text-gray-600 mb-2">Up Next</p>
+            <Link 
+              href="/how-to/how-to-negotiate-bills-and-subscriptions-scripts" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">Negotiate Bills & Subscriptions</h3>
+              <p className="text-sm text-green-700 mt-1">Pro scripts to lower your costs</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

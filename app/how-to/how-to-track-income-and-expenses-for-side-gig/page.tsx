@@ -8,28 +8,36 @@ export const metadata: Metadata = {
 
 export default function TrackIncomeExpensesSideGig() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Track Income and Expenses for Side Gig</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center text-white text-xl">
+            💼
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Side Hustles & Income</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Track Income and Expenses for Your Side Gig</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Build a bulletproof expense tracking system that maximizes tax deductions, simplifies bookkeeping, and gives you clear insights into your side hustle profitability.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Track Income and Expenses for Your Side Gig
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Build a bulletproof expense tracking system that maximizes tax deductions, simplifies 
-            bookkeeping, and gives you clear insights into your side hustle profitability.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
-          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 mb-8">
-            <h2 className="text-lg font-semibold text-pink-800 mb-2">Tax Savings Alert</h2>
-            <p className="text-pink-700 mb-0">
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6 mb-8">
+            <h2 className="text-lg font-semibold text-amber-800 mb-2">Tax Savings Alert</h2>
+            <p className="text-amber-700 mb-0">
               Proper expense tracking can save you 25-40% on taxes. If you earn $20,000 from your 
               side hustle and track $6,000 in legitimate expenses, you could save $1,500-2,400 
               in taxes annually. The system pays for itself immediately.
@@ -348,16 +356,16 @@ export default function TrackIncomeExpensesSideGig() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Side Hustle Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/send-invoices-that-get-paid-fast" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Send Invoices That Get Paid Fast
             </Link>
-            <Link href="/how-to/how-to-save-for-taxes-as-a-freelancer" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-save-for-taxes-as-a-freelancer" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Save for Taxes as a Freelancer
             </Link>
-            <Link href="/how-to/how-to-open-separate-bank-account-for-hustle" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-open-separate-bank-account-for-hustle" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Open a Separate Bank Account for Your Hustle
             </Link>
-            <Link href="/how-to/how-to-scale-side-hustle-into-business" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-scale-side-hustle-into-business" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Scale Your Side Hustle Into a Business
             </Link>
           </div>
@@ -466,6 +474,6 @@ export default function TrackIncomeExpensesSideGig() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }

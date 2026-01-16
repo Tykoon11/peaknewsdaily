@@ -40,33 +40,38 @@ export default function HowToProtectYourselfOnPublicWifiPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <main className="container py-8 max-w-4xl mx-auto">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <nav className="mb-8">
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <Link href="/" className="hover:text-pink-600">Home</Link>
-          <span>→</span>
-          <Link href="/category/how-to" className="hover:text-pink-600">How-To Guides</Link>
-          <span>→</span>
-          <span className="text-pink-600">Public Wi-Fi Protection</span>
-        </div>
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Public Wi-Fi Protection</span>
       </nav>
 
-      <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Protect Yourself on Public Wi-Fi: Complete Security Guide
-          </h1>
-          <p className="text-xl text-gray-700 leading-relaxed">
-            Master public Wi-Fi security to protect your personal and financial data. Learn VPN setup, safe browsing practices, and threat prevention strategies.
-          </p>
-        </header>
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+            🔒
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Fraud, Security & Recovery</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Protect Yourself on Public Wi-Fi</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Master public Wi-Fi security to protect your personal and financial data. Learn VPN setup, safe browsing practices, and threat prevention strategies.
+        </p>
+      </header>
 
-        <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-8">
+      <article>
+
+        <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
           <h2 className="text-xl font-semibold text-red-800 mb-2">🚨 Critical Security Warning</h2>
           <p className="text-red-700">
             Public Wi-Fi networks are hunting grounds for cybercriminals. Never access sensitive information without proper protection. Your financial security depends on following these guidelines.
@@ -433,6 +438,6 @@ export default function HowToProtectYourselfOnPublicWifiPage() {
           </Link>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }

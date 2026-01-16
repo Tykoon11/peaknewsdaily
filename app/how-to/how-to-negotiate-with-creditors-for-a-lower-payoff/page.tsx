@@ -79,6 +79,30 @@ export default function NegotiateWithCreditorsPage() {
           <p className="text-purple-700">Download our negotiation script pack + hardship letter template.</p>
         </div>
       </article>
+
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <Link 
+              href="/how-to/how-to-settle-debt-without-wrecking-your-credit" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">← Settle Debt Without Wrecking Credit</h3>
+              <p className="text-sm text-blue-700 mt-1">When negotiation becomes settlement</p>
+            </Link>
+          </div>
+          
+          <div>
+            <Link 
+              href="/category/how-to" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">More How-To Guides →</h3>
+              <p className="text-sm text-green-700 mt-1">Explore all financial topics</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

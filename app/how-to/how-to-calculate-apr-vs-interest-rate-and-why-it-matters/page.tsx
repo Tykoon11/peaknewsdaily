@@ -77,6 +77,30 @@ export default function CalculateAPRVsInterestRatePage() {
           <p className="text-purple-700">Use our APR vs. Rate calculator to see your real cost in seconds.</p>
         </div>
       </article>
+
+      <nav className="mt-16 pt-8 border-t border-gray-200">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <Link 
+              href="/how-to/how-to-get-a-personal-loan-at-the-best-rate" 
+              className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <h3 className="font-semibold text-blue-900">← Personal Loan Best Rates</h3>
+              <p className="text-sm text-blue-700 mt-1">Apply this knowledge to get the best rate</p>
+            </Link>
+          </div>
+          
+          <div>
+            <Link 
+              href="/category/how-to" 
+              className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+            >
+              <h3 className="font-semibold text-green-900">More How-To Guides →</h3>
+              <p className="text-sm text-green-700 mt-1">Explore all financial topics</p>
+            </Link>
+          </div>
+        </div>
+      </nav>
     </main>
   )
 }

@@ -8,28 +8,36 @@ export const metadata: Metadata = {
 
 export default function BuildSimpleWebsiteConverts() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="mb-8">
-        <Link href="/category/how-to" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
-          ← Back to How-To Guides
-        </Link>
+    <main className="container py-8 max-w-4xl mx-auto">
+      <nav className="mb-8 text-sm">
+        <Link href="/" className="text-blue-600 hover:text-blue-800">Home</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <Link href="/category/how-to" className="text-blue-600 hover:text-blue-800">How-To Guides</Link>
+        <span className="mx-2 text-gray-500">→</span>
+        <span className="text-gray-700">Build a Simple Website That Converts</span>
       </nav>
 
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-amber-600 rounded-xl flex items-center justify-center text-white text-xl">
+            💼
+          </div>
+          <div>
+            <p className="text-sm text-blue-600 font-medium">Side Hustles & Income</p>
+            <h1 className="text-4xl font-bold text-gray-900">How to Build a Simple Website That Converts</h1>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 leading-relaxed">
+          Create a professional website that establishes credibility, showcases your expertise, and converts visitors into paying clients without technical complexity or huge budgets.
+        </p>
+      </header>
+
       <article>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            How to Build a Simple Website That Converts
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Create a professional website that establishes credibility, showcases your expertise, 
-            and converts visitors into paying clients without technical complexity or huge budgets.
-          </p>
-        </header>
 
         <div className="prose prose-lg max-w-none">
-          <div className="bg-pink-50 border-l-4 border-pink-500 p-6 mb-8">
-            <h2 className="text-lg font-semibold text-pink-800 mb-2">Professional Impact</h2>
-            <p className="text-pink-700 mb-0">
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-6 mb-8">
+            <h2 className="text-lg font-semibold text-amber-800 mb-2">Professional Impact</h2>
+            <p className="text-amber-700 mb-0">
               81% of consumers research businesses online before making purchasing decisions. A 
               professional website increases perceived credibility by 75% and can generate 24/7 
               leads while you sleep. Your website is your most powerful sales tool.
@@ -463,16 +471,16 @@ export default function BuildSimpleWebsiteConverts() {
         <div className="mt-12 p-6 bg-gray-50 rounded-lg">
           <h3 className="text-lg font-semibold mb-4">Related Side Hustle Guides</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/how-to/how-to-find-clients-without-paid-ads" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-find-clients-without-paid-ads" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Find Clients Without Paid Ads
             </Link>
-            <Link href="/how-to/how-to-scale-a-side-hustle-into-a-business" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-scale-a-side-hustle-into-a-business" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Scale a Side Hustle Into a Business
             </Link>
-            <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-send-invoices-that-get-paid-fast" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Send Invoices That Get Paid Fast
             </Link>
-            <Link href="/how-to/how-to-start-a-profitable-side-hustle-with-0" className="text-pink-600 hover:text-pink-700 hover:underline">
+            <Link href="/how-to/how-to-start-a-profitable-side-hustle-with-0" className="text-amber-600 hover:text-amber-700 hover:underline">
               → How to Start a Profitable Side Hustle With $0
             </Link>
           </div>
@@ -584,6 +592,6 @@ export default function BuildSimpleWebsiteConverts() {
           />
         </section>
       </article>
-    </div>
+    </main>
   )
 }
