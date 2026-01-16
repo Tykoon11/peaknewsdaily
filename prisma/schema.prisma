@@ -134,6 +134,7 @@ model Post {
   slug         String        @unique
   title        String
   description  String?
+  content      String?       @db.Text
   type         PostType
   country      String?
   author       User?         @relation(fields: [authorId], references: [id])

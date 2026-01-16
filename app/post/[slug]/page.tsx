@@ -49,7 +49,10 @@ export default async function PostPage({ params }: Props) {
             <img className="w-full rounded" alt={post.title} src={primary?.sourceUrl || (primary?.publicId ? `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/${primary?.publicId}.jpg` : '')} />
           ) : null}
         </div>
-        {post.description && <p>{post.description}</p>}
+        {post.description && <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">{post.description}</p>}
+        {post.content && (
+          <div className="prose-content" dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br />') }} />
+        )}
         <ShareButtons slug={post.slug} title={post.title} />
         <ViewCounter postId={post.id} />
         <div className="mt-8">

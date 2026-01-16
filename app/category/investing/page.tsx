@@ -396,7 +396,7 @@ export default async function InvestingPage() {
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">📚 Latest Investing Articles</h2>
             <Link 
-              href="/category/investing"
+              href="/news?category=investing"
               className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm flex items-center gap-1 transition-colors"
             >
               View All Articles →
