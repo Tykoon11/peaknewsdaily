@@ -29,39 +29,20 @@ interface Post {
 
 export default async function HomePage() {
   let trendingTopics: Topic[] = []
-  let featuredPosts: Post[] = []
 
   if (process.env.DATABASE_URL) {
     try {
-      // Get topics and posts with caching to reduce DB hits
-      const results = await Promise.all([
-        // Cache topics for 15 minutes (they don't change often)
-        cachedQuery(
-          'homepage-topics',
-          () => prisma.topic.findMany({
-            include: {
-              _count: { select: { NewsItem: true } }
-            },
-            orderBy: { NewsItem: { _count: 'desc' } }
-          }),
-          900 // 15 minutes
-        ),
-        // Cache featured posts for 5 minutes
-        cachedQuery(
-          'homepage-featured-posts',
-          () => prisma.post.findMany({
-            where: { status: 'published' },
-            orderBy: { createdAt: 'desc' },
-            take: 3,
-            select: { id: true, slug: true, title: true, description: true, createdAt: true }
-          }),
-          300 // 5 minutes
-        )
-      ])
-      
-      trendingTopics = results[0]
-      featuredPosts = results[1]
-      
+      // Get trending topics with caching to reduce DB hits
+      trendingTopics = await cachedQuery(
+        'homepage-topics',
+        () => prisma.topic.findMany({
+          include: {
+            _count: { select: { NewsItem: true } }
+          },
+          orderBy: { NewsItem: { _count: 'desc' } }
+        }),
+        900 // 15 minutes
+      )
     } catch (error) {
       console.warn('Failed to fetch homepage data:', error)
     }
