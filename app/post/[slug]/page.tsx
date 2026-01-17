@@ -1,6 +1,5 @@
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
-import Giscus from '@/components/giscus'
 import ShareButtons from '@/components/share-buttons'
 import AgeGate from '@/components/age-gate'
 import ViewCounter from '@/components/view-counter'
@@ -55,9 +54,6 @@ export default async function PostPage({ params }: Props) {
         )}
         <ShareButtons slug={post.slug} title={post.title} />
         <ViewCounter postId={post.id} />
-        <div className="mt-8">
-          <Giscus />
-        </div>
       </article>
     </main>
   )
