@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import ShareButtons from '@/components/share-buttons'
 import AgeGate from '@/components/age-gate'
 import ViewCounter from '@/components/view-counter'
+import TradingHubLayout from '@/components/trading-hub-layout'
+import InvestingGuideLayout from '@/components/investing-guide-layout'
 import { Metadata } from 'next'
 
 type Props = { params: { slug: string } }
@@ -29,6 +31,52 @@ export default async function PostPage({ params }: Props) {
   if (!post || post.status !== 'published') notFound()
 
   const primary = post.media[0]
+
+  // Check if this is the trading hub post
+  if (post.slug === 'welcome-to-peaknewsdaily-trading') {
+    return (
+      <TradingHubLayout 
+        title={post.title}
+        description={post.description || "Discover professional trading strategies, investment insights, and crypto education."}
+        content={post.content || ""}
+      />
+    )
+  }
+
+
+  // Check if this is an investing guide that should use the special layout
+  const investingGuides = [
+    '2025-portfolio-diversification-guide-modern-asset-allocation-strategies',
+    'etf-vs-mutual-funds-2025-complete-comparison-smart-investors',
+    'sp-500-index-investing-complete-2025-strategy-guide',
+    'retirement-planning-2025-401k-ira-investment-strategies',
+    'real-estate-investment-trusts-reits-complete-2025-guide',
+    'dividend-investing-strategy-2025-high-yield-stocks-income-portfolio',
+    'value-investing-2025-warren-buffett-strategy-modern-markets',
+    'esg-investing-guide-2025-sustainable-socially-responsible-investing'
+  ];
+
+  if (investingGuides.includes(post.slug)) {
+    const categoryMapping: { [key: string]: string[] } = {
+      '2025-portfolio-diversification-guide-modern-asset-allocation-strategies': ['Modern Diversification', 'Asset Allocation', 'Risk Management', '2025 Strategies'],
+      'etf-vs-mutual-funds-2025-complete-comparison-smart-investors': ['ETF Analysis', 'Investment Comparison', 'Cost Analysis', 'Smart Investing'],
+      'sp-500-index-investing-complete-2025-strategy-guide': ['Index Investing', 'S&P 500', 'Long-term Growth', 'Market Strategy'],
+      'retirement-planning-2025-401k-ira-investment-strategies': ['Retirement Planning', '401k Optimization', 'IRA Strategies', 'Tax Advantages'],
+      'real-estate-investment-trusts-reits-complete-2025-guide': ['REITs Investing', 'Real Estate', 'Income Generation', 'Portfolio Diversification'],
+      'dividend-investing-strategy-2025-high-yield-stocks-income-portfolio': ['Dividend Investing', 'Income Stocks', 'High Yield', 'Portfolio Income'],
+      'value-investing-2025-warren-buffett-strategy-modern-markets': ['Value Investing', 'Warren Buffett', 'Stock Analysis', 'Long-term Investing'],
+      'esg-investing-guide-2025-sustainable-socially-responsible-investing': ['ESG Investing', 'Sustainable Finance', 'Responsible Investing', 'Impact Investing']
+    };
+
+    return (
+      <InvestingGuideLayout 
+        title={post.title}
+        description={post.description || "Master modern investment strategies with professional guidance and comprehensive analysis."}
+        content={post.content || ""}
+        categories={categoryMapping[post.slug] || ['Investment Strategy', 'Financial Education', 'Portfolio Management', 'Wealth Building']}
+      />
+    )
+  }
 
   return (
     <main className="container py-6 bg-white dark:bg-gray-900 min-h-screen">
