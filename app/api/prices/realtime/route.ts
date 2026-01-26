@@ -6,8 +6,16 @@ export const runtime = 'nodejs'
 
 export async function GET(request: NextRequest) {
   try {
-    const url = new URL(request.url || 'http://localhost:3000/api/prices/realtime')
-    const { searchParams } = url
+    // Safely handle URL parsing during build
+    let searchParams: URLSearchParams
+    try {
+      const url = new URL(request.url)
+      searchParams = url.searchParams
+    } catch (e) {
+      // Fallback during build when request.url might not be available
+      searchParams = new URLSearchParams()
+    }
+    
     const symbolsParam = searchParams.get('symbols')
     
     if (!symbolsParam) {
