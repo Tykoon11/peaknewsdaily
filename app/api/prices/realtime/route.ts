@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
+    const url = new URL(request.url || 'http://localhost:3000/api/prices/realtime')
+    const { searchParams } = url
     const symbolsParam = searchParams.get('symbols')
     
     if (!symbolsParam) {

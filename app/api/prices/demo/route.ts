@@ -5,6 +5,10 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 // Demo price data for testing
 const DEMO_PRICES = {
   // Stocks
@@ -44,7 +48,8 @@ function simulatePriceMovement(basePrice: number, baseChangePct: number): { pric
  * Returns demo price data for testing
  */
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url)
+  const url = new URL(request.url || 'http://localhost:3000/api/prices/demo')
+  const { searchParams } = url
   const symbolsParam = searchParams.get('symbols') || ''
   const requestedSymbols = symbolsParam.split(',').filter(s => s.trim())
   

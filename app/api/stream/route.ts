@@ -20,7 +20,8 @@ import { prisma } from '@/lib/prisma'
  * - includeVolScore: include volatility scores (default: true for crypto)
  */
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url)
+  const url = new URL(request.url || 'http://localhost:3000/api/stream')
+  const { searchParams } = url
   const symsParam = searchParams.get('syms') || ''
   const requestedSymbols = symsParam.split(',').filter(s => s.trim())
   
