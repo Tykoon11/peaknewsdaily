@@ -100,7 +100,7 @@ export default async function Admin({ searchParams }: { searchParams?: { q?: str
                         alt={s.post?.title || 'thumbnail'}
                         className="w-full xs:w-20 lg:w-24 h-32 xs:h-15 lg:h-18 object-cover rounded-lg"
                         src={
-                          (s.post.media[0] as any).sourceUrl ||
+                          s.post.media[0].sourceUrl ||
                           (process.env.CLOUDINARY_CLOUD_NAME && s.post.media[0].publicId
                             ? `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/${s.post.media[0].kind === 'image' ? 'image' : 'video'}/upload/${s.post.media[0].publicId}${s.post.media[0].kind === 'image' ? '' : '.jpg'}`
                             : 'https://picsum.photos/seed/queued/320/220')

@@ -1,7 +1,6 @@
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
-import AdminMediaThumb from '@/components/admin-media-thumb'
 import AdminMediaManager from '@/components/admin-media-manager'
 
 export const metadata = { title: 'Edit Post' }
@@ -11,7 +10,7 @@ async function updatePostAction(formData: FormData) {
   const id = String(formData.get('id') || '')
   const title = String(formData.get('title') || '')
   const description = String(formData.get('description') || '')
-  const type = String(formData.get('type') || 'Other') as any
+  const type = String(formData.get('type') || 'Other') as string
   const categoryId = String(formData.get('categoryId') || '') || null
   const tagsRaw = String(formData.get('tags') || '')
   const status = String(formData.get('status') || 'draft')
@@ -39,7 +38,7 @@ async function updatePostAction(formData: FormData) {
       publishedAt: status === 'published' ? new Date() : null,
       media: {
         deleteMany: {},
-        create: mediaItems.map((m) => ({ kind: m.kind as any, provider: 'cloudinary', publicId: m.publicId, width: m.width, height: m.height, duration: m.duration }))
+        create: mediaItems.map((m) => ({ kind: m.kind, provider: 'cloudinary', publicId: m.publicId, width: m.width, height: m.height, duration: m.duration }))
       },
       tags: {
         deleteMany: {},
@@ -120,7 +119,7 @@ export default async function EditPostPage({ params }: { params: { id: string } 
         </div>
         <div>
           <div className="text-sm font-medium mb-2">Media</div>
-          <AdminMediaManager initial={post.media.map((m) => ({ kind: m.kind as any, provider: 'cloudinary', publicId: m.publicId || '', width: m.width || undefined, height: m.height || undefined, duration: m.duration || undefined }))} />
+          <AdminMediaManager initial={post.media.map((m) => ({ kind: m.kind, provider: 'cloudinary', publicId: m.publicId || '', width: m.width || undefined, height: m.height || undefined, duration: m.duration || undefined }))} />
         </div>
         <div className="pt-2">
           <button className="px-4 py-2 rounded bg-black text-white">Save Changes</button>
