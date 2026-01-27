@@ -16,7 +16,7 @@ export async function updateArticleStatus(slug: string, status: 'published' | 'd
 
   try {
     const articlesPath = path.join(process.cwd(), 'app/education/_data/articles.ts')
-    let content = fs.readFileSync(articlesPath, 'utf8')
+    const content = fs.readFileSync(articlesPath, 'utf8')
     
     // Find the article line and update its status
     const lines = content.split('\n')

@@ -1,7 +1,6 @@
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import AdminConfirmButton from '@/components/admin-confirm-button'
 import AdminCategoriesList from '@/components/admin-categories-list'
 import { redirect } from 'next/navigation'
 

@@ -19,13 +19,6 @@ interface Topic {
   }
 }
 
-interface Post {
-  id: string
-  slug: string
-  title: string
-  description?: string | null
-  createdAt: Date
-}
 
 export default async function HomePage() {
   let trendingTopics: Topic[] = []
@@ -137,7 +130,7 @@ export default async function HomePage() {
             
             {/* Featured Education Categories */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              {PILLARS.slice(0, 4).map((pillar, index) => (
+              {PILLARS.slice(0, 4).map((pillar) => (
                 <Link
                   key={pillar.id}
                   href={pillar.slug}
@@ -182,7 +175,7 @@ export default async function HomePage() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {trendingTopics.map((topic, index) => (
+              {trendingTopics.map((topic) => (
                 <Link
                   key={topic.id}
                   href={`/news/topic/${topic.slug}`}
