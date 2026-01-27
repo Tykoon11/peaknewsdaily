@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import AdminMediaManager from '@/components/admin-media-manager'
+import { PostType } from '@prisma/client'
 
 export const metadata = { title: 'Edit Post' }
 
@@ -10,7 +11,10 @@ async function updatePostAction(formData: FormData) {
   const id = String(formData.get('id') || '')
   const title = String(formData.get('title') || '')
   const description = String(formData.get('description') || '')
-  const type = String(formData.get('type') || 'Other') as string
+  const typeString = String(formData.get('type') || 'Other')
+  const type = ['Music', 'Promotional', 'Funny', 'Other'].includes(typeString) ? 
+    typeString as PostType : 
+    PostType.Other
   const categoryId = String(formData.get('categoryId') || '') || null
   const tagsRaw = String(formData.get('tags') || '')
   const status = String(formData.get('status') || 'draft')
