@@ -30,7 +30,20 @@ const MAJOR_CRYPTOS = [
 ]
 
 // Real-time crypto price fetching using multiple free APIs with fallbacks
-async function fetchRealCryptoPrice(symbol: string): Promise<{ price: number; changePct: number } | null> {
+interface CryptoPriceData {
+  price: number;
+  previousClose: number;
+  change: number;
+  changePercent: number;
+  volume: number;
+  marketCap: number;
+  dayHigh: number;
+  dayLow: number;
+  high52Week: number;
+  low52Week: number;
+}
+
+async function fetchRealCryptoPrice(symbol: string): Promise<CryptoPriceData | null> {
   const cryptoSymbol = symbol.replace('-USD', '')
   
   // Try CoinCap API first (no rate limits for basic data)
@@ -371,24 +384,28 @@ export async function POST(request: NextRequest) {
         // Fetch REAL crypto price data from CoinGecko
         const priceData = await fetchRealCryptoPrice(cryptoInfo.symbol)
         
-        // Create quote with real data
-        await prisma.quote.create({
-          data: {
-            assetId: asset.id,
-            price: priceData.price,
-            previousClose: priceData.previousClose,
-            change: priceData.change,
-            changePercent: priceData.changePercent,
-            volume: priceData.volume ? BigInt(Math.floor(priceData.volume)) : null,
-            marketCap: priceData.marketCap ? BigInt(Math.floor(priceData.marketCap)) : null,
-            dayHigh: priceData.dayHigh,
-            dayLow: priceData.dayLow,
-            high52Week: priceData.high52Week,
-            low52Week: priceData.low52Week,
-            timestamp: new Date()
-          }
-        })
-        console.log(`✅ Real crypto data for ${cryptoInfo.symbol}: $${priceData.price}`)
+        if (priceData) {
+          // Create quote with real data
+          await prisma.quote.create({
+            data: {
+              assetId: asset.id,
+              price: priceData.price,
+              previousClose: priceData.previousClose,
+              change: priceData.change,
+              changePercent: priceData.changePercent,
+              volume: priceData.volume ? BigInt(Math.floor(priceData.volume)) : null,
+              marketCap: priceData.marketCap ? BigInt(Math.floor(priceData.marketCap)) : null,
+              dayHigh: priceData.dayHigh,
+              dayLow: priceData.dayLow,
+              high52Week: priceData.high52Week,
+              low52Week: priceData.low52Week,
+              timestamp: new Date()
+            }
+          })
+          console.log(`✅ Real crypto data for ${cryptoInfo.symbol}: $${priceData.price}`)
+        } else {
+          console.log(`⚠️ No price data available for ${cryptoInfo.symbol}, skipping...`)
+        }
         cryptosProcessed++
       } catch (error) {
         console.error(`❌ Error processing crypto ${cryptoInfo.symbol}:`, error)
