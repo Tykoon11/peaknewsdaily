@@ -95,7 +95,7 @@ export default async function Admin({ searchParams }: { searchParams?: { q?: str
                   {/* Enhanced Thumbnail */}
                   {s.post?.media?.[0] ? (
                     <div className="relative flex-shrink-0 xs:order-1">
-                      {/* eslint-disable-next-line @next/next/next/no-img-element */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         alt={s.post?.title || 'thumbnail'}
                         className="w-full xs:w-20 lg:w-24 h-32 xs:h-15 lg:h-18 object-cover rounded-lg"
