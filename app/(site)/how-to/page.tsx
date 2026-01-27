@@ -503,10 +503,10 @@ export default function HowToPage() {
 
       {/* Bottom CTA */}
       <div className="mt-20 text-center p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:bg-gradient-to-r dark:from-blue-900/30 dark:to-purple-900/30 rounded-2xl">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Can't Find What You're Looking For?</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Can&apos;t Find What You&apos;re Looking For?</h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-          We're constantly adding new how-to guides based on community feedback. 
-          Let us know what financial topics you'd like us to cover next.
+          We&apos;re constantly adding new how-to guides based on community feedback. 
+          Let us know what financial topics you&apos;d like us to cover next.
         </p>
         <Link 
           href="/submit" 

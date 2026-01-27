@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { Prisma } from '@prisma/client'
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,7 +12,7 @@ export async function GET(request: NextRequest) {
     const endDate = searchParams.get('endDate')
     const limit = parseInt(searchParams.get('limit') || '50')
     
-    let where: any = {}
+    const where: Prisma.EconomicEventWhereInput = {}
     
     if (country) {
       where.country = country.toUpperCase()

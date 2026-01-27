@@ -68,7 +68,8 @@ async function fetchRealCryptoPrice(symbol: string): Promise<{ price: number; ch
         }
       }
     }
-  } catch (error) {
+  } catch (err: unknown) {
+    console.error(`CoinCap API failed for ${symbol}:`, err)
     console.log(`CoinCap API failed for ${symbol}, trying fallback...`)
   }
 
@@ -120,7 +121,8 @@ async function fetchRealCryptoPrice(symbol: string): Promise<{ price: number; ch
         }
       }
     }
-  } catch (error) {
+  } catch (err: unknown) {
+    console.error(`CoinGecko API also failed for ${symbol}:`, err)
     console.log(`CoinGecko API also failed for ${symbol}`)
   }
 
@@ -166,7 +168,8 @@ async function fetchRealStockPrice(symbol: string): Promise<any> {
 
     const result = data.chart.result[0]
     const meta = result.meta
-    const indicators = result.indicators.quote[0]
+    // Extract indicators for potential future use
+    // const indicators = result.indicators.quote[0]
     
     const currentPrice = meta.regularMarketPrice || meta.previousClose || 0
     const previousClose = meta.previousClose || 0
