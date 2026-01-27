@@ -30,7 +30,7 @@ const MAJOR_CRYPTOS = [
 ]
 
 // Real-time crypto price fetching using multiple free APIs with fallbacks
-async function fetchRealCryptoPrice(symbol: string): Promise<any> {
+async function fetchRealCryptoPrice(symbol: string): Promise<{ price: number; changePct: number } | null> {
   const cryptoSymbol = symbol.replace('-USD', '')
   
   // Try CoinCap API first (no rate limits for basic data)

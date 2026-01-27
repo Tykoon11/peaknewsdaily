@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '50')
     const includeQuotes = searchParams.get('quotes') === 'true'
     
-    const where: any = { isActive: true }
+    const where: Record<string, unknown> = { isActive: true }
     
     if (type) {
       where.type = type
