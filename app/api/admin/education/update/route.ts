@@ -36,7 +36,7 @@ ${content}`
 
     // Update the articles.ts file with new metadata
     const articlesPath = path.join(process.cwd(), 'app/education/_data/articles.ts')
-    let articlesContent = fs.readFileSync(articlesPath, 'utf8')
+    const articlesContent = fs.readFileSync(articlesPath, 'utf8')
     
     // Update the article in the ARTICLES array
     const lines = articlesContent.split('\n')
