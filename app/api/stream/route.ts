@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
       }
     },
     
-    cancel(reason) {
+    cancel(_reason) {
       // Remove this controller from active connections when stream is cancelled
       if (streamController) {
         activeConnections.delete(streamController)

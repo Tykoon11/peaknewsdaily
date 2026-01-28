@@ -16,24 +16,24 @@ interface CoinGeckoGlobalData {
   }
 }
 
-interface CoinGeckoCoinData {
-  id: string
-  symbol: string
-  current_price: number
-  market_cap: number
-  market_cap_rank: number
-  total_volume: number
-  price_change_percentage_24h: number
-  circulating_supply: number
-  total_supply: number
-  max_supply: number
-}
+// interface CoinGeckoCoinData {
+//   id: string
+//   symbol: string
+//   current_price: number
+//   market_cap: number
+//   market_cap_rank: number
+//   total_volume: number
+//   price_change_percentage_24h: number
+//   circulating_supply: number
+//   total_supply: number
+//   max_supply: number
+// }
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     console.log('🔄 Market analytics API called')
     
-    let marketAnalytics = {
+    const marketAnalytics = {
       totalMarketCap: 0,
       totalVolume: 0,
       activeCryptocurrencies: 66, // Fixed number as shown in UI

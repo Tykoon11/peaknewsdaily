@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
 /**
  * GET /api/prices/live - Get live price system status
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     // Check Redis health
     const redisHealthy = await healthCheck()
