@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     let searchParams: URLSearchParams
     try {
       searchParams = new URL(request.url).searchParams
-    } catch (_e) {
+    } catch {
       // Fallback during build when request.url might not be available
       searchParams = new URLSearchParams()
     }

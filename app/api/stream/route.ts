@@ -9,7 +9,7 @@ import { NextRequest } from 'next/server'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 import { getPriceSnapshots, getEquityMarketState, getVolatilityScores } from '@/lib/redis'
-import { getEquityMarketState as getCurrentMarketState, MarketState } from '@/lib/marketState'
+import { getEquityMarketState as getCurrentMarketState } from '@/lib/marketState'
 import { activeConnections, PriceEvent } from '@/lib/stream-broadcast'
 import { prisma } from '@/lib/prisma'
 
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
           const stateData = `event: state\ndata: ${JSON.stringify(stateEvent)}\n\n`
           try {
             controller.enqueue(new TextEncoder().encode(stateData))
-          } catch (enqueueError) {
+          } catch (_enqueueError) {
             console.log('Controller closed during state enqueue, removing from active connections')
             activeConnections.delete(controller)
           }
@@ -137,7 +137,7 @@ async function sendInitialSnapshot(
     if (activeConnections.has(controller)) {
       try {
         controller.enqueue(new TextEncoder().encode(eventData))
-      } catch (enqueueError) {
+      } catch (_enqueueError) {
         console.log('Controller closed during enqueue, removing from active connections')
         activeConnections.delete(controller)
       }
@@ -172,7 +172,7 @@ async function sendInitialSnapshot(
     if (activeConnections.has(controller)) {
       try {
         controller.enqueue(new TextEncoder().encode(eventData))
-      } catch (enqueueError) {
+      } catch (_enqueueError) {
         console.log('Controller closed during error enqueue, removing from active connections')
         activeConnections.delete(controller)
       }
