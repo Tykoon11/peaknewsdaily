@@ -15,7 +15,7 @@ interface NewsItem {
  * Live news API that fetches fresh financial news from external sources
  * Bypasses database cache for absolutely fresh news
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const newsItems: NewsItem[] = []
     

@@ -8,14 +8,16 @@ export async function GET(request: NextRequest) {
     const assetType = searchParams.get('type') // stock, crypto, etf
     const limit = parseInt(searchParams.get('limit') || '20')
     
-    let where: any = {}
-    
-    if (symbols && symbols.length > 0) {
-      where.asset = { symbol: { in: symbols.map(s => s.toUpperCase()) } }
-    }
-    
-    if (assetType) {
-      where.asset = { ...where.asset, type: assetType }
+    const where: any = {
+      ...(symbols && symbols.length > 0 && {
+        asset: { 
+          symbol: { in: symbols.map(s => s.toUpperCase()) },
+          ...(assetType && { type: assetType })
+        }
+      }),
+      ...(assetType && !symbols && {
+        asset: { type: assetType }
+      })
     }
     
     // Get latest quotes for each asset
