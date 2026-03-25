@@ -18,3 +18,7 @@ Production-ready Next.js 14 + TypeScript app for peaknewsdaily.com. Moderated me
 - Analytics via Plausible when `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` set.
 - PWA installed via `/manifest` and `public/sw.js` with offline cache for last 20.
 
+
+## Ops
+
+- Automation handshake configured via GitHub App (ChatGPT Codex Connector) on 2026-03-25.
