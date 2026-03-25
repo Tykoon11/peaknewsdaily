@@ -23,6 +23,7 @@
     "update:news": "node scripts/news-refresh.js",
     "seed:market": "node scripts/seed-market-data.js",
     "typecheck": "tsc --noEmit",
+    "check:routes": "node scripts/check-duplicate-howto-routes.mjs",
     "postinstall": "prisma generate"
   },
   "engines": {
