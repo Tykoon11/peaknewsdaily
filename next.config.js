@@ -24,6 +24,36 @@ const nextConfig = {
         destination: '/privacy-policy',
         permanent: true,
       },
+      {
+        source: '/investing',
+        destination: '/category/investing',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-track-income-and-expenses-for-side-gig',
+        destination: '/how-to/how-to-track-income-and-expenses-for-a-side-gig',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-scale-side-hustle-into-business',
+        destination: '/how-to/how-to-scale-a-side-hustle-into-a-business',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-get-a-credit-limit-increase-responsibly',
+        destination: '/how-to/how-to-get-credit-limit-increase-responsibly',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-open-separate-bank-account-for-hustle',
+        destination: '/how-to/how-to-open-a-separate-bank-account-for-your-hustle',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-consolidate-or-refinance-student-debt',
+        destination: '/how-to/how-to-choose-federal-vs-private-student-loans',
+        permanent: true,
+      },
       ...duplicateHowToRedirects.map(([from, to]) => ({
         source: `/how-to/${from}`,
         destination: `/how-to/${to}`,
