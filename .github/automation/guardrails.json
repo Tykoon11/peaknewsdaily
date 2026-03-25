@@ -1,0 +1,25 @@
+{
+  "repo": "Tykoon11/peaknewsdaily",
+  "defaultBranch": "main",
+  "allowedPaths": [
+    "README.md",
+    "docs/**",
+    ".github/**",
+    "app/**",
+    "components/**",
+    "lib/**",
+    "prisma/**",
+    "public/**"
+  ],
+  "blockedPaths": [
+    ".env*",
+    "**/secrets/**",
+    "**/*.pem",
+    "**/*.key"
+  ],
+  "rules": {
+    "noForcePush": true,
+    "noSecretInCommits": true,
+    "requireSmallPatches": true
+  }
+}
