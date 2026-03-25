@@ -27,6 +27,8 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-BWG8LDSN8F'
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -44,6 +46,22 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Suspense>
               <Plausible />
             </Suspense>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}', {
+                  send_page_view: true,
+                  anonymize_ip: true
+                });
+              `}
+            </Script>
             <Script
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3299978316677420"
