@@ -30,6 +30,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/news-sitemap.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
+      {
         source: '/how-to/how-to-track-income-and-expenses-for-side-gig',
         destination: '/how-to/how-to-track-income-and-expenses-for-a-side-gig',
         permanent: true,
