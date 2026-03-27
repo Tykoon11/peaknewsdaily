@@ -530,7 +530,7 @@ export default function FileTaxesOnlinePage() {
           
           <div>
             <Link 
-              href="/how-to/how-to-reduce-taxes-legally-credits-deductions" 
+              href="/how-to/how-to-reduce-taxes-legally-credits-and-deductions" 
               className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
             >
               <h3 className="font-semibold text-green-900">Reduce Taxes Legally →</h3>

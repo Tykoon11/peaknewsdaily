@@ -59,6 +59,46 @@ const nextConfig = {
         destination: '/how-to/how-to-choose-federal-vs-private-student-loans',
         permanent: true,
       },
+      {
+        source: '/how-to/how-to-reduce-taxes-legally-credits-deductions',
+        destination: '/how-to/how-to-reduce-taxes-legally-credits-and-deductions',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-maximize-rrsp-401-k-isa-tax-shelters',
+        destination: '/how-to/how-to-maximize-rrsp-401k-isa-tax-shelters',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-roll-over-a-401-k-pension-when-you-change-jobs',
+        destination: '/how-to/how-to-roll-over-a-401k-pension-when-you-change-jobs',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-invest-inside-a-tfsa-rrsp-401-k-ira',
+        destination: '/how-to/how-to-invest-inside-a-tfsa-rrsp-401k-ira',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-shop-for-home-renters-insurance',
+        destination: '/how-to/how-to-shop-for-home-and-renters-insurance',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-avoid-denied-claims-documentation-tips',
+        destination: '/how-to/how-to-avoid-denied-claims',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-use-0-intro-apr-offers-safely',
+        destination: '/how-to/how-to-use-a-balance-transfer-card-the-right-way',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-choose-the-right-business-structure-llc-corp-sole-prop',
+        destination: '/how-to/how-to-choose-business-entity-llc-corp-sole-prop',
+        permanent: true,
+      },
       ...duplicateHowToRedirects.map(([from, to]) => ({
         source: `/how-to/${from}`,
         destination: `/how-to/${to}`,
