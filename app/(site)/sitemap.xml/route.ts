@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma'
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://peaknewsdaily.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peaknewsdaily.com'
 
   let posts: Array<{ slug: string; updatedAt: Date }> = []
   let newsItems: Array<{ slug: string; updatedAt: Date }> = []
@@ -52,12 +52,7 @@ export async function GET() {
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>${baseUrl}/submit</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>`
+`
 
   const postUrls = posts
     .map(post => `

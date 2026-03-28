@@ -35,9 +35,6 @@ export default function DesktopNavLinks({ categories, isStaff, signedIn }: { cat
           </div>
         </details>
       )}
-      <Link href="/submit" className="nav-link group relative overflow-hidden rounded-lg px-2 xl:px-3 py-1.5 transition-all duration-200 hover:bg-white/10 flex-shrink-0" data-active={isActive('/submit', 'exact') || undefined}>
-        <span className="relative z-10 text-sm">Submit</span>
-      </Link>
       {isStaff && (
         <Link href="/admin" className="nav-link group relative overflow-hidden rounded-lg px-2 xl:px-3 py-1.5 transition-all duration-200 hover:bg-white/10 flex-shrink-0" data-active={isActive('/admin') || undefined}>
           <span className="relative z-10 flex items-center gap-1 text-sm">

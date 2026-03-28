@@ -704,12 +704,12 @@ export default function HowToPage() {
           Let us know what financial topics you'd like us to cover next.
         </p>
         <Link 
-          href="/submit" 
+          href="/contact" 
           className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
         >
-          Suggest a Topic
+          Contact Editorial Team
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
           </svg>
         </Link>
       </div>

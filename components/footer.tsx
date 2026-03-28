@@ -51,7 +51,6 @@ export default function Footer() {
               <li><Link href="/education" className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Trading Education</Link></li>
               <li><Link href="/category/investing" className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Investment Guide</Link></li>
               <li><Link href="/category/brokers" className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Broker Reviews</Link></li>
-              <li><Link href="/submit" className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Submit Content</Link></li>
             </ul>
           </div>
         </div>
