@@ -1,7 +1,10 @@
 import { prisma } from '@/lib/prisma'
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peaknewsdaily.com'
+  const configured = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.peaknewsdaily.com'
+  const baseUrl = configured
+    .replace('https://peaknewsdaily.com', 'https://www.peaknewsdaily.com')
+    .replace('http://peaknewsdaily.com', 'https://www.peaknewsdaily.com')
 
   let posts: Array<{ slug: string; updatedAt: Date }> = []
   let newsItems: Array<{ slug: string; updatedAt: Date }> = []
