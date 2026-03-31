@@ -192,6 +192,18 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
               </div>
             </article>
 
+            {/* Inline signup CTA */}
+            <section className="mb-10 rounded-xl border border-blue-200/70 bg-blue-50/70 dark:border-blue-800/40 dark:bg-blue-900/20 p-6 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">Get the top stories in 5 minutes — daily.</h2>
+              <p className="text-slate-700 dark:text-gray-300 mb-4">Join the daily brief and stay ahead without the noise.</p>
+              <Link
+                href="/news"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Subscribe Free
+              </Link>
+            </section>
+
             {/* Related Articles */}
             {relatedNews.length > 0 && (
               <section className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100/50 dark:border-gray-600 shadow-lg dark:shadow-2xl">
@@ -236,6 +248,16 @@ export default async function NewsItemPage({ params }: { params: { slug: string 
           </div>
         </div>
       </main>
+
+      {/* Mobile sticky CTA */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-blue-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 dark:bg-gray-900/95 dark:border-blue-900 sm:hidden">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <p className="text-xs text-slate-700 dark:text-gray-200 leading-tight">Get the top stories in 5 minutes — daily.</p>
+          <Link href="/news" className="shrink-0 inline-flex items-center px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors">
+            Subscribe Free
+          </Link>
+        </div>
+      </div>
     </>
   )
 }
