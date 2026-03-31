@@ -35,6 +35,36 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/submit',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/culture',
+        destination: '/category/culture',
+        permanent: true,
+      },
+      {
+        source: '/funny',
+        destination: '/category/funny',
+        permanent: true,
+      },
+      {
+        source: '/interesting',
+        destination: '/category/interesting',
+        permanent: true,
+      },
+      {
+        source: '/music',
+        destination: '/category/music',
+        permanent: true,
+      },
+      {
+        source: '/sports',
+        destination: '/category/sports',
+        permanent: true,
+      },
+      {
         source: '/how-to/how-to-track-income-and-expenses-for-side-gig',
         destination: '/how-to/how-to-track-income-and-expenses-for-a-side-gig',
         permanent: true,
