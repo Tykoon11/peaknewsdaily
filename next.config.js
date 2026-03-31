@@ -45,6 +45,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/crypto',
+        destination: '/category/crypto',
+        permanent: true,
+      },
+      {
         source: '/funny',
         destination: '/category/funny',
         permanent: true,
@@ -127,6 +132,76 @@ const nextConfig = {
       {
         source: '/how-to/how-to-choose-the-right-business-structure-llc-corp-sole-prop',
         destination: '/how-to/how-to-choose-business-entity-llc-corp-sole-prop',
+        permanent: true,
+      },
+      {
+        source: '/how-to/handle-security-deposits-correctly',
+        destination: '/how-to/how-to-handle-security-deposits-correctly',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-analyze-rental-property-deals',
+        destination: '/how-to/how-to-analyze-a-rental-property-cap-rate-cash-on-cash',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-build-simple-website-that-converts',
+        destination: '/how-to/how-to-build-a-simple-website-that-converts',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-calculate-rental-property-cash-flow-roi',
+        destination: '/how-to/how-to-analyze-a-rental-property-cap-rate-cash-on-cash',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-choose-the-right-rewards-credit-card',
+        destination: '/how-to/how-to-choose-your-first-credit-card',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-close-card-without-hurting-score',
+        destination: '/how-to/how-to-close-a-card-without-hurting-your-score',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-downgrade-or-product-change-card',
+        destination: '/how-to/how-to-downgrade-or-product-change-a-card',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-earn-credit-card-sign-up-bonuses-responsibly',
+        destination: '/how-to/how-to-choose-your-first-credit-card',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-finance-investment-property',
+        destination: '/how-to/how-to-finance-investment-properties-dscr-hard-money',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-protect-yourself-on-public-wi-fi',
+        destination: '/how-to/how-to-protect-yourself-on-public-wifi',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-screen-tenants-avoid-problem-renters',
+        destination: '/how-to/how-to-screen-tenants-legally-and-fairly',
+        permanent: true,
+      },
+      {
+        source: '/how-to/how-to-set-up-two-factor-authentication',
+        destination: '/how-to/how-to-set-up-two-factor-authentication-correctly',
+        permanent: true,
+      },
+      {
+        source: '/how-to/landlord-taxes-deductions-filing',
+        destination: '/how-to/how-to-prepare-for-landlord-taxes',
+        permanent: true,
+      },
+      {
+        source: '/how-to/reduce-vacancy-and-tenant-turnover',
+        destination: '/how-to/how-to-reduce-vacancy-and-turnover',
         permanent: true,
       },
       ...duplicateHowToRedirects.map(([from, to]) => ({
