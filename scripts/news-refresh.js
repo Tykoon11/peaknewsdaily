@@ -195,6 +195,24 @@ function generateSlug(title) {
     .substring(0, 100);
 }
 
+async function ensureUniqueSlug(baseSlug) {
+  let slug = baseSlug || `news-${Date.now()}`;
+  let i = 1;
+
+  while (true) {
+    const existing = await prisma.newsItem.findUnique({ where: { slug } });
+    if (!existing) return slug;
+
+    const suffix = `-${Date.now().toString().slice(-6)}-${i}`;
+    slug = `${baseSlug.substring(0, Math.max(1, 100 - suffix.length))}${suffix}`;
+    i += 1;
+
+    if (i > 20) {
+      return `${baseSlug.substring(0, 80)}-${Date.now().toString(36)}`;
+    }
+  }
+}
+
 // Fetch news from RSS feed with comprehensive error handling
 async function fetchNewsFromSource(source) {
   console.log(`🔄 Fetching from ${source.name}...`);
@@ -519,10 +537,12 @@ async function updateNewsContent() {
           continue;
         }
         
+        const uniqueSlug = await ensureUniqueSlug(article.slug);
+
         await prisma.newsItem.create({
           data: {
             title: article.title,
-            slug: article.slug,
+            slug: uniqueSlug,
             excerpt: article.excerpt,
             contentHtml: article.contentHtml,
             sourceName: article.sourceName,

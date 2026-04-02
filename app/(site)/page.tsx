@@ -23,28 +23,44 @@ interface Topic {
   slug: string
   title: string
   description?: string | null
-  _count: {
-    NewsItem: number
-  }
+  count: number
 }
-
 
 export default async function HomePage() {
   let trendingTopics: Topic[] = []
 
   if (process.env.DATABASE_URL) {
     try {
-      // Get trending topics with caching to reduce DB hits
-      trendingTopics = await cachedQuery(
-        'homepage-topics',
-        () => prisma.topic.findMany({
-          include: {
-            _count: { select: { NewsItem: true } }
-          },
-          orderBy: { NewsItem: { _count: 'desc' } }
+      // Build topics from freshest news (not historical totals)
+      const latestNews = await cachedQuery(
+        'homepage-fresh-topic-news',
+        () => prisma.newsItem.findMany({
+          orderBy: { publishedAt: 'desc' },
+          take: 120,
+          include: { topic: true }
         }),
-        900 // 15 minutes
+        300 // 5 minutes
       )
+
+      const topicMap = new Map<string, Topic>()
+
+      for (const item of latestNews) {
+        const key = item.topic.slug
+        const existing = topicMap.get(key)
+        if (existing) {
+          existing.count += 1
+        } else {
+          topicMap.set(key, {
+            id: item.topic.id,
+            slug: item.topic.slug,
+            title: item.topic.title,
+            description: item.topic.description,
+            count: 1
+          })
+        }
+      }
+
+      trendingTopics = Array.from(topicMap.values()).sort((a, b) => b.count - a.count).slice(0, 12)
     } catch (error) {
       console.warn('Failed to fetch homepage data:', error)
     }
@@ -195,7 +211,7 @@ export default async function HomePage() {
                       {topic.title}
                     </h3>
                     <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium px-2 py-1 rounded">
-                      {topic._count.NewsItem}
+                      {topic.count}
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
