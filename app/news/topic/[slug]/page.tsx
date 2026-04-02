@@ -15,11 +15,20 @@ export default async function TopicPage({ params }: { params: { slug: string } }
   const newsItems = await prisma.newsItem.findMany({
     where: { topicSlug: params.slug },
     orderBy: { publishedAt: 'desc' },
-    take: 100, // Show more articles
+    take: 100, // UI list cap only; total is calculated separately
     include: {
       topic: true,
     },
   })
+
+  const [totalArticles, latestTopicItem] = await Promise.all([
+    prisma.newsItem.count({ where: { topicSlug: params.slug } }),
+    prisma.newsItem.findFirst({
+      where: { topicSlug: params.slug },
+      orderBy: { publishedAt: 'desc' },
+      select: { publishedAt: true }
+    })
+  ])
 
   const allTopics = await prisma.topic.findMany({
     orderBy: { title: 'asc' },
@@ -60,7 +69,7 @@ export default async function TopicPage({ params }: { params: { slug: string } }
             {/* Topic Badge */}
             <div className="inline-flex items-center px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 sm:py-3 rounded-full bg-purple-500/20 border border-purple-400/30 text-purple-300 text-xs sm:text-sm font-medium mb-4 xs:mb-6 sm:mb-8 backdrop-blur-sm mx-2 xs:mx-0">
               <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-purple-400 rounded-full animate-pulse mr-1.5 xs:mr-2 sm:mr-3"></div>
-              TOPIC • {newsItems.length} ARTICLES
+              TOPIC • {totalArticles} ARTICLES
             </div>
             
             <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 xs:mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-purple-200 leading-tight capitalize px-2 xs:px-4 sm:px-0">
@@ -76,13 +85,13 @@ export default async function TopicPage({ params }: { params: { slug: string } }
             {/* Topic Stats */}
             <div className="grid grid-cols-1 xs:grid-cols-3 gap-3 xs:gap-4 sm:gap-6 mt-6 xs:mt-8 sm:mt-12 px-2 xs:px-0">
               <div className="relative bg-white/10 backdrop-blur-lg rounded-lg xs:rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 border border-white/20 shadow-2xl shadow-purple-500/10">
-                <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-white mb-1">{newsItems.length}</div>
+                <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-white mb-1">{totalArticles}</div>
                 <div className="text-indigo-200/80 font-medium text-xs sm:text-sm leading-tight">Total Articles</div>
               </div>
               
               <div className="relative bg-white/10 backdrop-blur-lg rounded-lg xs:rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 border border-white/20 shadow-2xl shadow-indigo-500/10">
                 <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-indigo-400 mb-1">
-                  {newsItems.length > 0 ? formatDistanceToNow(new Date(newsItems[0].publishedAt), { addSuffix: false }) : 'No data'}
+                  {latestTopicItem ? formatDistanceToNow(new Date(latestTopicItem.publishedAt), { addSuffix: false }) : 'No data'}
                 </div>
                 <div className="text-indigo-200/80 font-medium text-xs sm:text-sm leading-tight">Since Latest</div>
               </div>
