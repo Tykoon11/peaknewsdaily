@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
 
-export const revalidate = 300
+export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 export default async function TopicPage({ params }: { params: { slug: string } }) {
   const topic = await prisma.topic.findUnique({

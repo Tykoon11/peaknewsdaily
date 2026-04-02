@@ -25,6 +25,7 @@ interface Topic {
   title: string
   description?: string | null
   count: number
+  latestPublishedAt?: Date | null
 }
 
 export default async function HomePage() {
@@ -35,45 +36,46 @@ export default async function HomePage() {
 
   if (process.env.DATABASE_URL) {
     try {
-      // Build topics from freshest news (not historical totals)
-      const [latestNews, totalNews, topicsTotal, latestItem] = await Promise.all([
-        cachedQuery(
-          'homepage-fresh-topic-news',
-          () => prisma.newsItem.findMany({
-            orderBy: { publishedAt: 'desc' },
-            take: 120,
-            include: { topic: true }
-          }),
-          300 // 5 minutes
-        ),
+      const [totalNews, topicsTotal, latestItem, topicRows] = await Promise.all([
         prisma.newsItem.count(),
         prisma.topic.count(),
-        prisma.newsItem.findFirst({ orderBy: { publishedAt: 'desc' }, select: { publishedAt: true } })
+        prisma.newsItem.findFirst({ orderBy: { publishedAt: 'desc' }, select: { publishedAt: true } }),
+        cachedQuery(
+          'homepage-topic-counts-consistent',
+          () => prisma.topic.findMany({
+            include: {
+              _count: { select: { NewsItem: true } },
+              NewsItem: {
+                select: { publishedAt: true },
+                orderBy: { publishedAt: 'desc' },
+                take: 1
+              }
+            }
+          }),
+          300 // 5 minutes
+        )
       ])
 
       totalNewsCount = totalNews
       topicCount = topicsTotal
       latestPublishedAt = latestItem?.publishedAt ?? null
 
-      const topicMap = new Map<string, Topic>()
-
-      for (const item of latestNews) {
-        const key = item.topic.slug
-        const existing = topicMap.get(key)
-        if (existing) {
-          existing.count += 1
-        } else {
-          topicMap.set(key, {
-            id: item.topic.id,
-            slug: item.topic.slug,
-            title: item.topic.title,
-            description: item.topic.description,
-            count: 1
-          })
-        }
-      }
-
-      trendingTopics = Array.from(topicMap.values()).sort((a, b) => b.count - a.count).slice(0, 12)
+      trendingTopics = topicRows
+        .map((t) => ({
+          id: t.id,
+          slug: t.slug,
+          title: t.title,
+          description: t.description,
+          count: t._count.NewsItem,
+          latestPublishedAt: t.NewsItem[0]?.publishedAt ?? null
+        }))
+        .sort((a, b) => {
+          const aTime = a.latestPublishedAt ? new Date(a.latestPublishedAt).getTime() : 0
+          const bTime = b.latestPublishedAt ? new Date(b.latestPublishedAt).getTime() : 0
+          if (bTime !== aTime) return bTime - aTime
+          return b.count - a.count
+        })
+        .slice(0, 12)
     } catch (error) {
       console.warn('Failed to fetch homepage data:', error)
     }
