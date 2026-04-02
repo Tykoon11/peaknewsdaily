@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { formatDistanceToNow } from 'date-fns'
 import { prisma } from '@/lib/prisma'
 import MarketOverview from '@/components/market-overview'
 import EconomicCalendarPreview from '@/components/economic-calendar-preview'
@@ -28,19 +29,31 @@ interface Topic {
 
 export default async function HomePage() {
   let trendingTopics: Topic[] = []
+  let totalNewsCount = 0
+  let topicCount = 0
+  let latestPublishedAt: Date | null = null
 
   if (process.env.DATABASE_URL) {
     try {
       // Build topics from freshest news (not historical totals)
-      const latestNews = await cachedQuery(
-        'homepage-fresh-topic-news',
-        () => prisma.newsItem.findMany({
-          orderBy: { publishedAt: 'desc' },
-          take: 120,
-          include: { topic: true }
-        }),
-        300 // 5 minutes
-      )
+      const [latestNews, totalNews, topicsTotal, latestItem] = await Promise.all([
+        cachedQuery(
+          'homepage-fresh-topic-news',
+          () => prisma.newsItem.findMany({
+            orderBy: { publishedAt: 'desc' },
+            take: 120,
+            include: { topic: true }
+          }),
+          300 // 5 minutes
+        ),
+        prisma.newsItem.count(),
+        prisma.topic.count(),
+        prisma.newsItem.findFirst({ orderBy: { publishedAt: 'desc' }, select: { publishedAt: true } })
+      ])
+
+      totalNewsCount = totalNews
+      topicCount = topicsTotal
+      latestPublishedAt = latestItem?.publishedAt ?? null
 
       const topicMap = new Map<string, Topic>()
 
@@ -83,16 +96,16 @@ export default async function HomePage() {
             {/* Simple Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-md mx-auto mb-8">
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">24/7</div>
-                <div className="text-sm text-gray-500">Coverage</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{totalNewsCount}</div>
+                <div className="text-sm text-gray-500">Total News Items</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">15+</div>
-                <div className="text-sm text-gray-500">Crypto Assets</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{topicCount}</div>
+                <div className="text-sm text-gray-500">Active Topics</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">1min</div>
-                <div className="text-sm text-gray-500">Updates</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{latestPublishedAt ? formatDistanceToNow(new Date(latestPublishedAt), { addSuffix: false }) : 'N/A'}</div>
+                <div className="text-sm text-gray-500">Since Latest</div>
               </div>
             </div>
 

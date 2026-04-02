@@ -59,6 +59,8 @@ interface Topic {
 export default async function NewsPage() {
   let topics: Topic[] = []
   let latestNews: NewsItem[] = []
+  let storiesToday = 0
+  let uniqueSources = 0
 
   if (process.env.DATABASE_URL) {
     try {
@@ -94,6 +96,21 @@ export default async function NewsPage() {
         }),
         120 // 2 minutes
       )
+
+      const startOfToday = new Date()
+      startOfToday.setHours(0, 0, 0, 0)
+
+      const [todayCount, sourceRows] = await Promise.all([
+        prisma.newsItem.count({ where: { publishedAt: { gte: startOfToday } } }),
+        prisma.newsItem.findMany({
+          where: { publishedAt: { gte: startOfToday } },
+          select: { sourceName: true },
+          distinct: ['sourceName']
+        })
+      ])
+
+      storiesToday = todayCount
+      uniqueSources = sourceRows.length
     } catch (error) {
       console.warn('Failed to fetch news data:', error)
     }
@@ -116,7 +133,7 @@ export default async function NewsPage() {
             {/* Simple Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">{latestNews.length}</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{storiesToday}</div>
                 <div className="text-sm text-gray-500">Stories Today</div>
               </div>
               
@@ -126,8 +143,8 @@ export default async function NewsPage() {
               </div>
               
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">24/7</div>
-                <div className="text-sm text-gray-500">Coverage</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{uniqueSources}</div>
+                <div className="text-sm text-gray-500">Sources Today</div>
               </div>
               
               <div className="text-center">
@@ -211,7 +228,7 @@ export default async function NewsPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-gray-600 dark:text-gray-400">Articles Today</span>
                     <span className="text-gray-900 dark:text-white text-sm font-semibold">
-                      {latestNews.length}
+                      {storiesToday}
                     </span>
                   </div>
                 </div>
