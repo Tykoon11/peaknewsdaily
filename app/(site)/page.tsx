@@ -9,6 +9,15 @@ import { cachedQuery } from '@/lib/cache'
 
 export const revalidate = 0 // Force fresh data always - no cache - FINAL FIX
 
+export const metadata = {
+  title: 'PeakNewsDaily',
+  description:
+    'Professional trading, investing, and cryptocurrency news platform with live market updates and expert analysis',
+  alternates: {
+    canonical: '/'
+  }
+}
+
 interface Topic {
   id: string
   slug: string

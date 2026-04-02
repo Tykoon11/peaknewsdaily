@@ -11,6 +11,9 @@ export async function generateMetadata() {
   return {
     title: 'Live Market News',
     description: 'Real-time updates on trading, investing, and cryptocurrency markets with professional analysis and insights',
+    alternates: {
+      canonical: '/news'
+    },
     openGraph: {
       title: 'Live Market News - PeakNewsDaily',
       description: 'Real-time updates on trading, investing, and cryptocurrency markets',
