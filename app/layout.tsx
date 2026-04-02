@@ -33,6 +33,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeScript />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3299978316677420"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
       </head>
       <body className={`${inter.className} bg-white dark:bg-gray-900 transition-colors`}>
         <ThemeProvider 
@@ -62,12 +68,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                 });
               `}
             </Script>
-            <Script
-              async
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3299978316677420"
-              crossOrigin="anonymous"
-              strategy="afterInteractive"
-            />
+
             <div className="site min-h-screen bg-white dark:bg-gray-900 flex flex-col">
               <Nav />
               <main className="flex-1 bg-white dark:bg-gray-900">
