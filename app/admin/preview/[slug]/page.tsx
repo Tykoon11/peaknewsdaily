@@ -6,7 +6,7 @@ export const metadata = { title: 'Preview' }
 
 export default async function AdminPreview({ params }: { params: { slug: string } }) {
   const session = await auth()
-  if (!session?.user) redirect('/api/auth/signin')
+  if (!session?.user) redirect('/contact')
   // Temporarily allow any authenticated user (for Google Ads review)
   const post = await prisma.post.findUnique({ where: { slug: params.slug }, include: { media: true, tags: { include: { tag: true } }, submission: true } })
   if (!post) notFound()

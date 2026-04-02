@@ -8,7 +8,7 @@ export const metadata = { title: 'Categories' }
 
 export default async function AdminCategoriesPage() {
   const session = await auth()
-  if (!session?.user) redirect('/api/auth/signin')
+  if (!session?.user) redirect('/contact')
   // Temporarily allow any authenticated user (for Google Ads review)
   const cats = await prisma.category.findMany({ orderBy: { name: 'asc' }, include: { _count: { select: { posts: true } } } })
   return (

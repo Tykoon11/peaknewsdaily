@@ -23,7 +23,7 @@ async function updatePostAction(formData: FormData) {
   try { mediaItems = JSON.parse(mediaJson) } catch {}
 
   const session = await auth()
-  if (!session?.user) redirect('/api/auth/signin')
+  if (!session?.user) redirect('/contact')
   // Temporarily allow any authenticated user (for Google Ads review)
 
   const tagNames = tagsRaw
@@ -63,7 +63,7 @@ async function updatePostAction(formData: FormData) {
 
 export default async function EditPostPage({ params }: { params: { id: string } }) {
   const session = await auth()
-  if (!session?.user) redirect('/api/auth/signin')
+  if (!session?.user) redirect('/contact')
   // Temporarily allow any authenticated user (for Google Ads review)
 
   const [post, categories] = await Promise.all([

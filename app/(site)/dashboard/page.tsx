@@ -6,7 +6,7 @@ export const metadata = { title: 'Creator Dashboard' }
 
 export default async function Dashboard() {
   const session = await auth()
-  if (!session?.user) redirect('/api/auth/signin')
+  if (!session?.user) redirect('/contact')
   const subs = await prisma.submission.findMany({ where: { submitterId: session.user.id }, include: { post: true } })
   return (
     <main className="container px-2 xs:px-4 py-4 xs:py-6">

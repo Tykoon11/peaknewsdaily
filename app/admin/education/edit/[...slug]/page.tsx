@@ -8,7 +8,7 @@ export const metadata = { title: 'Edit Trading Education Article' }
 export default async function EditEducationArticle({ params }: { params: { slug: string[] } }) {
   const session = await auth()
   if (!session?.user) {
-    redirect('/api/auth/signin')
+    redirect('/contact')
   }
   // Temporarily allow any authenticated user (for Google Ads review)
 
