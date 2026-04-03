@@ -16,6 +16,48 @@ const duplicateHowToRedirects = [
   ['how-to-use-stop-loss-and-take-profit', 'use-stop-loss-and-take-profit'],
 ];
 
+const missingHowToFallbackRedirects = [
+  'how-to-avoid-crypto-rug-pulls-and-scams',
+  'how-to-avoid-over-leveraging-in-fx',
+  'how-to-avoid-pattern-day-trader-pdt-violations',
+  'how-to-backtest-a-trading-strategy-properly',
+  'how-to-bridge-tokens-across-chains-without-losing-funds',
+  'how-to-build-a-simple-forex-strategy-rules-examples',
+  'how-to-build-a-trading-journal-that-improves-results',
+  'how-to-buy-a-used-car-without-getting-ripped-off',
+  'how-to-buy-bitcoin-safely-step-by-step',
+  'how-to-calculate-car-affordability-rules-of-thumb',
+  'how-to-choose-a-crypto-exchange-security-checklist',
+  'how-to-choose-a-regulated-forex-broker',
+  'how-to-get-out-of-a-bad-car-loan',
+  'how-to-get-the-best-auto-loan-rate',
+  'how-to-insure-a-new-car-for-less',
+  'how-to-lease-vs-finance-a-car-which-is-cheaper',
+  'how-to-manage-overnight-swap-financing-costs',
+  'how-to-manage-risk-per-trade-position-sizing',
+  'how-to-mint-an-nft-responsibly-fees-rights',
+  'how-to-negotiate-a-car-price-dealer-scripts',
+  'how-to-place-your-first-stock-trade-market-vs-limit',
+  'how-to-read-candlestick-charts-for-beginners',
+  'how-to-read-currency-pairs-and-pips',
+  'how-to-recover-from-a-lost-seed-phrase-what-s-possible',
+  'how-to-refinance-your-car-loan-to-lower-payments',
+  'how-to-report-crypto-taxes-cost-basis-methods',
+  'how-to-scan-for-high-probability-stock-setups',
+  'how-to-sell-your-car-privately-for-top-dollar',
+  'how-to-set-realistic-profit-targets-in-forex',
+  'how-to-set-up-a-hardware-wallet-cold-storage',
+  'how-to-size-a-forex-position-properly',
+  'how-to-stake-crypto-and-understand-apy-risk',
+  'how-to-start-trading-forex-complete-beginner-guide',
+  'how-to-trade-etfs-vs-individual-stocks',
+  'how-to-trade-in-a-car-with-negative-equity',
+  'how-to-trade-news-events-without-getting-whipsawed',
+  'how-to-use-defi-safely-wallet-hygiene',
+  'how-to-use-mt4-mt5-indicators-responsibly',
+  'how-to-use-stop-loss-and-take-profit-orders',
+];
+
 const nextConfig = {
   async redirects() {
     return [
@@ -31,6 +73,11 @@ const nextConfig = {
       },
       {
         source: '/news-sitemap.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
+      {
+        source: '/sitemap_index.xml',
         destination: '/sitemap.xml',
         permanent: true,
       },
@@ -204,6 +251,11 @@ const nextConfig = {
         destination: '/how-to/how-to-reduce-vacancy-and-turnover',
         permanent: true,
       },
+      ...missingHowToFallbackRedirects.map((slug) => ({
+        source: `/how-to/${slug}`,
+        destination: '/how-to',
+        permanent: true,
+      })),
       ...duplicateHowToRedirects.map(([from, to]) => ({
         source: `/how-to/${from}`,
         destination: `/how-to/${to}`,
