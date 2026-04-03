@@ -223,7 +223,7 @@ const nextConfig = {
       },
       {
         source: '/how-to/how-to-finance-investment-property',
-        destination: '/how-to/how-to-finance-investment-properties-dscr-hard-money',
+        destination: '/how-to/finance-investment-properties-dscr-hard-money',
         permanent: true,
       },
       {
