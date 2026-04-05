@@ -72,6 +72,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/trading',
+        destination: '/category/trading',
+        permanent: true,
+      },
+      {
         source: '/news-sitemap.xml',
         destination: '/sitemap.xml',
         permanent: true,
