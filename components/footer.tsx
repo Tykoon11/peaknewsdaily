@@ -78,10 +78,13 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex flex-wrap items-center gap-6 text-xs text-gray-500 dark:text-gray-400">
               <span className="font-medium text-gray-700 dark:text-gray-300">© {new Date().getFullYear()} PeakNewsDaily</span>
-              <Link href="/legal/terms" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Terms of Service</Link>
-              <Link href="/legal/privacy" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Privacy Policy</Link>
-              <Link href="/legal/community-guidelines" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Community Guidelines</Link>
-              <Link href="/legal/dmca" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">DMCA</Link>
+              <Link href="/about" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">About</Link>
+              <Link href="/contact" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Contact</Link>
+              <Link href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Terms of Service</Link>
+              <Link href="/privacy-policy" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Privacy Policy</Link>
+              <Link href="/editorial-policy" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Editorial Policy</Link>
+              <Link href="/disclaimer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Disclaimer</Link>
+              <Link href="/dmca" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">DMCA</Link>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-xs text-gray-500 dark:text-gray-400">

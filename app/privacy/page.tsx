@@ -1,5 +1,2 @@
-import { redirect } from "next/navigation";
-
-export default function PrivacyPage() {
-  redirect("/privacy-policy");
-}
+export { metadata } from '../privacy-policy/page'
+export { default } from '../privacy-policy/page'
