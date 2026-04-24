@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
   const host = request.headers.get('host') || ''
 
   if (host === 'peaknewsdaily.com') {
@@ -9,13 +8,6 @@ export function middleware(request: NextRequest) {
     url.host = 'www.peaknewsdaily.com'
     url.protocol = 'https'
     return NextResponse.redirect(url, 308)
-  }
-
-  // Hard-disable legacy auth/admin/submit surfaces on public site
-  const blockedPrefixes = ['/admin', '/api/admin', '/api/auth', '/submit', '/submit-content']
-
-  if (blockedPrefixes.some(prefix => pathname === prefix || pathname.startsWith(`${prefix}/`))) {
-    return NextResponse.redirect(new URL('/contact', request.url), 308)
   }
 
   return NextResponse.next()

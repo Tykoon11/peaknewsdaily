@@ -69,11 +69,32 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-  background: #4b5563;
+  background: #6b7280;
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+  background: #9ca3af;
+}
+
+/* Global dark-mode readability improvements */
+.dark body {
+  @apply text-gray-100;
+}
+
+.dark .text-gray-500 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-200;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-100;
 }
 
 /* Utility classes for line clamping */
