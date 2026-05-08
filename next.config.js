@@ -107,6 +107,21 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/tools/position-size-calculator',
+        destination: '/how-to/manage-risk-per-trade',
+        permanent: true,
+      },
+      {
+        source: '/tools/compound-interest-calculator',
+        destination: '/how-to/how-to-invest-for-the-long-term-evidence-based',
+        permanent: true,
+      },
+      {
+        source: '/tools/mortgage-calculator',
+        destination: '/how-to/how-to-calculate-your-mortgage-payment-piti-explained',
+        permanent: true,
+      },
+      {
         source: '/culture',
         destination: '/category/culture',
         permanent: true,
