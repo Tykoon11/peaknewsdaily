@@ -92,6 +92,21 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/submit-content',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/login',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/api/auth/:path*',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
         source: '/culture',
         destination: '/category/culture',
         permanent: true,
