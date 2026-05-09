@@ -122,6 +122,21 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/admin',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/admin/:path*',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/api/admin/:path*',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
         source: '/culture',
         destination: '/category/culture',
         permanent: true,
