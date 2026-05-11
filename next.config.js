@@ -102,6 +102,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/dashboard',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
         source: '/api/auth/:path*',
         destination: '/contact',
         permanent: true,
