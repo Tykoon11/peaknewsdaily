@@ -11,9 +11,15 @@ const fallbackCategories = [
 ]
 
 export default async function Nav() {
-  const categories = process.env.DATABASE_URL
-    ? await prisma.category.findMany({ orderBy: { name: 'asc' } })
-    : fallbackCategories
+  let categories = fallbackCategories
+
+  if (process.env.DATABASE_URL) {
+    try {
+      categories = await prisma.category.findMany({ orderBy: { name: 'asc' } })
+    } catch {
+      categories = fallbackCategories
+    }
+  }
 
   return (
     <header className="site-header sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
