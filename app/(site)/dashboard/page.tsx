@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
-export const metadata = { title: 'Not Found' }
+export const metadata = { title: 'Contact PeakNewsDaily' }
 
 export default function Dashboard() {
-  notFound()
+  redirect('/contact')
 }
