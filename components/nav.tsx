@@ -3,8 +3,17 @@ import ThemeToggle from '@/components/theme-toggle'
 import { prisma } from '@/lib/prisma'
 import MobileNav from '@/components/mobile-nav'
 
+const fallbackCategories = [
+  { id: 'investing', name: 'Investing', slug: 'investing' },
+  { id: 'crypto', name: 'Crypto', slug: 'crypto' },
+  { id: 'brokers', name: 'Brokers', slug: 'brokers' },
+  { id: 'trading', name: 'Trading', slug: 'trading' },
+]
+
 export default async function Nav() {
-  const categories = await prisma.category.findMany({ orderBy: { name: 'asc' } })
+  const categories = process.env.DATABASE_URL
+    ? await prisma.category.findMany({ orderBy: { name: 'asc' } })
+    : fallbackCategories
 
   return (
     <header className="site-header sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
