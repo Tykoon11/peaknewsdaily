@@ -2,10 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams
+  const includeAssets = searchParams.get('include') === 'assets'
+
+  if (!process.env.DATABASE_URL) {
+    return NextResponse.json({ markets: [], count: 0, degraded: true })
+  }
+
   try {
-    const searchParams = request.nextUrl.searchParams
-    const includeAssets = searchParams.get('include') === 'assets'
-    
     const markets = await prisma.market.findMany({
       where: {
         isActive: true
@@ -19,7 +23,7 @@ export async function GET(request: NextRequest) {
       },
       orderBy: { name: 'asc' }
     })
-    
+
     return NextResponse.json({ 
       markets,
       count: markets.length 
@@ -27,8 +31,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Markets API error:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch markets' },
-      { status: 500 }
+      { markets: [], count: 0, degraded: true, error: 'Failed to fetch markets' },
+      { status: 200 }
     )
   }
 }

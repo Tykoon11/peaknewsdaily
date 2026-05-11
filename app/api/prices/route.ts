@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPriceSnapshots } from '@/lib/redis'
-import { prisma } from '@/lib/prisma'
 
 // Add runtime configuration to handle dynamic usage
 export const runtime = 'nodejs'
@@ -32,10 +31,16 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Try Redis cache first
-    const redisSnapshots = await getPriceSnapshots(requestedSymbols)
+    // Try Redis cache first (best-effort)
     const prices: Record<string, any> = {}
     const missingSymbols: string[] = []
+    let redisSnapshots: Record<string, any> = {}
+
+    try {
+      redisSnapshots = await getPriceSnapshots(requestedSymbols)
+    } catch (redisError) {
+      console.warn('Prices API Redis unavailable, falling back to DB only', redisError)
+    }
 
     // Check which symbols we have from Redis
     for (const symbol of requestedSymbols) {
@@ -53,35 +58,40 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // For missing symbols, fallback to database
-    if (missingSymbols.length > 0) {
-      const dbQuotes = await prisma.quote.findMany({
-        where: {
-          asset: { 
-            symbol: { 
-              in: missingSymbols.map(s => s.toUpperCase()) 
+    // For missing symbols, fallback to database (only when DATABASE_URL is configured)
+    if (missingSymbols.length > 0 && process.env.DATABASE_URL) {
+      try {
+        const { prisma } = await import('@/lib/prisma')
+        const dbQuotes = await prisma.quote.findMany({
+          where: {
+            asset: {
+              symbol: {
+                in: missingSymbols.map(s => s.toUpperCase())
+              }
             }
-          }
-        },
-        include: {
-          asset: true
-        },
-        orderBy: { timestamp: 'desc' },
-        distinct: ['assetId']
-      })
+          },
+          include: {
+            asset: true
+          },
+          orderBy: { timestamp: 'desc' },
+          distinct: ['assetId']
+        })
 
-      // Add database results to prices
-      for (const quote of dbQuotes) {
-        const currentPrice = parseFloat(quote.price.toString())
-        const changePercent = quote.changePercent ? parseFloat(quote.changePercent.toString()) : 0
-        
-        prices[quote.asset.symbol] = {
-          sym: quote.asset.symbol,
-          price: currentPrice,
-          changePct: changePercent,
-          ts: quote.timestamp.getTime(),
-          lastUpdate: Date.now()
+        // Add database results to prices
+        for (const quote of dbQuotes) {
+          const currentPrice = parseFloat(quote.price.toString())
+          const changePercent = quote.changePercent ? parseFloat(quote.changePercent.toString()) : 0
+
+          prices[quote.asset.symbol] = {
+            sym: quote.asset.symbol,
+            price: currentPrice,
+            changePct: changePercent,
+            ts: quote.timestamp.getTime(),
+            lastUpdate: Date.now()
+          }
         }
+      } catch (dbError) {
+        console.warn('Prices API DB unavailable, returning partial/empty data', dbError)
       }
     }
 
@@ -90,7 +100,7 @@ export async function GET(request: NextRequest) {
       symbols: Object.keys(prices),
       count: Object.keys(prices).length,
       timestamp: new Date().toISOString(),
-      source: Object.keys(redisSnapshots).length > 0 ? 'redis+db' : 'database'
+      source: Object.keys(redisSnapshots).length > 0 ? 'redis+db' : 'fallback-empty'
     })
 
   } catch (error) {

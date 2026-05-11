@@ -94,10 +94,13 @@ export async function GET(request: NextRequest) {
     })
   } catch (error) {
     console.error('Quotes API error:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch quotes' },
-      { status: 500 }
-    )
+    return NextResponse.json({
+      quotes: [],
+      count: 0,
+      timestamp: new Date().toISOString(),
+      source: 'fallback',
+      note: 'Quotes unavailable because database is not configured'
+    })
   }
 }
 
