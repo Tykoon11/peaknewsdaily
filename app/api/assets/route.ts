@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 export async function GET(request: NextRequest) {
+  if (!process.env.DATABASE_URL) {
+    return NextResponse.json({
+      assets: [],
+      count: 0,
+      source: 'fallback',
+      note: 'Assets unavailable because database is not configured'
+    })
+  }
+
   try {
     const searchParams = request.nextUrl.searchParams
     const type = searchParams.get('type') // stock, crypto, etf, etc.
@@ -66,10 +75,13 @@ export async function GET(request: NextRequest) {
     })
   } catch (error) {
     console.error('Assets API error:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch assets' },
-      { status: 500 }
-    )
+    return NextResponse.json({
+      assets: [],
+      count: 0,
+      source: 'fallback',
+      note: 'Assets unavailable because database is not configured',
+      error: 'Failed to fetch assets'
+    })
   }
 }
 
