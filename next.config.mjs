@@ -47,6 +47,8 @@ const nextConfig = {
     }
   ],
   redirects: async () => [
+    // Legacy PWA manifest path
+    { source: '/manifest.json', destination: '/manifest.webmanifest', permanent: true },
     // Legacy category redirects to new trading/investing focus
     { source: '/category/culture', destination: '/category/investing', permanent: true },
     { source: '/category/funny', destination: '/category/news', permanent: true },
