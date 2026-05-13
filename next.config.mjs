@@ -60,7 +60,12 @@ const nextConfig = {
     { source: '/funny', destination: '/category/news', permanent: true },
     { source: '/interesting', destination: '/category/investing', permanent: true },
     { source: '/music', destination: '/category/news', permanent: true },
-    { source: '/sports', destination: '/category/trading', permanent: true }
+    { source: '/sports', destination: '/category/trading', permanent: true },
+    // Retired tool URLs: preserve inbound links by redirecting to canonical education pages.
+    { source: '/tools/position-size-calculator', destination: '/how-to/manage-risk-per-trade', permanent: true },
+    { source: '/tools/position-sizing-calculator', destination: '/how-to/manage-risk-per-trade', permanent: true },
+    { source: '/tools/risk-reward-calculator', destination: '/how-to/how-to-calculate-risk-reward-on-advanced-trades', permanent: true },
+    { source: '/tools/compound-interest-calculator', destination: '/how-to/how-to-invest-for-the-long-term-evidence-based', permanent: true }
   ]
 }
 
