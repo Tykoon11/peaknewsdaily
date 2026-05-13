@@ -117,6 +117,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/tools/position-sizing-calculator',
+        destination: '/how-to/manage-risk-per-trade',
+        permanent: true,
+      },
+      {
+        source: '/tools/risk-reward-calculator',
+        destination: '/how-to/how-to-calculate-risk-reward-on-advanced-trades',
+        permanent: true,
+      },
+      {
         source: '/tools/compound-interest-calculator',
         destination: '/how-to/how-to-invest-for-the-long-term-evidence-based',
         permanent: true,
